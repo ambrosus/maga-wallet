@@ -1,9 +1,5 @@
-/**
- * @format
- */
-
 import ReactTestRenderer from 'react-test-renderer';
-import { App } from '@app';
+import { App } from '../src/app';
 
 test('renders correctly', async () => {
   await ReactTestRenderer.act(() => {
