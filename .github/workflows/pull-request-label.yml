@@ -44,3 +44,6 @@ jobs:
               - type: 'refactoring'
                 nouns: ['refactor', 'refactoring']
                 labels: ['refactoring']
+               - type: 'deps'
+                nouns: ['deps', 'dependencies', 'dependency']
+                labels: ['deps']
