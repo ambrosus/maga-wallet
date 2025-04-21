@@ -47,3 +47,6 @@ jobs:
               - type: 'deps'
                 nouns: ['deps', 'dependencies', 'dependency']
                 labels: ['deps']
+              - type: 'tests'
+                nouns: ['tests']
+                labels: ['tests']
