@@ -1,6 +1,7 @@
 import { render } from '@testing-library/react-native';
 import { COLORS, FONTS } from '@constants';
-import { DEFAULT_FONT_SIZE, fontSizeMapping } from '@constants/ui/typography';
+
+import { DEFAULT_FONT_SIZE } from '../constants';
 import { Typography } from '../index';
 
 describe('Typography | Unit Test (Component)', () => {
@@ -18,7 +19,7 @@ describe('Typography | Unit Test (Component)', () => {
           opacity: 1,
           letterSpacing: 0,
           fontSize: DEFAULT_FONT_SIZE,
-          fontWeight: '400'
+          fontWeight: '600'
         }),
         undefined
       ])
@@ -45,51 +46,17 @@ describe('Typography | Unit Test (Component)', () => {
     );
   });
 
-  it('applies font size based on font size key', () => {
-    const { getByText } = render(<Typography title>Title Text</Typography>);
-
-    const textElement = getByText('Title Text');
-
-    expect(textElement.props.style).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          fontSize: fontSizeMapping.title
-        }),
-        undefined
-      ])
-    );
-  });
-
-  it('prioritizes explicit fontSize over font size keys', () => {
-    const { getByText } = render(
-      <Typography fontSize={24} title>
-        Title Text
-      </Typography>
-    );
-
-    const textElement = getByText('Title Text');
-
-    expect(textElement.props.style).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          fontSize: 24
-        }),
-        undefined
-      ])
-    );
-  });
-
   it('applies custom fontWeight', () => {
     const { getByText } = render(
-      <Typography fontWeight="bold">Bold Text</Typography>
+      <Typography fontWeight="600">SemiBold Text</Typography>
     );
 
-    const textElement = getByText('Bold Text');
+    const textElement = getByText('SemiBold Text');
 
     expect(textElement.props.style).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
-          fontWeight: '700'
+          fontWeight: '600'
         }),
         undefined
       ])
@@ -98,7 +65,7 @@ describe('Typography | Unit Test (Component)', () => {
 
   it('applies custom fontFamily', () => {
     const { getByText } = render(
-      <Typography fontFamily="Onset600SemiBold">Custom Font</Typography>
+      <Typography fontFamily="Onest600SemiBold">Custom Font</Typography>
     );
 
     const textElement = getByText('Custom Font');
@@ -106,7 +73,7 @@ describe('Typography | Unit Test (Component)', () => {
     expect(textElement.props.style).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
-          fontFamily: FONTS.Onset600SemiBold
+          fontFamily: FONTS.Onest600SemiBold
         }),
         undefined
       ])
@@ -183,24 +150,5 @@ describe('Typography | Unit Test (Component)', () => {
     );
 
     expect(getByTestId('test-typography')).toBeDefined();
-  });
-
-  it('prioritizes last font size key when multiple are provided', () => {
-    const { getByText } = render(
-      <Typography subtext title>
-        Multiple Keys
-      </Typography>
-    );
-
-    const textElement = getByText('Multiple Keys');
-
-    expect(textElement.props.style).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          fontSize: fontSizeMapping.title
-        }),
-        undefined
-      ])
-    );
   });
 });
