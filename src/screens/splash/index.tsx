@@ -7,7 +7,7 @@ export const SplashScreen = () => {
   useFakeTimer();
   return (
     <SafeAreaView style={styles.container}>
-      <SplashAppIcon />
+      <SplashAppIcon testID="splash_icon" />
     </SafeAreaView>
   );
 };

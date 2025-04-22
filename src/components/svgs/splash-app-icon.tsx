@@ -1,11 +1,17 @@
 import Svg, { Path } from 'react-native-svg';
 import { SvgIconProps } from '@types';
 
-export const SplashAppIcon = ({ scale = 1 }: SvgIconProps) => {
+export const SplashAppIcon = ({ scale = 1, testID }: SvgIconProps) => {
   const width = 66 * scale;
   const height = 62 * scale;
   return (
-    <Svg width={width} height={height} viewBox="0 0 66 62" fill="none">
+    <Svg
+      testID={testID}
+      width={width}
+      height={height}
+      viewBox="0 0 66 62"
+      fill="none"
+    >
       <Path
         fillRule="evenodd"
         clipRule="evenodd"
