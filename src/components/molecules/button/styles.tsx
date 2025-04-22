@@ -8,14 +8,7 @@ export const styles = StyleSheet.create({
     height: scale(50),
     borderRadius: 56,
     alignItems: 'center',
-    justifyContent: 'center'
-  },
-  secondaryContainer: {
-    borderWidth: 1,
-    borderColor: COLORS.primary500
-  },
-  disabled: {
-    borderWidth: 1,
-    borderColor: COLORS.primary100
+    justifyContent: 'center',
+    backgroundColor: COLORS.primary200
   }
 });
