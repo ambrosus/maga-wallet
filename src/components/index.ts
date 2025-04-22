@@ -1,1 +1,2 @@
-export { Typography } from './atoms/typography';
+export { Typography } from './atoms';
+export { TextBox } from './atoms';

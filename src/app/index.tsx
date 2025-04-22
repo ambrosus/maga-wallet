@@ -92,7 +92,7 @@ export function App(): React.JSX.Element {
         </View>
       </ScrollView>
     </View>
-  );
+  ) as React['JSX.Element'];
 }
 
 const styles = StyleSheet.create({
