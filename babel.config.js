@@ -15,6 +15,7 @@ module.exports = {
           '@screens': './src/screens',
           '@navigation': './src/navigation',
           '@constants': './src/constants',
+          '@contexts': './src/contexts',
           '@utils': './src/utils',
           '@lib': './src/lib'
         }
