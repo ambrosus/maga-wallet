@@ -16,6 +16,7 @@ module.exports = {
           '@navigation': './src/navigation',
           '@constants': './src/constants',
           '@contexts': './src/contexts',
+          '@types': './src/types',
           '@utils': './src/utils',
           '@lib': './src/lib'
         }
