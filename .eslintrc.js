@@ -26,6 +26,7 @@ module.exports = {
     'react/display-name': 'off',
     'react/react-in-jsx-scope': 'off',
     '@typescript-eslint/ban-ts-comment': 'off',
+    '@typescript-eslint/no-duplicate-enum-values': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-require-imports': 'off',
     '@typescript-eslint/no-unused-vars': 'error',

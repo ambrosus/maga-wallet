@@ -1,5 +1,7 @@
 {
   "English": "English",
-  "setupPasskey.title": "Setup Passkey",
-  "setupPasskey.description": "Skip passwords. Use your device’s biometrics for fast, safe access."
+  "setupPasskey": {
+    "title": "Setup Passkey",
+    "description": "Skip passwords. Use your device’s biometrics for fast, safe access."
+  }
 }
