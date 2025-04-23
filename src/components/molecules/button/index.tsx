@@ -1,10 +1,15 @@
 import { ReactElement } from 'react';
-import { TextStyle, TouchableOpacity, ViewStyle } from 'react-native';
+import {
+  TextStyle,
+  TouchableOpacity,
+  TouchableOpacityProps,
+  ViewStyle
+} from 'react-native';
 import { COLORS } from '@constants';
 import { styles } from './styles.tsx';
 import { Typography } from '../../atoms';
 
-interface ButtonProps {
+interface ButtonProps extends TouchableOpacityProps {
   title?: string;
   children?: ReactElement;
   isPrimary?: boolean;
@@ -25,7 +30,8 @@ export const Button = ({
   disabledTextStyle,
   textStyle,
   containerStyle,
-  onPress
+  onPress,
+  ...props
 }: ButtonProps) => {
   const _textStyle = disabled
     ? { color: COLORS.neutral200, ...disabledTextStyle }
@@ -39,7 +45,7 @@ export const Button = ({
     children || <Typography style={_textStyle}>{title}</Typography> || '';
 
   return (
-    <TouchableOpacity onPress={onPress} style={_containerStyle}>
+    <TouchableOpacity onPress={onPress} style={_containerStyle} {...props}>
       {content}
     </TouchableOpacity>
   );
