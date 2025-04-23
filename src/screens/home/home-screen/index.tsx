@@ -1,5 +1,16 @@
-import { Text } from 'react-native';
+import { Text, View } from 'react-native';
 
 export const HomeScreen = () => {
-  return <Text> HOME SCREEN</Text>;
+  return (
+    <View
+      style={{
+        width: '100%',
+        height: '100%',
+        justifyContent: 'center',
+        alignContent: 'center'
+      }}
+    >
+      <Text style={{ textAlign: 'center' }}> HOME SCREEN</Text>
+    </View>
+  );
 };

@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { HomeScreen } from '@screens/home';
+import { SettingsScreen } from '@screens';
 import {
   SETTINGS_STACK_ROTES,
   SettingsTabParamsList
@@ -15,7 +15,7 @@ export const SettingsStack = () => {
       >
         <Stack.Screen
           name={SETTINGS_STACK_ROTES.SettingsScreen}
-          component={HomeScreen}
+          component={SettingsScreen}
         />
       </Stack.Navigator>
     </>

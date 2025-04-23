@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { HomeScreen } from '@screens/home';
+import { DiscoverScreen } from '@screens';
 import {
   DISCOVER_STACK_ROTES,
   DiscoverTabParamsList
@@ -15,7 +15,7 @@ export const DiscoverStack = () => {
       >
         <Stack.Screen
           name={DISCOVER_STACK_ROTES.DiscoverScreen}
-          component={HomeScreen}
+          component={DiscoverScreen}
         />
       </Stack.Navigator>
     </>
