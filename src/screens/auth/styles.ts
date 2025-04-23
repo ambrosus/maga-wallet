@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { COLORS, DEVICE_HEIGHT } from '@constants';
+import { verticalScale } from '@utils';
 
 export const styles = StyleSheet.create({
   container: {
@@ -41,5 +42,10 @@ export const styles = StyleSheet.create({
   dividerLabel: {
     backgroundColor: COLORS.white,
     paddingHorizontal: 16
+  },
+  termsContainer: {
+    maxWidth: '75%',
+    marginTop: verticalScale(32),
+    alignItems: 'center'
   }
 });

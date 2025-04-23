@@ -1,21 +1,29 @@
-import { RowContainer, Typography } from '@components/atoms';
+import { useMemo } from 'react';
+import { RowContainer } from '@components/atoms';
 import { SocialItemCircle } from '@components/molecules';
-import { AUTH_METHODS } from '@constants/auth/methods';
+import { AUTH_METHODS } from '@constants/auth';
 
 export const SocialAuthList = () => {
+  const justifyContentProp = useMemo(() => {
+    const length = AUTH_METHODS.filter(({ visible }) => visible).length;
+
+    return length === AUTH_METHODS.length ? 'space-between' : 'space-around';
+  }, []);
+
   return (
     <RowContainer
       width="100%"
-      justifyContent="space-between"
+      justifyContent={justifyContentProp}
       alignItems="center"
     >
-      {Object.keys(AUTH_METHODS).map((key) => {
-        return (
-          <SocialItemCircle key={key}>
-            <Typography>{key.slice(0, 1)}</Typography>
-          </SocialItemCircle>
-        );
-      })}
+      {AUTH_METHODS.map(
+        ({ key, component: Icon, visible }) =>
+          visible && (
+            <SocialItemCircle key={key}>
+              <Icon />
+            </SocialItemCircle>
+          )
+      )}
     </RowContainer>
   );
 };

@@ -9,6 +9,7 @@ export const FONT_SIZE = {
     xl: 24
   },
   body: {
-    lg: 16
+    lg: 16,
+    sm: 12
   }
 } as const;
