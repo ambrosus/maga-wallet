@@ -1,13 +1,13 @@
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { SplashAppIcon } from '@components/svgs';
-import { useFakeTimer } from './hooks/use-fake-timer';
+import { AppIcon } from '@components/svgs';
+import { useSplashNavigation } from './hooks/use-splash-navigation';
 import { styles } from './styles';
 
 export const SplashScreen = () => {
-  useFakeTimer();
+  useSplashNavigation();
   return (
     <SafeAreaView style={styles.container}>
-      <SplashAppIcon testID="splash_icon" />
+      <AppIcon testID="splash_icon" />
     </SafeAreaView>
   );
 };

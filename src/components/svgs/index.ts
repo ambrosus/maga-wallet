@@ -1,1 +1,1 @@
-export { SplashAppIcon } from './splash-app-icon';
+export { AppIcon } from './app-icon';
