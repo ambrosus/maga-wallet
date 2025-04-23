@@ -4,7 +4,7 @@ import { COLORS } from '@constants';
 import { styles } from './styles.ts';
 import { Typography } from '../../atoms';
 
-interface CustomButtonProps {
+interface PrimaryButtonProps {
   title?: string;
   children?: ReactElement;
   disabled?: boolean;
@@ -16,7 +16,7 @@ export const PrimaryButton = ({
   children,
   disabled,
   onPress
-}: CustomButtonProps) => {
+}: PrimaryButtonProps) => {
   const content =
     children || <Typography color={COLORS.white}>{title}</Typography> || '';
 

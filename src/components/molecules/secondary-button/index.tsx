@@ -4,7 +4,7 @@ import { COLORS } from '@constants';
 import { styles } from './styles.ts';
 import { Typography } from '../../atoms';
 
-interface CustomButtonProps {
+interface SecondaryButtonProps {
   title?: string;
   children?: ReactElement;
   disabled?: boolean;
@@ -16,7 +16,7 @@ export const SecondaryButton = ({
   children,
   onPress,
   disabled
-}: CustomButtonProps) => {
+}: SecondaryButtonProps) => {
   const content =
     children || (
       <Typography color={disabled ? COLORS.neutral300 : COLORS.neutral700}>

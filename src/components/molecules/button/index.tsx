@@ -4,7 +4,7 @@ import { COLORS } from '@constants';
 import { styles } from './styles.tsx';
 import { Typography } from '../../atoms';
 
-interface CustomButtonProps {
+interface ButtonProps {
   title?: string;
   children?: ReactElement;
   isPrimary?: boolean;
@@ -26,7 +26,7 @@ export const Button = ({
   textStyle,
   containerStyle,
   onPress
-}: CustomButtonProps) => {
+}: ButtonProps) => {
   const _textStyle = disabled
     ? { color: COLORS.neutral200, ...disabledTextStyle }
     : { color: COLORS.neutral400, ...textStyle };
