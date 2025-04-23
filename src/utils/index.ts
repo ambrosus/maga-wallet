@@ -1,1 +1,2 @@
-export * from './scaling.ts';
+export * from './scaling';
+export * from './localization';

@@ -10,6 +10,7 @@ import {
 export type RootStackParamsList = {
   SplashScreen: undefined;
   AuthScreen: undefined;
+  SetupPasskeyScreen: undefined;
 };
 
 /**

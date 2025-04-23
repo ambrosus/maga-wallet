@@ -16,6 +16,7 @@ module.exports = {
           '@screens': './src/screens',
           '@navigation': './src/navigation',
           '@constants': './src/constants',
+          '@localization': './src/localization',
           '@contexts': './src/contexts',
           '@types': './src/types',
           '@utils': './src/utils',
