@@ -1,7 +1,13 @@
 import { Image, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Spacer, Typography } from '@components';
+import {
+  Button,
+  PrimaryButton,
+  SetupPasskeyBenefitsContainer,
+  Spacer,
+  Typography
+} from '@components';
 import { DEVICE_WIDTH, DEVICE_HEIGHT, FONT_SIZE, COLORS } from '@constants';
 import { verticalScale } from '@utils';
 import { styles } from './styles';
@@ -35,9 +41,24 @@ export const SetupPasskeyScreen = () => {
         >
           {t('setupPasskey.description')}
         </Typography>
+
+        <View style={styles.benefitsContainer}>
+          <SetupPasskeyBenefitsContainer />
+        </View>
       </View>
 
-      <View />
+      <View style={styles.footer}>
+        <Button style={styles.cancelButton} onPress={() => null}>
+          <Typography fontFamily="Onest600SemiBold" color={COLORS.neutral700}>
+            {t('setupPasskey.button.later')}
+          </Typography>
+        </Button>
+        <PrimaryButton onPress={() => null}>
+          <Typography fontFamily="Onest600SemiBold" color={COLORS.white}>
+            {t('buttons.faceID')}
+          </Typography>
+        </PrimaryButton>
+      </View>
     </SafeAreaView>
   );
 };
