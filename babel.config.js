@@ -9,12 +9,15 @@ module.exports = {
         alias: {
           '@*': './src/*',
           '@app': './src/app',
+          '@assets': './src/assets',
           '@components': './src/components',
           '@hooks': './src/lib/hooks',
           '@core': './src/core',
           '@screens': './src/screens',
           '@navigation': './src/navigation',
           '@constants': './src/constants',
+          '@contexts': './src/contexts',
+          '@types': './src/types',
           '@utils': './src/utils',
           '@lib': './src/lib'
         }

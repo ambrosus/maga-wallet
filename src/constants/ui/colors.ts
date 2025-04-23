@@ -2,6 +2,8 @@ export const COLORS = {
   // Generic
   white: '#FFFFFF',
   black: '#000000',
+  textPrimary: '#111827',
+  textSecondary: '#6B7280',
 
   // Neutral
   neutral50: '#F9FAFB',

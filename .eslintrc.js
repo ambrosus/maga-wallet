@@ -27,6 +27,7 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     '@typescript-eslint/ban-ts-comment': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/no-require-imports': 'off',
     '@typescript-eslint/no-unused-vars': 'error',
     'import/no-named-as-default': 'off',
     'import/no-named-as-default-member': 'off',
