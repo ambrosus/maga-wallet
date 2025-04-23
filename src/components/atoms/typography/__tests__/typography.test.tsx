@@ -1,7 +1,5 @@
 import { render } from '@testing-library/react-native';
-import { COLORS, FONTS } from '@constants';
-
-import { DEFAULT_FONT_SIZE } from '../constants';
+import { COLORS, FONT_SIZE, FONTS } from '@constants';
 import { Typography } from '../index';
 
 describe('Typography | Unit Test (Component)', () => {
@@ -18,7 +16,7 @@ describe('Typography | Unit Test (Component)', () => {
           textAlign: 'auto',
           opacity: 1,
           letterSpacing: 0,
-          fontSize: DEFAULT_FONT_SIZE,
+          fontSize: FONT_SIZE.default,
           fontWeight: '600'
         }),
         undefined

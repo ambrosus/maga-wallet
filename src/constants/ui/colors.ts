@@ -5,6 +5,9 @@ export const COLORS = {
   textPrimary: '#111827',
   textSecondary: '#6B7280',
 
+  // Borders
+  borderDefault: '#E5E7EB',
+
   // Neutral
   neutral50: '#F9FAFB',
   neutral100: '#F3F4F6',

@@ -5,7 +5,7 @@ import {
   NavigationContainerRef
 } from '@react-navigation/native';
 import { RouterProvider } from '@contexts/navigation';
-import { RootStackNavigation } from '@navigation/root-stack/root-stack.navigation';
+import { RootStackNavigation } from '@navigation/root-stack';
 
 export const NavigationProvider = () => {
   const [route, setRoute] = useState('SplashScreen');

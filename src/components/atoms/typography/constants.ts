@@ -1,7 +1,5 @@
 import { TextStyle as RNTextStyle } from 'react-native';
 
-export const DEFAULT_FONT_SIZE = 16;
-
 export const fontWeightMapping: {
   [key: string]: RNTextStyle['fontWeight'];
 } = {
