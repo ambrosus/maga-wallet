@@ -1,1 +1,1 @@
-export { useKeyboardHeight } from './useKeyboardHeight';
+export { useKeyboardHeight } from './use-keyboard-height';

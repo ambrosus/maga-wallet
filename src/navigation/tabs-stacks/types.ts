@@ -7,9 +7,9 @@ import {
   NativeStackNavigationProp,
   NativeStackScreenProps
 } from '@react-navigation/native-stack';
-import { DiscoverTabParamsList } from '@navigation/tabs/discover';
-import { HomeTabParamsList } from '@navigation/tabs/home';
-import { SettingsTabParamsList } from '@navigation/tabs/settings';
+import { DiscoverTabParamsList } from '@navigation/tabs/discover/discover-tab.model';
+import { HomeTabParamsList } from '@navigation/tabs/home/home-tab.model';
+import { SettingsTabParamsList } from '@navigation/tabs/settings/settings-tab.model';
 
 /**
  * Parameter list for the tabs navigation stack.
