@@ -2,7 +2,7 @@ import {
   createNativeStackNavigator,
   NativeStackNavigationOptions
 } from '@react-navigation/native-stack';
-import { SplashScreen, AuthScreen } from '@screens';
+import { SplashScreen, AuthScreen, SetupPasskeyScreen } from '@screens';
 import { ROOT_STACK_ROUTES } from './routes';
 import { RootStackParamsList } from './types';
 
@@ -22,6 +22,10 @@ export const RootStackNavigation = () => {
       <Stack.Screen
         name={ROOT_STACK_ROUTES.AuthScreen}
         component={AuthScreen}
+      />
+      <Stack.Screen
+        name={ROOT_STACK_ROUTES.SetupPasskeyScreen}
+        component={SetupPasskeyScreen}
       />
     </Stack.Navigator>
   );

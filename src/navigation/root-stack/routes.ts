@@ -1,4 +1,5 @@
 export const ROOT_STACK_ROUTES = {
   SplashScreen: 'SplashScreen',
-  AuthScreen: 'AuthScreen'
+  AuthScreen: 'AuthScreen',
+  SetupPasskeyScreen: 'SetupPasskeyScreen'
 } as const;

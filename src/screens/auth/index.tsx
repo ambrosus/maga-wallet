@@ -70,6 +70,7 @@ export const AuthScreen = ({
             </Typography>
           </View>
           <Spacer value={scale(32)} />
+          {/* Social Auth List */}
           <SocialAuthList />
           <Spacer value={scale(32)} />
           <PrimaryButton onPress={onNavigateToPasskey}>
