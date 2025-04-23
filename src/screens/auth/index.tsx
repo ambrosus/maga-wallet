@@ -1,11 +1,13 @@
 import { Image, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { AppIconContainer, Typography } from '@components';
+import { SocialAuthList } from '@components/organisms';
 import {
   COLORS,
   DEVICE_HEIGHT,
   DEVICE_WIDTH,
-  FLEX_FULL_SIZE
+  FLEX_FULL_SIZE,
+  FONT_SIZE
 } from '@constants';
 import { styles } from './styles';
 
@@ -24,19 +26,30 @@ export const AuthScreen = () => {
           <AppIconContainer />
 
           <Typography
-            fontSize={24}
+            fontSize={FONT_SIZE.heading.xl}
             fontFamily="Onest600SemiBold"
             color={COLORS.textPrimary}
+            letterSpacing={-1}
           >
             Maga Wallet
           </Typography>
-          <Typography
-            fontSize={16}
-            fontFamily="Onest500Medium"
-            color={COLORS.textSecondary}
-          >
+          <Typography fontFamily="Onest500Medium" color={COLORS.textSecondary}>
             Crypto made simple.
           </Typography>
+        </View>
+        <View style={styles.footer}>
+          <View style={styles.divider}>
+            <View style={styles.line} />
+            <Typography
+              fontFamily="Onest500Medium"
+              color={COLORS.textSecondary}
+              style={styles.dividerLabel}
+            >
+              Continue with
+            </Typography>
+          </View>
+
+          <SocialAuthList />
         </View>
       </SafeAreaView>
     </View>

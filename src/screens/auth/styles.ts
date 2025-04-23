@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { DEVICE_HEIGHT } from '@constants';
+import { COLORS, DEVICE_HEIGHT } from '@constants';
 
 export const styles = StyleSheet.create({
   container: {
@@ -14,6 +14,32 @@ export const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
-    height: DEVICE_HEIGHT / 2.75
+    height: DEVICE_HEIGHT / 2.25
+  },
+  footer: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    paddingHorizontal: 24
+  },
+  divider: {
+    width: '100%',
+    height: 24,
+    position: 'relative',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  line: {
+    width: '100%',
+    height: 1,
+    backgroundColor: COLORS.borderDefault,
+    position: 'absolute',
+    top: '50%',
+    left: 0,
+    right: 0
+  },
+  dividerLabel: {
+    backgroundColor: COLORS.white,
+    paddingHorizontal: 16
   }
 });

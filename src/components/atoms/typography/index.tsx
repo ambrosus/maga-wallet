@@ -1,13 +1,13 @@
 import { PropsWithChildren, useCallback, useMemo } from 'react';
 import { Text, TextStyle } from 'react-native';
-import { COLORS, FONTS } from '@constants';
-import { DEFAULT_FONT_SIZE, fontWeightMapping } from './constants';
+import { COLORS, FONT_SIZE, FONTS } from '@constants';
+import { fontWeightMapping } from './constants';
 import { TextProps } from './types';
 
 export const Typography = ({
   style: propsStyle,
   color = COLORS.neutral500,
-  fontSize = DEFAULT_FONT_SIZE,
+  fontSize = FONT_SIZE.default,
   opacity = 1,
   fontWeight = '600',
   align = 'auto',
