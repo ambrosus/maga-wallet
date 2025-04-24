@@ -10,7 +10,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import {
   BottomSheetSetupBiometrics,
   Button,
-  PrimaryButton,
   SetupFaceIdButton,
   SetupPasskeyBenefitsContainer,
   Spacer,

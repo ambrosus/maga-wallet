@@ -1,6 +1,7 @@
 import { forwardRef } from 'react';
 import { View } from 'react-native';
 import { BottomSheetModal } from '@gorhom/bottom-sheet';
+import { useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 import {
   IconContainer,
@@ -13,15 +14,20 @@ import { BottomSheet } from '@components/organisms';
 import { WarningIcon } from '@components/svgs';
 import { COLORS, FONT_SIZE } from '@constants';
 import { useForwardedRef } from '@lib/hooks';
+import { ROOT_STACK_ROUTES, RootNavigationProp } from '@navigation/root-stack';
 import { verticalScale } from '@utils';
 import { styles } from './styles';
 
 export const BottomSheetSetupBiometrics = forwardRef<BottomSheetModal, any>(
   ({}, ref) => {
     const { t } = useTranslation();
+    const navigation = useNavigation<RootNavigationProp>();
     const bottomSheetRef = useForwardedRef<BottomSheetModal>(ref);
 
     const onDismissBottomSheet = () => bottomSheetRef.current?.dismiss();
+
+    const onHandleBiometricsAuth = () =>
+      navigation.navigate(ROOT_STACK_ROUTES.CreateWalletLoadingScreen);
 
     return (
       <BottomSheet ref={bottomSheetRef}>
@@ -50,7 +56,10 @@ export const BottomSheetSetupBiometrics = forwardRef<BottomSheetModal, any>(
           <Spacer value={verticalScale(32)} />
 
           <RowContainer gap={16}>
-            <SetupFaceIdButton style={styles.button} onPress={() => null} />
+            <SetupFaceIdButton
+              style={styles.button}
+              onPress={onHandleBiometricsAuth}
+            />
             <SecondaryButton
               style={styles.button}
               onPress={onDismissBottomSheet}

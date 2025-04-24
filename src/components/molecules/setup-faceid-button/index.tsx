@@ -1,8 +1,9 @@
 import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import ReactNativeBiometrics from 'react-native-biometrics';
+
 import { Typography } from '@components/atoms';
-import { COLORS } from '@constants';
+import { ANIMATION_DELAY, COLORS } from '@constants';
+import { useBiometrics } from '@core/biometrics/lib/hooks';
 import { PrimaryButton, PrimaryButtonProps } from '../primary-button';
 
 type SetupFaceIdButtonProps = Partial<PrimaryButtonProps>;
@@ -13,28 +14,15 @@ export const SetupFaceIdButton = ({
 }: SetupFaceIdButtonProps) => {
   const { t } = useTranslation();
 
+  const { onHandleBiometricsAuth } = useBiometrics();
+
   const onCheckBiometrics = useCallback(async () => {
-    const rnBiometrics = new ReactNativeBiometrics();
-
-    try {
-      const promptResult = await rnBiometrics.simplePrompt({
-        promptMessage: 'Confirm fingerprint'
-      });
-
-      const { success } = promptResult;
-
-      if (success) {
-        console.warn('successful biometrics provided');
-      } else {
-        console.warn('user cancelled biometric prompt');
-      }
-    } catch (error) {
-      console.error('Biometric error:', error);
-      throw Error(error as string);
-    }
-
-    if (onPress) onPress();
-  }, [onPress]);
+    await onHandleBiometricsAuth();
+    if (onPress)
+      setTimeout(() => {
+        onPress();
+      }, ANIMATION_DELAY * 2);
+  }, [onHandleBiometricsAuth, onPress]);
 
   return (
     <PrimaryButton onPress={onCheckBiometrics} {...props}>
