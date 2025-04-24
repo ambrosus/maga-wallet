@@ -11,6 +11,7 @@ import {
   BottomSheetSetupBiometrics,
   Button,
   PrimaryButton,
+  SetupFaceIdButton,
   SetupPasskeyBenefitsContainer,
   Spacer,
   Typography
@@ -70,11 +71,7 @@ export const SetupPasskeyScreen = () => {
                   {t('setupPasskey.button.later')}
                 </Typography>
               </Button>
-              <PrimaryButton onPress={() => null}>
-                <Typography fontFamily="Onest600SemiBold" color={COLORS.white}>
-                  {t('buttons.faceID')}
-                </Typography>
-              </PrimaryButton>
+              <SetupFaceIdButton />
             </View>
           </SafeAreaView>
 
