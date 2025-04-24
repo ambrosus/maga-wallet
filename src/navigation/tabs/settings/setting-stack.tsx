@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SettingsScreen } from '@screens';
 import {
-  SETTINGS_STACK_ROTES,
+  SETTINGS_STACK_ROUTES,
   SettingsTabParamsList
 } from './settings-tab.model';
 
@@ -10,11 +10,11 @@ export const SettingsStack = () => {
   return (
     <>
       <Stack.Navigator
-        initialRouteName={SETTINGS_STACK_ROTES.SettingsScreen}
+        initialRouteName={SETTINGS_STACK_ROUTES.SettingsScreen}
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen
-          name={SETTINGS_STACK_ROTES.SettingsScreen}
+          name={SETTINGS_STACK_ROUTES.SettingsScreen}
           component={SettingsScreen}
         />
       </Stack.Navigator>

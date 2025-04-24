@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { DiscoverScreen } from '@screens';
 import {
-  DISCOVER_STACK_ROTES,
+  DISCOVER_STACK_ROUTES,
   DiscoverTabParamsList
 } from './discover-tab.model';
 
@@ -10,11 +10,11 @@ export const DiscoverStack = () => {
   return (
     <>
       <Stack.Navigator
-        initialRouteName={DISCOVER_STACK_ROTES.DiscoverScreen}
+        initialRouteName={DISCOVER_STACK_ROUTES.DiscoverScreen}
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen
-          name={DISCOVER_STACK_ROTES.DiscoverScreen}
+          name={DISCOVER_STACK_ROUTES.DiscoverScreen}
           component={DiscoverScreen}
         />
       </Stack.Navigator>

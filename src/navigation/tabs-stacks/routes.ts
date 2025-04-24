@@ -1,6 +1,6 @@
 import { TabsStackParamsList } from './types';
 
-export const TABS_STACK_ROTES = {
+export const TABS_STACK_ROUTES = {
   Home: 'Home',
   Discover: 'Discover',
   Settings: 'Settings'

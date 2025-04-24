@@ -8,7 +8,7 @@ import { useKeyboardHeight } from '@lib';
 import DiscoverStack from '@navigation/tabs/discover/discover-stack';
 import HomeStack from '@navigation/tabs/home/home-stack';
 import SettingsStack from '@navigation/tabs/settings/setting-stack';
-import { TABS_STACK_ROTES } from './routes';
+import { TABS_STACK_ROUTES } from './routes';
 import { TabsParamsList } from './types';
 
 const BottomTabs = createBottomTabNavigator<TabsParamsList>();
@@ -29,17 +29,20 @@ export const TabsNavigator = () => {
   return (
     <>
       <BottomTabs.Navigator
-        initialRouteName={TABS_STACK_ROTES.Home}
+        initialRouteName={TABS_STACK_ROUTES.Home}
         screenOptions={screenOptions}
         tabBar={renderTabBarComponent}
       >
-        <BottomTabs.Screen name={TABS_STACK_ROTES.Home} component={HomeStack} />
         <BottomTabs.Screen
-          name={TABS_STACK_ROTES.Discover}
+          name={TABS_STACK_ROUTES.Home}
+          component={HomeStack}
+        />
+        <BottomTabs.Screen
+          name={TABS_STACK_ROUTES.Discover}
           component={DiscoverStack}
         />
         <BottomTabs.Screen
-          name={TABS_STACK_ROTES.Settings}
+          name={TABS_STACK_ROUTES.Settings}
           component={SettingsStack}
         />
       </BottomTabs.Navigator>
