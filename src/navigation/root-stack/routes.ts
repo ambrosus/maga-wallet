@@ -5,4 +5,3 @@ export enum ROOT_STACK_ROUTES {
   CreateWalletLoadingScreen = 'CreateWalletLoadingScreen',
   Tabs = 'Tabs'
 }
-

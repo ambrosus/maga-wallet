@@ -2,13 +2,13 @@ import {
   createNativeStackNavigator,
   NativeStackNavigationOptions
 } from '@react-navigation/native-stack';
+import { TabsNavigator } from '@navigation/tabs-stacks';
 import {
   SplashScreen,
   AuthScreen,
   SetupPasskeyScreen,
   CreateWalletLoadingScreen
 } from '@screens';
-import { TabsNavigator } from '@navigation/tabs-stacks/tabs-navigator';
 import { ROOT_STACK_ROUTES } from './routes';
 import { RootStackParamsList } from './types';
 
