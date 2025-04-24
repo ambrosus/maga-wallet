@@ -12,6 +12,7 @@ export type RootStackParamsList = {
   AuthScreen: undefined;
   SetupPasskeyScreen: undefined;
   CreateWalletLoadingScreen: undefined;
+  Tabs: undefined;
 };
 
 /**
