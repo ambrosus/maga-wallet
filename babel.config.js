@@ -23,6 +23,7 @@ module.exports = {
           '@lib': './src/lib'
         }
       }
-    ]
+    ],
+    'react-native-reanimated/plugin'
   ]
 };

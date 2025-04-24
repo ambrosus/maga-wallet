@@ -1,9 +1,10 @@
+import { PropsWithChildren } from 'react';
 import { View } from 'react-native';
 import { AppIcon as AppIconSvg } from '@components/svgs';
 import { COLORS } from '@constants';
 import { styles } from './styles';
 
-interface AppIconContainerProps {
+interface IconContainerProps extends PropsWithChildren {
   size?: number;
   testID?: string;
   style?: object;
@@ -11,13 +12,14 @@ interface AppIconContainerProps {
   iconColor?: string;
 }
 
-export const AppIconContainer = ({
+export const IconContainer = ({
   size = 56,
   style,
   backgroundColor = COLORS.primary500,
   iconColor = COLORS.white,
-  testID
-}: AppIconContainerProps) => {
+  testID,
+  children
+}: IconContainerProps) => {
   return (
     <View
       testID={testID}
@@ -27,7 +29,11 @@ export const AppIconContainer = ({
         style
       ]}
     >
-      <AppIconSvg scale={size / 100} color={iconColor} />
+      {children ? (
+        children
+      ) : (
+        <AppIconSvg scale={size / 100} color={iconColor} />
+      )}
     </View>
   );
 };

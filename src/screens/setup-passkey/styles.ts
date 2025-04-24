@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
-import { isAndroid } from '@constants';
-import { scale } from '@utils';
+import { COLORS, isAndroid } from '@constants';
+import { scale, verticalScale } from '@utils';
 
 export const styles = StyleSheet.create({
   container: {
@@ -17,5 +17,20 @@ export const styles = StyleSheet.create({
   },
   description: {
     maxWidth: '75%'
+  },
+  benefitsContainer: {
+    marginTop: verticalScale(48)
+  },
+  footer: {
+    gap: 20
+  },
+  cancelButton: {
+    width: '100%',
+    height: 50,
+    borderRadius: 56,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: COLORS.borderDefault
   }
 });

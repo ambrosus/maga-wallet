@@ -37,10 +37,13 @@ describe('PrimaryButton | Unit Test (Component)', () => {
     const touchable = UNSAFE_root.findByType(TouchableOpacity);
 
     expect(touchable.props.style).toEqual(
-      expect.objectContaining({
-        ...styles.buttonContainer,
-        backgroundColor: COLORS.primary300
-      })
+      expect.objectContaining([
+        undefined,
+        {
+          ...styles.buttonContainer,
+          backgroundColor: COLORS.primary300
+        }
+      ])
     );
   });
 
@@ -53,10 +56,13 @@ describe('PrimaryButton | Unit Test (Component)', () => {
     const touchable = UNSAFE_root.findByType(TouchableOpacity);
 
     expect(touchable.props.style).toEqual(
-      expect.objectContaining({
-        ...styles.buttonContainer,
-        backgroundColor: COLORS.primary500
-      })
+      expect.objectContaining([
+        undefined,
+        {
+          ...styles.buttonContainer,
+          backgroundColor: COLORS.primary500
+        }
+      ])
     );
   });
 

@@ -6,3 +6,5 @@ export const KEYBOARD_OPENING_TIME = 500;
 
 export const isIos = Platform.OS === 'ios';
 export const isAndroid = Platform.OS === 'android';
+
+export const ANIMATION_DELAY = 500;

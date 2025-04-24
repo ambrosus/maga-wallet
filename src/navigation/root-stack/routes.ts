@@ -1,6 +1,7 @@
-export const ROOT_STACK_ROUTES = {
-  SplashScreen: 'SplashScreen',
-  AuthScreen: 'AuthScreen',
-  SetupPasskeyScreen: 'SetupPasskeyScreen',
-  Tabs: 'Tabs'
-} as const;
+export enum ROOT_STACK_ROUTES {
+  SplashScreen = 'SplashScreen',
+  AuthScreen = 'AuthScreen',
+  SetupPasskeyScreen = 'SetupPasskeyScreen',
+  CreateWalletLoadingScreen = 'CreateWalletLoadingScreen',
+  Tabs = 'Tabs'
+}
