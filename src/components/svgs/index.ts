@@ -5,3 +5,4 @@ export { AppleIcon } from './socials/apple';
 export { XIcon } from './socials/x';
 export { ShieldIcon } from './shield';
 export { FingerprintIcon } from './fingerprint';
+export { WarningIcon } from './warning';

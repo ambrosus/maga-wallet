@@ -1,4 +1,4 @@
 export { Typography } from './typography';
-export { AppIconContainer } from './app-icon-container';
+export { IconContainer } from './icon-container';
 export { Spacer } from './spacer';
 export { RowContainer } from './row-container';

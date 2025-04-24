@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { Alert, Image, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { AppIconContainer, Typography } from '@components';
+import { IconContainer, Typography } from '@components';
 import { Spacer } from '@components/atoms';
 import { PrimaryButton } from '@components/molecules';
 import { SocialAuthList } from '@components/organisms';
@@ -42,7 +42,7 @@ export const AuthScreen = ({
         />
 
         <View style={styles.header}>
-          <AppIconContainer />
+          <IconContainer />
 
           <Spacer value={scale(16)} />
           <Typography
