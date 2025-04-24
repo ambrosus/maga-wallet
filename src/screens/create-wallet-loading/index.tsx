@@ -18,10 +18,13 @@ import {
   FONT_SIZE
 } from '@constants';
 import { useAnimatedDots } from '@lib/hooks';
+import { RootNavigationScreenProps } from '@navigation/root-stack';
 import { verticalScale } from '@utils';
 import { styles } from './styles';
 
-export const CreateWalletLoadingScreen = () => {
+export const CreateWalletLoadingScreen = ({
+  navigation
+}: RootNavigationScreenProps<'CreateWalletLoadingScreen'>) => {
   const scale = useSharedValue(1);
   const { DotsComponent, setIsAnimating } = useAnimatedDots();
 
@@ -34,6 +37,14 @@ export const CreateWalletLoadingScreen = () => {
       };
     }, [setIsAnimating])
   );
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      navigation.navigate('Tabs');
+    }, ANIMATION_DELAY * 10);
+
+    return () => clearTimeout(timeoutId);
+  }, [navigation]);
 
   useEffect(() => {
     scale.value = withRepeat(

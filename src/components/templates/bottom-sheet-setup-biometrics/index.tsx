@@ -19,15 +19,23 @@ import { verticalScale } from '@utils';
 import { styles } from './styles';
 
 export const BottomSheetSetupBiometrics = forwardRef<BottomSheetModal, any>(
-  ({}, ref) => {
+  (_, ref) => {
     const { t } = useTranslation();
     const navigation = useNavigation<RootNavigationProp>();
     const bottomSheetRef = useForwardedRef<BottomSheetModal>(ref);
 
     const onDismissBottomSheet = () => bottomSheetRef.current?.dismiss();
 
-    const onHandleBiometricsAuth = () =>
-      navigation.navigate(ROOT_STACK_ROUTES.CreateWalletLoadingScreen);
+    const onHandleBiometricsAuth = () => {
+      navigation.reset({
+        index: 0,
+        routes: [
+          {
+            name: ROOT_STACK_ROUTES.CreateWalletLoadingScreen
+          }
+        ]
+      });
+    };
 
     return (
       <BottomSheet ref={bottomSheetRef}>
