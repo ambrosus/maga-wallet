@@ -6,5 +6,8 @@ export const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     paddingTop: verticalScale(32)
+  },
+  button: {
+    flex: 1
   }
 });

@@ -10,6 +10,11 @@
     "benefits.secure.description": "No passwords, No worries.",
     "benefits.accessibility.title": "One tap, you’re in",
     "benefits.accessibility.description": "Log in with your device in seconds.",
-    "button.later": "Maybe later"
+    "button.later": "Maybe later",
+    "bottomSheet": {
+      "title": "Are you sure?",
+      "description": "Without a passkey, your wallet may be less protected and you’ll need to log in manually each time.",
+      "button.cancel": "I’m Sure"
+    }
   }
 }

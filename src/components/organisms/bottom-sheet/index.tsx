@@ -38,16 +38,17 @@ export const BottomSheet = forwardRef<BottomSheetModal, BottomSheetProps>(
 
     return (
       <BottomSheetModal
+        detached
         ref={ref}
         index={1}
-        handleIndicatorStyle={styles.indicator}
-        detached
         snapPoints={[1]}
+        enablePanDownToClose
         enableOverDrag={false}
         backdropComponent={renderBackdrop}
-        maxDynamicContentSize={maxDynamicContentSizeCalc}
         enableDynamicSizing={true}
-        enablePanDownToClose
+        backgroundStyle={styles.background}
+        handleIndicatorStyle={styles.indicator}
+        maxDynamicContentSize={maxDynamicContentSizeCalc}
       >
         <BottomSheetView
           style={{

@@ -9,5 +9,9 @@ export const styles = StyleSheet.create({
   },
   container: {
     paddingHorizontal: scale(12)
+  },
+  background: {
+    borderTopLeftRadius: 24,
+    borderTopRightRadius: 24
   }
 });

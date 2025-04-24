@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import { TouchableOpacity } from 'react-native';
+import { StyleProp, TouchableOpacity, ViewStyle } from 'react-native';
 import { COLORS } from '@constants';
 import { styles } from './styles.ts';
 import { Typography } from '../../atoms';
@@ -9,13 +9,15 @@ interface SecondaryButtonProps {
   children?: ReactElement;
   disabled?: boolean;
   onPress: () => void;
+  style?: StyleProp<ViewStyle>;
 }
 
 export const SecondaryButton = ({
   title,
   children,
   onPress,
-  disabled
+  disabled,
+  style
 }: SecondaryButtonProps) => {
   const content =
     children || (
@@ -28,11 +30,14 @@ export const SecondaryButton = ({
   return (
     <TouchableOpacity
       onPress={onPress}
-      style={{
-        ...styles.buttonContainer,
-        borderColor: disabled ? COLORS.neutral500 : COLORS.neutral700,
-        backgroundColor: COLORS.white
-      }}
+      style={[
+        style,
+        {
+          ...styles.buttonContainer,
+          borderColor: disabled ? COLORS.neutral500 : COLORS.borderDefault,
+          backgroundColor: COLORS.white
+        }
+      ]}
     >
       {content}
     </TouchableOpacity>

@@ -1,21 +1,23 @@
 import { ReactElement } from 'react';
-import { TouchableOpacity } from 'react-native';
+import { StyleProp, TouchableOpacity, ViewStyle } from 'react-native';
 import { COLORS } from '@constants';
 import { styles } from './styles.ts';
 import { Typography } from '../../atoms';
 
-interface PrimaryButtonProps {
+export interface PrimaryButtonProps {
   title?: string;
   children?: ReactElement;
   disabled?: boolean;
   onPress: () => void;
+  style?: StyleProp<ViewStyle>;
 }
 
 export const PrimaryButton = ({
   title,
   children,
   disabled,
-  onPress
+  onPress,
+  style
 }: PrimaryButtonProps) => {
   const content =
     children || <Typography color={COLORS.white}>{title}</Typography> || '';
@@ -23,10 +25,13 @@ export const PrimaryButton = ({
   return (
     <TouchableOpacity
       onPress={onPress}
-      style={{
-        ...styles.buttonContainer,
-        backgroundColor: disabled ? COLORS.primary300 : COLORS.primary500
-      }}
+      style={[
+        style,
+        {
+          ...styles.buttonContainer,
+          backgroundColor: disabled ? COLORS.primary300 : COLORS.primary500
+        }
+      ]}
     >
       {content}
     </TouchableOpacity>
