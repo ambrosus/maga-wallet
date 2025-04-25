@@ -28,7 +28,7 @@ export const Header = ({ title, goBack }: HeaderProps) => {
     <View style={styles.main}>
       {goBack && (
         <Button style={styles.arrowContainer} onPress={handleGoBack}>
-          <Arow />
+          <Arow orientation="left" />
         </Button>
       )}
       <Typography fontSize={scale(20)} color={COLORS.textPrimary}>

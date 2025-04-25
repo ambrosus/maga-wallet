@@ -1,17 +1,17 @@
 import { ReactNode } from 'react';
-import { SETTINGS_STACK_ROUTES } from '@navigation';
+import { SettingsTabParamsList } from '@navigation';
 
 export enum Settingsitems {
-  ManageAccounts = 'Manage Accounts',
-  Security = 'Security',
-  AddressBook = 'Address Book',
-  Preferences = 'Preferences',
-  Notifications = 'Notifications',
-  About = 'About'
+  ManageAccounts = 'manage.accounts',
+  Security = 'security',
+  AddressBook = 'address.book',
+  Preferences = 'preferences',
+  Notifications = 'notifications',
+  About = 'about'
 }
 
 export interface SettingItem {
   name: Settingsitems;
-  route: SETTINGS_STACK_ROUTES;
+  route: keyof Omit<SettingsTabParamsList, 'SettingsScreen'>;
   icon: ReactNode;
 }

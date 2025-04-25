@@ -20,6 +20,7 @@ export const Arow = ({
   switch (orientation) {
     case 'up':
       rotation = 90;
+
       break;
     case 'down':
       rotation = -90;

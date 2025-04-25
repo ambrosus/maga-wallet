@@ -1,16 +1,16 @@
-import { Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native';
+import { useRoute } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
+import { Header } from '@components';
+import { Settingsitems } from '../models';
 
 export const NotificationsScreen = () => {
+  const route = useRoute();
+  const { name } = route.params as { name: Settingsitems };
+  const { t } = useTranslation();
   return (
-    <View
-      style={{
-        width: '100%',
-        height: '100%',
-        justifyContent: 'center',
-        alignContent: 'center'
-      }}
-    >
-      <Text style={{ textAlign: 'center' }}> NOTIFICATIONS</Text>
-    </View>
+    <SafeAreaView>
+      <Header goBack title={t(`settings.tabs.${name}`)} />
+    </SafeAreaView>
   );
 };

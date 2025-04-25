@@ -1,11 +1,13 @@
+import { Settingsitems } from '@screens/settings/models';
+
 export type SettingsTabParamsList = {
   SettingsScreen: undefined;
-  ManageAccountsScreen: undefined;
-  SecurityScreen: undefined;
-  AddressBookScreen: undefined;
-  PreferencesScreen: undefined;
-  NotificationsScreen: undefined;
-  AboutScreen: undefined;
+  ManageAccountsScreen: { name: Settingsitems };
+  SecurityScreen: { name: Settingsitems };
+  AddressBookScreen: { name: Settingsitems };
+  PreferencesScreen: { name: Settingsitems };
+  NotificationsScreen: { name: Settingsitems };
+  AboutScreen: { name: Settingsitems };
 };
 
 export enum SETTINGS_STACK_ROUTES {
