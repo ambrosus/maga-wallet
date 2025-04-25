@@ -7,13 +7,14 @@ import { ROOT_STACK_ROUTES, RootNavigationProp } from '@navigation/root-stack';
 
 export const SocialAuthList = () => {
   const navigation = useNavigation<RootNavigationProp>();
+
   const justifyContentProp = useMemo(() => {
     const length = AUTH_METHODS.filter(({ visible }) => visible).length;
 
     return length === AUTH_METHODS.length ? 'space-between' : 'space-around';
   }, []);
 
-  const onNavigateToPasskey = () => {
+  const onNavigateToPasskey = async () => {
     navigation.navigate(ROOT_STACK_ROUTES.SetupPasskeyScreen);
   };
 
