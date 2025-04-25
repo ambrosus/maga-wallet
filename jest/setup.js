@@ -1,4 +1,5 @@
 import 'react-native-gesture-handler/jestSetup';
+
 require('react-native-reanimated').setUpTests();
 // Include this section for mocking react-native-screens
 jest.mock('react-native-screens', () => {
