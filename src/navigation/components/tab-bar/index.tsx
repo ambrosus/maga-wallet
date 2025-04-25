@@ -1,4 +1,4 @@
-import { useLayoutEffect, useMemo, useState } from 'react';
+import { ReactNode, useLayoutEffect, useMemo, useState } from 'react';
 import { Pressable, StyleProp, View, ViewStyle } from 'react-native';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import { useTranslation } from 'react-i18next';
@@ -12,10 +12,7 @@ import { scale, verticalScale, NavigationUtils } from '@utils';
 import { styles } from './styles';
 
 interface TabBarMethodModel {
-  tabs: Record<
-    string,
-    { activeIcon: React.ReactNode; inactiveIcon: React.ReactNode }
-  >;
+  tabs: Record<string, { activeIcon: ReactNode; inactiveIcon: ReactNode }>;
   visibility: (tab: RoutesModel) => boolean;
 }
 
