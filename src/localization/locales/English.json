@@ -16,5 +16,10 @@
       "description": "Without a passkey, your wallet may be less protected and you’ll need to log in manually each time.",
       "button.cancel": "I’m Sure"
     }
+  },
+  "tabs":{
+    "Home": "Home",
+    "Discover": "Discover",
+    "Settings": "Settings",
   }
 }

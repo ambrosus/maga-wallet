@@ -1,10 +1,11 @@
-import { useMemo } from 'react';
-import { Text } from 'react-native';
+import { useCallback, useMemo } from 'react';
 import {
+  BottomTabBarProps,
   BottomTabNavigationOptions,
   createBottomTabNavigator
 } from '@react-navigation/bottom-tabs';
 import { useKeyboardHeight } from '@lib';
+import TabBar from '@navigation/components/tab-bar';
 import DiscoverStack from '@navigation/tabs/discover/discover-stack';
 import HomeStack from '@navigation/tabs/home/home-stack';
 import SettingsStack from '@navigation/tabs/settings/setting-stack';
@@ -16,7 +17,9 @@ const BottomTabs = createBottomTabNavigator<TabsParamsList>();
 export const TabsNavigator = () => {
   const keyboardHeight = useKeyboardHeight();
 
-  const renderTabBarComponent = () => <Text>1</Text>;
+  const renderTabBarComponent = useCallback((props: BottomTabBarProps) => {
+    return <TabBar {...props} />;
+  }, []);
 
   const screenOptions: BottomTabNavigationOptions = useMemo(
     () => ({
