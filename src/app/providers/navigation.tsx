@@ -38,7 +38,6 @@ export const NavigationProvider = () => {
     >
       <RouterProvider route={route}>
         <StatusBar />
-
         <RootStackNavigation />
       </RouterProvider>
     </NavigationContainer>

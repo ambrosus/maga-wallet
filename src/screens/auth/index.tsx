@@ -20,7 +20,7 @@ export const AuthScreen = ({
   navigation
 }: RootNavigationScreenProps<'AuthScreen'>) => {
   const onNavigateToPasskey = useCallback(() => {
-    navigation.navigate('AuthScreen');
+    navigation.navigate('Tabs');
   }, [navigation]);
 
   const onTermsUsageNavigate = useCallback(() => {
