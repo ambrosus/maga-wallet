@@ -1,1 +1,1 @@
-export * from './settings-screen';
+export * from './settings-main-screen';
