@@ -21,15 +21,17 @@ interface TabBarMethodModel {
   visibility: (tab: RoutesModel) => boolean;
 }
 
-const MainMethods: TabBarMethodModel = {
-  tabs: MAIN_TABS,
-  visibility: NavigationUtils.getTabBarVisibility
-};
-
 const TabBar = ({ state, navigation }: BottomTabBarProps) => {
   const { t } = useTranslation();
   const bottomSafeArea = useSafeAreaInsets().bottom;
-  const tabsMethods = useMemo(() => MainMethods, []);
+
+  const tabsMethods = useMemo<TabBarMethodModel>(
+    () => ({
+      tabs: MAIN_TABS,
+      visibility: NavigationUtils.getTabBarVisibility
+    }),
+    []
+  );
 
   const currentRoute = useCurrentRoute() as RoutesModel;
   const tabBarVisible = tabsMethods.visibility(currentRoute);

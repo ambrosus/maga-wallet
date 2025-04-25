@@ -17,9 +17,9 @@
       "button.cancel": "I’m Sure"
     }
   },
-  "tabs":{
+  "tabs": {
     "Home": "Home",
     "Discover": "Discover",
-    "Settings": "Settings",
+    "Settings": "Settings"
   }
 }
