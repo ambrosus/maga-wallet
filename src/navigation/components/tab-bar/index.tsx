@@ -1,9 +1,7 @@
 import { useLayoutEffect, useMemo, useState } from 'react';
 import { Pressable, StyleProp, View, ViewStyle } from 'react-native';
-
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import { useTranslation } from 'react-i18next';
-
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Spacer, Typography } from '@components';
 import { COLORS } from '@constants';

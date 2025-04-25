@@ -9,16 +9,12 @@ import {
 } from '@react-navigation/native-stack';
 import {
   DISCOVER_STACK_ROUTES,
-  DiscoverTabParamsList
-} from '@navigation/tabs/discover/discover-tab.model';
-import {
+  DiscoverTabParamsList,
   HOME_STACK_ROUTES,
-  HomeTabParamsList
-} from '@navigation/tabs/home/home-tab.model';
-import {
+  HomeTabParamsList,
   SETTINGS_STACK_ROUTES,
   SettingsTabParamsList
-} from '@navigation/tabs/settings/settings-tab.model';
+} from '@navigation/tabs';
 
 /**
  * Parameter list for the tabs navigation stack.

@@ -1,6 +1,7 @@
 import Svg, { Path } from 'react-native-svg';
 import { COLORS } from '@constants';
 import { SvgIconProps } from '@types';
+
 export const HomeIcon = ({
   scale = 1,
   color = COLORS.neutral500
