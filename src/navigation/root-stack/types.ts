@@ -2,6 +2,8 @@ import {
   NativeStackNavigationProp,
   NativeStackScreenProps
 } from '@react-navigation/native-stack';
+import { DiscoverTabParamsList, HomeTabParamsList } from '@navigation/tabs';
+import { SettingsTabParamsList } from '@navigation/tabs/settings/settings-tab.model';
 
 /**
  * Parameter list for the root navigation stack.
@@ -13,7 +15,9 @@ export type RootStackParamsList = {
   SetupPasskeyScreen: undefined;
   CreateWalletLoadingScreen: undefined;
   Tabs: undefined;
-};
+} & SettingsTabParamsList &
+  HomeTabParamsList &
+  DiscoverTabParamsList;
 
 /**
  * Navigation prop type for the root stack.

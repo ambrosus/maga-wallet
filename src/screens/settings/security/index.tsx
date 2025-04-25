@@ -1,6 +1,6 @@
 import { Text, View } from 'react-native';
 
-export const SettingsScreen = () => {
+export const SecurityScreen = () => {
   return (
     <View
       style={{
@@ -10,7 +10,7 @@ export const SettingsScreen = () => {
         alignContent: 'center'
       }}
     >
-      <Text style={{ textAlign: 'center' }}> SETTINGS SCREEN</Text>
+      <Text style={{ textAlign: 'center' }}> SECURITY</Text>
     </View>
   );
 };
