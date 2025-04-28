@@ -34,6 +34,6 @@
     "create.new.passkey": "Create new passkey",
     "confirm.new.passkey": "Confirm new passkey",
     "enter.passkey": "Enter current passkey",
-    "incorect.passcode": "Incorrect passcode",
+    "incorect.passcode": "Incorrect passcode"
   }
 }
