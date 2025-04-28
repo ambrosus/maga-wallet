@@ -1,12 +1,15 @@
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { RowContainer } from '@components/atoms';
 import { SocialItemCircle } from '@components/molecules';
-import { AUTH_METHODS } from '@constants/auth';
+import { AUTH_METHODS, StaticAuthPreset } from '@constants/auth';
+import { useAuth } from '@core/auth/lib';
 import { ROOT_STACK_ROUTES, RootNavigationProp } from '@navigation/root-stack';
+import { AuthMethods } from '@types';
 
 export const SocialAuthList = () => {
   const navigation = useNavigation<RootNavigationProp>();
+  const { authCallback } = useAuth();
 
   const justifyContentProp = useMemo(() => {
     const length = AUTH_METHODS.filter(({ visible }) => visible).length;
@@ -14,9 +17,31 @@ export const SocialAuthList = () => {
     return length === AUTH_METHODS.length ? 'space-between' : 'space-around';
   }, []);
 
-  const onNavigateToPasskey = async () => {
-    navigation.navigate(ROOT_STACK_ROUTES.SetupPasskeyScreen);
-  };
+  const onAuthHandle = useCallback(
+    async (method: AuthMethods) => {
+      const response = await authCallback(method);
+
+      if (response) {
+        navigation.navigate(ROOT_STACK_ROUTES.SetupPasskeyScreen);
+      }
+    },
+    [authCallback, navigation]
+  );
+
+  const renderSocialItem = useCallback(
+    ({ key, component: Icon, visible }: StaticAuthPreset) => {
+      const onItemPress = () => onAuthHandle(key);
+
+      return (
+        visible && (
+          <SocialItemCircle key={key} onPress={onItemPress}>
+            <Icon />
+          </SocialItemCircle>
+        )
+      );
+    },
+    [onAuthHandle]
+  );
 
   return (
     <RowContainer
@@ -24,13 +49,8 @@ export const SocialAuthList = () => {
       justifyContent={justifyContentProp}
       alignItems="center"
     >
-      {AUTH_METHODS.map(
-        ({ key, component: Icon, visible }) =>
-          visible && (
-            <SocialItemCircle key={key} onPress={onNavigateToPasskey}>
-              <Icon />
-            </SocialItemCircle>
-          )
+      {AUTH_METHODS.map(({ key, component: Icon, visible }) =>
+        renderSocialItem({ key, component: Icon, visible })
       )}
     </RowContainer>
   );
