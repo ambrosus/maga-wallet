@@ -21,5 +21,14 @@
     "Home": "Home",
     "Discover": "Discover",
     "Settings": "Settings"
+  },
+  "settings.tabs": {
+   "app.settings": "App Settings",
+    "manage.accounts":"Manage Accounts",
+    "security": "Security",
+    "address.book": "Address Book",
+    "preferences":"Preferences",
+    "notifications":"Notifications",
+    "about" :"About"
   }
 }
