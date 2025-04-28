@@ -2,8 +2,9 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { HomeScreen } from '@screens/home';
 import { HOME_STACK_ROUTES, HomeTabParamsList } from './home-tab.model';
 
-const Stack = createNativeStackNavigator<HomeTabParamsList>();
 export const HomeStack = () => {
+  const Stack = createNativeStackNavigator<HomeTabParamsList>();
+
   return (
     <>
       <Stack.Navigator
