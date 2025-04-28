@@ -2,6 +2,7 @@ import { useCallback, useMemo } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { RowContainer } from '@components/atoms';
 import { SocialItemCircle } from '@components/molecules';
+import { isAndroid } from '@constants';
 import { AUTH_METHODS, StaticAuthPreset } from '@constants/auth';
 import { useAuth } from '@core/auth/lib';
 import { ROOT_STACK_ROUTES, RootNavigationProp } from '@navigation/root-stack';
@@ -31,6 +32,9 @@ export const SocialAuthList = () => {
   const renderSocialItem = useCallback(
     ({ key, component: Icon, visible }: StaticAuthPreset) => {
       const onItemPress = () => onAuthHandle(key);
+
+      if (isAndroid && key === 'apple' && visible)
+        console.warn('Apple login is not supported on Android');
 
       return (
         visible && (
