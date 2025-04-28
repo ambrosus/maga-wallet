@@ -8,6 +8,9 @@ export type SettingsTabParamsList = {
   PreferencesScreen: { name: Settingsitems };
   NotificationsScreen: { name: Settingsitems };
   AboutScreen: { name: Settingsitems };
+  CreateNewPasscode: undefined;
+  ConfirmNewPasscode: { passcode: string };
+  EnterPasscode: { onPasscodeSuccess?: () => void };
 };
 
 export enum SETTINGS_STACK_ROUTES {
@@ -17,5 +20,8 @@ export enum SETTINGS_STACK_ROUTES {
   AddressBookScreen = 'AddressBookScreen',
   PreferencesScreen = 'PreferencesScreen',
   NotificationsScreen = 'NotificationsScreen',
-  AboutScreen = 'AboutScreen'
+  AboutScreen = 'AboutScreen',
+  CreateNewPasscode = 'CreateNewPasscode',
+  ConfirmNewPasscode = 'ConfirmNewPasscode',
+  EnterPasscode = 'EnterPasscode'
 }

@@ -12,7 +12,13 @@ import {
   FLEX_FULL_SIZE,
   FONT_SIZE
 } from '@constants';
-import { RootNavigationScreenProps } from '@navigation/root-stack';
+import { mmkv } from '@lib';
+import { MMKV_KEYS } from '@lib/mmkv/keys';
+import { SETTINGS_STACK_ROUTES, TABS_STACK_ROUTES } from '@navigation';
+import {
+  ROOT_STACK_ROUTES,
+  RootNavigationScreenProps
+} from '@navigation/root-stack';
 import { scale } from '@utils';
 import { styles } from './styles';
 
@@ -20,7 +26,22 @@ export const AuthScreen = ({
   navigation
 }: RootNavigationScreenProps<'AuthScreen'>) => {
   const onNavigateToPasskey = useCallback(() => {
-    navigation.navigate('Tabs');
+    const isPAsscodeSetup = mmkv.getItem(MMKV_KEYS.isAppPasskeySet);
+    if (isPAsscodeSetup) {
+      navigation.replace(ROOT_STACK_ROUTES.Tabs, {
+        screen: TABS_STACK_ROUTES.Settings,
+        params: {
+          screen: SETTINGS_STACK_ROUTES.EnterPasscode
+        }
+      } as any);
+    } else {
+      navigation.replace(ROOT_STACK_ROUTES.Tabs, {
+        screen: TABS_STACK_ROUTES.Settings,
+        params: {
+          screen: SETTINGS_STACK_ROUTES.CreateNewPasscode
+        }
+      } as any);
+    }
   }, [navigation]);
 
   const onTermsUsageNavigate = useCallback(() => {

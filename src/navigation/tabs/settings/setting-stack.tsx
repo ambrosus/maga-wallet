@@ -1,5 +1,10 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SettingsScreen } from '@screens';
+import {
+  ConfirmNewPasscode,
+  CreaateNewPasscode,
+  EnterNewPasscode
+} from '@screens/passcode';
 import { AboutScreen } from '@screens/settings/about';
 import { AddressBookScreen } from '@screens/settings/address-book';
 import { ManageAccountsScreen } from '@screens/settings/manage-accounts';
@@ -46,6 +51,20 @@ export const SettingsStack = () => {
         <Stack.Screen
           name={SETTINGS_STACK_ROUTES.AboutScreen}
           component={AboutScreen}
+        />
+
+        {/* PASSCODE */}
+        <Stack.Screen
+          name={SETTINGS_STACK_ROUTES.CreateNewPasscode}
+          component={CreaateNewPasscode}
+        />
+        <Stack.Screen
+          name={SETTINGS_STACK_ROUTES.ConfirmNewPasscode}
+          component={ConfirmNewPasscode}
+        />
+        <Stack.Screen
+          name={SETTINGS_STACK_ROUTES.EnterPasscode}
+          component={EnterNewPasscode}
         />
       </Stack.Navigator>
     </>
