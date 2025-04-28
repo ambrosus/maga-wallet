@@ -26,8 +26,8 @@ export const AuthScreen = ({
   navigation
 }: RootNavigationScreenProps<'AuthScreen'>) => {
   const onNavigateToPasskey = useCallback(() => {
-    const isPAsscodeSetup = mmkv.getItem(MMKV_KEYS.isAppPasskeySet);
-    if (isPAsscodeSetup) {
+    const isPasscodeSetup = mmkv.getItem(MMKV_KEYS.isAppPasskeySet);
+    if (isPasscodeSetup) {
       navigation.replace(ROOT_STACK_ROUTES.Tabs, {
         screen: TABS_STACK_ROUTES.Settings,
         params: {
