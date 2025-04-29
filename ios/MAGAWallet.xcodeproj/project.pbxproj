@@ -9,26 +9,26 @@
 /* Begin PBXBuildFile section */
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		3F58D48AD1A5976147DD8540 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */; };
+		5B577255BF2EE4AD8811853B /* libPods-MAGAWallet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DA93C9A04F58B910388F8E6D /* libPods-MAGAWallet.a */; };
 		761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		AA4E6C9170124F0DA02F4E7A /* Onest-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5467A3E9363E43AB97D8AD94 /* Onest-Medium.ttf */; };
 		B206F16F2CE3495C837B8780 /* Onest-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BD7E80B6F14A4126A80CB2D6 /* Onest-SemiBold.ttf */; };
-		BF38DEE80A369727940EB395 /* libPods-MAGAWallet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D3D5673628BEF0CAF9B009 /* libPods-MAGAWallet.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		12B99782BB0A7677E836BB8F /* Pods-MAGAWallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MAGAWallet.debug.xcconfig"; path = "Target Support Files/Pods-MAGAWallet/Pods-MAGAWallet.debug.xcconfig"; sourceTree = "<group>"; };
+		1241BB5DECAB56C098CAC3E2 /* Pods-MAGAWallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MAGAWallet.debug.xcconfig"; path = "Target Support Files/Pods-MAGAWallet/Pods-MAGAWallet.debug.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* MAGAWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MAGAWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = MAGAWallet/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = MAGAWallet/Info.plist; sourceTree = "<group>"; };
 		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = MAGAWallet/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		5467A3E9363E43AB97D8AD94 /* Onest-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Onest-Medium.ttf"; path = "../src/assets/fonts/Onest-Medium.ttf"; sourceTree = "<group>"; };
-		65D3D5673628BEF0CAF9B009 /* libPods-MAGAWallet.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MAGAWallet.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = MAGAWallet/AppDelegate.swift; sourceTree = "<group>"; };
-		7782787260EB0CB246B8748A /* Pods-MAGAWallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MAGAWallet.release.xcconfig"; path = "Target Support Files/Pods-MAGAWallet/Pods-MAGAWallet.release.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = MAGAWallet/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		848A7E7C41D9A47AC6279192 /* Pods-MAGAWallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MAGAWallet.release.xcconfig"; path = "Target Support Files/Pods-MAGAWallet/Pods-MAGAWallet.release.xcconfig"; sourceTree = "<group>"; };
 		AFB678A42DBA9C7B006C5590 /* MAGAWallet.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = MAGAWallet.entitlements; path = MAGAWallet/MAGAWallet.entitlements; sourceTree = "<group>"; };
 		BD7E80B6F14A4126A80CB2D6 /* Onest-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Onest-SemiBold.ttf"; path = "../src/assets/fonts/Onest-SemiBold.ttf"; sourceTree = "<group>"; };
+		DA93C9A04F58B910388F8E6D /* libPods-MAGAWallet.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MAGAWallet.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -37,7 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BF38DEE80A369727940EB395 /* libPods-MAGAWallet.a in Frameworks */,
+				5B577255BF2EE4AD8811853B /* libPods-MAGAWallet.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,7 +70,7 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				65D3D5673628BEF0CAF9B009 /* libPods-MAGAWallet.a */,
+				DA93C9A04F58B910388F8E6D /* libPods-MAGAWallet.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -108,8 +108,8 @@
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				12B99782BB0A7677E836BB8F /* Pods-MAGAWallet.debug.xcconfig */,
-				7782787260EB0CB246B8748A /* Pods-MAGAWallet.release.xcconfig */,
+				1241BB5DECAB56C098CAC3E2 /* Pods-MAGAWallet.debug.xcconfig */,
+				848A7E7C41D9A47AC6279192 /* Pods-MAGAWallet.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -121,13 +121,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "MAGAWallet" */;
 			buildPhases = (
-				CBAA766290199A9815965037 /* [CP] Check Pods Manifest.lock */,
+				96F91DDE768E328341EEA463 /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				68FBB8246D6E949ED1AA2AA6 /* [CP] Embed Pods Frameworks */,
-				9DC15E267BD39C8B9BFE0E71 /* [CP] Copy Pods Resources */,
+				3DBE6294FC729983230BDC5B /* [CP] Embed Pods Frameworks */,
+				DC8313E511838EEBF5403077 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -201,7 +201,7 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"$REACT_NATIVE_PATH/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"$REACT_NATIVE_PATH/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
 		};
-		68FBB8246D6E949ED1AA2AA6 /* [CP] Embed Pods Frameworks */ = {
+		3DBE6294FC729983230BDC5B /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -218,24 +218,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MAGAWallet/Pods-MAGAWallet-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9DC15E267BD39C8B9BFE0E71 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MAGAWallet/Pods-MAGAWallet-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MAGAWallet/Pods-MAGAWallet-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MAGAWallet/Pods-MAGAWallet-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CBAA766290199A9815965037 /* [CP] Check Pods Manifest.lock */ = {
+		96F91DDE768E328341EEA463 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -257,6 +240,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		DC8313E511838EEBF5403077 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MAGAWallet/Pods-MAGAWallet-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MAGAWallet/Pods-MAGAWallet-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MAGAWallet/Pods-MAGAWallet-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -273,7 +273,7 @@
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 12B99782BB0A7677E836BB8F /* Pods-MAGAWallet.debug.xcconfig */;
+			baseConfigurationReference = 1241BB5DECAB56C098CAC3E2 /* Pods-MAGAWallet.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -303,7 +303,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7782787260EB0CB246B8748A /* Pods-MAGAWallet.release.xcconfig */;
+			baseConfigurationReference = 848A7E7C41D9A47AC6279192 /* Pods-MAGAWallet.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

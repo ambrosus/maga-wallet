@@ -31,14 +31,14 @@ export const ConfirmNewPasscode = ({}) => {
     if (newCode === pascodeToConfirm) {
       setTimeout(() => {
         navigation.replace('Tabs');
-      }, 3000);
+      }, 100);
       mmkv.setItem(MMKV_KEYS.isAppPasskeySet, 'true');
       keychainStore.setItem(KEYCHAIN_KEYS.appPasscode, newCode);
     } else {
       setPasscode('');
       triggerShake();
       setError('Incorrect passcode');
-      setTimeout(() => setError(''), 100);
+      setTimeout(() => setError(''), 3000);
     }
   };
 
