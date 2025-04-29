@@ -1,3 +1,3 @@
-export * from './useHandleRemove';
-export * from './useShakeAnimation';
-export * from './useHandleCodeChange';
+export * from './use-handle-remove';
+export * from './use-shake-animation';
+export * from './use-handle-code-change';

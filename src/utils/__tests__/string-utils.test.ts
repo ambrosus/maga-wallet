@@ -1,4 +1,4 @@
-import { StringUtils } from '@utils/string-utils';
+import { StringUtils } from '@utils/string';
 
 describe('StringUtils.removeNonNumericCharacters', () => {
   it('should remove all non-numeric characters except dot by default', () => {
