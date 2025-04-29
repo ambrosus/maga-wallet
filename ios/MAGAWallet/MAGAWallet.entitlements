@@ -6,5 +6,9 @@
 	<array>
 		<string>Default</string>
 	</array>
+	<key>com.apple.developer.associated-domains</key>
+	<array>
+		<string>webcredentials:wondrous-speculoos-8e3706.netlify.app</string>
+	</array>
 </dict>
 </plist>

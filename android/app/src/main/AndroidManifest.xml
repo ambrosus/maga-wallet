@@ -13,6 +13,13 @@
         <category android:name="android.intent.category.BROWSABLE"/>
         <data android:scheme="maga-wallet"/>
       </intent-filter>
+      <intent-filter android:autoVerify="true">
+        <action android:name="android.intent.action.VIEW"/>
+        <category android:name="android.intent.category.DEFAULT"/>
+        <category android:name="android.intent.category.BROWSABLE"/>
+       <data android:name="asset_statements" android:host="wondrous-speculoos-8e3706.netlify.app"
+           android:scheme="https" />
+      </intent-filter>
     </activity>
   </application>
 </manifest>

@@ -45,6 +45,7 @@
     "react-native-safe-area-context": "^5.4.0",
     "react-native-screens": "^4.10.0",
     "react-native-svg": "^15.11.2",
+    "sha256-uint8array": "^0.10.7",
     "use-context-selector": "^2.0.0",
     "uuid": "^11.1.0",
     "viem": "^2.28.0",
