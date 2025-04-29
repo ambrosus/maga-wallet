@@ -7110,6 +7110,11 @@ react-native-mmkv@^3.2.0:
   resolved "https://registry.yarnpkg.com/react-native-mmkv/-/react-native-mmkv-3.2.0.tgz#460723eb23b9cc92c65b0416eae9874a6ddf5b82"
   integrity sha512-9y7K//1MaU46TFrXkyU0wT5VGk9Y2FDLFV6NPl+z3jTbm2G7SC1UIxneF6CfhSmBX5CfKze9SO7kwDuRx7flpQ==
 
+react-native-passkey@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/react-native-passkey/-/react-native-passkey-3.1.0.tgz#26617ed0cc115c6037e2537d264955d852395168"
+  integrity sha512-qOJ0q7AqbUOGXDOObcfiOJo1BOnG+lIQMEgltgeqmyMC+2XDlr7YrOQZgLwZbXheGC7BXPpwMSev/gxkgbt3xw==
+
 react-native-reanimated@^3.17.4:
   version "3.17.5"
   resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-3.17.5.tgz#09ebe3c9e3379c5c0c588b7ab30c131ea29b60f0"
