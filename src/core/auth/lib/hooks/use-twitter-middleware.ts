@@ -3,7 +3,7 @@ import { useCallback } from 'react';
 import { Linking } from 'react-native';
 import querystring from 'query-string';
 import { pipe, evolve } from 'ramda';
-import { InAppBrowser } from 'react-native-inappbrowser-reborn';
+import { BrowserResult, InAppBrowser } from 'react-native-inappbrowser-reborn';
 import { v4 as uuid } from 'uuid';
 import { APP_SCHEME, isAndroid } from '@constants';
 import 'react-native-get-random-values';
@@ -19,7 +19,7 @@ const redirectUri = APP_SCHEME;
 
 const permissions = ['offline.access', 'users.read'];
 
-export function useTwitterAuth() {
+export function useTwitterMiddleware() {
   const getDeepLink = (path = '') => {
     const scheme = APP_SCHEME;
     const prefix = isAndroid ? `${scheme}://my-host/` : `${scheme}://`;
@@ -92,7 +92,7 @@ export function useTwitterAuth() {
     []
   );
 
-  const onTwitterAuthHandle = useCallback(async () => {
+  const twitterAuthCallback = useCallback(async () => {
     const deepLink = getDeepLink('callback');
     const authState = uuid();
     const inappBorwserAuthURL = `${X_AUTHORIZATION_URL}?${querystring.stringify(
@@ -111,24 +111,32 @@ export function useTwitterAuth() {
 
     try {
       if (await InAppBrowser.isAvailable()) {
-        InAppBrowser.openAuth(inappBorwserAuthURL, deepLink, {
-          ephemeralWebSession: false,
-          enableUrlBarHiding: true,
-          enableDefaultShare: false
-        }).then(async (response: any) => {
-          const { code } = getCodeAndStateFromUrl(response.url) as {
-            code: string;
-          };
+        const response = (await InAppBrowser.openAuth(
+          inappBorwserAuthURL,
+          deepLink,
+          {
+            ephemeralWebSession: false,
+            enableUrlBarHiding: true,
+            enableDefaultShare: false
+          }
+        )) as BrowserResult & { url: string };
 
-          return await getAccessToken(code, authState);
-        });
+        const { code } = getCodeAndStateFromUrl(response.url) as {
+          code: string;
+        };
+
+        console.warn('response', await getAccessToken(code, authState));
+
+        return await getAccessToken(code, authState);
       } else {
-        Linking.openURL(inappBorwserAuthURL); // in case any error try to open the inbuilt browser
+        // Try open web browser when error occur while opening inapp browser
+        Linking.openURL(inappBorwserAuthURL);
       }
     } catch {
-      Linking.openURL(inappBorwserAuthURL); // in case any error try to open the inbuilt browser
+      // Try open web browser when error occur while opening inapp browser
+      Linking.openURL(inappBorwserAuthURL);
     }
   }, [getAccessToken, getCodeAndStateFromUrl]);
 
-  return { onTwitterAuthHandle };
+  return { twitterAuthCallback };
 }

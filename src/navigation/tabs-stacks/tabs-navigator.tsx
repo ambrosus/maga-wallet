@@ -12,9 +12,8 @@ import SettingsStack from '@navigation/tabs/settings/setting-stack';
 import { TABS_STACK_ROUTES } from './routes';
 import { TabsParamsList } from './types';
 
-const BottomTabs = createBottomTabNavigator<TabsParamsList>();
-
 export const TabsNavigator = () => {
+  const BottomTabs = createBottomTabNavigator<TabsParamsList>();
   const keyboardHeight = useKeyboardHeight();
 
   const renderTabBarComponent = useCallback((props: BottomTabBarProps) => {

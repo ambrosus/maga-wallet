@@ -1,7 +1,15 @@
+import { FC } from 'react';
 import { AppleIcon, FacebookIcon, GoogleIcon, XIcon } from '@components/svgs';
 import { isIos } from '@constants/ui/device';
+import { AuthMethods } from '@types';
 
-export const AUTH_METHODS = [
+export type StaticAuthPreset = {
+  key: AuthMethods;
+  component: FC;
+  visible: boolean;
+};
+
+export const AUTH_METHODS: StaticAuthPreset[] = [
   {
     key: 'google',
     component: GoogleIcon,

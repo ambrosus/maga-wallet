@@ -16,8 +16,9 @@ import {
   SettingsTabParamsList
 } from './settings-tab.model';
 
-const Stack = createNativeStackNavigator<SettingsTabParamsList>();
 export const SettingsStack = () => {
+  const Stack = createNativeStackNavigator<SettingsTabParamsList>();
+
   return (
     <>
       <Stack.Navigator
