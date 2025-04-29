@@ -5,7 +5,7 @@ module.exports = {
     '^.+\\.(js|jsx|ts|tsx)$': 'babel-jest'
   },
   transformIgnorePatterns: [
-    'node_modules/(?!(react-native|@react-native|react-native-.*|@react-native-.*|@react-native|react-native|@react-navigation||decode-uri-component|filter-obj|split-on-first|query-string)/)'
+    'node_modules/(?!(react-native|@react-native|react-native-.*|@react-native-.*|@react-native|react-native|@react-navigation||decode-uri-component|filter-obj|split-on-first|query-string|@invertase/react-native-apple-authentication)/)'
   ],
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
@@ -20,6 +20,7 @@ module.exports = {
     '^@lib(.*)$': '<rootDir>/src/lib$1'
   },
   setupFiles: [
+    './node_modules/@react-native-google-signin/google-signin/jest/build/jest/setup.js',
     '<rootDir>/node_modules/react-native-gesture-handler/jestSetup.js',
     '<rootDir>/jest/setup.js'
   ],

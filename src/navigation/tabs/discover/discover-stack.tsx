@@ -5,8 +5,9 @@ import {
   DiscoverTabParamsList
 } from './discover-tab.model';
 
-const Stack = createNativeStackNavigator<DiscoverTabParamsList>();
 export const DiscoverStack = () => {
+  const Stack = createNativeStackNavigator<DiscoverTabParamsList>();
+
   return (
     <>
       <Stack.Navigator

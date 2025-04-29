@@ -1,1 +1,2 @@
-export { useTwitterAuth } from './use-twitter-auth';
+export { useTwitterMiddleware } from './use-twitter-middleware';
+export { useAuth } from './use-auth';
