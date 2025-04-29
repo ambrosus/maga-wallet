@@ -1,3 +1,4 @@
 export enum MMKV_KEYS {
-  localization = 'localization'
+  localization = 'localization',
+  isAppPasskeySet = 'passkey'
 }
