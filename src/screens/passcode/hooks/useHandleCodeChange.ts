@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, Dispatch } from 'react';
 import { StringUtils } from '@utils';
 
 /**
@@ -17,10 +17,10 @@ export function useHandleCodeChange({
   triggerShake
 }: {
   passcode: string;
-  setPasscode: React.Dispatch<React.SetStateAction<string>>;
+  setPasscode: Dispatch<React.SetStateAction<string>>;
   onComplete?: (code: string) => void;
   error?: string;
-  setError?: React.Dispatch<React.SetStateAction<string>>;
+  setError?: Dispatch<React.SetStateAction<string>>;
   triggerShake?: () => void;
 }) {
   return useCallback(

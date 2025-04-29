@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, Dispatch } from 'react';
 
 /**
  * Custom hook to handle removing the last digit from a passcode input.
@@ -16,9 +16,9 @@ export function useHandleRemove({
   setError
 }: {
   passcode: string;
-  setPasscode: React.Dispatch<React.SetStateAction<string>>;
+  setPasscode: Dispatch<React.SetStateAction<string>>;
   error?: string;
-  setError?: React.Dispatch<React.SetStateAction<string>>;
+  setError?: Dispatch<React.SetStateAction<string>>;
 }) {
   return useCallback(() => {
     if (error && setError) {
