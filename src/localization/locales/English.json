@@ -34,6 +34,12 @@
     "create.new.passkey": "Create new passkey",
     "confirm.new.passkey": "Confirm new passkey",
     "enter.passkey": "Enter current passkey",
-    "incorect.passcode": "Incorrect passcode"
+    "incorect.passcode": "Incorrect passcode",
+
+    "security.change.passkey": "Change passkey",
+    "security.face.id": "Sign in with Face ID",
+    "security.twoFA.auth" : "Google 2FA Authentication",
+    "security.auto.approval": "Auto-Approval",
+    "security.auto.approval.description": "Ask for approval ahead of transactions."
   }
 }

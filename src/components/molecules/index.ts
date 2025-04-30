@@ -6,3 +6,4 @@ export { SetupPasskeyRowItem } from './setup-passkey-row-item';
 export { SetupFaceIdButton } from './setup-faceid-button';
 export { Header } from './header';
 export { PasscodeIndicator } from './passcode-indicator';
+export { ToggleSwitch } from './toggle-switch';
