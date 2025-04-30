@@ -22,7 +22,8 @@ module.exports = {
   setupFiles: [
     './node_modules/@react-native-google-signin/google-signin/jest/build/jest/setup.js',
     '<rootDir>/node_modules/react-native-gesture-handler/jestSetup.js',
-    '<rootDir>/jest/setup.js'
+    '<rootDir>/jest/setup.js',
+    '<rootDir>/__mocks__/@react-native-async-storage/async-storage.js'
   ],
   setupFilesAfterEnv: [
     '@testing-library/jest-native/extend-expect',
