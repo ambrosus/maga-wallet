@@ -7,17 +7,15 @@ import { BrowserResult, InAppBrowser } from 'react-native-inappbrowser-reborn';
 import { v4 as uuid } from 'uuid';
 import { APP_SCHEME, isAndroid } from '@constants';
 import 'react-native-get-random-values';
-import {
-  X_ACCESS_TOKEN_VERIFIER,
-  X_AUTHORIZATION_URL
-} from '@core/auth/constants';
+import { XApiService } from '@core/auth/api';
+import { X_AUTHORIZATION_URL } from '@core/auth/constants';
 
 const clientID = process.env.X_CLIENT_ID ?? '';
 const clientSecret = process.env.X_CLIENT_SECRET ?? '';
 
 const redirectUri = APP_SCHEME;
 
-const permissions = ['offline.access', 'users.read'];
+const permissions = ['offline.access', 'users.read', 'tweet.read'];
 
 export function useTwitterMiddleware() {
   const getDeepLink = (path = '') => {
@@ -57,17 +55,6 @@ export function useTwitterMiddleware() {
       code_verifier: currentAuthState
     });
 
-  const fetchToken = async (payload: any) => {
-    const response = await fetch(X_ACCESS_TOKEN_VERIFIER, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      body: payload
-    });
-    return await response.json();
-  };
-
   const getAccessToken = useCallback(
     async (code: string, currentAuthState: string) => {
       const deepLink = getDeepLink('callback');
@@ -82,7 +69,8 @@ export function useTwitterMiddleware() {
         redirectUriWithRedirectUrl,
         currentAuthState
       });
-      const token = await fetchToken(payload);
+
+      const token = await XApiService.fetchAuthToken(payload);
 
       if (token.error) {
         return {};
@@ -125,9 +113,12 @@ export function useTwitterMiddleware() {
           code: string;
         };
 
-        console.warn('response', await getAccessToken(code, authState));
+        const tokens = await getAccessToken(code, authState);
+        const { data: user } = await XApiService.fetchUserDetails(
+          tokens.access_token
+        );
 
-        return await getAccessToken(code, authState);
+        return { ...tokens, user: { ...user } };
       } else {
         // Try open web browser when error occur while opening inapp browser
         Linking.openURL(inappBorwserAuthURL);
