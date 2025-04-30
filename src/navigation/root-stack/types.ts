@@ -2,8 +2,14 @@ import {
   NativeStackNavigationProp,
   NativeStackScreenProps
 } from '@react-navigation/native-stack';
-import { DiscoverTabParamsList, HomeTabParamsList } from '@navigation/tabs';
-import { SettingsTabParamsList } from '@navigation/tabs/settings/settings-tab.model';
+import {
+  DISCOVER_STACK_ROUTES,
+  DiscoverTabParamsList,
+  HOME_STACK_ROUTES,
+  HomeTabParamsList,
+  SETTINGS_STACK_ROUTES,
+  SettingsTabParamsList
+} from '@navigation/tabs';
 
 /**
  * Parameter list for the root navigation stack.
@@ -14,7 +20,14 @@ export type RootStackParamsList = {
   AuthScreen: undefined;
   SetupPasskeyScreen: undefined;
   CreateWalletLoadingScreen: undefined;
-  Tabs: undefined;
+  Tabs:
+    | {
+        screen?:
+          | SETTINGS_STACK_ROUTES
+          | HOME_STACK_ROUTES
+          | DISCOVER_STACK_ROUTES;
+      }
+    | undefined;
 } & SettingsTabParamsList &
   HomeTabParamsList &
   DiscoverTabParamsList;

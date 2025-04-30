@@ -29,6 +29,11 @@
     "address.book": "Address Book",
     "preferences":"Preferences",
     "notifications":"Notifications",
-    "about" :"About"
+    "about" :"About",
+
+    "create.new.passkey": "Create new passkey",
+    "confirm.new.passkey": "Confirm new passkey",
+    "enter.passkey": "Enter current passkey",
+    "incorect.passcode": "Incorrect passcode"
   }
 }
