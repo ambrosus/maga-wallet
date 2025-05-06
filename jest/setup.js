@@ -26,3 +26,21 @@ jest.mock(
 jest.mock('@react-native-async-storage/async-storage', () =>
   require('@react-native-async-storage/async-storage/jest/async-storage-mock')
 );
+
+jest.mock('@react-native-firebase/auth', () => ({
+  __esModule: true,
+  default: () => ({
+    signInWithCredential: jest.fn(() =>
+      Promise.resolve({
+        user: { getIdToken: () => Promise.resolve('mock-token') }
+      })
+    ),
+    signOut: jest.fn()
+  }),
+  GoogleAuthProvider: {
+    credential: jest.fn()
+  },
+  TwitterAuthProvider: {
+    credential: jest.fn()
+  }
+}));
