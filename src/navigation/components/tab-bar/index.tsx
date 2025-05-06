@@ -4,7 +4,7 @@ import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import { useTranslation } from 'react-i18next';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Spacer, Typography } from '@components';
-import { COLORS } from '@constants';
+import { COLORS, FONT_SIZE } from '@constants';
 import { useCurrentRoute } from '@contexts/navigation';
 import { MAIN_TABS } from '@navigation/constants';
 import { RoutesModel } from '@navigation/tabs-stacks/types';
@@ -85,7 +85,7 @@ const TabBar = ({ state, navigation }: BottomTabBarProps) => {
             {icon}
             <Spacer value={scale(8)} />
             <Typography
-              fontSize={scale(15)}
+              fontSize={scale(FONT_SIZE.body.sm)}
               color={COLORS[isFocused ? 'primary500' : 'neutral500']}
             >
               {t(`tabs.${route.name}`)}
