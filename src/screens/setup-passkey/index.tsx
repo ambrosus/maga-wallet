@@ -6,10 +6,10 @@ import {
 } from '@gorhom/bottom-sheet';
 import { useTranslation } from 'react-i18next';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import {
   BottomSheetSetupBiometrics,
   Button,
+  SafeViewContainer,
   SetupFaceIdButton,
   SetupPasskeyBenefitsContainer,
   Spacer,
@@ -29,7 +29,7 @@ export const SetupPasskeyScreen = () => {
     <>
       <GestureHandlerRootView>
         <BottomSheetModalProvider>
-          <SafeAreaView style={styles.container}>
+          <SafeViewContainer style={styles.container}>
             <Image
               style={styles.background}
               width={DEVICE_WIDTH}
@@ -72,7 +72,7 @@ export const SetupPasskeyScreen = () => {
               </Button>
               <SetupFaceIdButton />
             </View>
-          </SafeAreaView>
+          </SafeViewContainer>
 
           <BottomSheetSetupBiometrics ref={bottomSheetRef} />
         </BottomSheetModalProvider>

@@ -1,17 +1,10 @@
 import { useCallback } from 'react';
 import { Alert, Image, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { IconContainer, Typography } from '@components';
-import { Spacer } from '@components/atoms';
+import { SafeViewContainer, Spacer } from '@components/atoms';
 import { PrimaryButton } from '@components/molecules';
 import { SocialAuthList } from '@components/organisms';
-import {
-  COLORS,
-  DEVICE_HEIGHT,
-  DEVICE_WIDTH,
-  FLEX_FULL_SIZE,
-  FONT_SIZE
-} from '@constants';
+import { COLORS, DEVICE_HEIGHT, DEVICE_WIDTH, FONT_SIZE } from '@constants';
 import { mmkv } from '@lib';
 import { MMKV_KEYS } from '@lib/mmkv/keys';
 import { SETTINGS_STACK_ROUTES, TABS_STACK_ROUTES } from '@navigation';
@@ -54,7 +47,7 @@ export const AuthScreen = ({
 
   return (
     <View style={styles.container}>
-      <SafeAreaView style={FLEX_FULL_SIZE}>
+      <SafeViewContainer>
         <Image
           style={styles.background}
           width={DEVICE_WIDTH}
@@ -132,7 +125,7 @@ export const AuthScreen = ({
             </Typography>
           </View>
         </View>
-      </SafeAreaView>
+      </SafeViewContainer>
     </View>
   );
 };
