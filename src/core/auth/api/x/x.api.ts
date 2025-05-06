@@ -2,6 +2,8 @@
 import axios, { AxiosHeaders } from 'axios';
 import CryptoJS from 'crypto-js';
 import OAuth from 'oauth-1.0a';
+import queryString from 'query-string';
+import { pipe } from 'ramda';
 import { APP_SCHEME } from '@constants';
 
 const consumerKey = process.env.X_CONSUMER_KEY ?? '';
@@ -12,12 +14,7 @@ const xAccessTokenUrl = 'https://api.twitter.com/oauth/access_token';
 type OAuthParams = OAuth.Authorization & { oauth_callback: string };
 
 function parseQueryString(data: string): Record<string, string> {
-  return Object.fromEntries(
-    data.split('&').map((pair) => {
-      const [key, value] = pair.split('=');
-      return [key, decodeURIComponent(value)];
-    })
-  );
+  return queryString.parse(data) as Record<string, string>;
 }
 
 const oauth = new OAuth({
@@ -30,15 +27,19 @@ const oauth = new OAuth({
 
 async function getTwitterRequestToken() {
   const callbackUrl = APP_SCHEME;
-  const oauthParams = oauth.authorize({
-    url: xRequestTokenUrl,
-    method: 'POST',
-    data: { oauth_callback: callbackUrl }
-  });
 
-  (oauthParams as OAuthParams).oauth_callback = callbackUrl;
+  const getOAuthParams = () => {
+    const params = oauth.authorize({
+      url: xRequestTokenUrl,
+      method: 'POST',
+      data: { oauth_callback: callbackUrl }
+    });
+    return { ...params, oauth_callback: callbackUrl } as OAuthParams;
+  };
 
-  const headers = oauth.toHeader(oauthParams);
+  const createHeaders = (params: OAuthParams) => oauth.toHeader(params);
+
+  const headers = pipe(getOAuthParams, createHeaders)();
 
   try {
     const response = await axios.post(xRequestTokenUrl, null, {
@@ -63,21 +64,27 @@ async function getAccessToken(
   oauth_token_secret: string,
   oauth_verifier: string
 ): Promise<Record<string, string>> {
-  const request_data = {
-    url: xAccessTokenUrl,
-    method: 'POST',
-    data: { oauth_token, oauth_verifier }
-  };
-
   const token = {
     key: oauth_token,
     secret: oauth_token_secret
   };
 
-  const headers = {
-    ...oauth.toHeader(oauth.authorize(request_data, token)),
+  const createRequestData = () => ({
+    url: xAccessTokenUrl,
+    method: 'POST',
+    data: { oauth_token, oauth_verifier }
+  });
+
+  const authorizeRequest = (
+    requestData: ReturnType<typeof createRequestData>
+  ) => oauth.authorize(requestData, token);
+
+  const buildHeaders = (authorization: OAuth.Authorization) => ({
+    ...oauth.toHeader(authorization),
     'Content-Type': 'application/x-www-form-urlencoded'
-  };
+  });
+
+  const headers = pipe(createRequestData, authorizeRequest, buildHeaders)();
 
   try {
     const response = await axios.post(

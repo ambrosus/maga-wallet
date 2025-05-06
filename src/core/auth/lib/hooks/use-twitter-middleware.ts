@@ -1,6 +1,8 @@
 /* eslint-disable camelcase */
 import 'react-native-get-random-values';
 import auth from '@react-native-firebase/auth';
+import queryString from 'query-string';
+import { pipe } from 'ramda';
 import { InAppBrowser } from 'react-native-inappbrowser-reborn';
 import { APP_SCHEME } from '@constants';
 import { XApiService } from '@core/auth/api';
@@ -20,12 +22,14 @@ export function useTwitterMiddleware() {
       });
 
       if (result.type === 'success' && result.url) {
-        const queryString = result.url.includes('?')
-          ? result.url.split('?')[1]
-          : '';
+        const extractQueryString = (url: string) =>
+          url.includes('?') ? url.split('?')[1] : '';
+        const parseQuery = (qs: string) => queryString.parse(qs);
 
-        const { oauth_token, oauth_verifier } =
-          XApiService.parseQueryString(queryString);
+        const { oauth_token, oauth_verifier } = pipe(
+          extractQueryString,
+          parseQuery
+        )(result.url) as { oauth_token: string; oauth_verifier: string };
 
         const accessData = await XApiService.getAccessToken(
           oauth_token,
