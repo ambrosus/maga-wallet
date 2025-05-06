@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import ReactNativeBiometrics, { BiometryType } from 'react-native-biometrics';
+import { handleCreatePasskey } from '../biometrics';
 
 export function useBiometrics() {
   const rnBiometrics = useMemo(() => new ReactNativeBiometrics(), []);
@@ -37,5 +38,13 @@ export function useBiometrics() {
     }
   }, [rnBiometrics]);
 
-  return { onHandleBiometricsAuth, availableBiometricMethod };
+  const createPasskey = useCallback(async () => {
+    try {
+      return await handleCreatePasskey();
+    } catch (error) {
+      console.error('Biometric error:', error);
+      throw Error(error as string);
+    }
+  }, []);
+  return { onHandleBiometricsAuth, createPasskey, availableBiometricMethod };
 }
