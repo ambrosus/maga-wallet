@@ -1,133 +1,66 @@
 /* eslint-disable camelcase */
-import { useCallback } from 'react';
-import { Linking } from 'react-native';
-import querystring from 'query-string';
-import { pipe, evolve } from 'ramda';
-import { BrowserResult, InAppBrowser } from 'react-native-inappbrowser-reborn';
-import { v4 as uuid } from 'uuid';
-import { APP_SCHEME, isAndroid } from '@constants';
 import 'react-native-get-random-values';
+import auth from '@react-native-firebase/auth';
+import queryString from 'query-string';
+import { pipe } from 'ramda';
+import {
+  BrowserResult,
+  InAppBrowser,
+  RedirectResult
+} from 'react-native-inappbrowser-reborn';
 import { XApiService } from '@core/auth/api';
-import { X_AUTHORIZATION_URL } from '@core/auth/constants';
-
-const clientID = process.env.X_CLIENT_ID ?? '';
-const clientSecret = process.env.X_CLIENT_SECRET ?? '';
-
-const redirectUri = APP_SCHEME;
-
-const permissions = ['offline.access', 'users.read', 'tweet.read'];
+import { getAppDeepLink } from '@core/auth/utils';
 
 export function useTwitterMiddleware() {
-  const getDeepLink = (path = '') => {
-    const scheme = APP_SCHEME;
-    const prefix = isAndroid ? `${scheme}://my-host/` : `${scheme}://`;
-    return prefix + path;
-  };
-
-  const cleanUrlString = (state: string) => state.replace('#!', '');
-
-  const getCodeAndStateFromUrl = pipe(
-    querystring.extract,
-    querystring.parse,
-    evolve({ state: cleanUrlString })
-  );
-
-  const getPayloadForToken = ({
-    clientID,
-    clientSecret,
-    code,
-    redirectUriWithRedirectUrl,
-    currentAuthState
-  }: {
-    code: string;
-    clientID: string;
-    clientSecret?: string;
-    redirectUriWithRedirectUrl: string;
-    permissions?: string[];
-    currentAuthState?: string;
-  }) =>
-    querystring.stringify({
-      grant_type: 'authorization_code',
-      code,
-      redirect_uri: redirectUriWithRedirectUrl,
-      client_id: clientID,
-      client_secret: clientSecret,
-      code_verifier: currentAuthState
-    });
-
-  const getAccessToken = useCallback(
-    async (code: string, currentAuthState: string) => {
-      const deepLink = getDeepLink('callback');
-      const redirectUriWithRedirectUrl = `${redirectUri}?redirect_url=${encodeURIComponent(
-        deepLink
-      )}`;
-
-      const payload: string = getPayloadForToken({
-        clientID,
-        clientSecret,
-        code,
-        redirectUriWithRedirectUrl,
-        currentAuthState
-      });
-
-      const token = await XApiService.fetchAuthToken(payload);
-
-      if (token.error) {
-        return {};
-      }
-      return token;
-    },
-    []
-  );
-
-  const twitterAuthCallback = useCallback(async () => {
-    const deepLink = getDeepLink('callback');
-    const authState = uuid();
-    const inappBorwserAuthURL = `${X_AUTHORIZATION_URL}?${querystring.stringify(
-      {
-        response_type: 'code',
-        client_id: clientID,
-        scope: permissions!.join(' ').trim(),
-        state: authState,
-        redirect_uri: `${redirectUri}?redirect_url=${encodeURIComponent(
-          deepLink
-        )}`,
-        code_challenge: authState,
-        code_challenge_method: 'plain'
-      }
-    )}`;
-
+  const twitterAuthCallback = async () => {
     try {
-      if (await InAppBrowser.isAvailable()) {
-        const response = (await InAppBrowser.openAuth(
-          inappBorwserAuthURL,
-          deepLink,
-          {
-            ephemeralWebSession: false,
-            enableUrlBarHiding: true,
-            enableDefaultShare: false
-          }
-        )) as BrowserResult & { url: string };
+      const { oauth_token, oauth_token_secret } =
+        await XApiService.getTwitterRequestToken();
 
-        const { code } = getCodeAndStateFromUrl(response.url) as {
-          code: string;
-        };
+      const twitterLoginUrl = `https://api.twitter.com/oauth/authenticate?oauth_token=${oauth_token}`;
+      const callbackUrl = getAppDeepLink();
 
-        const tokens = await getAccessToken(code, authState);
-        const { data: user } = await XApiService.fetchUserDetails(
-          tokens.access_token
+      const { type, url } = (await InAppBrowser.openAuth(
+        twitterLoginUrl,
+        callbackUrl,
+        {
+          showTitle: true,
+          enableUrlBarHiding: true,
+          enableDefaultShare: false
+        }
+      )) as (RedirectResult | BrowserResult) & { url: string };
+
+      if (type === 'success' && url) {
+        const extractQueryString = (url: string) =>
+          url.includes('?') ? url.split('?')[1] : '';
+        const parseQuery = (qs: string) => queryString.parse(qs);
+
+        const { oauth_token, oauth_verifier } = pipe(
+          extractQueryString,
+          parseQuery
+        )(url) as { oauth_token: string; oauth_verifier: string };
+
+        const accessData = await XApiService.getAccessToken(
+          oauth_token,
+          oauth_token_secret,
+          oauth_verifier
         );
 
-        return { ...tokens, user: { ...user } };
+        const twitterCredential = auth.TwitterAuthProvider.credential(
+          accessData.oauth_token,
+          accessData.oauth_token_secret
+        );
+
+        const session = await auth().signInWithCredential(twitterCredential);
+
+        return await session.user.getIdToken();
       } else {
-        // Try open web browser when error occur while opening inapp browser
-        Linking.openURL(inappBorwserAuthURL);
+        throw new Error('Twitter login cancelled or error');
       }
-    } catch {
-      // Try open web browser when error occur while opening inapp browser
-      Linking.openURL(inappBorwserAuthURL);
+    } catch (error) {
+      throw error;
     }
-  }, [getAccessToken, getCodeAndStateFromUrl]);
+  };
 
   return { twitterAuthCallback };
 }
