@@ -1,11 +1,10 @@
 /* eslint-disable camelcase */
-import { Platform } from 'react-native';
 import axios, { AxiosHeaders } from 'axios';
 import CryptoJS from 'crypto-js';
 import OAuth from 'oauth-1.0a';
 import queryString from 'query-string';
 import { pipe } from 'ramda';
-import { APP_SCHEME_SLUG } from '@constants';
+import { getAppDeepLink } from '@core/auth/utils';
 
 const consumerKey = process.env.X_CONSUMER_KEY ?? '';
 const consumerSecret = process.env.X_CONSUMER_SECRET ?? '';
@@ -14,16 +13,9 @@ const xAccessTokenUrl = 'https://api.twitter.com/oauth/access_token';
 
 type OAuthParams = OAuth.Authorization & { oauth_callback: string };
 
-function parseQueryString(data: string): Record<string, string> {
-  return queryString.parse(data) as Record<string, string>;
+function parseQueryString(url: string): Record<string, string> {
+  return queryString.parse(url) as Record<string, string>;
 }
-
-const getDeepLink = () => {
-  const scheme = APP_SCHEME_SLUG;
-  const prefix =
-    Platform.OS == 'android' ? `${scheme}://my-host/` : `${scheme}://`;
-  return prefix;
-};
 
 const oauth = new OAuth({
   consumer: { key: consumerKey, secret: consumerSecret },
@@ -34,9 +26,9 @@ const oauth = new OAuth({
 });
 
 async function getTwitterRequestToken() {
-  const callbackUrl = getDeepLink();
+  const callbackUrl = getAppDeepLink();
 
-  const getOAuthParams = () => {
+  const executeSessionParams = () => {
     const params = oauth.authorize({
       url: xRequestTokenUrl,
       method: 'POST',
@@ -47,21 +39,19 @@ async function getTwitterRequestToken() {
 
   const createHeaders = (params: OAuthParams) => oauth.toHeader(params);
 
-  const headers = pipe(getOAuthParams, createHeaders)();
+  const headers = pipe(executeSessionParams, createHeaders)();
 
   try {
-    const response = await axios.post(xRequestTokenUrl, null, {
-      headers: headers as unknown as AxiosHeaders
+    const { data } = await axios.post(xRequestTokenUrl, null, {
+      headers: headers as AxiosHeaders & OAuth.Header
     });
 
     // Check if response.data exists and is a string
-    if (!response.data || typeof response.data !== 'string') {
-      throw new Error(
-        `Invalid response format: ${JSON.stringify(response.data)}`
-      );
+    if (!data || typeof data !== 'string') {
+      throw new Error(`Invalid response format: ${JSON.stringify(data)}`);
     }
 
-    return parseQueryString(response.data);
+    return parseQueryString(data);
   } catch (error: any) {
     throw error.response?.data || error;
   }
@@ -83,25 +73,24 @@ async function getAccessToken(
     data: { oauth_token, oauth_verifier }
   });
 
-  const authorizeRequest = (
-    requestData: ReturnType<typeof createRequestData>
-  ) => oauth.authorize(requestData, token);
+  const authorizeRequest = (req: ReturnType<typeof createRequestData>) =>
+    oauth.authorize(req, token);
 
-  const buildHeaders = (authorization: OAuth.Authorization) => ({
-    ...oauth.toHeader(authorization),
+  const buildHeaders = (session: OAuth.Authorization) => ({
+    ...oauth.toHeader(session),
     'Content-Type': 'application/x-www-form-urlencoded'
   });
 
   const headers = pipe(createRequestData, authorizeRequest, buildHeaders)();
 
   try {
-    const response = await axios.post(
+    const { data } = await axios.post(
       xAccessTokenUrl,
       `oauth_verifier=${encodeURIComponent(oauth_verifier)}`,
       { headers }
     );
 
-    return parseQueryString(response.data);
+    return parseQueryString(data);
   } catch (error: any) {
     throw error.response?.data || error;
   }
