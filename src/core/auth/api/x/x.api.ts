@@ -1,10 +1,11 @@
 /* eslint-disable camelcase */
+import { Platform } from 'react-native';
 import axios, { AxiosHeaders } from 'axios';
 import CryptoJS from 'crypto-js';
 import OAuth from 'oauth-1.0a';
 import queryString from 'query-string';
 import { pipe } from 'ramda';
-import { APP_SCHEME } from '@constants';
+import { APP_SCHEME_SLUG } from '@constants';
 
 const consumerKey = process.env.X_CONSUMER_KEY ?? '';
 const consumerSecret = process.env.X_CONSUMER_SECRET ?? '';
@@ -17,6 +18,13 @@ function parseQueryString(data: string): Record<string, string> {
   return queryString.parse(data) as Record<string, string>;
 }
 
+const getDeepLink = () => {
+  const scheme = APP_SCHEME_SLUG;
+  const prefix =
+    Platform.OS == 'android' ? `${scheme}://my-host/` : `${scheme}://`;
+  return prefix;
+};
+
 const oauth = new OAuth({
   consumer: { key: consumerKey, secret: consumerSecret },
   signature_method: 'HMAC-SHA1',
@@ -26,7 +34,7 @@ const oauth = new OAuth({
 });
 
 async function getTwitterRequestToken() {
-  const callbackUrl = APP_SCHEME;
+  const callbackUrl = getDeepLink();
 
   const getOAuthParams = () => {
     const params = oauth.authorize({
