@@ -19,17 +19,18 @@ export const SafeViewContainer = ({
 }: SafeViewContainerProps) => {
   const { bottom } = useSafeAreaInsets();
 
-  const styles: StyleProp<ViewStyle> = useMemo(
-    () => [
+  const styles: StyleProp<ViewStyle> = useMemo(() => {
+    const paddingBottom = bottom === 0 ? verticalScale(24) : 0;
+
+    return [
       style
-        ? [style, { paddingBottom: bottom === 0 ? verticalScale(24) : 0 }]
+        ? [style, { paddingBottom }]
         : {
             flex: 1,
-            paddingBottom: bottom === 0 ? verticalScale(24) : 0
+            paddingBottom
           }
-    ],
-    [bottom, style]
-  );
+    ];
+  }, [bottom, style]);
 
   return (
     <SafeAreaView style={styles} {...restProps}>
