@@ -1,11 +1,11 @@
 import { useCallback, useEffect } from 'react';
+import { Alert } from 'react-native';
 import { appleAuth } from '@invertase/react-native-apple-authentication';
 import {
   GoogleSignin,
-  isErrorWithCode,
-  isSuccessResponse,
-  statusCodes
+  isSuccessResponse
 } from '@react-native-google-signin/google-signin';
+import { createWalletClient, custom } from 'viem';
 import { _decodeToken, web3auth } from '@lib/web3auth';
 import { AUTH_ENVIRONMENT } from '@lib/web3auth/config';
 import { AuthMethods } from '@types';
@@ -14,6 +14,8 @@ import { useTwitterMiddleware } from './use-twitter-middleware';
 GoogleSignin.configure({
   webClientId: process.env.FIREBASE_WEB_CLIENT_ID
 });
+
+const { google, twitter, apple } = AUTH_ENVIRONMENT;
 
 export function useAuth() {
   const { twitterAuthCallback } = useTwitterMiddleware();
@@ -38,7 +40,7 @@ export function useAuth() {
                 data: { idToken }
               } = response;
 
-              const verifier = AUTH_ENVIRONMENT.google.provider ?? '';
+              const verifier = google.provider;
 
               if (idToken) {
                 const { email: verifierId } = _decodeToken<'email'>(idToken);
@@ -51,38 +53,81 @@ export function useAuth() {
               }
             }
           } catch (error) {
-            if (isErrorWithCode(error)) {
-              switch (error.code) {
-                case statusCodes.IN_PROGRESS:
-                  // operation (eg. sign in) already in progress
-                  break;
-                case statusCodes.PLAY_SERVICES_NOT_AVAILABLE:
-                  // Android only, play services not available or outdated
-                  break;
-                default:
-                // some other error happened
-              }
-            }
+            throw error;
           }
           break;
         }
         case 'facebook':
         case 'apple': {
-          const appleAuthRequestResponse = await appleAuth.performRequest({
-            requestedOperation: appleAuth.Operation.LOGIN,
-            requestedScopes: [appleAuth.Scope.FULL_NAME, appleAuth.Scope.EMAIL]
-          });
+          try {
+            const appleAuthRequestResponse = await appleAuth.performRequest({
+              requestedOperation: appleAuth.Operation.LOGIN,
+              requestedScopes: [
+                appleAuth.Scope.FULL_NAME,
+                appleAuth.Scope.EMAIL
+              ]
+            });
 
-          const credentialState = await appleAuth.getCredentialStateForUser(
-            appleAuthRequestResponse.user
-          );
+            const credentialState = await appleAuth.getCredentialStateForUser(
+              appleAuthRequestResponse.user
+            );
 
-          if (credentialState === appleAuth.State.AUTHORIZED) {
-            return appleAuthRequestResponse;
+            if (credentialState === appleAuth.State.AUTHORIZED) {
+              const { identityToken: idToken } = appleAuthRequestResponse;
+
+              if (idToken) {
+                const { sub: verifierId } = _decodeToken<'sub'>(idToken);
+                const verifier = apple.provider;
+
+                const provider = await web3auth.connect({
+                  verifier,
+                  verifierId,
+                  idToken
+                });
+
+                const walletClient = createWalletClient({
+                  transport: custom(provider!)
+                });
+
+                const publicKey = await walletClient.getAddresses();
+
+                Alert.alert('🔐 Account:', JSON.stringify(publicKey[0]));
+
+                return provider;
+              }
+            }
+          } catch (error) {
+            throw error;
           }
         }
-        case 'x':
-          return await twitterAuthCallback();
+        case 'x': {
+          try {
+            const idToken = await twitterAuthCallback();
+            const verifier = twitter.provider;
+
+            if (idToken) {
+              const { sub: verifierId } = _decodeToken<'sub'>(idToken);
+
+              const provider = await web3auth.connect({
+                verifier,
+                verifierId,
+                idToken
+              });
+
+              const walletClient = createWalletClient({
+                transport: custom(provider!)
+              });
+
+              const publicKey = await walletClient.getAddresses();
+
+              Alert.alert('🔐 Account:', JSON.stringify(publicKey[0]));
+
+              return provider;
+            }
+          } catch (error) {
+            throw error;
+          }
+        }
 
         default:
           return undefined;
