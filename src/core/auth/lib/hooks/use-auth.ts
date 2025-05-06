@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Alert } from 'react-native';
 import { appleAuth } from '@invertase/react-native-apple-authentication';
 import {
@@ -18,6 +18,7 @@ GoogleSignin.configure({
 const { google, twitter, apple } = AUTH_ENVIRONMENT;
 
 export function useAuth() {
+  const [loading, setLoading] = useState(false);
   const { twitterAuthCallback } = useTwitterMiddleware();
 
   useEffect(() => {
@@ -26,58 +27,89 @@ export function useAuth() {
 
   const authCallback = useCallback(
     async (type: AuthMethods) => {
+      setLoading(true);
       if (web3auth.status === 'connected') {
         await web3auth.logout();
       }
 
-      switch (type) {
-        case 'google': {
-          try {
-            await GoogleSignin.hasPlayServices();
-            const response = await GoogleSignin.signIn();
-            if (isSuccessResponse(response)) {
-              const {
-                data: { idToken }
-              } = response;
+      try {
+        switch (type) {
+          case 'google': {
+            try {
+              await GoogleSignin.hasPlayServices();
+              const response = await GoogleSignin.signIn();
+              if (isSuccessResponse(response)) {
+                const {
+                  data: { idToken }
+                } = response;
 
-              const verifier = google.provider;
+                const verifier = google.provider;
 
-              if (idToken) {
-                const { email: verifierId } = _decodeToken<'email'>(idToken);
+                if (idToken) {
+                  const { email: verifierId } = _decodeToken<'email'>(idToken);
 
-                return await web3auth.connect({
-                  verifier,
-                  verifierId,
-                  idToken
-                });
+                  return await web3auth.connect({
+                    verifier,
+                    verifierId,
+                    idToken
+                  });
+                }
               }
+            } catch (error) {
+              throw error;
             }
-          } catch (error) {
-            throw error;
+            break;
           }
-          break;
-        }
-        case 'facebook':
-        case 'apple': {
-          try {
-            const appleAuthRequestResponse = await appleAuth.performRequest({
-              requestedOperation: appleAuth.Operation.LOGIN,
-              requestedScopes: [
-                appleAuth.Scope.FULL_NAME,
-                appleAuth.Scope.EMAIL
-              ]
-            });
+          case 'facebook':
+          case 'apple': {
+            try {
+              const appleAuthRequestResponse = await appleAuth.performRequest({
+                requestedOperation: appleAuth.Operation.LOGIN,
+                requestedScopes: [
+                  appleAuth.Scope.FULL_NAME,
+                  appleAuth.Scope.EMAIL
+                ]
+              });
 
-            const credentialState = await appleAuth.getCredentialStateForUser(
-              appleAuthRequestResponse.user
-            );
+              const credentialState = await appleAuth.getCredentialStateForUser(
+                appleAuthRequestResponse.user
+              );
 
-            if (credentialState === appleAuth.State.AUTHORIZED) {
-              const { identityToken: idToken } = appleAuthRequestResponse;
+              if (credentialState === appleAuth.State.AUTHORIZED) {
+                const { identityToken: idToken } = appleAuthRequestResponse;
+
+                if (idToken) {
+                  const { sub: verifierId } = _decodeToken<'sub'>(idToken);
+                  const verifier = apple.provider;
+
+                  const provider = await web3auth.connect({
+                    verifier,
+                    verifierId,
+                    idToken
+                  });
+
+                  const walletClient = createWalletClient({
+                    transport: custom(provider!)
+                  });
+
+                  const publicKey = await walletClient.getAddresses();
+
+                  Alert.alert('🔐 Account:', JSON.stringify(publicKey[0]));
+
+                  return provider;
+                }
+              }
+            } catch (error) {
+              throw error;
+            }
+          }
+          case 'x': {
+            try {
+              const idToken = await twitterAuthCallback();
+              const verifier = twitter.provider;
 
               if (idToken) {
                 const { sub: verifierId } = _decodeToken<'sub'>(idToken);
-                const verifier = apple.provider;
 
                 const provider = await web3auth.connect({
                   verifier,
@@ -95,46 +127,20 @@ export function useAuth() {
 
                 return provider;
               }
+            } catch (error) {
+              throw error;
             }
-          } catch (error) {
-            throw error;
           }
+
+          default:
+            return undefined;
         }
-        case 'x': {
-          try {
-            const idToken = await twitterAuthCallback();
-            const verifier = twitter.provider;
-
-            if (idToken) {
-              const { sub: verifierId } = _decodeToken<'sub'>(idToken);
-
-              const provider = await web3auth.connect({
-                verifier,
-                verifierId,
-                idToken
-              });
-
-              const walletClient = createWalletClient({
-                transport: custom(provider!)
-              });
-
-              const publicKey = await walletClient.getAddresses();
-
-              Alert.alert('🔐 Account:', JSON.stringify(publicKey[0]));
-
-              return provider;
-            }
-          } catch (error) {
-            throw error;
-          }
-        }
-
-        default:
-          return undefined;
+      } finally {
+        setLoading(false);
       }
     },
     [twitterAuthCallback]
   );
 
-  return { authCallback };
+  return { authCallback, loading };
 }

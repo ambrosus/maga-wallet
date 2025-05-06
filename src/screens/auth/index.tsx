@@ -5,12 +5,14 @@ import { SafeViewContainer, Spacer } from '@components/atoms';
 import { PrimaryButton } from '@components/molecules';
 import { SocialAuthList } from '@components/organisms';
 import { COLORS, DEVICE_HEIGHT, DEVICE_WIDTH, FONT_SIZE } from '@constants';
+import { useAuth } from '@core/auth/lib';
 import { mmkv } from '@lib';
 import { MMKV_KEYS } from '@lib/mmkv/keys';
 import { SETTINGS_STACK_ROUTES, TABS_STACK_ROUTES } from '@navigation';
 import {
   ROOT_STACK_ROUTES,
-  RootNavigationScreenProps
+  RootNavigationScreenProps,
+  RootStackParamsList
 } from '@navigation/root-stack';
 import { scale } from '@utils';
 import { styles } from './styles';
@@ -18,22 +20,25 @@ import { styles } from './styles';
 export const AuthScreen = ({
   navigation
 }: RootNavigationScreenProps<'AuthScreen'>) => {
+  const { authCallback, loading } = useAuth();
+
   const onNavigateToPasskey = useCallback(() => {
     const isPasscodeSetup = mmkv.getItem(MMKV_KEYS.isAppPasskeySet);
+
     if (isPasscodeSetup) {
       navigation.replace(ROOT_STACK_ROUTES.Tabs, {
         screen: TABS_STACK_ROUTES.Settings,
         params: {
           screen: SETTINGS_STACK_ROUTES.EnterPasscode
         }
-      } as any);
+      } as unknown as RootStackParamsList['Tabs']);
     } else {
       navigation.replace(ROOT_STACK_ROUTES.Tabs, {
         screen: TABS_STACK_ROUTES.Settings,
         params: {
           screen: SETTINGS_STACK_ROUTES.CreateNewPasscode
         }
-      } as any);
+      } as unknown as RootStackParamsList['Tabs']);
     }
   }, [navigation]);
 
@@ -85,9 +90,9 @@ export const AuthScreen = ({
           </View>
           <Spacer value={scale(32)} />
           {/* Social Auth List */}
-          <SocialAuthList />
+          <SocialAuthList loading={loading} authCallback={authCallback} />
           <Spacer value={scale(32)} />
-          <PrimaryButton onPress={onNavigateToPasskey}>
+          <PrimaryButton disabled={loading} onPress={onNavigateToPasskey}>
             <Typography
               fontSize={16}
               fontFamily="Onest600SemiBold"

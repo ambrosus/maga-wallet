@@ -9,7 +9,7 @@ import {
   Spacer,
   Typography
 } from '@components/atoms';
-import { SecondaryButton, SetupFaceIdButton } from '@components/molecules';
+import { SecondaryButton, SetupBiometricsButton } from '@components/molecules';
 import { BottomSheet } from '@components/organisms';
 import { WarningIcon } from '@components/svgs';
 import { COLORS, FONT_SIZE } from '@constants';
@@ -76,7 +76,7 @@ export const BottomSheetSetupBiometrics = forwardRef<BottomSheetModal, any>(
           <Spacer value={verticalScale(32)} />
 
           <RowContainer gap={16}>
-            <SetupFaceIdButton
+            <SetupBiometricsButton
               style={styles.button}
               onPress={onHandleBiometricsAuth}
             />

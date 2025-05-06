@@ -10,20 +10,40 @@ import {
   BottomSheetSetupBiometrics,
   Button,
   SafeViewContainer,
-  SetupFaceIdButton,
+  SetupBiometricsButton,
   SetupPasskeyBenefitsContainer,
   Spacer,
   Typography
 } from '@components';
 import { DEVICE_WIDTH, DEVICE_HEIGHT, FONT_SIZE, COLORS } from '@constants';
-import { verticalScale } from '@utils';
+import {
+  ROOT_STACK_ROUTES,
+  RootNavigationScreenProps
+} from '@navigation/root-stack';
+import { delayNavigationAction, verticalScale } from '@utils';
 import { styles } from './styles';
 
-export const SetupPasskeyScreen = () => {
+type SetupPasskeyScreenProps = RootNavigationScreenProps<'SetupPasskeyScreen'>;
+
+export const SetupPasskeyScreen = ({ navigation }: SetupPasskeyScreenProps) => {
   const { t } = useTranslation();
   const bottomSheetRef = useRef<BottomSheetModal>(null);
 
   const snapToIndex = () => bottomSheetRef.current?.present();
+
+  const onSetupBiometrics = () => {
+    bottomSheetRef.current?.dismiss();
+    delayNavigationAction(() => {
+      navigation.reset({
+        index: 0,
+        routes: [
+          {
+            name: ROOT_STACK_ROUTES.CreateWalletLoadingScreen
+          }
+        ]
+      });
+    });
+  };
 
   return (
     <>
@@ -70,7 +90,7 @@ export const SetupPasskeyScreen = () => {
                   {t('setupPasskey.button.later')}
                 </Typography>
               </Button>
-              <SetupFaceIdButton />
+              <SetupBiometricsButton onPress={onSetupBiometrics} />
             </View>
           </SafeViewContainer>
 
