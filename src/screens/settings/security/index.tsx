@@ -1,11 +1,11 @@
-import { SafeAreaView, View, FlatList, ListRenderItemInfo } from 'react-native';
-import { useRoute } from '@react-navigation/native';
+import { FlatList, ListRenderItemInfo, SafeAreaView, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 import { Button, Header, Separator, Typography } from '@components';
 import { Arow } from '@components/svgs';
 import { COLORS } from '@constants';
 import { MMKV_KEYS } from '@lib/mmkv/keys';
-import { Settingsitems } from '../models';
+import { RootNavigationProp } from '@navigation/root-stack';
 import { SecurityToggleItem } from './components';
 import { SECURITY_SETTINGS } from './constants';
 import { useSecurityScreenStorage } from './hooks';
@@ -13,13 +13,21 @@ import { styles } from './styles';
 import { SecurityItemTypes, SecuritySettingItem } from './types';
 
 export const SecurityScreen = () => {
-  const route = useRoute();
-  const { name } = route.params as { name: Settingsitems };
+  const navigation = useNavigation<RootNavigationProp>();
   const { t } = useTranslation();
 
-  const signWithFaceID = useSecurityScreenStorage(MMKV_KEYS.signWithFaceID);
-  const twoFAAuth = useSecurityScreenStorage(MMKV_KEYS.twoFAAuth);
-  const autoApproval = useSecurityScreenStorage(MMKV_KEYS.autoApproval);
+  const signWithFaceID = useSecurityScreenStorage(
+    MMKV_KEYS.signWithFaceID,
+    navigation
+  );
+  const twoFAAuth = useSecurityScreenStorage(
+    MMKV_KEYS.twoFAAuthConnected,
+    navigation
+  );
+  const autoApproval = useSecurityScreenStorage(
+    MMKV_KEYS.autoApproval,
+    navigation
+  );
 
   const toggles: Partial<
     Record<SecurityItemTypes, ReturnType<typeof useSecurityScreenStorage>>
@@ -51,7 +59,7 @@ export const SecurityScreen = () => {
 
   return (
     <SafeAreaView>
-      <Header goBack title={t(`settings.tabs.${name}`)} />
+      <Header goBack title={t('settings.tabs.security')} />
       <View style={styles.main}>
         <View style={styles.wrapper}>
           <Button

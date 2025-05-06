@@ -9,7 +9,7 @@ export const SECURITY_SETTINGS: SecuritySettingItem[] = [
   },
   {
     type: SecurityItemTypes.twoFAAuth,
-    mmkvKey: MMKV_KEYS.twoFAAuth,
+    mmkvKey: MMKV_KEYS.twoFAAuthConnected,
     labelKey: 'settings.tabs.security.twoFA.auth'
   },
   {

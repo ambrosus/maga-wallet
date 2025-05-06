@@ -12,6 +12,12 @@ import { NotificationsScreen } from '@screens/settings/notifications';
 import { PreferencesScreen } from '@screens/settings/preferences';
 import { SecurityScreen } from '@screens/settings/security';
 import {
+  TwoFAPrepare,
+  TwoFASetup,
+  TwoFAVerify,
+  VerifyIndentify
+} from '@screens/two-fa-auth';
+import {
   SETTINGS_STACK_ROUTES,
   SettingsTabParamsList
 } from './settings-tab.model';
@@ -66,6 +72,25 @@ export const SettingsStack = () => {
         <Stack.Screen
           name={SETTINGS_STACK_ROUTES.EnterPasscode}
           component={EnterNewPasscode}
+        />
+
+        {/* 2 FA */}
+
+        <Stack.Screen
+          name={SETTINGS_STACK_ROUTES.VerifyIdentify}
+          component={VerifyIndentify}
+        />
+        <Stack.Screen
+          name={SETTINGS_STACK_ROUTES.TwoFAPrepare}
+          component={TwoFAPrepare}
+        />
+        <Stack.Screen
+          name={SETTINGS_STACK_ROUTES.TwoFASetup}
+          component={TwoFASetup}
+        />
+        <Stack.Screen
+          name={SETTINGS_STACK_ROUTES.TwoFAVerify}
+          component={TwoFAVerify}
         />
       </Stack.Navigator>
     </>

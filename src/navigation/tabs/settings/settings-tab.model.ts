@@ -11,6 +11,10 @@ export type SettingsTabParamsList = {
   CreateNewPasscode: undefined;
   ConfirmNewPasscode: { passcode: string };
   EnterPasscode: { onPasscodeSuccess?: () => void };
+  VerifyIdentify: undefined;
+  TwoFAPrepare: undefined;
+  TwoFASetup: undefined;
+  TwoFAVerify: { onVerify?: () => void };
 };
 
 export enum SETTINGS_STACK_ROUTES {
@@ -23,5 +27,9 @@ export enum SETTINGS_STACK_ROUTES {
   AboutScreen = 'AboutScreen',
   CreateNewPasscode = 'CreateNewPasscode',
   ConfirmNewPasscode = 'ConfirmNewPasscode',
-  EnterPasscode = 'EnterPasscode'
+  EnterPasscode = 'EnterPasscode',
+  VerifyIdentify = 'VerifyIdentify',
+  TwoFAPrepare = 'TwoFAPrepare',
+  TwoFASetup = 'TwoFASetup',
+  TwoFAVerify = 'TwoFAVerify'
 }
