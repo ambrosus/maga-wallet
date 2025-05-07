@@ -4,6 +4,7 @@ export const COLORS = {
   black: '#000000',
   textPrimary: '#111827',
   textSecondary: '#6B7280',
+  textTertiary: '#C5C7CD',
 
   // Borders
   borderDefault: '#E5E7EB',
