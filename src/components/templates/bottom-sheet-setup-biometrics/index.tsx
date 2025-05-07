@@ -9,13 +9,13 @@ import {
   Spacer,
   Typography
 } from '@components/atoms';
-import { SecondaryButton, SetupFaceIdButton } from '@components/molecules';
+import { SecondaryButton, SetupBiometricsButton } from '@components/molecules';
 import { BottomSheet } from '@components/organisms';
 import { WarningIcon } from '@components/svgs';
 import { COLORS, FONT_SIZE } from '@constants';
 import { useForwardedRef } from '@lib/hooks';
 import { ROOT_STACK_ROUTES, RootNavigationProp } from '@navigation/root-stack';
-import { verticalScale } from '@utils';
+import { delayNavigationAction, verticalScale } from '@utils';
 import { styles } from './styles';
 
 export const BottomSheetSetupBiometrics = forwardRef<BottomSheetModal, any>(
@@ -24,7 +24,19 @@ export const BottomSheetSetupBiometrics = forwardRef<BottomSheetModal, any>(
     const navigation = useNavigation<RootNavigationProp>();
     const bottomSheetRef = useForwardedRef<BottomSheetModal>(ref);
 
-    const onDismissBottomSheet = () => bottomSheetRef.current?.dismiss();
+    const onDismissBottomSheet = () => {
+      bottomSheetRef.current?.dismiss();
+      delayNavigationAction(() => {
+        navigation.reset({
+          index: 0,
+          routes: [
+            {
+              name: ROOT_STACK_ROUTES.CreateWalletLoadingScreen
+            }
+          ]
+        });
+      });
+    };
 
     const onHandleBiometricsAuth = () => {
       navigation.reset({
@@ -64,7 +76,7 @@ export const BottomSheetSetupBiometrics = forwardRef<BottomSheetModal, any>(
           <Spacer value={verticalScale(32)} />
 
           <RowContainer gap={16}>
-            <SetupFaceIdButton
+            <SetupBiometricsButton
               style={styles.button}
               onPress={onHandleBiometricsAuth}
             />

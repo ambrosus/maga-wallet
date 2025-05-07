@@ -6,12 +6,12 @@ import { ANIMATION_DELAY, COLORS } from '@constants';
 import { useBiometrics } from '@core/biometrics/lib/hooks';
 import { PrimaryButton, PrimaryButtonProps } from '../primary-button';
 
-type SetupFaceIdButtonProps = Partial<PrimaryButtonProps>;
+type SetupBiometricsButtonProps = Partial<PrimaryButtonProps>;
 
-export const SetupFaceIdButton = ({
+export const SetupBiometricsButton = ({
   onPress,
   ...props
-}: SetupFaceIdButtonProps) => {
+}: SetupBiometricsButtonProps) => {
   const { t } = useTranslation();
 
   const { onHandleBiometricsAuth } = useBiometrics();

@@ -1,16 +1,23 @@
 import { useCallback, useMemo } from 'react';
 import { useNavigation } from '@react-navigation/native';
+import { IProvider } from '@web3auth/base';
 import { RowContainer } from '@components/atoms';
 import { SocialItemCircle } from '@components/molecules';
 import { isAndroid } from '@constants';
 import { AUTH_METHODS, StaticAuthPreset } from '@constants/auth';
-import { useAuth } from '@core/auth/lib';
 import { ROOT_STACK_ROUTES, RootNavigationProp } from '@navigation/root-stack';
 import { AuthMethods } from '@types';
 
-export const SocialAuthList = () => {
+interface SocialAuthListProps {
+  loading: boolean;
+  authCallback: (method: AuthMethods) => Promise<IProvider | null | undefined>;
+}
+
+export const SocialAuthList = ({
+  loading,
+  authCallback
+}: SocialAuthListProps) => {
   const navigation = useNavigation<RootNavigationProp>();
-  const { authCallback } = useAuth();
 
   const justifyContentProp = useMemo(() => {
     const length = AUTH_METHODS.filter(({ visible }) => visible).length;
@@ -38,13 +45,13 @@ export const SocialAuthList = () => {
 
       return (
         visible && (
-          <SocialItemCircle key={key} onPress={onItemPress}>
+          <SocialItemCircle key={key} disabled={loading} onPress={onItemPress}>
             <Icon />
           </SocialItemCircle>
         )
       );
     },
-    [onAuthHandle]
+    [loading, onAuthHandle]
   );
 
   return (
