@@ -19,3 +19,6 @@ export { SettingsIconInfo } from './settings/settings-icon-info';
 export { SendIcon } from './send';
 export { SwapIcon } from './swap';
 export { ReceiveIcon } from './receive';
+export { CloseIcon } from './close';
+export { InfoIcon } from './info';
+export { CheckboxCircle } from './chekbox-circle';

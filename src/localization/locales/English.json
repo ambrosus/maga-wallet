@@ -2,7 +2,14 @@
   "English": "English",
   "buttons": {
     "faceID": "Use Face ID",
-    "next": "Next"
+    "next": "Next",
+    "copy": "Copy"
+  },
+
+  "toast": {
+    "success": "Success",
+    "failed": "Failed",
+    "copied": "Copied"
   },
   "setupPasskey": {
     "title": "Setup Passkey",
