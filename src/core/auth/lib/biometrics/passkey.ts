@@ -1,8 +1,9 @@
 import { Passkey } from 'react-native-passkey';
 import { createHash } from 'sha256-uint8array';
+import * as uuid from 'uuid';
 import { Buffer } from 'buffer';
 
-const RPID = 'wondrous-speculoos-8e3706.netlify.app';
+const RPID = 'zippy-daffodil-78a820.netlify.app';
 
 // Needs to return a base64-encoded string
 function getChallengeFromPayload(payload: string): string {
@@ -60,11 +61,11 @@ export const handleCreatePasskey = async () => {
   return await Passkey.create({
     challenge: getChallengeFromPayload('hello'),
     rp: {
-      name: 'Passkey App',
+      name: 'Maga Wallet',
       id: RPID
     },
     user: {
-      id: 'new-id',
+      id: uuid.v4(),
       name: 'Maga Wallet',
       displayName: 'Maga Wallet'
     },
