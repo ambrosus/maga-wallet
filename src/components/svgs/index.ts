@@ -16,3 +16,6 @@ export { SettingsIconProfile } from './settings/settings-icon-profile';
 export { SettingsIconSettings } from './settings/settings-icon-settings';
 export { SettingsIconNotification } from './settings/settings-icon-notification';
 export { SettingsIconInfo } from './settings/settings-icon-info';
+export { SendIcon } from './send';
+export { SwapIcon } from './swap';
+export { ReceiveIcon } from './receive';

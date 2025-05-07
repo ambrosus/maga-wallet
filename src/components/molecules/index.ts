@@ -8,3 +8,4 @@ export { Header } from './header';
 export { PasscodeIndicator } from './passcode-indicator';
 export { ToggleSwitch } from './toggle-switch';
 export { CopyButton } from './copy-button';
+export { AccountActionsContainer } from './account-actions-container';

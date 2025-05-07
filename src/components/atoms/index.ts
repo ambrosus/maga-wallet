@@ -4,3 +4,4 @@ export { Spacer } from './spacer';
 export { RowContainer } from './row-container';
 export { Separator } from './separator';
 export { SafeViewContainer } from './safe-view-container';
+export { AccountActionPressableContainer } from './account-action-pressable-container';
