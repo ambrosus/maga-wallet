@@ -1,26 +1,25 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { SettingsScreen } from '@screens';
+import { SETTINGS_STACK_ROUTES, SettingsTabParamsList } from '@navigation';
+import {
+  AboutScreen,
+  AddressBookScreen,
+  ManageAccountsScreen,
+  NotificationsScreen,
+  PreferencesScreen,
+  SecurityScreen,
+  SettingsScreen
+} from '@screens';
 import {
   ConfirmNewPasscode,
   CreaateNewPasscode,
   EnterNewPasscode
 } from '@screens/passcode';
-import { AboutScreen } from '@screens/settings/about';
-import { AddressBookScreen } from '@screens/settings/address-book';
-import { ManageAccountsScreen } from '@screens/settings/manage-accounts';
-import { NotificationsScreen } from '@screens/settings/notifications';
-import { PreferencesScreen } from '@screens/settings/preferences';
-import { SecurityScreen } from '@screens/settings/security';
 import {
   TwoFAPrepare,
   TwoFASetup,
   TwoFAVerify,
   VerifyIndentify
 } from '@screens/two-fa-auth';
-import {
-  SETTINGS_STACK_ROUTES,
-  SettingsTabParamsList
-} from './settings-tab.model';
 
 export const SettingsStack = () => {
   const Stack = createNativeStackNavigator<SettingsTabParamsList>();

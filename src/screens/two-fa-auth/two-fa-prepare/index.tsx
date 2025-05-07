@@ -9,8 +9,6 @@ import { RootNavigationProp } from '@navigation/root-stack';
 import { scale } from '@utils';
 import { styles } from './styles';
 
-const GoogleAuthIcon = require('../../../assets/images/google-auth-icon.png');
-
 export const TwoFAPrepare = () => {
   const { t } = useTranslation();
   const navigation = useNavigation<RootNavigationProp>();
@@ -30,7 +28,10 @@ export const TwoFAPrepare = () => {
           />
           <Spacer value={scale(50)} />
           <View style={styles.centerAling}>
-            <Image source={GoogleAuthIcon} style={styles.image} />
+            <Image
+              source={require('@assets/images/google-auth-icon.png')}
+              style={styles.image}
+            />
           </View>
           <Spacer value={scale(50)} />
           <View style={styles.centerAling}>

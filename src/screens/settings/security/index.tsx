@@ -1,3 +1,4 @@
+import { useCallback, useMemo } from 'react';
 import { FlatList, ListRenderItemInfo, SafeAreaView, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
@@ -29,32 +30,41 @@ export const SecurityScreen = () => {
     navigation
   );
 
-  const toggles: Partial<
-    Record<SecurityItemTypes, ReturnType<typeof useSecurityScreenStorage>>
-  > = {
-    [SecurityItemTypes.signWithFaceID]: signWithFaceID,
-    [SecurityItemTypes.twoFAAuth]: twoFAAuth,
-    [SecurityItemTypes.autoApproval]: autoApproval
-  };
+  const toggles = useMemo(
+    (): Partial<
+      Record<SecurityItemTypes, ReturnType<typeof useSecurityScreenStorage>>
+    > => ({
+      [SecurityItemTypes.signWithFaceID]: signWithFaceID,
+      [SecurityItemTypes.twoFAAuth]: twoFAAuth,
+      [SecurityItemTypes.autoApproval]: autoApproval
+    }),
+    [signWithFaceID, twoFAAuth, autoApproval]
+  );
 
-  const renderItem = ({
-    item,
-    index
-  }: ListRenderItemInfo<SecuritySettingItem>) => (
-    <View>
-      <SecurityToggleItem
-        label={t(item.labelKey)}
-        value={toggles[item.type]?.value ?? false}
-        onValueChange={() => {
-          if (!toggles[item.type]?.toggle) return;
-          toggles[item.type]?.toggle();
-        }}
-        description={item.descriptionKey ? t(item.descriptionKey) : undefined}
-      />
-      {index < SECURITY_SETTINGS.length - 1 && (
-        <Separator color={COLORS.neutral300} />
-      )}
-    </View>
+  const renderItem = useCallback(
+    ({ item, index }: ListRenderItemInfo<SecuritySettingItem>) => {
+      const onValueChange = () => {
+        if (!toggles[item.type]?.toggle) return;
+        toggles[item.type]?.toggle();
+      };
+
+      return (
+        <View>
+          <SecurityToggleItem
+            label={t(item.labelKey)}
+            value={toggles[item.type]?.value ?? false}
+            onValueChange={onValueChange}
+            description={
+              item.descriptionKey ? t(item.descriptionKey) : undefined
+            }
+          />
+          {index < SECURITY_SETTINGS.length - 1 && (
+            <Separator color={COLORS.neutral300} />
+          )}
+        </View>
+      );
+    },
+    [t, toggles]
   );
 
   return (

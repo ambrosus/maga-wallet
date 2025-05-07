@@ -1,7 +1,7 @@
 import { View } from 'react-native';
 import { COLORS } from '@constants';
 
-interface SeparatorModel {
+interface SeparatorProps {
   color?: string;
   width?: number;
 }
@@ -9,6 +9,6 @@ interface SeparatorModel {
 export const Separator = ({
   color = COLORS.neutral500,
   width = 1
-}: SeparatorModel) => {
+}: SeparatorProps) => {
   return <View style={{ borderWidth: width, borderColor: color }} />;
 };

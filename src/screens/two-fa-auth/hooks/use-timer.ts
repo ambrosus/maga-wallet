@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 interface UseTimerOptions {
   duration: number; // on seconds
@@ -49,7 +49,7 @@ export function useTimer({ duration, onStart, onEnd }: UseTimerOptions) {
   }, [clearTimerInterval, duration, getTimeLeft, onEnd, onStart]);
 
   // Clean up on unmount
-  React.useEffect(() => () => clearTimerInterval(), [clearTimerInterval]);
+  useEffect(() => () => clearTimerInterval(), [clearTimerInterval]);
 
   const min = Math.floor(timer / 60)
     .toString()

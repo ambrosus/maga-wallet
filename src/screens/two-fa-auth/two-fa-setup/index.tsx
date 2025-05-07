@@ -17,12 +17,11 @@ import { RootNavigationProp } from '@navigation/root-stack';
 import { scale } from '@utils';
 import { styles } from './styles';
 
-const GoogleAuthIcon = require('../../../assets/images/google-auth-icon.png');
-
 export const TwoFASetup = () => {
   const { t } = useTranslation();
   const navigation = useNavigation<RootNavigationProp>();
 
+  // TODO remove hardcode
   const code = 'D6IDDDH45024LKD42';
   const onVerify = () => {
     mmkv.setItem(MMKV_KEYS.twoFAAuthEnabled, 'true');
@@ -40,7 +39,10 @@ export const TwoFASetup = () => {
           <Header goBack title={t('settings.tabs.two.fa.connect.header')} />
           <Spacer value={scale(50)} />
           <View style={styles.centerAling}>
-            <Image source={GoogleAuthIcon} style={styles.image} />
+            <Image
+              source={require('@assets/images/google-auth-icon.png')}
+              style={styles.image}
+            />
           </View>
           <Spacer value={scale(50)} />
           <View style={styles.centerAling}>

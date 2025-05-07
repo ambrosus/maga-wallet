@@ -72,8 +72,8 @@ export const TwoFAVerify = () => {
         <Spacer value={scale(20)} />
         <CodeLayout onFilled={onFilled} onTextChange={onTextChange} />
         <View style={{ alignItems: 'flex-end' }}>
-          <Button style={{}} onPress={goToGoogleAuthApp}>
-            <Typography color={COLORS.primary500}>
+          <Button onPress={goToGoogleAuthApp}>
+            <Typography color={COLORS.white}>
               {t('settings.tabs.get.code')}
             </Typography>
           </Button>
