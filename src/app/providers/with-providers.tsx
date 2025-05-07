@@ -1,13 +1,16 @@
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { LocalizationProvider } from './localization';
 import { NavigationProvider } from './navigation';
 import { SafeContainerProvider } from './safe-area';
 
 export const WrappedAppWithProviders = () => {
   return (
-    <SafeContainerProvider>
-      <LocalizationProvider>
-        <NavigationProvider />
-      </LocalizationProvider>
-    </SafeContainerProvider>
+    <GestureHandlerRootView>
+      <SafeContainerProvider>
+        <LocalizationProvider>
+          <NavigationProvider />
+        </LocalizationProvider>
+      </SafeContainerProvider>
+    </GestureHandlerRootView>
   );
 };

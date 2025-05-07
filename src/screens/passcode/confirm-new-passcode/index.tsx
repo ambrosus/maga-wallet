@@ -7,11 +7,7 @@ import { keychainStore } from '@lib/keychain';
 import { KEYCHAIN_KEYS } from '@lib/keychain/keys';
 import { MMKV_KEYS } from '@lib/mmkv/keys';
 import { RootNavigationProp } from '@navigation/root-stack';
-import {
-  useHandleRemove,
-  useShakeAnimation,
-  useHandleCodeChange
-} from '../hooks';
+import { useHandleRemove, useHandleCodeChange } from '../hooks';
 import { PasscodeScreenLayout } from '../passcode-layout';
 
 type ConfirmNewPasscodeRouteParams = { passcode: string };
@@ -25,7 +21,6 @@ export const ConfirmNewPasscode = ({}) => {
   const { t } = useTranslation();
   const [passcode, setPasscode] = useState('');
   const [error, setError] = useState('');
-  const { triggerShake } = useShakeAnimation();
 
   const onComplete = (newCode: string) => {
     if (newCode === pascodeToConfirm) {
@@ -36,7 +31,6 @@ export const ConfirmNewPasscode = ({}) => {
       keychainStore.setItem(KEYCHAIN_KEYS.appPasscode, newCode);
     } else {
       setPasscode('');
-      triggerShake();
       setError('Incorrect passcode');
       setTimeout(() => setError(''), 3000);
     }
@@ -47,7 +41,6 @@ export const ConfirmNewPasscode = ({}) => {
     setPasscode,
     error,
     setError,
-    triggerShake,
     onComplete
   });
 

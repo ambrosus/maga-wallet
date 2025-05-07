@@ -224,6 +224,7 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
+
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MAGAWallet/Pods-MAGAWallet-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
@@ -231,6 +232,7 @@
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MAGAWallet/Pods-MAGAWallet-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
+			name = "[CP-User] [RNFB] Core Configuration";
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MAGAWallet/Pods-MAGAWallet-frameworks.sh\"\n";
@@ -242,6 +244,7 @@
 			files = (
 			);
 			inputFileListPaths = (
+		C144DF77CDB80FA9A31756D0 /* [CP] Check Pods Manifest.lock */ = {
 			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",

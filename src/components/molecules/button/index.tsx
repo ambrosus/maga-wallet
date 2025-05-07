@@ -45,7 +45,12 @@ export const Button = ({
     children || <Typography style={_textStyle}>{title}</Typography> || '';
 
   return (
-    <TouchableOpacity onPress={onPress} style={_containerStyle} {...props}>
+    <TouchableOpacity
+      disabled={disabled}
+      onPress={onPress}
+      style={_containerStyle}
+      {...props}
+    >
       {content}
     </TouchableOpacity>
   );

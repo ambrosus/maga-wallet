@@ -20,7 +20,8 @@ module.exports = {
           '@contexts': './src/contexts',
           '@types': './src/types',
           '@utils': './src/utils',
-          '@lib': './src/lib'
+          '@lib': './src/lib',
+          '@styles': './src/styles'
         }
       }
     ],

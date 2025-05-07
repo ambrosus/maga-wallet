@@ -1,4 +1,6 @@
-import { View, Animated } from 'react-native';
+import { useEffect } from 'react';
+import { View } from 'react-native';
+import Animated from 'react-native-reanimated';
 import {
   Header,
   Spacer,
@@ -8,9 +10,9 @@ import {
   Keyboard
 } from '@components';
 import { COLORS } from '@constants';
+import { useShakeAnimation } from '@styles';
 import { scale } from '@utils';
 import { styles } from './styles';
-import { useShakeAnimation } from '../hooks';
 
 interface PasscodeScreenLayoutProps {
   title: string;
@@ -29,7 +31,13 @@ export const PasscodeScreenLayout = ({
   handleRemove,
   headerWithGoBack = true
 }: PasscodeScreenLayoutProps) => {
-  const { animatedStyle } = useShakeAnimation();
+  const { animatedStyle, triggerShake } = useShakeAnimation();
+
+  useEffect(() => {
+    if (error) {
+      triggerShake();
+    }
+  }, [error, triggerShake]);
 
   return (
     <View style={styles.main}>
