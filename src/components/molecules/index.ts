@@ -10,3 +10,4 @@ export { ToggleSwitch } from './toggle-switch';
 export { CopyButton } from './copy-button';
 export { AccountActionsContainer } from './account-actions-container';
 export { Toast } from './toast';
+export { ToastType } from './toast/types';

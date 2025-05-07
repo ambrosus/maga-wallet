@@ -9,9 +9,9 @@ import {
   PrimaryButton,
   Spacer,
   Toast,
-  Typography
+  Typography,
+  ToastType
 } from '@components';
-import { ToastType } from '@components/molecules/toast/types';
 import { COLORS } from '@constants';
 import { mmkv } from '@lib';
 import { MMKV_KEYS } from '@lib/mmkv/keys.ts';
