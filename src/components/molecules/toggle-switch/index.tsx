@@ -29,6 +29,7 @@ export const ToggleSwitch = (props: SwitchProps): JSX.Element => {
   return (
     <RNGHSwitch
       style={style}
+      thumbColor={COLORS.white}
       disabled={disabled}
       onValueChange={onValueChange}
       value={value}
