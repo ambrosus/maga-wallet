@@ -1,7 +1,7 @@
 import { useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { PrimaryButton, TextOrSpinner } from '@components';
 import { FontFamily } from '@components/atoms/typography/types';
+import { PrimaryButton, TextOrSpinner } from '@components/molecules';
 import { COLORS } from '@constants';
 import { useSwapContextSelector } from '@core/dex/context';
 import { useSwapInterface, useSwapMultiplyBalance } from '@core/dex/lib/hooks';

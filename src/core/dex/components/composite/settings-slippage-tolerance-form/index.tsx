@@ -5,7 +5,7 @@ import {
   PercentPressableContainer,
   RowContainer,
   Typography
-} from '@components';
+} from '@components/atoms';
 import { COLORS } from '@constants';
 import { SettingsInputWithLabel } from '@core/dex/components/base';
 import { useSwapSettings } from '@core/dex/lib/hooks';

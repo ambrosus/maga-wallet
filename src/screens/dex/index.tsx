@@ -1,10 +1,14 @@
-import { useCallback } from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { FLEX_FULL_SIZE } from '@constants';
+import { useMemo } from 'react';
+import { View } from 'react-native';
+import { useTranslation } from 'react-i18next';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { SafeViewContainer, Typography } from '@components/atoms';
+import { Button, Header } from '@components/molecules';
+import { SettingsFilledIcon } from '@components/svgs';
+import { COLORS } from '@constants';
 import {
   SwapForm,
-  BottomSheetTokensList,
-  BottomSheetPreviewSwap
+  BottomSheetTokensList
 } from '@core/dex/components/templates';
 import { useSwapContextSelector } from '@core/dex/context';
 import { useSwapAllBalances, useAllLiquidityPools } from '@core/dex/lib/hooks';
@@ -12,11 +16,13 @@ import { FIELD } from '@core/dex/types';
 import { useEffectOnce } from '@lib';
 import { HomeTabParamsList } from '@navigation';
 import { NavigationScreenProps } from '@navigation/types';
+import { styles } from './styles';
 
 type Props = NavigationScreenProps<HomeTabParamsList, 'DEXScreen'>;
 
 export const DEXScreen = ({}: Props) => {
-  //   const { t } = useTranslation();
+  const { t } = useTranslation();
+  const { bottom } = useSafeAreaInsets();
 
   useSwapAllBalances();
 
@@ -24,13 +30,16 @@ export const DEXScreen = ({}: Props) => {
   const {
     bottomSheetTokenARef,
     bottomSheetTokenBRef,
-    bottomSheetPreviewSwapRef
+    bottomSheetPreviewSwapRef,
+    selectedTokens
     // reset
   } = useSwapContextSelector();
 
   useEffectOnce(() => {
     getAllPoolsCount();
   });
+
+  console.log('selectedTokens', selectedTokens);
 
   //   useFocusEffect(
   //     useCallback(() => {
@@ -48,27 +57,40 @@ export const DEXScreen = ({}: Props) => {
   //     [navigation]
   //   );
 
-  //   const renderHeaderRightContent = useMemo(() => {
-  //     return (
-  //       <Button onPress={onNavigateToSwapSettings}>
-  //         <SettingsFilledIcon color={COLORS.neutral400} />
-  //       </Button>
-  //     );
-  //   }, [onNavigateToSwapSettings]);
+  const renderHeaderRightContent = useMemo(() => {
+    return (
+      <Button onPress={() => {}}>
+        <SettingsFilledIcon />
+      </Button>
+    );
+  }, []);
 
   return (
-    <SafeAreaView style={FLEX_FULL_SIZE}>
-      {/* <Header
+    <SafeViewContainer style={styles.container}>
+      <Header
+        closeIconVisible
+        backIconVisible={false}
         bottomBorder
         title={t('account.actions.swap')}
         contentRight={renderHeaderRightContent}
-      /> */}
+      />
 
       <SwapForm />
 
       <BottomSheetTokensList ref={bottomSheetTokenARef} type={FIELD.TOKEN_A} />
       <BottomSheetTokensList ref={bottomSheetTokenBRef} type={FIELD.TOKEN_B} />
       {/* <BottomSheetPreviewSwap ref={bottomSheetPreviewSwapRef} /> */}
-    </SafeAreaView>
+
+      <View style={[styles.footer, { bottom }]}>
+        <Typography
+          fontSize={12}
+          fontFamily="Onest500Medium"
+          color={COLORS.neutral700}
+          align="center"
+        >
+          Securely powered by Astra DEX
+        </Typography>
+      </View>
+    </SafeViewContainer>
   );
 };

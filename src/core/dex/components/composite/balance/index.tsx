@@ -7,7 +7,7 @@ import {
 } from 'react';
 import { ethers } from 'ethers';
 import { useTranslation } from 'react-i18next';
-import { Button, RowContainer, Spacer, Spinner, Typography } from '@components';
+import { RowContainer, Spacer, Spinner, Typography } from '@components/atoms';
 import { COLORS, ETH_DECIMALS, KEYBOARD_OPENING_TIME } from '@constants';
 import { useSwapContextSelector } from '@core/dex/context';
 import {

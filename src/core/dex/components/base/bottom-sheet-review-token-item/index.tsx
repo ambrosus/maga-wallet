@@ -1,7 +1,8 @@
 import { useMemo } from 'react';
 import { StyleProp, View, ViewStyle } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { Spacer, TokenLogo, Typography } from '@components';
+import { Typography, Spacer } from '@components/atoms';
+import { TokenLogo } from '@components/molecules';
 import { COLORS } from '@constants';
 import { useSwapContextSelector } from '@core/dex/context';
 import { FIELD } from '@core/dex/types';

@@ -1,7 +1,12 @@
 import { useCallback, useMemo, useRef, useState } from 'react';
 import { LayoutChangeEvent, Platform, Pressable, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { InputRef, TextInput, Typography } from '@components';
+import {
+  InputRef,
+  RowContainer,
+  TextInput,
+  Typography
+} from '@components/atoms';
 import { COLORS } from '@constants';
 import { Balance, TokenSelector } from '@core/dex/components/composite';
 import { useSwapContextSelector } from '@core/dex/context';
@@ -105,13 +110,17 @@ export const InputWithTokenSelect = ({
 
   return (
     <View style={styles.wrapper}>
-      <Typography
-        fontSize={14}
-        fontFamily="Onest500Medium"
-        color={COLORS.neutral800}
-      >
-        {label} {estimated && `(${t('swap.label.estimated')})`}
-      </Typography>
+      <RowContainer alignItems="center" justifyContent="space-between">
+        <Typography
+          fontSize={14}
+          fontFamily="Onest500Medium"
+          color={COLORS.neutral800}
+        >
+          {label} {estimated && `(${t('swap.label.estimated')})`}
+        </Typography>
+
+        <Balance type={type} setIsBalanceLoading={setIsBalanceLoading} />
+      </RowContainer>
       <View style={styles.upperRow}>
         <TokenSelector type={type} />
         <Pressable
@@ -136,8 +145,6 @@ export const InputWithTokenSelect = ({
           />
         </Pressable>
       </View>
-
-      <Balance type={type} setIsBalanceLoading={setIsBalanceLoading} />
     </View>
   );
 };

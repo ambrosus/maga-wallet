@@ -1,7 +1,7 @@
 import { SafeAreaView } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
-import { Header } from '@components';
+import { Header } from '@components/molecules';
 import { Settingsitems } from '../models';
 
 export const SecurityScreen = () => {

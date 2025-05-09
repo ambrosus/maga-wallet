@@ -1,12 +1,8 @@
 import { useMemo } from 'react';
 import { StyleProp, TextStyle, ViewStyle, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import {
-  PrimaryButton,
-  SecondaryButton,
-  Spinner,
-  Typography
-} from '@components';
+import { Spinner, Typography } from '@components/atoms';
+import { PrimaryButton, SecondaryButton } from '@components/molecules';
 import { COLORS } from '@constants';
 import { useSwapContextSelector } from '@core/dex/context';
 import { AllowanceStatus } from '@core/dex/types';

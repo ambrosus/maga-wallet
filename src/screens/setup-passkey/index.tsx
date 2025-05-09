@@ -1,20 +1,11 @@
 import { useRef } from 'react';
 import { Image, View } from 'react-native';
-import {
-  BottomSheetModal,
-  BottomSheetModalProvider
-} from '@gorhom/bottom-sheet';
+import { BottomSheetModal } from '@gorhom/bottom-sheet';
 import { useTranslation } from 'react-i18next';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import {
-  BottomSheetSetupBiometrics,
-  Button,
-  SafeViewContainer,
-  SetupBiometricsButton,
-  SetupPasskeyBenefitsContainer,
-  Spacer,
-  Typography
-} from '@components';
+import { SafeViewContainer, Typography, Spacer } from '@components/atoms';
+import { Button, SetupBiometricsButton } from '@components/molecules';
+import { SetupPasskeyBenefitsContainer } from '@components/organisms';
+import { BottomSheetSetupBiometrics } from '@components/templates';
 import { DEVICE_WIDTH, DEVICE_HEIGHT, FONT_SIZE, COLORS } from '@constants';
 import {
   ROOT_STACK_ROUTES,

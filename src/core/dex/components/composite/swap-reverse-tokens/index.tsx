@@ -1,6 +1,8 @@
 import { useCallback, useEffect } from 'react';
 import { View } from 'react-native';
-import { Button, Spacer, SwapOppositeArrowsIcon } from '@components';
+import { Spacer } from '@components/atoms';
+import { Button } from '@components/molecules';
+import { SwapOppositeArrowsIcon } from '@components/svgs';
 import { COLORS } from '@constants';
 import { Divider } from '@core/dex/components/base';
 import { useSwapContextSelector } from '@core/dex/context';

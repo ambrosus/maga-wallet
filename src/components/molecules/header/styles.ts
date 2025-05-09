@@ -1,5 +1,9 @@
 import { StyleSheet } from 'react-native';
-import { scale } from '@utils';
+import { COLORS } from '@constants';
+import { scale, verticalScale } from '@utils';
+
+const leftPadding = scale(16);
+const rightPadding = scale(16);
 
 export const styles = StyleSheet.create({
   main: {
@@ -17,5 +21,36 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     height: '100%',
     width: scale(40)
+  },
+  container: {
+    width: '100%',
+    backgroundColor: COLORS.white,
+    height: verticalScale(48),
+    minHeight: 56,
+    paddingLeft: leftPadding,
+    paddingRight: rightPadding
+  },
+  containerBorder: {
+    borderBottomWidth: 2,
+    borderBottomColor: COLORS.neutral100
+  },
+  left: {
+    position: 'absolute',
+    zIndex: 1000,
+    left: leftPadding
+  },
+  center: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignSelf: 'center'
+  },
+  right: {
+    zIndex: 1000,
+    position: 'absolute',
+    right: rightPadding
+  },
+  titleOnLeft: {
+    marginLeft: scale(20)
   }
 });

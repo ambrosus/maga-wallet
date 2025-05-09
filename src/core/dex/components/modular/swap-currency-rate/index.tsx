@@ -1,6 +1,6 @@
 import { memo, useEffect, useMemo } from 'react';
 import { StyleProp, TouchableOpacity, ViewStyle } from 'react-native';
-import { RowContainer, Spinner, Typography } from '@components';
+import { RowContainer, Spinner, Typography } from '@components/atoms';
 import { COLORS } from '@constants';
 import { useSwapContextSelector } from '@core/dex/context';
 import { useSwapBetterRate } from '@core/dex/lib/hooks';

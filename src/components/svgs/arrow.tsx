@@ -8,7 +8,7 @@ interface ArowProps extends SvgIconProps {
   orientation?: ArrowOrientation;
 }
 
-export const Arow = ({
+export const Arrow = ({
   scale = 1,
   color = COLORS.black,
   orientation = 'right'

@@ -1,12 +1,7 @@
 import { View, Animated } from 'react-native';
-import {
-  Header,
-  Spacer,
-  RowContainer,
-  PasscodeIndicator,
-  Typography,
-  Keyboard
-} from '@components';
+import { Spacer, RowContainer, Typography } from '@components/atoms';
+import { Header, PasscodeIndicator } from '@components/molecules';
+import { Keyboard } from '@components/organisms';
 import { COLORS } from '@constants';
 import { scale } from '@utils';
 import { styles } from './styles';

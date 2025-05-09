@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { PrimaryButton, RowContainer, Spinner, Typography } from '@components';
+import { RowContainer, Spinner, Typography } from '@components/atoms';
+import { PrimaryButton } from '@components/molecules';
 import { COLORS } from '@constants';
 import { useSwapContextSelector } from '@core/dex/context';
 import { isETHtoWrapped, isWrappedToETH } from '@core/dex/utils';

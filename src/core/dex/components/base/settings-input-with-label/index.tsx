@@ -5,7 +5,7 @@ import {
   TextInputProps,
   TouchableWithoutFeedback
 } from 'react-native';
-import { Typography } from '@components';
+import { Typography } from '@components/atoms';
 import { COLORS } from '@constants';
 import { INITIAL_SLIPPAGE_TOLERANCE } from '@core/dex/context/initials';
 import { SwapStringUtils } from '@core/dex/utils';

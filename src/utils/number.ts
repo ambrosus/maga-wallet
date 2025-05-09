@@ -1,4 +1,4 @@
-import { formatEther } from 'viem';
+import { ethers } from 'ethers';
 
 /**
  * Example: formatNumber(10000, 2) => 10,000.00
@@ -93,7 +93,7 @@ export const formatAmount = (
   const bigintAmount =
     typeof amount === 'bigint' ? amount : BigInt(amount.toString());
 
-  const amountFloatString = formatEther(bigintAmount);
+  const amountFloatString = ethers.utils.formatEther(bigintAmount);
 
   const [intPart, floatPart] = amountFloatString.split('.');
   let amountBalance;

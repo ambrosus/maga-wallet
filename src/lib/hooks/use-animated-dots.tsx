@@ -6,7 +6,7 @@ import {
   JSX,
   MemoExoticComponent
 } from 'react';
-import { Typography } from '@components';
+import { Typography } from '@components/atoms';
 import { FontFamily } from '@components/atoms/typography/types';
 import { ANIMATION_DELAY, COLORS, FONT_SIZE } from '@constants';
 

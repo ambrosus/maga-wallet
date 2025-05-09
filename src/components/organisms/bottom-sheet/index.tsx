@@ -8,13 +8,22 @@ import {
   BottomSheetView
 } from '@gorhom/bottom-sheet';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { DEVICE_HEIGHT } from '@constants';
+import { Typography } from '@components/atoms';
+import { COLORS, DEVICE_HEIGHT } from '@constants';
 import { styles } from './styles';
+import { scale } from '@utils';
 
-type BottomSheetProps = PropsWithChildren & BottomSheetModalProps;
+type BottomSheetProps = PropsWithChildren &
+  BottomSheetModalProps & {
+    swiperIconVisible?: boolean;
+    title?: string;
+  };
 
 export const BottomSheet = forwardRef<BottomSheetModal, BottomSheetProps>(
-  ({ maxDynamicContentSize, children }, ref) => {
+  (
+    { maxDynamicContentSize, swiperIconVisible = true, title, children },
+    ref
+  ) => {
     const { bottom: paddingBottom } = useSafeAreaInsets();
 
     const renderBackdrop = useCallback(
@@ -47,7 +56,9 @@ export const BottomSheet = forwardRef<BottomSheetModal, BottomSheetProps>(
         backdropComponent={renderBackdrop}
         enableDynamicSizing={true}
         backgroundStyle={styles.background}
-        handleIndicatorStyle={styles.indicator}
+        handleIndicatorStyle={
+          swiperIconVisible ? styles.indicator : styles.indicatorHidden
+        }
         maxDynamicContentSize={maxDynamicContentSizeCalc}
       >
         <BottomSheetView
@@ -56,6 +67,16 @@ export const BottomSheet = forwardRef<BottomSheetModal, BottomSheetProps>(
             paddingBottom: paddingBottom === 0 ? 64 : paddingBottom
           }}
         >
+          {title && (
+            <Typography
+              fontSize={scale(20)}
+              fontFamily="Onest600SemiBold"
+              color={COLORS.textPrimary}
+              align="center"
+            >
+              {title}
+            </Typography>
+          )}
           {children}
         </BottomSheetView>
       </BottomSheetModal>

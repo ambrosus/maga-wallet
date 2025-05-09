@@ -1,13 +1,9 @@
 import { useCallback, useMemo } from 'react';
 import { TouchableOpacity, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import {
-  ArrowBottomFilledIcon,
-  RowContainer,
-  Spacer,
-  TokenLogo,
-  Typography
-} from '@components';
+import { RowContainer, Spacer, Typography } from '@components/atoms';
+import { TokenLogo } from '@components/molecules';
+import { ArrowBottomFilledIcon } from '@components/svgs';
 import { COLORS } from '@constants';
 import { useSwapContextSelector } from '@core/dex/context';
 import { useSwapBottomSheetHandler } from '@core/dex/lib/hooks';

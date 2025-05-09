@@ -1,4 +1,4 @@
-import { zeroAddress } from 'viem';
+import { ethers } from 'ethers';
 import { Config } from '@constants';
 import { environment } from '@utils';
 import { TOKEN_ADDRESSES } from '../entities';
@@ -15,7 +15,7 @@ export function isNativeWrapped(path: string[]) {
 }
 
 export function wrapNativeAddress(path: string[]): [string, string] {
-  const nativeAddress = zeroAddress;
+  const nativeAddress = ethers.constants.AddressZero;
 
   const replacementAddress =
     Config.SWAP_TOKENS.find((token: SwapToken) => token.symbol === 'SAMB')
@@ -27,15 +27,15 @@ export function wrapNativeAddress(path: string[]): [string, string] {
 }
 
 export function wrapNativeToken(token: SwapToken) {
-  return token.address === zeroAddress
+  return token.address === ethers.constants.AddressZero
     ? { name: 'SAMB', symbol: 'SAMB', address: addresses.SAMB }
     : token;
 }
 
 export function isETHtoWrapped(path: Array<string | undefined>) {
-  return path[0] === zeroAddress && path[1] === addresses.SAMB;
+  return path[0] === ethers.constants.AddressZero && path[1] === addresses.SAMB;
 }
 
 export function isWrappedToETH(path: Array<string | undefined>) {
-  return path[0] === addresses.SAMB && path[1] === zeroAddress;
+  return path[0] === addresses.SAMB && path[1] === ethers.constants.AddressZero;
 }

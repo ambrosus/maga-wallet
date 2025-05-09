@@ -1,58 +1,143 @@
-import { useMemo } from 'react';
-import { StyleProp, Text, View, ViewStyle } from 'react-native';
-import { useTranslation } from 'react-i18next';
-import { TokenLogo, Spacer, Typography } from '@components';
+import { useCallback, useMemo } from 'react';
+import {
+  ListRenderItemInfo,
+  StyleProp,
+  TouchableOpacity,
+  View,
+  ViewStyle
+} from 'react-native';
+import { ethers } from 'ethers';
+import { RowContainer, Spacer, Typography, Spinner } from '@components/atoms';
+import { TokenLogo } from '@components/molecules';
 import { COLORS } from '@constants';
 import { useSwapContextSelector } from '@core/dex/context';
-import { FIELD } from '@core/dex/types';
+import { useSwapSelectTokens, useSwapFieldsHandler } from '@core/dex/lib/hooks';
+import { FIELD, SelectedTokensKeys, SwapToken } from '@core/dex/types';
 import { SwapStringUtils } from '@core/dex/utils';
-import { verticalScale } from '@utils';
+import { NumberUtils, getTokenNameFromDatabase } from '@utils';
 import { styles } from './styles';
 
-interface BottomSheetReviewTokenItemProps {
-  type: keyof typeof FIELD;
+interface BottomSheetTokenItemProps {
+  token: ListRenderItemInfo<SwapToken>['item'];
+  type: SelectedTokensKeys;
+  bnBalance: ethers.BigNumber;
 }
 
-export const BottomSheetReviewTokenItem = ({
-  type
-}: BottomSheetReviewTokenItemProps) => {
-  const { t } = useTranslation();
-  const label = type === FIELD.TOKEN_A ? t('swap.pay') : t('swap.receive');
-  const { selectedTokens, selectedTokensAmount } = useSwapContextSelector();
+export const BottomSheetTokenItem = ({
+  token,
+  type,
+  bnBalance
+}: BottomSheetTokenItemProps) => {
+  const { selectedTokens, setIsExactIn, balancesLoading } =
+    useSwapContextSelector();
+  const { onSelectToken, onReverseSelectedTokens } = useSwapSelectTokens();
+  const { updateReceivedTokensOutput } = useSwapFieldsHandler();
 
-  const token = SwapStringUtils.extendedLogoVariants(
-    selectedTokens[type]?.symbol ?? ''
+  const isSelectedSameToken = useMemo(() => {
+    return token.symbol === selectedTokens[type]?.symbol;
+  }, [selectedTokens, token.symbol, type]);
+
+  const isSelectedReversedToken = useMemo(() => {
+    const oppositeKey = type === FIELD.TOKEN_A ? FIELD.TOKEN_B : FIELD.TOKEN_A;
+
+    return selectedTokens[oppositeKey]?.address === token.address;
+  }, [selectedTokens, token.address, type]);
+
+  const onChangeSelectedTokenPress = useCallback(() => {
+    const { TOKEN_A, TOKEN_B } = selectedTokens;
+
+    if (isSelectedReversedToken) {
+      setIsExactIn((prevState) => !prevState);
+      onReverseSelectedTokens();
+
+      if (TOKEN_A && TOKEN_B) {
+        setTimeout(async () => {
+          await updateReceivedTokensOutput();
+        });
+      }
+    } else {
+      onSelectToken(type, token);
+    }
+  }, [
+    selectedTokens,
+    isSelectedReversedToken,
+    setIsExactIn,
+    onReverseSelectedTokens,
+    updateReceivedTokensOutput,
+    onSelectToken,
+    type,
+    token
+  ]);
+
+  const tokenLogoHref = useMemo(
+    () =>
+      getTokenNameFromDatabase(token.address) !== 'unknown'
+        ? token.symbol
+        : token.address,
+    [token.address, token.symbol]
   );
 
-  const combinedTypeContainerStyle: StyleProp<ViewStyle> = useMemo(() => {
+  const SAMBSupportedTokenLogo =
+    SwapStringUtils.extendedLogoVariants(tokenLogoHref);
+
+  const balance = useMemo(() => {
+    if (bnBalance) {
+      return NumberUtils.numberToTransformedLocale(
+        ethers.utils.formatEther(bnBalance?._hex)
+      );
+    }
+
+    return '';
+  }, [bnBalance]);
+
+  const combineDisabledStates = useMemo(() => {
+    return isSelectedReversedToken;
+  }, [isSelectedReversedToken]);
+
+  const containerStyle: StyleProp<ViewStyle> = useMemo(() => {
     return {
       ...styles.container,
-      paddingTop: type === FIELD.TOKEN_B ? verticalScale(8) : 0,
-      paddingBottom: type === FIELD.TOKEN_A ? verticalScale(8) : 0
+      borderWidth: isSelectedSameToken ? 0.5 : 0,
+      borderColor: '#D8DAE0',
+      backgroundColor: isSelectedSameToken ? COLORS.neutral50 : 'transparent',
+      opacity: combineDisabledStates ? 0.5 : 1
     };
-  }, [type]);
+  }, [combineDisabledStates, isSelectedSameToken]);
 
   return (
-    <View style={combinedTypeContainerStyle}>
-      <Typography
-        fontSize={13}
-        fontFamily="Onest600SemiBold"
-        color={COLORS.neutral500}
-      >
-        {label}
-      </Typography>
-      <View style={styles.inner}>
-        <TokenLogo token={token} scale={0.65} />
-        <Spacer horizontal value={4} />
-        <Typography
-          fontSize={17}
-          fontFamily="Onest600SemiBold"
-          color={COLORS.neutral800}
-        >
-          {SwapStringUtils.transformAmountValue(selectedTokensAmount[type])}{' '}
-          {selectedTokens[type]?.symbol}
-        </Typography>
-      </View>
-    </View>
+    <TouchableOpacity
+      style={containerStyle}
+      disabled={isSelectedSameToken}
+      onPress={onChangeSelectedTokenPress}
+    >
+      <RowContainer alignItems="center" justifyContent="space-between">
+        <RowContainer alignItems="center">
+          <TokenLogo token={SAMBSupportedTokenLogo ?? ''} />
+          <Spacer horizontal value={6} />
+          <View>
+            <Typography
+              fontSize={16}
+              fontFamily="Onest600SemiBold"
+              color={COLORS.neutral800}
+            >
+              {token.symbol}
+            </Typography>
+            <Spacer horizontal value={6} />
+          </View>
+        </RowContainer>
+
+        {balancesLoading ? (
+          <Spinner />
+        ) : (
+          <Typography
+            fontSize={16}
+            fontFamily="Onest600SemiBold"
+            color={COLORS.neutral800}
+          >
+            {balance}
+          </Typography>
+        )}
+      </RowContainer>
+    </TouchableOpacity>
   );
 };

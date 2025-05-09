@@ -4,6 +4,7 @@ import {
   NavigationContainer,
   NavigationContainerRef
 } from '@react-navigation/native';
+import { appTheme } from '@constants';
 import { RouterProvider } from '@contexts/navigation';
 import { RootStackNavigation } from '@navigation/root-stack';
 
@@ -35,6 +36,7 @@ export const NavigationProvider = () => {
       ref={navigationRouteRef}
       onReady={onNavigationReady}
       onStateChange={onNavigationStateChange}
+      theme={appTheme}
     >
       <RouterProvider route={route}>
         <StatusBar />

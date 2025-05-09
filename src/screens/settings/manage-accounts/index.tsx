@@ -1,7 +1,7 @@
 import { useRoute } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Header } from '@components';
+import { Header } from '@components/molecules';
 import { Settingsitems } from '../models';
 
 export const ManageAccountsScreen = () => {

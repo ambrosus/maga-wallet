@@ -1,5 +1,4 @@
-import { Spacer, Spinner } from '@components';
-import { RowContainer, Typography } from '@components/atoms';
+import { RowContainer, Spinner, Spacer, Typography } from '@components/atoms';
 import { FontFamily } from '@components/atoms/typography/types';
 import { COLORS } from '@constants';
 import { scale } from '@utils';

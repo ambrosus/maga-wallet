@@ -1,4 +1,4 @@
-import { Typography } from '@components';
+import { Typography } from '@components/atoms';
 import { Button } from '@components/molecules';
 import { COLORS } from '@constants';
 import { styles } from './styles';

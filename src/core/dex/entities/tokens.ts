@@ -1,9 +1,9 @@
-import { zeroAddress } from 'viem';
+import { ethers } from 'ethers';
 import { TOKEN_ADDRESSES } from './addresses';
 
 export const SWAP_SUPPORTED_TOKENS = {
   native: {
-    address: zeroAddress,
+    address: ethers.constants.AddressZero,
     name: 'AirDAO',
     symbol: 'AMB'
   },
@@ -15,7 +15,7 @@ export const SWAP_SUPPORTED_TOKENS = {
   tokens: {
     prod: [
       {
-        address: zeroAddress,
+        address: ethers.constants.AddressZero,
         name: 'AirDAO',
         symbol: 'AMB'
       },
@@ -62,7 +62,7 @@ export const SWAP_SUPPORTED_TOKENS = {
     ],
     testnet: [
       {
-        address: zeroAddress,
+        address: ethers.constants.AddressZero,
         name: 'AirDAO',
         symbol: 'AMB'
       },

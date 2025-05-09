@@ -1,16 +1,16 @@
 import { ReactNode, useMemo } from 'react';
 import { View } from 'react-native';
+import { ethers } from 'ethers';
 import { useTranslation } from 'react-i18next';
-import { formatEther } from 'viem';
-import { RowContainer, Typography } from '@components';
-import { COLORS } from '@constants';
+import { RowContainer, Typography } from '@components/atoms';
+import { COLORS, CryptoCurrencyCode } from '@constants';
 import { useSwapContextSelector } from '@core/dex/context';
 import { useSwapTokens } from '@core/dex/lib/hooks';
 import {
   addresses,
+  SwapStringUtils,
   isETHtoWrapped,
-  isWrappedToETH,
-  SwapStringUtils
+  isWrappedToETH
 } from '@core/dex/utils';
 import { getObjectKeyByValue, NumberUtils } from '@utils';
 import { styles } from './styles';
@@ -69,7 +69,7 @@ export const PreviewInformation = () => {
   const estimatedNetworkFee = useMemo(() => {
     const { swap, approval } = estimatedGasValues;
 
-    const parsedEstimatedGas = formatEther(swap + approval);
+    const parsedEstimatedGas = ethers.utils.formatEther(swap.add(approval));
 
     return SwapStringUtils.transformRealizedLPFee(
       NumberUtils.limitDecimalCount(parsedEstimatedGas, 1)
@@ -127,7 +127,9 @@ export const PreviewInformation = () => {
           {t('swap.bottom.sheet.lpfee')}
         </Typography>
 
-        <RightSideRowItem>{`${estimatedNetworkFee} $AMB`}</RightSideRowItem>
+        <RightSideRowItem>
+          {`${estimatedNetworkFee} ${CryptoCurrencyCode.AMB}`}
+        </RightSideRowItem>
       </RowContainer>
 
       {isMultiHopRoute && (

@@ -3,7 +3,7 @@ import { Pressable, StyleProp, View, ViewStyle } from 'react-native';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import { useTranslation } from 'react-i18next';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Spacer, Typography } from '@components';
+import { Spacer, Typography } from '@components/atoms';
 import { COLORS, FONT_SIZE } from '@constants';
 import { useCurrentRoute } from '@contexts/navigation';
 import { MAIN_TABS } from '@navigation/constants';

@@ -1,9 +1,5 @@
-import {
-  AccountActionsContainer,
-  SafeViewContainer,
-  Spacer,
-  Typography
-} from '@components';
+import { SafeViewContainer, Spacer, Typography } from '@components/atoms';
+import { AccountActionsContainer } from '@components/molecules';
 import { COLORS } from '@constants';
 import { verticalScale } from '@utils';
 import { styles } from './styles';

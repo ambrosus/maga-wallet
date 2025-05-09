@@ -10,11 +10,11 @@ export const WrappedAppWithProviders = () => {
     <GestureHandlerRootView>
       <SafeContainerProvider>
         <LocalizationProvider>
-          <BottomSheetModalProvider>
-            <SwapContextProvider>
+          <SwapContextProvider>
+            <BottomSheetModalProvider>
               <NavigationProvider />
-            </SwapContextProvider>
-          </BottomSheetModalProvider>
+            </BottomSheetModalProvider>
+          </SwapContextProvider>
         </LocalizationProvider>
       </SafeContainerProvider>
     </GestureHandlerRootView>
