@@ -1875,6 +1875,30 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
+  - RNCClipboard (1.16.2):
+    - DoubleConversion
+    - glog
+    - hermes-engine
+    - RCT-Folly (= 2024.11.18.00)
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-hermes
+    - React-ImageManager
+    - React-jsi
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-renderercss
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - Yoga
   - RNFBApp (20.1.0):
     - Firebase/CoreOnly (= 10.27.0)
     - React-Core
@@ -2494,7 +2518,7 @@ SPEC CHECKSUMS:
   hermes-engine: c32f2e405098bc1ebe30630a051ddce6f21d3c2e
   OpenSSL-Universal: 6082b0bf950e5636fe0d78def171184e2b3899c2
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
-  RCT-Folly: 36fe2295e44b10d831836cc0d1daec5f8abcf809
+  RCT-Folly: e78785aa9ba2ed998ea4151e314036f6c49e6d82
   RCTDeprecation: 0ada4fb1e5c5637bff940dc40b94e2d3bf96b0ab
   RCTRequired: 76ca80ff10acb3834ed0dacba9645645009578a2
   RCTTypeSafety: 01b27f48153eb2d222c0ad4737fe291e9549946a
@@ -2559,22 +2583,23 @@ SPEC CHECKSUMS:
   React-RuntimeHermes: 02e84d91de2ac7e798e967417cb83e9b4064414e
   React-runtimescheduler: c8a57a01f2feb9a9d61b781b2362705d3b426448
   React-timing: 7a10c5e0ca7ee0cbb555d888cca04dc8ac130bd1
-  React-utils: 13410488fb60112cdf594f93bf44f6967c05d9f1
-  ReactAppDependencyProvider: f3426eaf6dabae0baec543cd7bac588b6f59210c
-  ReactCodegen: 8baaa0003eb1ed88cfd9f149f88e8ce87d574162
-  ReactCommon: 720bd1acf3f95375258af2907510556e0f864739
+  React-utils: b8bb87aaf8701e6d20c48112393010a0bb54ab16
+  ReactAppDependencyProvider: 642d266e12ef5ea8cb22ca9576df1f4e036258a2
+  ReactCodegen: 025b1e9baf2a32b7466b00c20dd5b1b8c6388d07
+  ReactCommon: ff9f7add7560c9f15cf6e9d0320f9ad45b696062
   RecaptchaInterop: 7d1a4a01a6b2cb1610a47ef3f85f0c411434cb21
-  RNAppleAuthentication: b2d8b5ccba86b5b1e55a1a2e858f7ac6d8a21816
-  RNCAsyncStorage: e25fda4679876e5204c4c502d297757ec1f17ced
-  RNFBApp: 9acbe359ef3559d6f8ca5c350db471f2b352f98a
-  RNFBAuth: 58a7a5591755a4f078cfa03e29a60be009a93931
-  RNGestureHandler: b249b5be5a3659025aed8898aaaafd567dc2d660
-  RNGoogleSignin: 6a6a1768ffa4059891964c85e04c0c01109a7eb7
-  RNInAppBrowser: e36d6935517101ccba0e875bac8ad7b0cb655364
-  RNKeychain: 93ad8613ccd7ea183b748040697b8ab4640b5fac
-  RNReanimated: 7b926938d4190114e5848b5b022d83dbc2c0fe2c
-  RNScreens: 4ada1709be95c3a4bf1f885378262ceadd9cc939
-  RNSVG: 257f59c952e296c9c36035a8f49b61fda48e398a
+  RNAppleAuthentication: c3dddf5918126c9aae85dc2e2ce9fb87835e9e04
+  RNCAsyncStorage: 646c1bf2ebfc78d6632a3b0399f471fba8101e73
+  RNCClipboard: 055cd8f50702b9ebc5a58f7622e0cda073878d21
+  RNFBApp: 2218806532c0cc83b41cbe5bd1ff42714dff9b3f
+  RNFBAuth: 86259be25ec740dd37d22be78aa96eaa2cb80834
+  RNGestureHandler: 381f81c675883fec9f8f10976aa278babc48d8eb
+  RNGoogleSignin: 0a90492ff2894496b21fc4aa4d6e09ad61691b5b
+  RNInAppBrowser: 6d3eb68d471b9834335c664704719b8be1bfdb20
+  RNKeychain: 48338bf1d8f5e29f84db1b605c2e107b45b83af9
+  RNReanimated: a3f55346df73f35c38bf0b446294d3d0b1ac8cf9
+  RNScreens: a25b818417609cbd805474dffd2d28b229704cfc
+  RNSVG: 4470464e129f6bc58b78b961850b054dbbea8ef7
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
   Yoga: 0f6757ba6d7d652f42bba3423f925dbf23d51aab
 
