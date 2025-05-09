@@ -7,3 +7,5 @@ export { SetupBiometricsButton } from './setup-biometrics-button';
 export { Header } from './header';
 export { PasscodeIndicator } from './passcode-indicator';
 export { AccountActionsContainer } from './account-actions-container';
+export { TokenLogo } from './token-logo';
+export { TextOrSpinner } from './text-or-spinner';

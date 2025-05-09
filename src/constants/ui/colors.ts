@@ -9,6 +9,11 @@ export const COLORS = {
   // Borders
   borderDefault: '#E5E7EB',
 
+  // Black
+  alphaBlack5: '#0e0e0e0d',
+  alphaBlack10: '#0e0e0e1a',
+  alphaBlack50: '#0e0e0e80',
+
   // Neutral
   neutral50: '#F9FAFB',
   neutral100: '#F3F4F6',

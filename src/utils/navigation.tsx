@@ -1,5 +1,5 @@
 import { DISCOVER_STACK_ROUTES, SETTINGS_STACK_ROUTES } from '@navigation';
-import { HOME_STACK_ROUTES } from '@navigation/tabs/home/home-tab.model';
+import { HOME_STACK_ROUTES } from '@navigation/tabs/home/types';
 import { RoutesModel } from '@navigation/tabs-stacks/types';
 
 const TabVisibleRoutes = [

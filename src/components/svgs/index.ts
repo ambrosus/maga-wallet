@@ -19,3 +19,5 @@ export { SettingsIconInfo } from './settings/settings-icon-info';
 export { SendIcon } from './send';
 export { SwapIcon } from './swap';
 export { ReceiveIcon } from './receive';
+export { SwapOppositeArrowsIcon } from './swap-oposite-arrows';
+export { ArrowBottomFilledIcon } from './arrow-bottom-filled';
