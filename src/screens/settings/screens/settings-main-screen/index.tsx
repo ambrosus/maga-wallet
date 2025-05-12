@@ -1,10 +1,9 @@
 import { View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Header, Spacer } from '@components';
+import { Header, Spacer, SettingsMenuItem } from '@components';
 import { scale } from '@utils';
 import { styles } from './styles';
-import { SettingsMenuItem } from '../../components';
 import { SETTINGS_ITEMS } from '../../constants';
 
 export const SettingsScreen = () => {

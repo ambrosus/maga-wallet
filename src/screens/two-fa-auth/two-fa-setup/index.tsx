@@ -11,7 +11,7 @@ import {
 } from '@components';
 import { COLORS } from '@constants';
 import { mmkv } from '@lib';
-import { MMKV_KEYS } from '@lib/mmkv/keys.ts';
+import { MMKV_KEYS } from '@lib/mmkv/keys';
 import { SETTINGS_STACK_ROUTES } from '@navigation';
 import { RootNavigationProp } from '@navigation/root-stack';
 import { scale } from '@utils';
