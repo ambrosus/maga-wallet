@@ -1,7 +1,8 @@
 import { View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Header, Spacer, SettingsMenuItem } from '@components';
+import { Spacer, SettingsMenuItem } from '@components/atoms';
+import { Header } from '@components/molecules';
 import { scale } from '@utils';
 import { styles } from './styles';
 import { SETTINGS_ITEMS } from '../../constants';
