@@ -9,6 +9,7 @@ export { WarningIcon } from './warning';
 export { HomeIcon } from './tabs/home';
 export { DiscoverIcon } from './tabs/discover';
 export { SettingsIcon } from './tabs/settings';
+export { HistoryIcon } from './tabs/history';
 export { Arow } from './arow';
 export { SettingsIconWallet } from './settings/settings-icon-wallet';
 export { SettingsIconSecurity } from './settings/settings-icon-security';

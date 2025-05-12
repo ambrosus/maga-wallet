@@ -4,7 +4,7 @@ import { TouchableOpacity } from 'react-native';
 import { render, fireEvent } from '@testing-library/react-native';
 import { COLORS } from '@constants';
 import { SecondaryButton } from '../index';
-import { styles } from '../styles.ts';
+import { styles } from '../styles';
 
 describe('SecondaryButton | Unit Test (Component)', () => {
   it('renders correctly with title prop', () => {

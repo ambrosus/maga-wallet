@@ -12,7 +12,7 @@ export type EnterPasscodeParams = {
   onPasscodeSuccess?: () => void;
 };
 
-export const EnterNewPasscode = () => {
+export const EnterPasscode = () => {
   const { params } =
     useRoute<RouteProp<Record<string, EnterPasscodeParams>, string>>();
   const [passcode, setPasscode] = useState('');

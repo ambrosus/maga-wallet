@@ -88,7 +88,7 @@ const TabBar = ({ state, navigation }: BottomTabBarProps) => {
               fontSize={scale(FONT_SIZE.body.sm)}
               color={COLORS[isFocused ? 'primary500' : 'neutral500']}
             >
-              {t(`tabs.${route.name}`)}
+              {t(`tabs.${route.name.toLowerCase()}`)}
             </Typography>
           </Pressable>
         );

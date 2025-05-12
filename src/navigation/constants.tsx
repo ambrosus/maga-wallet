@@ -1,4 +1,4 @@
-import { DiscoverIcon, HomeIcon, SettingsIcon } from '@components/svgs';
+import { DiscoverIcon, HistoryIcon, HomeIcon } from '@components/svgs';
 import { COLORS } from '@constants';
 
 export const MAIN_TABS = {
@@ -6,12 +6,12 @@ export const MAIN_TABS = {
     inactiveIcon: <HomeIcon />,
     activeIcon: <HomeIcon color={COLORS.primary500} />
   },
+  History: {
+    inactiveIcon: <HistoryIcon />,
+    activeIcon: <HistoryIcon color={COLORS.primary500} />
+  },
   Discover: {
     inactiveIcon: <DiscoverIcon />,
     activeIcon: <DiscoverIcon color={COLORS.primary500} />
-  },
-  Settings: {
-    inactiveIcon: <SettingsIcon />,
-    activeIcon: <SettingsIcon color={COLORS.primary500} />
   }
 };

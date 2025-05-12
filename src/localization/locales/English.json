@@ -26,9 +26,9 @@
     }
   },
   "tabs": {
-    "Home": "Home",
-    "Discover": "Discover",
-    "Settings": "Settings"
+    "home": "Home",
+    "discover": "Discover",
+    "history": "History"
   },
   "settings.tabs": {
     "app.settings": "App Settings",

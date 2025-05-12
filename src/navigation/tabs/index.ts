@@ -6,3 +6,6 @@ export * from './home/home-tab.model';
 
 export * from './settings/setting-stack';
 export * from './settings/settings-tab.model';
+
+export * from './history/history-stack';
+export * from './history/history-tab.model';

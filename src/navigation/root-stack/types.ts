@@ -8,7 +8,9 @@ import {
   HOME_STACK_ROUTES,
   HomeTabParamsList,
   SETTINGS_STACK_ROUTES,
-  SettingsTabParamsList
+  SettingsTabParamsList,
+  HISTORY_STACK_ROUTES,
+  HistoryTabParamsList
 } from '@navigation/tabs';
 
 /**
@@ -23,14 +25,16 @@ export type RootStackParamsList = {
   Tabs:
     | {
         screen?:
-          | SETTINGS_STACK_ROUTES
+          | HISTORY_STACK_ROUTES
           | HOME_STACK_ROUTES
-          | DISCOVER_STACK_ROUTES;
+          | DISCOVER_STACK_ROUTES
+          | SETTINGS_STACK_ROUTES;
       }
     | undefined;
 } & SettingsTabParamsList &
   HomeTabParamsList &
-  DiscoverTabParamsList;
+  DiscoverTabParamsList &
+  HistoryTabParamsList;
 
 /**
  * Navigation prop type for the root stack.

@@ -1,11 +1,11 @@
 import { View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Header, Spacer } from '@components';
-import { SettingsMenuItem } from '@navigation/components';
+import { Spacer, SettingsMenuItem } from '@components/atoms';
+import { Header } from '@components/molecules';
 import { scale } from '@utils';
-import { SETTINGS_ITEMS } from '../constants';
 import { styles } from './styles';
+import { SETTINGS_ITEMS } from '../../constants';
 
 export const SettingsScreen = () => {
   const { t } = useTranslation();

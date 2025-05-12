@@ -12,7 +12,7 @@ import {
 import {
   ConfirmNewPasscode,
   CreaateNewPasscode,
-  EnterNewPasscode
+  EnterPasscode
 } from '@screens/passcode';
 import {
   TwoFAPrepare,
@@ -70,7 +70,7 @@ export const SettingsStack = () => {
         />
         <Stack.Screen
           name={SETTINGS_STACK_ROUTES.EnterPasscode}
-          component={EnterNewPasscode}
+          component={EnterPasscode}
         />
 
         {/* 2 FA */}

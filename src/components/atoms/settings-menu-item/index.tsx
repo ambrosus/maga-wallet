@@ -1,7 +1,8 @@
 import { View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
-import { Button, Spacer, Typography } from '@components';
+import { Spacer, Typography } from '@components/atoms';
+import { Button } from '@components/molecules';
 import { Arow } from '@components/svgs';
 import { RootNavigationProp } from '@navigation/root-stack';
 import { SettingItem } from '@screens/settings/models';
