@@ -5,7 +5,7 @@ import {
   ApprovalRequiredButton,
   SwapButton,
   SwapErrorImpactButton
-} from '@core/dex/components/base/swap-buttons-list';
+} from '@core/dex/components/atoms/swap-buttons-list';
 import { useSwapContextSelector } from '@core/dex/context';
 import {
   useEstimatedGas,

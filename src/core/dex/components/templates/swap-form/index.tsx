@@ -2,12 +2,12 @@ import { useMemo } from 'react';
 import { Keyboard, KeyboardAvoidingView, View } from 'react-native';
 import { KeyboardDismissingView, Spacer } from '@components/atoms';
 import { FLEX_FULL_SIZE, isIos } from '@constants';
-import { SwapReverseTokens } from '@core/dex/components/composite';
+import { SwapReverseTokens } from '@core/dex/components/molecules';
 import {
   InputWithTokenSelect,
   SwapCurrencyRate,
   ReviewSwapButton
-} from '@core/dex/components/modular';
+} from '@core/dex/components/organisms';
 import { useSwapContextSelector } from '@core/dex/context';
 import { useSwapInterface, useSwapTokens } from '@core/dex/lib/hooks';
 import { FIELD } from '@core/dex/types';

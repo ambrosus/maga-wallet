@@ -8,7 +8,7 @@ import {
   Typography
 } from '@components/atoms';
 import { COLORS } from '@constants';
-import { Balance, TokenSelector } from '@core/dex/components/composite';
+import { Balance, TokenSelector } from '@core/dex/components/molecules';
 import { useSwapContextSelector } from '@core/dex/context';
 import { useSwapFieldsHandler } from '@core/dex/lib/hooks';
 import { FIELD, SelectedTokensKeys } from '@core/dex/types';

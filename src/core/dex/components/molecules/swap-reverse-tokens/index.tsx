@@ -4,14 +4,12 @@ import { Spacer } from '@components/atoms';
 import { Button } from '@components/molecules';
 import { SwapOppositeArrowsIcon } from '@components/svgs';
 import { COLORS } from '@constants';
-import { Divider } from '@core/dex/components/base';
 import { useSwapContextSelector } from '@core/dex/context';
 import {
   useSwapFieldsHandler,
   useSwapSelectTokens,
   useSwapTokens
 } from '@core/dex/lib/hooks';
-import { scale } from '@utils';
 import { styles } from './styles';
 
 export const SwapReverseTokens = () => {

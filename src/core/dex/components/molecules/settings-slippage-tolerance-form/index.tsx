@@ -7,7 +7,7 @@ import {
   Typography
 } from '@components/atoms';
 import { COLORS } from '@constants';
-import { SettingsInputWithLabel } from '@core/dex/components/base';
+import { SettingsInputWithLabel } from '@core/dex/components/atoms';
 import { useSwapSettings } from '@core/dex/lib/hooks';
 import { styles } from './styles';
 

@@ -11,9 +11,9 @@ import { BottomSheetStatus, FIELD } from '@core/dex/types';
 import { useForwardedRef } from '@lib';
 import { delayNavigationAction, scale } from '@utils';
 import { styles } from './styles';
-import { BottomSheetReviewTokenItem } from '../../base';
-import { PreviewInformation } from '../../composite';
-import { SubmitSwapActions } from '../../modular';
+import { BottomSheetReviewTokenItem } from '../../atoms';
+import { PreviewInformation } from '../../molecules';
+import { SubmitSwapActions } from '../../organisms';
 
 export const BottomSheetPreviewSwap = forwardRef<BottomSheetModal, unknown>(
   (_, ref) => {

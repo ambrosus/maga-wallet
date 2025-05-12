@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Spacer } from '@components/atoms';
 import { bnZERO, Config, DEVICE_HEIGHT } from '@constants';
-import { BottomSheetTokenItem } from '@core/dex/components/modular';
+import { BottomSheetTokenItem } from '@core/dex/components/organisms';
 import { useSwapAllBalances } from '@core/dex/lib/hooks';
 import { FIELD, SelectedTokensKeys, SwapToken } from '@core/dex/types';
 // import { transformTokensObject } from '@core/dex/utils';
