@@ -1,4 +1,5 @@
 import { Image, View } from 'react-native';
+import Clipboard from '@react-native-clipboard/clipboard';
 import { useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -7,7 +8,9 @@ import {
   Header,
   PrimaryButton,
   Spacer,
-  Typography
+  Toast,
+  Typography,
+  ToastType
 } from '@components';
 import { COLORS } from '@constants';
 import { mmkv } from '@lib';
@@ -30,6 +33,14 @@ export const TwoFASetup = () => {
 
   const onPress = () => {
     navigation.navigate(SETTINGS_STACK_ROUTES.TwoFAVerify, { onVerify });
+  };
+
+  const onCopy = () => {
+    Clipboard.setString(code);
+    Toast.show({
+      text: t('toast.copied'),
+      type: ToastType.Success
+    });
   };
 
   return (
@@ -62,9 +73,7 @@ export const TwoFASetup = () => {
                 <CopyButton
                   valueToCopy={code}
                   fontSize={13}
-                  onCopyPress={() => {
-                    // TODO add copy function
-                  }}
+                  onCopyPress={onCopy}
                   title={t('settings.tabs.copy.key')}
                 />
               </View>
