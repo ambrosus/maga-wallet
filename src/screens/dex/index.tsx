@@ -39,8 +39,6 @@ export const DEXScreen = ({}: Props) => {
     getAllPoolsCount();
   });
 
-  console.log('selectedTokens', selectedTokens);
-
   //   useFocusEffect(
   //     useCallback(() => {
   //       const unsubscribe = navigation.addListener('beforeRemove', (e) => {
@@ -70,7 +68,6 @@ export const DEXScreen = ({}: Props) => {
       <Header
         closeIconVisible
         backIconVisible={false}
-        bottomBorder
         title={t('account.actions.swap')}
         contentRight={renderHeaderRightContent}
       />

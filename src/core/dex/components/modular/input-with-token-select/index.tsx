@@ -12,17 +12,24 @@ import { Balance, TokenSelector } from '@core/dex/components/composite';
 import { useSwapContextSelector } from '@core/dex/context';
 import { useSwapFieldsHandler } from '@core/dex/lib/hooks';
 import { FIELD, SelectedTokensKeys } from '@core/dex/types';
-import { StringUtils, NumberUtils } from '@utils';
+import { StringUtils, NumberUtils, verticalScale } from '@utils';
 import { styles } from './styles';
 
 interface InputWithTokenSelectProps {
   readonly type: SelectedTokensKeys;
   readonly estimated: boolean;
+  readonly borderRadius?: {
+    topLeft?: number;
+    topRight?: number;
+    bottomLeft?: number;
+    bottomRight?: number;
+  };
 }
 
 export const InputWithTokenSelect = ({
   type,
-  estimated
+  estimated,
+  borderRadius
 }: InputWithTokenSelectProps) => {
   const { t } = useTranslation();
   const {
@@ -108,8 +115,30 @@ export const InputWithTokenSelect = ({
     }
   }, [isExactInRef, selectedTokensAmount, type, value]);
 
+  const borderRadiusStyle = useMemo(() => {
+    return {
+      borderTopLeftRadius: borderRadius?.topLeft,
+      borderTopRightRadius: borderRadius?.topRight,
+      borderBottomLeftRadius: borderRadius?.bottomLeft,
+      borderBottomRightRadius: borderRadius?.bottomRight
+    };
+  }, [borderRadius]);
+
+  const paddingBottomStyle = useMemo(() => {
+    return {
+      paddingBottom: verticalScale(type === FIELD.TOKEN_A ? 32 : 16)
+    };
+  }, [type]);
+
   return (
-    <View style={styles.wrapper}>
+    <View
+      style={[
+        styles.wrapper,
+        borderRadiusStyle,
+        paddingBottomStyle,
+        paddingBottomStyle
+      ]}
+    >
       <RowContainer alignItems="center" justifyContent="space-between">
         <Typography
           fontSize={14}

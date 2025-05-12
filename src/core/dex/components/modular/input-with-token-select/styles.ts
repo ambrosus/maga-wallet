@@ -1,9 +1,12 @@
 import { StyleSheet } from 'react-native';
+import { COLORS } from '@constants';
 import { moderateScale, scale, verticalScale } from '@utils';
 
 export const styles = StyleSheet.create({
   wrapper: {
-    paddingHorizontal: scale(16)
+    padding: scale(16),
+
+    backgroundColor: COLORS.neutral50
   },
   upperRow: {
     flexDirection: 'row',
@@ -19,7 +22,8 @@ export const styles = StyleSheet.create({
     width: '100%',
     borderWidth: 0,
     fontSize: moderateScale(22),
-    fontFamily: 'Inter_700Bold',
+    fontFamily: 'Onset600Medium',
+    backgroundColor: 'transparent',
     paddingHorizontal: 0.5,
     paddingVertical: 0
   },

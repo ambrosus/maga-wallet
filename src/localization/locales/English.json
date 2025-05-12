@@ -1,7 +1,13 @@
 {
   "English": "English",
   "buttons": {
-    "faceID": "Use Face ID"
+    "faceID": "Use Face ID",
+    "review": "Review",
+    "enter.amount": "Enter amount",
+    "insufficient": "Insufficient balance"
+  },
+  "common": {
+    "balance": "Balance"
   },
   "setupPasskey": {
     "title": "Setup Passkey",
@@ -43,5 +49,10 @@
       "receive": "Receive",
       "buy": "Buy"
     }
+  },
+  "swap": {
+    "pay": "You Swap",
+    "receive": "You Get",
+    "label.estimated": "estimated"
   }
 }

@@ -8,6 +8,7 @@ import Animated, {
   withTiming
 } from 'react-native-reanimated';
 import Svg, { Circle } from 'react-native-svg';
+import { COLORS } from '@constants';
 import { moderateScale } from '@utils';
 import { styles } from './styles';
 
@@ -22,7 +23,7 @@ export function Spinner({
   size = 'small',
   customSize,
   containerStyle,
-  color = '#3568DD'
+  color = COLORS.primary600
 }: SpinnerProps): JSX.Element {
   const _size = customSize || (size === 'small' ? 24 : size === 'xs' ? 20 : 48);
   const radius = _size / 2 - 4;

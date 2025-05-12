@@ -70,7 +70,7 @@ export const ReviewSwapButton = () => {
 
   const disabled = useMemo(() => {
     return (
-      swapButtonString !== t('common.review') ||
+      swapButtonString !== t('buttons.review') ||
       isProcessingBottomSheet ||
       isExecutingPrice ||
       isPoolsLoading ||

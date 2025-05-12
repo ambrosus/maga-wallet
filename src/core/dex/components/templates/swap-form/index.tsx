@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { Keyboard, KeyboardAvoidingView, View } from 'react-native';
-import { Spacer } from '@components/atoms';
+import { KeyboardDismissingView, Spacer } from '@components/atoms';
 import { FLEX_FULL_SIZE, isIos } from '@constants';
 import { SwapReverseTokens } from '@core/dex/components/composite';
 import {
@@ -53,41 +53,45 @@ export const SwapForm = () => {
       keyboardVerticalOffset={isIos ? 20 : 0}
       behavior={KEYBOARD_BEHAVIOR}
     >
-      <KeyboardAvoidingView style={styles.container}>
-        <View
-          style={FLEX_FULL_SIZE}
-          onStartShouldSetResponder={() => true}
-          onResponderRelease={Keyboard.dismiss}
-        >
-          <View style={styles.container}>
-            <View>
+      <KeyboardAvoidingView style={FLEX_FULL_SIZE}>
+        <KeyboardDismissingView style={FLEX_FULL_SIZE}>
+          <View style={styles.innerContainer}>
+            <View style={styles.relativeContainer}>
               <Spacer value={scale(22)} />
               <InputWithTokenSelect
                 type={FIELD.TOKEN_A}
                 estimated={isEstimatedToken.tokenA}
+                borderRadius={{
+                  topLeft: 16,
+                  topRight: 16
+                }}
               />
               <SwapReverseTokens />
               <InputWithTokenSelect
                 type={FIELD.TOKEN_B}
                 estimated={isEstimatedToken.tokenB}
+                borderRadius={{
+                  bottomLeft: 16,
+                  bottomRight: 16
+                }}
               />
-
-              <Spacer value={scale(32)} />
-
-              {isCurrencyRateVisible && (
-                <SwapCurrencyRate
-                  tokenToSell={tokenToSell.TOKEN.address}
-                  tokenToReceive={tokenToReceive.TOKEN.address}
-                  tokensRoute={tokensRoute}
-                />
-              )}
             </View>
 
-            <View style={styles.footer}>
-              <ReviewSwapButton />
-            </View>
+            <Spacer value={scale(32)} />
+
+            {isCurrencyRateVisible && (
+              <SwapCurrencyRate
+                tokenToSell={tokenToSell.TOKEN.address}
+                tokenToReceive={tokenToReceive.TOKEN.address}
+                tokensRoute={tokensRoute}
+              />
+            )}
           </View>
-        </View>
+
+          <View style={styles.footer}>
+            <ReviewSwapButton />
+          </View>
+        </KeyboardDismissingView>
       </KeyboardAvoidingView>
     </KeyboardAvoidingView>
   );

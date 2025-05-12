@@ -50,15 +50,13 @@ export const SwapReverseTokens = () => {
 
   return (
     <>
-      <Spacer value={scale(8)} />
-      <Divider>
-        <View style={styles.wrapper}>
-          <Button onPress={onReverseSelectedTokensPress} style={styles.button}>
-            <SwapOppositeArrowsIcon scale={0.75} color={COLORS.neutral400} />
-          </Button>
-        </View>
-      </Divider>
-      <Spacer value={scale(8)} />
+      <Spacer value={2} />
+      <View style={styles.container}>
+        <Button onPress={onReverseSelectedTokensPress} style={styles.button}>
+          <SwapOppositeArrowsIcon scale={0.75} color={COLORS.neutral400} />
+        </Button>
+      </View>
+      <Spacer value={2} />
     </>
   );
 };

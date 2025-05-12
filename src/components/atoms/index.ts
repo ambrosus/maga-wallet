@@ -6,4 +6,5 @@ export { SafeViewContainer } from './safe-view-container';
 export { AccountActionPressableContainer } from './account-action-pressable-container';
 export { Spinner } from './spinner';
 export { PercentPressableContainer } from './percent-pressable-container';
+export { KeyboardDismissingView } from './keyboard-dismissing-view';
 export * from './input';

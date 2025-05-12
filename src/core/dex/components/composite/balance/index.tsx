@@ -8,7 +8,12 @@ import {
 import { ethers } from 'ethers';
 import { useTranslation } from 'react-i18next';
 import { RowContainer, Spacer, Spinner, Typography } from '@components/atoms';
-import { COLORS, ETH_DECIMALS, KEYBOARD_OPENING_TIME } from '@constants';
+import {
+  COLORS,
+  ETH_DECIMALS,
+  FONT_SIZE,
+  KEYBOARD_OPENING_TIME
+} from '@constants';
 import { useSwapContextSelector } from '@core/dex/context';
 import {
   useSwapActions,
@@ -179,14 +184,14 @@ export const Balance = ({ type, setIsBalanceLoading }: BalanceProps) => {
           <Spacer horizontal value={4} />
           {isFetchingBalance || isPoolsLoading ? (
             // <ShimmerLoader width={45} height={12} />
-            <Spinner size="small" />
+            <Spinner customSize={16} />
           ) : (
             <Typography
-              fontSize={14}
+              fontSize={FONT_SIZE.body.sm}
               fontFamily="Onest500Medium"
               color={COLORS[error ? 'destructive500' : 'neutral500']}
             >
-              {maximumTokenBalance}
+              Balance: {maximumTokenBalance}
             </Typography>
           )}
         </RowContainer>

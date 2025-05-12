@@ -24,7 +24,7 @@ export function buttonActionString(
     dexValidators.isEmptyAmount(AMOUNT_B);
 
   if (isSomeBalanceIsEmpty || isSomeTokenNotSelected) {
-    return t('button.enter.amount');
+    return t('buttons.enter.amount');
   }
 
   const bnInputABalance = bnBalanceAmount[FIELD.TOKEN_A]?._hex;
@@ -34,9 +34,9 @@ export function buttonActionString(
 
   if (bnInputABalance) {
     if (bnSelectedAmount.gt(bnInputABalance)) {
-      return t('swap.button.insufficient');
+      return t('buttons.insufficient');
     }
   }
 
-  return t('common.review');
+  return t('buttons.review');
 }
