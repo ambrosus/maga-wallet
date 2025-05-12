@@ -5,3 +5,4 @@ export { CreateWalletLoadingScreen } from './create-wallet-loading';
 export * from './discover';
 export * from './home';
 export * from './settings';
+export * from './history';

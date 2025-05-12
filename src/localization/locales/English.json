@@ -21,7 +21,7 @@
   "tabs": {
     "Home": "Home",
     "Discover": "Discover",
-    "Settings": "Settings"
+    "History": "History"
   },
   "settings.tabs": {
     "app.settings": "App Settings",

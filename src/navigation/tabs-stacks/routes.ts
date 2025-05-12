@@ -3,5 +3,5 @@ import { TabsStackParamsList } from './types';
 export const TABS_STACK_ROUTES = {
   Home: 'Home',
   Discover: 'Discover',
-  Settings: 'Settings'
+  History: 'History'
 } as Record<keyof TabsStackParamsList, keyof TabsStackParamsList>;
