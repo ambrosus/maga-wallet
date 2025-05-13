@@ -27,7 +27,7 @@ export const DexSettingsScreen = ({ navigation }: Props) => {
       onApplySettingsHandle();
       Toast.show({
         text: t('swap.settings.toast.success'),
-        type: ToastType.Success
+        type: ToastType.Failed
       });
       navigation.goBack();
     };

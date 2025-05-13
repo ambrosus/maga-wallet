@@ -1,7 +1,11 @@
 import Svg, { Path } from 'react-native-svg';
+import { COLORS } from '@constants';
 import { SvgIconProps } from '@types';
 
-export const InfoIcon = ({ scale = 1, color = '#FF4747' }: SvgIconProps) => {
+export const InfoIcon = ({
+  scale = 1,
+  color = COLORS.destructive500
+}: SvgIconProps) => {
   const size = 88;
 
   return (
