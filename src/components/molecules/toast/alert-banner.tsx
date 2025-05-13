@@ -23,7 +23,12 @@ export const AlertBanner = (props: Pick<ToastOptions, 'text' | 'type'>) => {
       <RowContainer justifyContent="center" alignItems="center">
         {icon()}
         <Spacer horizontal value={scale(5)} />
-        <Typography align="center" fontSize={16} color={COLORS.textPrimary}>
+        <Typography
+          fontSize={14}
+          fontFamily="Onest500Medium"
+          color={COLORS.textSecondary}
+          align="center"
+        >
           {text}
         </Typography>
       </RowContainer>

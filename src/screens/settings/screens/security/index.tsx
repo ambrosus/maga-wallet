@@ -2,8 +2,9 @@ import { useCallback, useMemo } from 'react';
 import { FlatList, ListRenderItemInfo, SafeAreaView, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
-import { Button, Header, Separator, Typography } from '@components';
-import { Arow } from '@components/svgs';
+import { Separator, Typography } from '@components/atoms';
+import { Button, Header } from '@components/molecules';
+import { Arrow } from '@components/svgs';
 import { COLORS } from '@constants';
 import { MMKV_KEYS } from '@lib/mmkv/keys';
 import { RootNavigationProp } from '@navigation/root-stack';
@@ -82,7 +83,7 @@ export const SecurityScreen = () => {
               <Typography color={COLORS.textPrimary}>
                 {t('settings.tabs.security.change.passkey')}
               </Typography>
-              <Arow color={COLORS.neutral400} orientation="right" />
+              <Arrow color={COLORS.neutral400} orientation="right" />
             </>
           </Button>
           <Separator color={COLORS.neutral300} />

@@ -14,6 +14,7 @@ module.exports = {
           '@hooks': './src/lib/hooks',
           '@core': './src/core',
           '@screens': './src/screens',
+          '@models': './src/models',
           '@navigation': './src/navigation',
           '@constants': './src/constants',
           '@localization': './src/localization',

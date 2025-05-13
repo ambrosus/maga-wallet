@@ -3,15 +3,14 @@ import Clipboard from '@react-native-clipboard/clipboard';
 import { useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { Spacer, Typography } from '@components/atoms';
 import {
-  CopyButton,
-  Header,
-  PrimaryButton,
-  Spacer,
   Toast,
-  Typography,
-  ToastType
-} from '@components';
+  ToastType,
+  Header,
+  CopyButton,
+  PrimaryButton
+} from '@components/molecules';
 import { COLORS } from '@constants';
 import { mmkv } from '@lib';
 import { MMKV_KEYS } from '@lib/mmkv/keys';

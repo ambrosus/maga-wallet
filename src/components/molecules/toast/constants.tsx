@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import { InfoIcon, CheckboxCircleFill } from '@components/svgs';
+import { InfoIcon, CheckboxCircle } from '@components/svgs';
 import { COLORS } from '@constants';
 import { ToastType } from './types';
 
@@ -16,7 +16,7 @@ export const ToastBorderColor: Record<ToastType, string> = {
 export const ToastStatusIcon: Record<ToastType, ReactElement> = {
   [ToastType.Failed]: <InfoIcon scale={0.5} />,
   [ToastType.Success]: (
-    <CheckboxCircleFill color={COLORS.success500} scale={1} />
+    <CheckboxCircle color={COLORS.success500} scale={1} isFill={true} />
   )
 };
 

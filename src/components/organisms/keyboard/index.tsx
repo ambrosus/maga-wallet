@@ -7,7 +7,7 @@ import {
   ViewStyle
 } from 'react-native';
 import { RowContainer, Typography } from '@components/atoms';
-import { Arow } from '@components/svgs';
+import { Arrow } from '@components/svgs';
 import { COLORS } from '@constants';
 import { styles } from './styles';
 
@@ -67,7 +67,7 @@ export const Keyboard = ({
         }}
       >
         {isNeedIcon ? (
-          <Arow color={COLORS.neutral900} scale={1.15} orientation="left" />
+          <Arrow color={COLORS.neutral900} scale={1.15} orientation="left" />
         ) : (
           <Typography
             style={{

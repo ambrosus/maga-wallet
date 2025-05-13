@@ -3,9 +3,9 @@ import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Spacer, SettingsMenuItem } from '@components/atoms';
 import { Header } from '@components/molecules';
+import { SETTINGS_ITEMS } from '@screens/settings/constants';
 import { scale } from '@utils';
 import { styles } from './styles';
-import { SETTINGS_ITEMS } from '../../constants';
 
 export const SettingsScreen = () => {
   const { t } = useTranslation();

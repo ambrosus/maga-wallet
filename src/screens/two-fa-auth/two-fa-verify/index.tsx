@@ -3,7 +3,8 @@ import { Linking, View } from 'react-native';
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Button, Header, Spacer, Typography } from '@components';
+import { Spacer, Typography } from '@components/atoms';
+import { Button, Header } from '@components/molecules';
 import { COLORS, isIos } from '@constants';
 import { SETTINGS_STACK_ROUTES } from '@navigation';
 import { RootNavigationProp } from '@navigation/root-stack';
@@ -63,7 +64,7 @@ export const TwoFAVerify = () => {
   };
   return (
     <SafeAreaView>
-      <Header goBack title={t('settings.tabs.two.fa.verify.header')} />
+      <Header title={t('settings.tabs.two.fa.verify.header')} />
       <View style={{ paddingHorizontal: scale(25) }}>
         <Spacer value={scale(40)} />
         <Typography align="center">

@@ -17,17 +17,18 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { scale } from '@utils';
 import { AlertBanner } from './alert-banner';
 import { TOAST_DEFAULT_DURATION } from './constants';
-import { ToastOptions } from './types';
+import { ToastOptions, ToastType } from './types';
 
 export const ToastWrapper = forwardRef((_, ref) => {
   const { bottom: bottomInset } = useSafeAreaInsets();
   const { height: WINDOW_HEIGHT } = useWindowDimensions();
   const INITIAL_POSITION = WINDOW_HEIGHT + scale(100);
-  const VISIBLE_POSITION = WINDOW_HEIGHT - scale(100) - bottomInset;
+  const VISIBLE_POSITION = WINDOW_HEIGHT - scale(56) - bottomInset;
 
   const defaultOptions: Omit<ToastOptions, 'duration'> = useMemo(
     () => ({
-      text: ''
+      text: '',
+      type: ToastType.Success
     }),
     []
   );

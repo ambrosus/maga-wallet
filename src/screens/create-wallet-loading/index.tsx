@@ -9,7 +9,7 @@ import Animated, {
   Easing
 } from 'react-native-reanimated';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Spacer, Typography } from '@components';
+import { Spacer, Typography } from '@components/atoms';
 import {
   ANIMATION_DELAY,
   COLORS,

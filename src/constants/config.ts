@@ -1,3 +1,6 @@
+import { APP_COMMON_TOKENS } from '@constants/tokens';
+import { SWAP_SUPPORTED_TOKENS } from '@core/dex/entities';
+
 const environments = {
   production: {
     ENV: 'production',
@@ -7,7 +10,11 @@ const environments = {
       send: true,
       swap: true,
       receive: true
-    }
+    },
+    ROUTER_V2_ADDRESS: '0xf7237C595425b49Eaeb3Dc930644de6DCa09c3C4',
+    FACTORY_ADDRESS: '0x2b6852CeDEF193ece9814Ee99BE4A4Df7F463557',
+    SWAP_TOKENS: SWAP_SUPPORTED_TOKENS.tokens.prod,
+    TOKENS: APP_COMMON_TOKENS.PROD
   },
   staging: {
     ENV: 'staging',
@@ -17,7 +24,11 @@ const environments = {
       send: true,
       swap: true,
       receive: true
-    }
+    },
+    ROUTER_V2_ADDRESS: '0xf7237C595425b49Eaeb3Dc930644de6DCa09c3C4',
+    FACTORY_ADDRESS: '0x2b6852CeDEF193ece9814Ee99BE4A4Df7F463557',
+    SWAP_TOKENS: SWAP_SUPPORTED_TOKENS.tokens.prod,
+    TOKENS: APP_COMMON_TOKENS.PROD
   },
   testnet: {
     ENV: 'testnet',
@@ -27,8 +38,12 @@ const environments = {
       send: true,
       swap: true,
       receive: true
-    }
+    },
+    ROUTER_V2_ADDRESS: '0xA3E524dFc9deA66aE32e81a5E2B4DF24F56e2CBc',
+    FACTORY_ADDRESS: '0x7bf4227eDfAA6823aD577dc198DbCadECccbEb07',
+    SWAP_TOKENS: SWAP_SUPPORTED_TOKENS.tokens.testnet,
+    TOKENS: APP_COMMON_TOKENS.TESTNET
   }
 } as const;
 
-export const Config = environments.testnet;
+export const Config = environments.production;

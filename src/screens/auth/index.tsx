@@ -1,7 +1,11 @@
 import { useCallback } from 'react';
 import { Alert, Image, View } from 'react-native';
-import { IconContainer, Typography } from '@components';
-import { SafeViewContainer, Spacer } from '@components/atoms';
+import {
+  IconContainer,
+  SafeViewContainer,
+  Spacer,
+  Typography
+} from '@components/atoms';
 import { PrimaryButton } from '@components/molecules';
 import { SocialAuthList } from '@components/organisms';
 import { COLORS, DEVICE_HEIGHT, DEVICE_WIDTH, FONT_SIZE } from '@constants';

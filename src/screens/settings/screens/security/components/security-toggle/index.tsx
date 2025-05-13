@@ -1,5 +1,6 @@
 import { View } from 'react-native';
-import { Spacer, ToggleSwitch, Typography } from '@components';
+import { Typography, Spacer } from '@components/atoms';
+import { ToggleSwitch } from '@components/molecules';
 import { COLORS } from '@constants';
 import { scale } from '@utils';
 import { styles } from '../../styles';

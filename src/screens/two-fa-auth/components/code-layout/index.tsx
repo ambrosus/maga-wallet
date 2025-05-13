@@ -1,7 +1,7 @@
 import { Ref } from 'react';
 import { OtpInput, OtpInputRef } from 'react-native-otp-entry';
 import Animated from 'react-native-reanimated';
-import { Typography } from '@components';
+import { Typography } from '@components/atoms';
 import { COLORS } from '@constants';
 import { useShakeAnimation } from '@styles';
 import { scale } from '@utils';

@@ -1,13 +1,15 @@
 import { View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
-import { Spacer, Typography } from '@components/atoms';
+
 import { Button } from '@components/molecules';
-import { Arow } from '@components/svgs';
+import { Arrow } from '@components/svgs';
 import { RootNavigationProp } from '@navigation/root-stack';
 import { SettingItem } from '@screens/settings/models';
 import { scale } from '@utils';
 import { styles } from './styles';
+import { Spacer } from '../spacer';
+import { Typography } from '../typography';
 
 interface SettingsMenuItemProps {
   settingItem: SettingItem;
@@ -43,7 +45,7 @@ export const SettingsMenuItem = ({
         <View style={styles.rightBlock}>
           {!!notification && <Typography>{notification}</Typography>}
           <Spacer horizontal value={scale(15)} />
-          <Arow orientation="right" />
+          <Arrow orientation="right" />
         </View>
       </View>
     </Button>

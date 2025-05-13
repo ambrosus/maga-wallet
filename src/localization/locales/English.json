@@ -2,14 +2,14 @@
   "English": "English",
   "buttons": {
     "faceID": "Use Face ID",
+    "review": "Review",
+    "enter.amount": "Enter amount",
+    "insufficient": "Insufficient balance",
     "next": "Next",
     "copy": "Copy"
   },
-
-  "toast": {
-    "success": "Success",
-    "failed": "Failed",
-    "copied": "Copied"
+  "common": {
+    "balance": "Balance"
   },
   "setupPasskey": {
     "title": "Setup Passkey",
@@ -38,6 +38,7 @@
     "preferences": "Preferences",
     "notifications": "Notifications",
     "about": "About",
+
     "create.new.passkey": "Create new passkey",
     "confirm.new.passkey": "Confirm new passkey",
     "enter.passkey": "Enter current passkey",
@@ -60,5 +61,29 @@
     "two.fa.verify.header": "Verify Your Setup",
     "two.fa.verify.description": "Enter the 6-digit code from Google\n Authenticator.",
     "get.code": "Get code"
+  },
+  "account": {
+    "actions": {
+      "swap": "Swap",
+      "send": "Send",
+      "receive": "Receive",
+      "buy": "Buy"
+    }
+  },
+  "swap": {
+    "pay": "You Swap",
+    "receive": "You Get",
+    "label.estimated": "estimated",
+    "bottom.sheet.select.token_a": "Select token to send",
+    "bottom.sheet.select.token_b": "Select token to receive",
+    "settings": {
+      "title": "Swap Settings",
+      "toast.success": "Preferences saved.",
+      "slippage.errors": {
+        "high": "High slippage. Transaction may experience price impact.",
+        "low": "Low slippage. Transaction may fail.",
+        "invalid": "Invalid input. Enter a value between 0.1% and 50%."
+      }
+    }
   }
 }

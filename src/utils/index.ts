@@ -3,3 +3,7 @@ export * from './localization';
 export * from './navigation';
 export * from './string';
 export * from './delay';
+export * from './number';
+export * from './object';
+export * from './environment';
+export * from './tokens';

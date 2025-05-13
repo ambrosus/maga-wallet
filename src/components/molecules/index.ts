@@ -9,5 +9,7 @@ export { PasscodeIndicator } from './passcode-indicator';
 export { ToggleSwitch } from './toggle-switch';
 export { CopyButton } from './copy-button';
 export { AccountActionsContainer } from './account-actions-container';
+export { TokenLogo } from './token-logo';
+export { TextOrSpinner } from './text-or-spinner';
 export { Toast } from './toast';
 export { ToastType } from './toast/types';

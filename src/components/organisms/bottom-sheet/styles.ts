@@ -7,6 +7,10 @@ export const styles = StyleSheet.create({
     width: 41.5,
     backgroundColor: COLORS.borderDefault
   },
+  indicatorHidden: {
+    width: 0,
+    height: 0
+  },
   container: {
     paddingHorizontal: scale(12)
   },

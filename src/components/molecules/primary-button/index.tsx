@@ -24,6 +24,7 @@ export const PrimaryButton = ({
 
   return (
     <TouchableOpacity
+      disabled={disabled}
       onPress={onPress}
       style={[
         style,
