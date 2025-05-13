@@ -10,8 +10,8 @@ import {
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Typography } from '@components/atoms';
 import { COLORS, DEVICE_HEIGHT } from '@constants';
-import { styles } from './styles';
 import { scale } from '@utils';
+import { styles } from './styles';
 
 type BottomSheetProps = PropsWithChildren &
   BottomSheetModalProps & {

@@ -7,7 +7,6 @@ import { COLORS } from '@constants';
 import { useSwapContextSelector } from '@core/dex/context';
 import { useSwapSettings } from '@core/dex/lib/hooks';
 import { AllowanceStatus } from '@core/dex/types';
-import { PriceImpactErrorColors } from '../utils/colors';
 
 interface SwapErrorImpactButtonProps {
   isProcessingSwap: boolean;
@@ -73,17 +72,17 @@ export const SwapErrorImpactButton = ({
     }
   }, [minimized, isInsufficientBalance, priceImpact, t, extendedMode]);
 
-  const buttonColors = useMemo(() => {
-    if (priceImpact && priceImpact >= 5 && priceImpact < 10) {
-      return PriceImpactErrorColors.expert;
-    }
+  // const buttonColors = useMemo(() => {
+  //   if (priceImpact && priceImpact >= 5 && priceImpact < 10) {
+  //     return PriceImpactErrorColors.expert;
+  //   }
 
-    return PriceImpactErrorColors[
-      !extendedMode || allowance === AllowanceStatus.INCREASE
-        ? 'default'
-        : ('expert' as keyof typeof PriceImpactErrorColors)
-    ];
-  }, [allowance, extendedMode, priceImpact]);
+  //   return PriceImpactErrorColors[
+  //     !extendedMode || allowance === AllowanceStatus.INCREASE
+  //       ? 'default'
+  //       : ('expert' as keyof typeof PriceImpactErrorColors)
+  //   ];
+  // }, [allowance, extendedMode, priceImpact]);
 
   return (
     <PrimaryButton

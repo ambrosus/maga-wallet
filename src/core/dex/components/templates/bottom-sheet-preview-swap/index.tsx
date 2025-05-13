@@ -1,15 +1,11 @@
-import { forwardRef, useCallback, useMemo } from 'react';
+import { forwardRef } from 'react';
 import { View } from 'react-native';
 import { BottomSheetModal } from '@gorhom/bottom-sheet';
-import { CommonActions, useNavigation } from '@react-navigation/native';
-import { useTranslation } from 'react-i18next';
 import { Spacer } from '@components/atoms';
 import { BottomSheet } from '@components/organisms';
-import { useSwapContextSelector } from '@core/dex/context';
-import { useSwapBottomSheetHandler } from '@core/dex/lib/hooks';
-import { BottomSheetStatus, FIELD } from '@core/dex/types';
+import { FIELD } from '@core/dex/types';
 import { useForwardedRef } from '@lib';
-import { delayNavigationAction, scale } from '@utils';
+import { scale } from '@utils';
 import { styles } from './styles';
 import { BottomSheetReviewTokenItem } from '../../atoms';
 import { PreviewInformation } from '../../molecules';
@@ -17,40 +13,32 @@ import { SubmitSwapActions } from '../../organisms';
 
 export const BottomSheetPreviewSwap = forwardRef<BottomSheetModal, unknown>(
   (_, ref) => {
-    const { t } = useTranslation();
-    const navigation = useNavigation();
     const bottomSheetRef = useForwardedRef(ref);
-    const { isProcessingSwap } = useSwapContextSelector();
-    const {
-      bottomSheetSwapStatus,
-      onReviewSwapDismiss,
-      onChangeBottomSheetSwapStatus
-    } = useSwapBottomSheetHandler();
 
-    const isPreview = useMemo(
-      () => bottomSheetSwapStatus === BottomSheetStatus.PREVIEW,
-      [bottomSheetSwapStatus]
-    );
+    // const isPreview = useMemo(
+    //   () => bottomSheetSwapStatus === BottomSheetStatus.PREVIEW,
+    //   [bottomSheetSwapStatus]
+    // );
 
-    const onSuccessBottomSheetDismiss = useCallback(() => {
-      onChangeBottomSheetSwapStatus(BottomSheetStatus.PREVIEW);
-      if (bottomSheetSwapStatus === BottomSheetStatus.SUCCESS) {
-        onReviewSwapDismiss();
-        delayNavigationAction(() =>
-          navigation.dispatch(
-            CommonActions.reset({
-              index: 0,
-              routes: [{ name: 'HomeScreen' }]
-            })
-          )
-        );
-      }
-    }, [
-      bottomSheetSwapStatus,
-      navigation,
-      onChangeBottomSheetSwapStatus,
-      onReviewSwapDismiss
-    ]);
+    // const onSuccessBottomSheetDismiss = useCallback(() => {
+    //   onChangeBottomSheetSwapStatus(BottomSheetStatus.PREVIEW);
+    //   if (bottomSheetSwapStatus === BottomSheetStatus.SUCCESS) {
+    //     onReviewSwapDismiss();
+    //     delayNavigationAction(() =>
+    //       navigation.dispatch(
+    //         CommonActions.reset({
+    //           index: 0,
+    //           routes: [{ name: 'HomeScreen' }]
+    //         })
+    //       )
+    //     );
+    //   }
+    // }, [
+    //   bottomSheetSwapStatus,
+    //   navigation,
+    //   onChangeBottomSheetSwapStatus,
+    //   onReviewSwapDismiss
+    // ]);
 
     return (
       <BottomSheet
