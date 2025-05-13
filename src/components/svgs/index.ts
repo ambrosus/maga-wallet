@@ -11,7 +11,6 @@ export { DiscoverIcon } from './tabs/discover';
 export { SettingsIcon } from './tabs/settings';
 export { Arrow } from './arrow';
 export { HistoryIcon } from './tabs/history';
-export { SettingsIconInfo } from './settings/settings-icon-info';
 export { SendIcon } from './send';
 export { SwapIcon } from './swap';
 export { ReceiveIcon } from './receive';
@@ -21,3 +20,5 @@ export { CloseIcon } from './close';
 export { SettingsFilledIcon } from './settings-filled';
 export { InfoIcon } from './info';
 export { CheckboxCircle } from './chekbox-circle';
+
+export * from './settings';

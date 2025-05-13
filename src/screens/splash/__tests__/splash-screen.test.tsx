@@ -3,16 +3,19 @@ import { SplashScreen } from '../index';
 
 // Mock the navigation hook
 jest.mock('@react-navigation/native', () => ({
-  ...jest.requireActual('@react-navigation/native'),
   useNavigation: () => ({
     replace: jest.fn()
   })
 }));
 
+// Mock the useSplashNavigation hook
+jest.mock('../hooks/use-splash-navigation', () => ({
+  useSplashNavigation: jest.fn()
+}));
+
 describe('Splash Screen Unit Test', () => {
-  it('should render correctly', () => {
-    const { getByTestId } = render(<SplashScreen />);
-    const splashText = getByTestId('splash_icon');
-    expect(splashText).toBeDefined();
+  it('should render the splash screen', () => {
+    const { toJSON } = render(<SplashScreen />);
+    expect(toJSON()).toMatchSnapshot();
   });
 });
