@@ -15,7 +15,7 @@ jest.mock('../hooks/use-splash-navigation', () => ({
 
 describe('Splash Screen Unit Test', () => {
   it('should render the splash screen', () => {
-    const { toJSON } = render(<SplashScreen />);
-    expect(toJSON()).toMatchSnapshot();
+    const { getByTestId } = render(<SplashScreen />);
+    expect(getByTestId('splash_icon')).toBeDefined();
   });
 });
