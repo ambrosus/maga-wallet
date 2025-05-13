@@ -1,6 +1,7 @@
-import { CryptoCurrencyCode } from '@constants';
-import { SwapStringUtils } from '@core/dex/utils';
 import { toUpper } from 'lodash';
+import { Config, CryptoCurrencyCode } from '@constants';
+import { SwapStringUtils } from '@core/dex/utils';
+import { AppToken } from '@types';
 
 export interface TokenInfo {
   address?: string;
@@ -13,19 +14,20 @@ interface TokenExtendProps {
   symbol: string;
 }
 
-export const getTokenNameFromDatabase = (address: string): string => 'unknown';
-//   Config.ALL_TOKENS.find(
-//     (token: DatabaseTokenModel) => token.address === address
-//   )?.name ?? 'unknown';
+const UNKNOW_TOKEN_NAME = 'unknown';
 
-// export const getTokenSymbolFromDatabase = (
-//   address: string,
-//   _toUpperCase?: boolean
-// ): string =>
-//   Config.ALL_TOKENS.find(
-//     (token: DatabaseTokenModel) =>
-//       (_toUpperCase ? toUpper(token.address) : token.address) === address
-//   )?.symbol ?? 'unknown';
+export const getTokenNameFromDatabase = (address: string): string =>
+  Config.TOKENS.find((token: AppToken) => token.address === address)?.name ??
+  UNKNOW_TOKEN_NAME;
+
+export const getTokenSymbolFromDatabase = (
+  address: string,
+  _toUpperCase?: boolean
+): string =>
+  Config.TOKENS.find(
+    (token: AppToken) =>
+      (_toUpperCase ? toUpper(token.address) : token.address) === address
+  )?.symbol ?? UNKNOW_TOKEN_NAME;
 
 export function wrapTokenIcon<T extends TokenExtendProps>(token: T) {
   if (token.symbol === CryptoCurrencyCode.AMB) {
