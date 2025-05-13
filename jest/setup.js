@@ -23,8 +23,26 @@ jest.mock(
   { virtual: true }
 );
 
+jest.mock('@constants/ui/navigation.theme', () => ({
+  appTheme: {
+    dark: false,
+    colors: {
+      primary: 'rgb(0, 122, 255)',
+      background: '#FFFFFF',
+      card: 'rgb(255, 255, 255)',
+      text: 'rgb(28, 28, 30)',
+      border: 'rgb(216, 216, 216)',
+      notification: 'rgb(255, 59, 48)'
+    }
+  }
+}));
+
 jest.mock('@react-native-async-storage/async-storage', () =>
   require('@react-native-async-storage/async-storage/jest/async-storage-mock')
+);
+
+jest.mock('@react-native-clipboard/clipboard', () =>
+  require('@react-native-clipboard/clipboard/jest/clipboard-mock')
 );
 
 jest.mock('@react-native-firebase/auth', () => ({
@@ -109,5 +127,48 @@ jest.mock('@react-native-google-signin/google-signin', () => {
       getTokens: jest.fn(() => Promise.resolve({ idToken: '123' })),
       signOut: jest.fn(() => Promise.resolve())
     }
+  };
+});
+
+jest.mock('@components/svgs', () => ({
+  InfoIcon: () => 'InfoIcon',
+  CheckboxCircle: () => 'CheckboxCircle',
+  DiscoverIcon: () => 'DiscoverIcon',
+  HistoryIcon: () => 'HistoryIcon',
+  HomeIcon: () => 'HomeIcon',
+  SettingsIconInfo: () => 'SettingsIconInfo',
+  SettingsIconNotification: () => 'SettingsIconNotification',
+  SettingsIconProfile: () => 'SettingsIconProfile',
+  SettingsIconSecurity: () => 'SettingsIconSecurity',
+  SettingsIconSettings: () => 'SettingsIconSettings',
+  SettingsIconWallet: () => 'SettingsIconWallet',
+  AppIcon: 'AppIcon'
+}));
+
+jest.mock('@core/dex/utils/wrap-native-address', () => ({
+  addresses: {
+    AMB: '0x0000000000000000000000000000000000000000',
+    STAMB: '0x0000000000000000000000000000000000000000'
+  },
+  isNativeWrapped: jest.fn().mockReturnValue(false),
+  wrapNativeAddress: jest.fn((path) => path),
+  wrapNativeToken: jest.fn((token) => token),
+  isETHtoWrapped: jest.fn().mockReturnValue(false),
+  isWrappedToETH: jest.fn().mockReturnValue(false)
+}));
+
+jest.mock('@core/dex/utils/multi-route', () => {
+  const addresses = {
+    AMB: '0x0000000000000000000000000000000000000000',
+    STAMB: '0x0000000000000000000000000000000000000000'
+  };
+
+  const ignoreTokenAddresses = [addresses.AMB, addresses.STAMB];
+
+  return {
+    ignoreTokenAddresses,
+    isDirectHop: jest.fn().mockReturnValue(true),
+    extractArrayOfMultiHopAddresses: jest.fn().mockReturnValue([]),
+    extractArrayOfMiddleMultiHopAddresses: jest.fn().mockReturnValue([])
   };
 });

@@ -42,6 +42,8 @@ export const DEXScreen = ({ navigation }: Props) => {
 
   useFocusEffect(
     useCallback(() => {
+      const resetActions = ['RESET', 'GO_BACK'];
+
       const unsubscribe = navigation.addListener('beforeRemove', (event) => {
         const {
           data: {
@@ -49,7 +51,7 @@ export const DEXScreen = ({ navigation }: Props) => {
           }
         } = event;
 
-        if (['RESET', 'GO_BACK'].includes(type)) reset();
+        if (resetActions.includes(type)) reset();
       });
 
       return unsubscribe;

@@ -1,8 +1,15 @@
-import { Children, useCallback } from 'react';
+import { Children, useCallback, useMemo } from 'react';
 import { View } from 'react-native';
-import { PercentPressableContainer, RowContainer } from '@components/atoms';
+import {
+  PercentPressableContainer,
+  RowContainer,
+  Typography
+} from '@components/atoms';
+import { COLORS } from '@constants';
 import { SettingsInputWithLabel } from '@core/dex/components/molecules';
+import { INITIAL_SLIPPAGE_TOLERANCE } from '@core/dex/context/initials';
 import { SettingsKeys } from '@core/dex/types';
+import { slippageErrorHandler, SwapStringUtils } from '@core/dex/utils';
 import { styles } from './styles';
 
 interface SettingsSlippageFormProps {
@@ -36,6 +43,19 @@ export const SettingsSlippageForm = ({
     [setSlippageTolerance]
   );
 
+  const onChangeSlippageBlur = useCallback(() => {
+    const newValue = SwapStringUtils.transformSlippageOnBlur(slippageTolerance);
+    return setSlippageTolerance(
+      'slippageTolerance',
+      newValue ?? INITIAL_SLIPPAGE_TOLERANCE
+    );
+  }, [setSlippageTolerance, slippageTolerance]);
+
+  const error = useMemo(
+    () => slippageErrorHandler(slippageTolerance),
+    [slippageTolerance]
+  );
+
   return (
     <View style={styles.container}>
       <SettingsInputWithLabel
@@ -44,7 +64,20 @@ export const SettingsSlippageForm = ({
         placeholder="Custom"
         value={slippageTolerance}
         onChangeText={onChangeSlippageToleranceHandle}
+        onBlur={onChangeSlippageBlur}
       />
+
+      {error && (
+        <View style={styles.errorContainer}>
+          <Typography
+            fontSize={12}
+            fontFamily="Onest500Medium"
+            color={COLORS.destructive500}
+          >
+            {error}
+          </Typography>
+        </View>
+      )}
 
       <RowContainer alignItems="center" gap={10}>
         {Children.toArray(

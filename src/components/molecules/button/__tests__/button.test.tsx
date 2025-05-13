@@ -1,123 +1,118 @@
-/* eslint-disable camelcase */
-import { View, TouchableOpacity } from 'react-native';
+import React from 'react';
+import { Text } from 'react-native';
 import { render, fireEvent } from '@testing-library/react-native';
-import { COLORS } from '@constants';
 import { Button } from '../index';
-import { styles } from '../styles.tsx';
 
 describe('Button | Unit Test (Component)', () => {
-  it('renders correctly with title prop', () => {
-    const mockOnPress = jest.fn();
+  it('renders children correctly', () => {
     const { getByText } = render(
-      <Button title="Press Me" onPress={mockOnPress} />
+      <Button>
+        <Text>Button Content</Text>
+      </Button>
     );
 
-    const buttonText = getByText('Press Me');
-    expect(buttonText).toBeDefined();
+    expect(getByText('Button Content')).toBeDefined();
   });
 
   it('calls onPress function when pressed', () => {
     const mockOnPress = jest.fn();
     const { getByText } = render(
-      <Button title="Press Me" onPress={mockOnPress} />
-    );
-
-    const buttonText = getByText('Press Me');
-    fireEvent.press(buttonText);
-
-    expect(mockOnPress).toHaveBeenCalledTimes(1);
-  });
-
-  it('applies correct styles when disabled', () => {
-    const mockOnPress = jest.fn();
-    const { getByText } = render(
-      <Button title="Disabled Button" disabled onPress={mockOnPress} />
-    );
-
-    const buttonText = getByText('Disabled Button');
-    const textStyles = buttonText.props.style;
-
-    expect(textStyles).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({ color: COLORS.neutral200 })
-      ])
-    );
-  });
-
-  it('applies custom text styles', () => {
-    const mockOnPress = jest.fn();
-    const textStyle = { fontSize: 18 };
-
-    const { getByText } = render(
-      <Button
-        title="Custom Style Button"
-        textStyle={textStyle}
-        onPress={mockOnPress}
-      />
-    );
-
-    const buttonText = getByText('Custom Style Button');
-    const textStyles = buttonText.props.style;
-
-    expect(textStyles).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          fontSize: 18
-        })
-      ])
-    );
-  });
-
-  it('applies custom container styles', () => {
-    const mockOnPress = jest.fn();
-    const containerStyle = { backgroundColor: COLORS.primary500 };
-
-    const { UNSAFE_root } = render(
-      <Button
-        title="Custom Container"
-        containerStyle={containerStyle}
-        onPress={mockOnPress}
-      />
-    );
-
-    const touchable = UNSAFE_root.findByType(TouchableOpacity);
-
-    expect(touchable.props.style).toEqual(
-      expect.objectContaining({
-        ...styles.buttonContainer,
-        backgroundColor: COLORS.primary500
-      })
-    );
-  });
-
-  it('renders children instead of title when provided', () => {
-    const mockOnPress = jest.fn();
-    const TestComponent = () => <View testID="custom-component"></View>;
-
-    const { queryByText, getByTestId } = render(
       <Button onPress={mockOnPress}>
-        <TestComponent />
+        <Text>Click Me</Text>
       </Button>
     );
 
-    expect(queryByText('Press Me')).toBeNull();
-    expect(getByTestId('custom-component')).toBeDefined();
+    fireEvent.press(getByText('Click Me'));
+    expect(mockOnPress).toHaveBeenCalledTimes(1);
   });
 
-  it('passes additional TouchableOpacity props', () => {
-    const mockOnPress = jest.fn();
-    const { UNSAFE_root } = render(
-      <Button
-        title="With Props"
-        onPress={mockOnPress}
-        activeOpacity={0.8}
-        testID="test-button"
-      />
+  it('calls onLongPress function when long pressed', () => {
+    const mockOnLongPress = jest.fn();
+    const { getByText } = render(
+      <Button onLongPress={mockOnLongPress}>
+        <Text>Long Press Me</Text>
+      </Button>
     );
 
-    const touchable = UNSAFE_root.findByType(TouchableOpacity);
+    fireEvent(getByText('Long Press Me'), 'onLongPress');
+    expect(mockOnLongPress).toHaveBeenCalledTimes(1);
+  });
 
-    expect(touchable.props.activeOpacity).toBe(0.8);
-    expect(touchable.props.testID).toBe('test-button');
+  it('disables button functionality when disabled prop is true', () => {
+    const mockOnPress = jest.fn();
+    const { getByText } = render(
+      <Button disabled onPress={mockOnPress}>
+        <Text>Disabled Button</Text>
+      </Button>
+    );
+
+    fireEvent.press(getByText('Disabled Button'));
+    expect(mockOnPress).not.toHaveBeenCalled();
+  });
+
+  it('applies custom style', () => {
+    const customStyle = { backgroundColor: 'red', borderRadius: 10 };
+    const { getByTestId } = render(
+      <Button style={customStyle} testID="styled-button">
+        <Text>Styled Button</Text>
+      </Button>
+    );
+
+    const button = getByTestId('styled-button');
+    expect(button.props.style).toMatchObject(customStyle);
+  });
+
+  it('passes testID prop to TouchableOpacity', () => {
+    const { getByTestId } = render(
+      <Button testID="test-button">
+        <Text>Button with TestID</Text>
+      </Button>
+    );
+
+    expect(getByTestId('test-button')).toBeDefined();
+  });
+
+  it('accepts activeOpacity prop', () => {
+    const mockOnPress = jest.fn();
+    const { getByText } = render(
+      <Button activeOpacity={0.8} onPress={mockOnPress}>
+        <Text>With Active Opacity</Text>
+      </Button>
+    );
+
+    expect(getByText('With Active Opacity')).toBeDefined();
+    fireEvent.press(getByText('With Active Opacity'));
+    expect(mockOnPress).toHaveBeenCalledTimes(1);
+  });
+
+  it('triggers onLayout callback when layout changes', () => {
+    const mockOnLayout = jest.fn();
+    const { getByTestId } = render(
+      <Button onLayout={mockOnLayout} testID="layout-button">
+        <Text>Layout Test</Text>
+      </Button>
+    );
+
+    const button = getByTestId('layout-button');
+    const mockEvent = { nativeEvent: { layout: { width: 100, height: 50 } } };
+    fireEvent(button, 'onLayout', mockEvent);
+    expect(mockOnLayout).toHaveBeenCalledWith(mockEvent);
+  });
+
+  it('passes additional props to button', () => {
+    const hitSlopValue = {
+      top: 10,
+      bottom: 10,
+      left: 10,
+      right: 10
+    };
+
+    const { getByTestId } = render(
+      <Button hitSlop={hitSlopValue} testID="additional-props-button">
+        <Text>With Additional Props</Text>
+      </Button>
+    );
+
+    expect(getByTestId('additional-props-button')).toBeDefined();
   });
 });

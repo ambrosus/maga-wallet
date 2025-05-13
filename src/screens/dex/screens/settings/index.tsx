@@ -6,7 +6,7 @@ import {
   SafeViewContainer,
   Typography
 } from '@components/atoms';
-import { Button, Header } from '@components/molecules';
+import { Button, Header, Toast, ToastType } from '@components/molecules';
 import { COLORS, FONT_SIZE } from '@constants';
 import { SettingsForm } from '@core/dex/components/templates';
 import { useSwapSettings } from '@core/dex/lib/hooks';
@@ -25,6 +25,10 @@ export const DexSettingsScreen = ({ navigation }: Props) => {
   const renderHeaderRightContent = useMemo(() => {
     const onSaveActionHandle = () => {
       onApplySettingsHandle();
+      Toast.show({
+        text: t('swap.settings.toast.success'),
+        type: ToastType.Success
+      });
       navigation.goBack();
     };
 
@@ -39,7 +43,7 @@ export const DexSettingsScreen = ({ navigation }: Props) => {
         </Typography>
       </Button>
     );
-  }, [navigation, onApplySettingsHandle]);
+  }, [navigation, onApplySettingsHandle, t]);
 
   return (
     <SafeViewContainer style={styles.container}>

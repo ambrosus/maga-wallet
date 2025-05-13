@@ -36,7 +36,7 @@ export const SwapButton = ({
     }
 
     if (isInsufficientBalance) {
-      return t('bridge.insufficient.funds');
+      return t('buttons.insufficient');
     }
 
     return t('button.confirm');

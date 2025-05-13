@@ -1,11 +1,9 @@
-import {
-  SettingsIconWallet,
-  SettingsIconSecurity,
-  SettingsIconProfile,
-  SettingsIconSettings,
-  SettingsIconNotification,
-  SettingsIconInfo
-} from '@components/svgs';
+import { SettingsIconInfo } from '@components/svgs';
+import { SettingsIconNotification } from '@components/svgs/settings/settings-icon-notification';
+import { SettingsIconProfile } from '@components/svgs/settings/settings-icon-profile';
+import { SettingsIconSecurity } from '@components/svgs/settings/settings-icon-security';
+import { SettingsIconSettings } from '@components/svgs/settings/settings-icon-settings';
+import { SettingsIconWallet } from '@components/svgs/settings/settings-icon-wallet';
 import { SETTINGS_STACK_ROUTES } from '@navigation';
 import { SettingItem, Settingsitems } from './models';
 

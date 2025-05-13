@@ -8,17 +8,16 @@ const rightPadding = scale(16);
 export const styles = StyleSheet.create({
   main: {
     flexDirection: 'row',
-    height: scale(40),
+    height: scale(60),
     justifyContent: 'center',
     alignItems: 'center',
     position: 'relative',
     paddingHorizontal: scale(7)
   },
   arrowContainer: {
+    zIndex: 1000,
     position: 'absolute',
     left: scale(20),
-    justifyContent: 'center',
-    alignItems: 'center',
     height: '100%',
     width: scale(40)
   },

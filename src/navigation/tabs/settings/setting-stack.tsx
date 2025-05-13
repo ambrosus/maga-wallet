@@ -1,20 +1,25 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { SettingsScreen } from '@screens';
+import { SETTINGS_STACK_ROUTES, SettingsTabParamsList } from '@navigation';
+import {
+  AboutScreen,
+  AddressBookScreen,
+  ManageAccountsScreen,
+  NotificationsScreen,
+  PreferencesScreen,
+  SecurityScreen,
+  SettingsScreen
+} from '@screens';
 import {
   ConfirmNewPasscode,
   CreaateNewPasscode,
-  EnterNewPasscode
+  EnterPasscode
 } from '@screens/passcode';
-import { AboutScreen } from '@screens/settings/about';
-import { AddressBookScreen } from '@screens/settings/address-book';
-import { ManageAccountsScreen } from '@screens/settings/manage-accounts';
-import { NotificationsScreen } from '@screens/settings/notifications';
-import { PreferencesScreen } from '@screens/settings/preferences';
-import { SecurityScreen } from '@screens/settings/security';
 import {
-  SETTINGS_STACK_ROUTES,
-  SettingsTabParamsList
-} from './settings-tab.model';
+  TwoFAPrepare,
+  TwoFASetup,
+  TwoFAVerify,
+  VerifyIndentify
+} from '@screens/two-fa-auth';
 
 export const SettingsStack = () => {
   const Stack = createNativeStackNavigator<SettingsTabParamsList>();
@@ -65,7 +70,26 @@ export const SettingsStack = () => {
         />
         <Stack.Screen
           name={SETTINGS_STACK_ROUTES.EnterPasscode}
-          component={EnterNewPasscode}
+          component={EnterPasscode}
+        />
+
+        {/* 2 FA */}
+
+        <Stack.Screen
+          name={SETTINGS_STACK_ROUTES.VerifyIdentify}
+          component={VerifyIndentify}
+        />
+        <Stack.Screen
+          name={SETTINGS_STACK_ROUTES.TwoFAPrepare}
+          component={TwoFAPrepare}
+        />
+        <Stack.Screen
+          name={SETTINGS_STACK_ROUTES.TwoFASetup}
+          component={TwoFASetup}
+        />
+        <Stack.Screen
+          name={SETTINGS_STACK_ROUTES.TwoFAVerify}
+          component={TwoFAVerify}
         />
       </Stack.Navigator>
     </>

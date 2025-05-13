@@ -13,5 +13,9 @@ export const styles = StyleSheet.create({
     fontSize: FONT_SIZE.body.sm,
     fontFamily: FONTS.Onest500Medium,
     color: COLORS.textPrimary
+  },
+  errorContainer: {
+    maxWidth: '85%',
+    marginTop: -verticalScale(8)
   }
 });

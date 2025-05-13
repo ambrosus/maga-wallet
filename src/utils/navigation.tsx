@@ -1,11 +1,14 @@
-import { DISCOVER_STACK_ROUTES, SETTINGS_STACK_ROUTES } from '@navigation';
-import { HOME_STACK_ROUTES } from '@navigation/tabs/home/types';
+import {
+  DISCOVER_STACK_ROUTES,
+  HISTORY_STACK_ROUTES,
+  HOME_STACK_ROUTES
+} from '@navigation/tabs';
 import { RoutesModel } from '@navigation/tabs-stacks/types';
 
 const TabVisibleRoutes = [
   HOME_STACK_ROUTES.HomeScreen,
   DISCOVER_STACK_ROUTES.DiscoverScreen,
-  SETTINGS_STACK_ROUTES.SettingsScreen
+  HISTORY_STACK_ROUTES.HistoryScreen
 ];
 
 const getTabBarVisibility = (route: RoutesModel): boolean => {
