@@ -76,6 +76,14 @@
     "label.estimated": "estimated",
     "bottom.sheet.select.token_a": "Select token to send",
     "bottom.sheet.select.token_b": "Select token to receive",
-    "settings.title": "Swap Settings"
+    "settings": {
+      "title": "Swap Settings",
+      "toast.success": "Preferences saved.",
+      "slippage.errors": {
+        "high": "High slippage. Transaction may experience price impact.",
+        "low": "Low slippage. Transaction may fail.",
+        "invalid": "Invalid input. Enter a value between 0.1% and 50%."
+      }
+    }
   }
 }
