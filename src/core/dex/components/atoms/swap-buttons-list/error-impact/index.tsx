@@ -60,7 +60,7 @@ export const SwapErrorImpactButton = ({
     }
 
     if (isInsufficientBalance) {
-      return t('bridge.insufficient.funds');
+      return t('buttons.insufficient');
     }
 
     if (priceImpact) {
