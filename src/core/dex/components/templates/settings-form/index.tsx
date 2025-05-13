@@ -20,17 +20,25 @@ export const SettingsForm = ({
   const { slippageTolerance, deadline, extendedMode, multihops, autoApproval } =
     useMemo(() => settings, [settings]);
 
-  const onToggleExtendedMode = useCallback(() => {
-    onChangeSettings('extendedMode', !extendedMode);
-  }, [extendedMode, onChangeSettings]);
+  const onChangeDeadline = useCallback(
+    (payload: string) => onChangeSettings('deadline', payload),
+    [onChangeSettings]
+  );
 
-  const onToggleMultihops = useCallback(() => {
-    onChangeSettings('multihops', !multihops);
-  }, [multihops, onChangeSettings]);
+  const onToggleExtendedMode = useCallback(
+    () => onChangeSettings('extendedMode', !extendedMode),
+    [extendedMode, onChangeSettings]
+  );
 
-  const onToggleAutoApproval = useCallback(() => {
-    onChangeSettings('autoApproval', !autoApproval);
-  }, [autoApproval, onChangeSettings]);
+  const onToggleMultihops = useCallback(
+    () => onChangeSettings('multihops', !multihops),
+    [multihops, onChangeSettings]
+  );
+
+  const onToggleAutoApproval = useCallback(
+    () => onChangeSettings('autoApproval', !autoApproval),
+    [autoApproval, onChangeSettings]
+  );
 
   return (
     <View style={styles.container}>
@@ -43,7 +51,7 @@ export const SettingsForm = ({
         label="minutes"
         heading="Transaction Deadline"
         value={deadline}
-        onChangeText={(text) => onChangeSettings('deadline', text)}
+        onChangeText={onChangeDeadline}
       />
 
       <View style={styles.togglersContainer}>
