@@ -40,6 +40,7 @@ export type Settings = {
   deadline: string;
   multihops: boolean;
   extendedMode: boolean;
+  autoApproval: boolean;
 };
 
 export type SettingsKeys = keyof Settings;

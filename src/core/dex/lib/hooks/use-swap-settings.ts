@@ -1,63 +1,64 @@
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useSwapContextSelector } from '@core/dex/context';
 import { Settings, SettingsKeys } from '@core/dex/types';
 import { StringUtils, NumberUtils } from '@utils';
 
 export function useSwapSettings() {
   const { setSettings, _refSettingsGetter } = useSwapContextSelector();
+  const [localSettingsState, setLocalSettingsState] =
+    useState<Settings>(_refSettingsGetter);
+
   const settings = useRef<Settings>(_refSettingsGetter);
 
   useEffect(() => {
     settings.current = _refSettingsGetter;
   }, [_refSettingsGetter]);
 
-  const onChangeDeadline = useCallback(
-    (value: string) => {
-      if (/^0$|[.,]/.test(value)) return;
+  const onChangeDeadlineHandle = useCallback((payload: string) => {
+    if (/^0$|[.,]/.test(payload)) return;
 
-      return setSettings((prevState) => ({
-        ...prevState,
-        deadline: StringUtils.formatNumberInput(value)
-      }));
-    },
-    [setSettings]
-  );
+    setLocalSettingsState((prevState) => ({
+      ...prevState,
+      deadline: StringUtils.formatNumberInput(payload)
+    }));
+  }, []);
 
-  const onChangeSlippageTolerance = useCallback(
-    (value: string) => {
-      const decimalsLength = 2;
-      let finalValue = StringUtils.formatNumberInput(value);
-      finalValue = NumberUtils.limitDecimalCount(finalValue, decimalsLength);
+  const onChangeSlippageToleranceHandle = useCallback((payload: string) => {
+    const DECIMALS = 2;
+    const formattedValue = StringUtils.formatNumberInput(payload);
 
-      return setSettings({
-        ..._refSettingsGetter,
-        slippageTolerance: finalValue
-      });
-    },
-    [_refSettingsGetter, setSettings]
-  );
+    setLocalSettingsState((prevState) => ({
+      ...prevState,
+      slippageTolerance: NumberUtils.limitDecimalCount(formattedValue, DECIMALS)
+    }));
+  }, []);
+
+  const onApplySettingsHandle = useCallback(() => {
+    setSettings(localSettingsState);
+  }, [localSettingsState, setSettings]);
 
   const onChangeSettings = useCallback(
     (key: SettingsKeys, value: string | boolean) => {
       switch (key) {
         case 'deadline':
-          return onChangeDeadline(value as string);
+          return onChangeDeadlineHandle(value as string);
         case 'slippageTolerance':
-          return onChangeSlippageTolerance(value as string);
+          return onChangeSlippageToleranceHandle(value as string);
         default:
-          return setSettings({
-            ..._refSettingsGetter,
+          return setLocalSettingsState((prevState) => ({
+            ...prevState,
             [key]: value
-          });
+          }));
       }
     },
-    [
-      _refSettingsGetter,
-      onChangeDeadline,
-      onChangeSlippageTolerance,
-      setSettings
-    ]
+    [onChangeDeadlineHandle, onChangeSlippageToleranceHandle]
   );
 
-  return { onChangeSettings, settings, _refSettingsGetter };
+  return {
+    localSettingsState,
+    onChangeSettings,
+    onApplySettingsHandle,
+    settings,
+    _refSettingsGetter
+  };
 }

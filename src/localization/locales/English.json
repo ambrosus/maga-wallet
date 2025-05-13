@@ -55,6 +55,7 @@
     "receive": "You Get",
     "label.estimated": "estimated",
     "bottom.sheet.select.token_a": "Select token to send",
-    "bottom.sheet.select.token_b": "Select token to receive"
+    "bottom.sheet.select.token_b": "Select token to receive",
+    "settings.title": "Swap Settings"
   }
 }

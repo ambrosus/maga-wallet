@@ -11,7 +11,8 @@ export const INITIAL_SETTINGS: Settings = {
   slippageTolerance: INITIAL_SLIPPAGE_TOLERANCE,
   deadline: INITIAL_DEADLINE,
   multihops: true,
-  extendedMode: false
+  extendedMode: false,
+  autoApproval: false
 };
 
 export const INITIAL_SELECTED_TOKENS_AMOUNT: SelectedTokensAmountState = {

@@ -6,11 +6,15 @@ import { TabsParamsList } from '@navigation/tabs-stacks';
 export type HomeTabParamsList = {
   HomeScreen: undefined;
   DEXScreen: undefined;
+  DexReviewSwapScreen: undefined;
+  DexSettingsScreen: undefined;
 };
 
 export enum HOME_STACK_ROUTES {
   HomeScreen = 'HomeScreen',
-  DEXScreen = 'DEXScreen'
+  DEXScreen = 'DEXScreen',
+  DexReviewSwapScreen = 'DexReviewSwapScreen',
+  DexSettingsScreen = 'DexSettingsScreen'
 }
 export type HomeNavigationProp = CompositeNavigationProp<
   BottomTabNavigationProp<TabsParamsList>,

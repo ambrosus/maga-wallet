@@ -1,5 +1,6 @@
 import { useCallback, useMemo } from 'react';
 import { Keyboard } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { ethers } from 'ethers';
 import { bnZERO } from '@constants';
 import { useSwapContextSelector } from '@core/dex/context';
@@ -12,23 +13,22 @@ import {
   maximumAmountIn,
   minimumAmountOut
 } from '@core/dex/utils';
+import { HOME_STACK_ROUTES, HomeNavigationProp } from '@navigation';
 import { useEstimatedGas } from './use-estimated-gas';
 import { useSwapActions } from './use-swap-actions';
-import { useSwapBottomSheetHandler } from './use-swap-bottom-sheet-handler';
 import { useSwapHelpers } from './use-swap-helpers';
 import { useSwapPriceImpact } from './use-swap-price-impact';
 import { useSwapSettings } from './use-swap-settings';
 import { useSwapTokens } from './use-swap-tokens';
 
 export function useSwapInterface() {
+  const navigation: HomeNavigationProp = useNavigation();
+
   const {
     setUiBottomSheetInformation,
     _refExactGetter,
     setEstimatedGasValues
   } = useSwapContextSelector();
-
-  const { onReviewSwapPreview, onReviewSwapDismiss } =
-    useSwapBottomSheetHandler();
 
   const { uiPriceImpactGetter } = useSwapPriceImpact();
   const { checkAllowance, swapCallback } = useSwapActions();
@@ -56,8 +56,8 @@ export function useSwapInterface() {
         allowance: 'suitable'
       }));
 
-      return setTimeout(() => {
-        onReviewSwapPreview();
+      setTimeout(() => {
+        navigation.navigate(HOME_STACK_ROUTES.DexReviewSwapScreen);
       }, 700);
     }
 
@@ -77,7 +77,6 @@ export function useSwapInterface() {
       );
 
       const priceImpact = await uiPriceImpactGetter();
-
       const allowance = await checkAllowance();
 
       if (!!allowance) {
@@ -116,10 +115,9 @@ export function useSwapInterface() {
       });
 
       setTimeout(() => {
-        onReviewSwapPreview();
+        navigation.navigate(HOME_STACK_ROUTES.DexReviewSwapScreen);
       }, 700);
     } catch (error) {
-      onReviewSwapDismiss();
       throw error;
     }
   }, [
@@ -128,15 +126,14 @@ export function useSwapInterface() {
     hasWrapNativeToken,
     setEstimatedGasValues,
     isEnoughBalanceToCoverGas,
-    onReviewSwapPreview,
+    navigation,
     settings,
     _refExactGetter,
     tokenToReceive.AMOUNT,
     tokenToSell.AMOUNT,
     uiPriceImpactGetter,
     checkAllowance,
-    estimatedApprovalGas,
-    onReviewSwapDismiss
+    estimatedApprovalGas
   ]);
 
   const isEstimatedToken = useMemo(() => {

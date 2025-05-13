@@ -17,13 +17,12 @@ import {
 } from '@core/dex/types';
 import { createContextSelector } from '@lib';
 import { SWAP_SUPPORTED_TOKENS } from '../entities';
-import { addresses } from '../utils';
+import { addresses, initialBalances } from '../utils';
 import {
   INITIAL_UI_BOTTOM_SHEET_INFORMATION,
   INITIAL_SELECTED_TOKENS_AMOUNT,
   INITIAL_SETTINGS
 } from './initials';
-import { initialBalances } from '../utils/balances';
 
 export const SwapContext = () => {
   const initialSelectedTokens = useMemo(

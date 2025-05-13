@@ -8,4 +8,5 @@ export { Spinner } from './spinner';
 export { PercentPressableContainer } from './percent-pressable-container';
 export { KeyboardDismissingView } from './keyboard-dismissing-view';
 export { ShimmerLoader } from './shimmer-loader';
+export { Switch } from './switch';
 export * from './input';

@@ -16,7 +16,7 @@ import { useSwapContextSelector } from '@core/dex/context';
 import { useSwapAllBalances, useAllLiquidityPools } from '@core/dex/lib/hooks';
 import { FIELD } from '@core/dex/types';
 import { useEffectOnce } from '@lib';
-import { HomeTabParamsList } from '@navigation';
+import { HOME_STACK_ROUTES, HomeTabParamsList } from '@navigation';
 import { NavigationScreenProps } from '@navigation/types';
 import { styles } from './styles';
 
@@ -56,13 +56,18 @@ export const DEXScreen = ({ navigation }: Props) => {
     }, [navigation, reset])
   );
 
+  const onNavigateToSettings = useCallback(
+    () => navigation.navigate(HOME_STACK_ROUTES.DexSettingsScreen),
+    [navigation]
+  );
+
   const renderHeaderRightContent = useMemo(() => {
     return (
-      <Button onPress={() => {}}>
+      <Button onPress={onNavigateToSettings}>
         <SettingsFilledIcon />
       </Button>
     );
-  }, []);
+  }, [onNavigateToSettings]);
 
   return (
     <SafeViewContainer style={styles.container}>

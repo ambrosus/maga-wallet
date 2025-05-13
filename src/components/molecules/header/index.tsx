@@ -46,8 +46,8 @@ export const Header = ({
   const navigation = useNavigation<RootNavigationProp>();
 
   const handleGoBack = () => {
-    if (typeof goBack === 'function') goBack();
-    else if (goBack) navigation.goBack();
+    if (typeof goBack === 'function') return goBack();
+    navigation.goBack();
   };
 
   const renderTitle = () => {
