@@ -50,8 +50,16 @@ export const SwapReverseTokens = () => {
     <>
       <Spacer value={2} />
       <View style={styles.container}>
-        <Button onPress={onReverseSelectedTokensPress} style={styles.button}>
-          <SwapOppositeArrowsIcon scale={0.75} color={COLORS.neutral400} />
+        <Button
+          onPress={onReverseSelectedTokensPress}
+          style={styles.button}
+          activeOpacity={0.75}
+        >
+          <SwapOppositeArrowsIcon
+            scale={0.75}
+            color={COLORS.neutral400}
+            orientation="down"
+          />
         </Button>
       </View>
       <Spacer value={2} />
