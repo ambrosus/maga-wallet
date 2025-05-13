@@ -4,3 +4,4 @@ export { useKeyboardHeight } from './use-keyboard-height';
 export { useEffectOnce } from './use-effect-once';
 export { useWallet } from './use-wallet';
 export { useNativeCurrency } from './use-native-currency';
+export { useSafeViewController } from './use-safe-view-controller';

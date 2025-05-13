@@ -4,13 +4,23 @@ import { useTranslation } from 'react-i18next';
 import {
   InputRef,
   RowContainer,
+  Spacer,
   TextInput,
   Typography
 } from '@components/atoms';
-import { COLORS } from '@constants';
-import { Balance, TokenSelector } from '@core/dex/components/molecules';
+import { BASE_PERCENTS_PRESET, COLORS } from '@constants';
+import {
+  AmountPresetsContainer,
+  Balance,
+  TokenSelector
+} from '@core/dex/components/molecules';
 import { useSwapContextSelector } from '@core/dex/context';
-import { useSwapFieldsHandler } from '@core/dex/lib/hooks';
+import {
+  useSwapAmountPreset,
+  useSwapBalance,
+  useSwapFieldsHandler,
+  useSwapTokens
+} from '@core/dex/lib/hooks';
 import { FIELD, SelectedTokensKeys } from '@core/dex/types';
 import { StringUtils, NumberUtils, verticalScale } from '@utils';
 import { styles } from './styles';
@@ -32,21 +42,31 @@ export const InputWithTokenSelect = ({
   borderRadius
 }: InputWithTokenSelectProps) => {
   const { t } = useTranslation();
+
+  const label = type === FIELD.TOKEN_A ? t('swap.pay') : t('swap.receive');
+
   const {
+    selectedTokens,
     selectedTokensAmount,
     setLastChangedInput,
     isPoolsLoading,
     isExactInRef
   } = useSwapContextSelector();
   const { onChangeSelectedTokenAmount } = useSwapFieldsHandler();
+  const {
+    tokenToSell: { TOKEN: tokenA }
+  } = useSwapTokens();
+  const { onPresetAmountPress } = useSwapAmountPreset();
+
+  const { bnBalanceAmount, isFetchingBalance } = useSwapBalance(
+    selectedTokens[type]
+  );
 
   const textInputRef = useRef<InputRef>(null);
 
   const [isBalanceLoading, setIsBalanceLoading] = useState(true);
   const [isInputFocused, setIsInputFocused] = useState(false);
   const [inputContainerWidth, setInputContainerWidth] = useState(0);
-
-  const label = type === FIELD.TOKEN_A ? t('swap.pay') : t('swap.receive');
 
   const onChangeTokenAmount = (value: string) => {
     setLastChangedInput(type);
@@ -124,6 +144,12 @@ export const InputWithTokenSelect = ({
     };
   }, [borderRadius]);
 
+  const onPresetAmountPressHandler = useCallback(
+    async (value: (typeof BASE_PERCENTS_PRESET)[number]) =>
+      await onPresetAmountPress({ type, bnBalanceAmount, value }),
+    [onPresetAmountPress, type, bnBalanceAmount]
+  );
+
   const paddingBottomStyle = useMemo(() => {
     return {
       paddingBottom: verticalScale(type === FIELD.TOKEN_A ? 32 : 16)
@@ -148,7 +174,12 @@ export const InputWithTokenSelect = ({
           {label} {estimated && `(${t('swap.label.estimated')})`}
         </Typography>
 
-        <Balance type={type} setIsBalanceLoading={setIsBalanceLoading} />
+        <Balance
+          type={type}
+          bnBalanceAmount={bnBalanceAmount}
+          isFetchingBalance={isFetchingBalance}
+          setIsBalanceLoading={setIsBalanceLoading}
+        />
       </RowContainer>
       <View style={styles.upperRow}>
         <TokenSelector type={type} />
@@ -169,11 +200,29 @@ export const InputWithTokenSelect = ({
             onBlur={onToggleInputFocus}
             selection={selection}
             onChangeText={onChangeTokenAmount}
-            style={inputStyle}
+            style={[
+              inputStyle,
+              {
+                color:
+                  COLORS[
+                    type === FIELD.TOKEN_A ? 'textPrimary' : 'textSecondary'
+                  ]
+              }
+            ]}
             textAlign="right"
           />
         </Pressable>
       </View>
+      {type === FIELD.TOKEN_A && !!tokenA.address && (
+        <>
+          <Spacer value={verticalScale(16)} />
+          <AmountPresetsContainer
+            onPresetPress={
+              onPresetAmountPressHandler as (payload: number) => void
+            }
+          />
+        </>
+      )}
     </View>
   );
 };

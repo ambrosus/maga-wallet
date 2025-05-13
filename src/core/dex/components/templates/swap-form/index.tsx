@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { Keyboard, KeyboardAvoidingView, View } from 'react-native';
+import { KeyboardAvoidingView, View } from 'react-native';
 import { KeyboardDismissingView, Spacer } from '@components/atoms';
 import { FLEX_FULL_SIZE, isIos } from '@constants';
 import { SwapReverseTokens } from '@core/dex/components/molecules';

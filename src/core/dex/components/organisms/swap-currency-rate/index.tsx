@@ -1,10 +1,12 @@
 import { memo, useEffect, useMemo } from 'react';
-import { StyleProp, TouchableOpacity, ViewStyle } from 'react-native';
+import { TouchableOpacity } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 import { RowContainer, Spinner, Typography } from '@components/atoms';
 import { COLORS } from '@constants';
 import { useSwapContextSelector } from '@core/dex/context';
 import { useSwapBetterRate } from '@core/dex/lib/hooks';
-import { NumberUtils, verticalScale } from '@utils';
+import { NumberUtils } from '@utils';
+import { styles } from './styles';
 
 interface SwapCurrencyRateProps {
   tokenToSell: string;
@@ -40,39 +42,39 @@ const _SwapCurrencyRate = ({
     return () => clearTimeout(timeout);
   }, [bestSwapRate, tokenToReceive, tokenToSell, isExecutingPrice, setRate]);
 
-  const containerStyle: StyleProp<ViewStyle> = useMemo(() => {
-    return {
-      height: 52,
-      paddingBottom: verticalScale(20)
-    };
-  }, []);
-
   const transformedCurrencyRate = useMemo(
     () => NumberUtils.toSignificantDigits(rate.toString(), 6),
     [rate]
   );
 
   return (
-    <RowContainer
-      style={containerStyle}
-      justifyContent="center"
-      alignItems="center"
-    >
-      {isExecutingRate || typeof rate === 'number' ? (
-        <Spinner customSize={17.5} />
-      ) : (
-        <TouchableOpacity onPress={onToggleTokensOrder}>
-          <Typography
-            fontSize={14}
-            fontFamily="Onest600SemiBold"
-            color={COLORS.primary500}
-          >
-            1 {tokens.symbolInput ?? 'AMB'} = {transformedCurrencyRate}{' '}
-            {tokens.symbolOutput}
-          </Typography>
-        </TouchableOpacity>
-      )}
-    </RowContainer>
+    <TouchableOpacity onPress={onToggleTokensOrder} activeOpacity={0.8}>
+      <LinearGradient
+        colors={['#FBF4FF', '#FFF']}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 0, y: 1 }}
+        style={styles.container}
+      >
+        <RowContainer
+          style={styles.innerContainer}
+          justifyContent="center"
+          alignItems="center"
+        >
+          {isExecutingRate || typeof rate === 'number' ? (
+            <Spinner customSize={17.5} />
+          ) : (
+            <Typography
+              fontSize={14}
+              fontFamily="Onest600SemiBold"
+              color={COLORS.primary500}
+            >
+              1 {tokens.symbolInput ?? 'AMB'} = {transformedCurrencyRate}{' '}
+              {tokens.symbolOutput}
+            </Typography>
+          )}
+        </RowContainer>
+      </LinearGradient>
+    </TouchableOpacity>
   );
 };
 

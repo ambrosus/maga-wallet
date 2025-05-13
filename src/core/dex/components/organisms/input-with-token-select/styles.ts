@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { COLORS } from '@constants';
+import { COLORS, FONTS } from '@constants';
 import { moderateScale, scale, verticalScale } from '@utils';
 
 export const styles = StyleSheet.create({
@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
     width: '100%',
     borderWidth: 0,
     fontSize: moderateScale(22),
-    fontFamily: 'Onset600Medium',
+    fontFamily: FONTS.Onest600SemiBold,
     backgroundColor: 'transparent',
     paddingHorizontal: 0.5,
     paddingVertical: 0

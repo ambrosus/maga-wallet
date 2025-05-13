@@ -1,5 +1,6 @@
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { View } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { SafeViewContainer, Typography } from '@components/atoms';
@@ -8,7 +9,8 @@ import { SettingsFilledIcon } from '@components/svgs';
 import { COLORS } from '@constants';
 import {
   SwapForm,
-  BottomSheetTokensList
+  BottomSheetTokensList,
+  BottomSheetPreviewSwap
 } from '@core/dex/components/templates';
 import { useSwapContextSelector } from '@core/dex/context';
 import { useSwapAllBalances, useAllLiquidityPools } from '@core/dex/lib/hooks';
@@ -20,7 +22,7 @@ import { styles } from './styles';
 
 type Props = NavigationScreenProps<HomeTabParamsList, 'DEXScreen'>;
 
-export const DEXScreen = ({}: Props) => {
+export const DEXScreen = ({ navigation }: Props) => {
   const { t } = useTranslation();
   const { bottom } = useSafeAreaInsets();
 
@@ -31,29 +33,28 @@ export const DEXScreen = ({}: Props) => {
     bottomSheetTokenARef,
     bottomSheetTokenBRef,
     bottomSheetPreviewSwapRef,
-    selectedTokens
-    // reset
+    reset
   } = useSwapContextSelector();
 
   useEffectOnce(() => {
     getAllPoolsCount();
   });
 
-  //   useFocusEffect(
-  //     useCallback(() => {
-  //       const unsubscribe = navigation.addListener('beforeRemove', (e) => {
-  //         const resetActions = ['RESET', 'GO_BACK'];
-  //         if (resetActions.includes(e.data.action.type)) reset();
-  //       });
+  useFocusEffect(
+    useCallback(() => {
+      const unsubscribe = navigation.addListener('beforeRemove', (event) => {
+        const {
+          data: {
+            action: { type }
+          }
+        } = event;
 
-  //       return unsubscribe;
-  //     }, [navigation, reset])
-  //   );
+        if (['RESET', 'GO_BACK'].includes(type)) reset();
+      });
 
-  //   const onNavigateToSwapSettings = useCallback(
-  //     () => navigation.navigate('SwapSettingsScreen'),
-  //     [navigation]
-  //   );
+      return unsubscribe;
+    }, [navigation, reset])
+  );
 
   const renderHeaderRightContent = useMemo(() => {
     return (
@@ -76,7 +77,7 @@ export const DEXScreen = ({}: Props) => {
 
       <BottomSheetTokensList ref={bottomSheetTokenARef} type={FIELD.TOKEN_A} />
       <BottomSheetTokensList ref={bottomSheetTokenBRef} type={FIELD.TOKEN_B} />
-      {/* <BottomSheetPreviewSwap ref={bottomSheetPreviewSwapRef} /> */}
+      <BottomSheetPreviewSwap ref={bottomSheetPreviewSwapRef} />
 
       <View style={[styles.footer, { bottom }]}>
         <Typography

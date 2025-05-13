@@ -53,6 +53,8 @@
   "swap": {
     "pay": "You Swap",
     "receive": "You Get",
-    "label.estimated": "estimated"
+    "label.estimated": "estimated",
+    "bottom.sheet.select.token_a": "Select token to send",
+    "bottom.sheet.select.token_b": "Select token to receive"
   }
 }

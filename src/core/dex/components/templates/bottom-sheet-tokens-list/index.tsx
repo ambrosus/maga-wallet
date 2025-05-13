@@ -1,17 +1,17 @@
 import { forwardRef, useCallback } from 'react';
-import { ListRenderItemInfo, View } from 'react-native';
+import { ListRenderItemInfo, Platform } from 'react-native';
 import { BottomSheetFlatList, BottomSheetModal } from '@gorhom/bottom-sheet';
+import { toLower } from 'lodash';
 import { useTranslation } from 'react-i18next';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Spacer } from '@components/atoms';
+import { BottomSheet } from '@components/organisms';
 import { bnZERO, Config, DEVICE_HEIGHT } from '@constants';
 import { BottomSheetTokenItem } from '@core/dex/components/organisms';
 import { useSwapAllBalances } from '@core/dex/lib/hooks';
-import { FIELD, SelectedTokensKeys, SwapToken } from '@core/dex/types';
+import { SelectedTokensKeys, SwapToken } from '@core/dex/types';
 // import { transformTokensObject } from '@core/dex/utils';
-import { useForwardedRef } from '@lib';
+import { useForwardedRef, useSafeViewController } from '@lib';
 import { scale } from '@utils';
-import { BottomSheet } from '@components/organisms';
 
 interface BottomSheetTokensListProps {
   type: SelectedTokensKeys;
@@ -27,9 +27,9 @@ export const BottomSheetTokensList = forwardRef<
 
   // const { tokens } = useRodeoTokensListQuery();
 
-  const label = type === FIELD.TOKEN_A ? t('swap.pay') : t('swap.receive');
+  const label = t(`swap.bottom.sheet.select.${toLower(type)}`);
 
-  const { bottom } = useSafeAreaInsets();
+  const { bottom } = useSafeViewController();
 
   const renderListCurrencyItem = useCallback(
     ({ item }: ListRenderItemInfo<SwapToken>) => {
@@ -51,18 +51,27 @@ export const BottomSheetTokensList = forwardRef<
   );
 
   return (
-    <BottomSheet ref={bottomSheetRef} title={label}>
+    <BottomSheet
+      ref={bottomSheetRef}
+      title={label}
+      maxDynamicContentSize={DEVICE_HEIGHT / 2}
+    >
       <Spacer value={scale(16)} />
 
-      <View style={{ maxHeight: DEVICE_HEIGHT / 2.25 }}>
-        <BottomSheetFlatList
-          maxToRenderPerBatch={4}
-          data={Config.SWAP_TOKENS}
-          showsVerticalScrollIndicator={false}
-          keyExtractor={(item) => item.symbol}
-          renderItem={renderListCurrencyItem}
-        />
-      </View>
+      <BottomSheetFlatList
+        maxToRenderPerBatch={4}
+        data={Config.SWAP_TOKENS}
+        showsVerticalScrollIndicator={false}
+        style={{
+          marginBottom: Platform.select({
+            ios: bottom,
+            android: bottom * 2
+          })
+        }}
+        keyExtractor={(item) => item.symbol}
+        renderItem={renderListCurrencyItem}
+      />
+
       <Spacer value={scale(bottom === 0 ? 20 : bottom)} />
     </BottomSheet>
   );

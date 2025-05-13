@@ -42,4 +42,4 @@ const environments = {
   }
 } as const;
 
-export const Config = environments.testnet;
+export const Config = environments.production;

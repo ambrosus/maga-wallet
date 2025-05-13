@@ -4,7 +4,7 @@ import { verticalScale } from '@utils';
 export const styles = StyleSheet.create({
   container: {
     position: 'absolute',
-    top: verticalScale(32),
+    top: verticalScale(80),
     left: 0,
     right: 0,
     bottom: 0,

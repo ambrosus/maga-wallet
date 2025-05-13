@@ -3,3 +3,4 @@ export { Balance } from './balance';
 export { SwapReverseTokens } from './swap-reverse-tokens';
 export { SettingsSlippageToleranceForm } from './settings-slippage-tolerance-form';
 export { PreviewInformation } from './preview-information';
+export { AmountPresetsContainer } from './amount-presets-container';
