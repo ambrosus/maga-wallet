@@ -35,6 +35,7 @@ export const CreaateNewPasscode = ({}) => {
         title={t('settings.tabs.create.new.passkey')}
         headerWithGoBack={false}
         passcode={passcode}
+        error={''}
         handleCodeChange={handleCodeChange}
         handleRemove={handleRemove}
       />

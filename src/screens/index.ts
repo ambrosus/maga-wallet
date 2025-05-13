@@ -6,3 +6,4 @@ export { DEXScreen } from './dex';
 export * from './discover';
 export * from './home';
 export * from './settings';
+export * from './history';

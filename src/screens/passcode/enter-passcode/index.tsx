@@ -5,18 +5,14 @@ import { t } from 'i18next';
 import { keychainStore } from '@lib/keychain';
 import { KEYCHAIN_KEYS } from '@lib/keychain/keys';
 import { RootNavigationProp, ROOT_STACK_ROUTES } from '@navigation/root-stack';
-import {
-  useHandleRemove,
-  useShakeAnimation,
-  useHandleCodeChange
-} from '../hooks';
+import { useHandleRemove, useHandleCodeChange } from '../hooks';
 import { PasscodeScreenLayout } from '../passcode-layout';
 
 export type EnterPasscodeParams = {
   onPasscodeSuccess?: () => void;
 };
 
-export const EnterNewPasscode = () => {
+export const EnterPasscode = () => {
   const { params } =
     useRoute<RouteProp<Record<string, EnterPasscodeParams>, string>>();
   const [passcode, setPasscode] = useState('');
@@ -27,8 +23,6 @@ export const EnterNewPasscode = () => {
   useEffect(() => {
     keychainStore.getItem(KEYCHAIN_KEYS.appPasscode).then(setCurrentPassKey);
   }, []);
-
-  const { triggerShake } = useShakeAnimation();
 
   const handleSubmit = useCallback(() => {
     if (passcode.length === 4) {
@@ -42,18 +36,16 @@ export const EnterNewPasscode = () => {
       } else {
         setError(t('settings.tabs.incorect.passcode'));
         setPasscode('');
-        triggerShake();
         setTimeout(() => setError(''), 3000);
       }
     }
-  }, [passcode, currentPassKey, params, navigation, triggerShake]);
+  }, [passcode, currentPassKey, params, navigation]);
 
   const handleCodeChange = useHandleCodeChange({
     passcode,
     setPasscode,
     error,
     setError,
-    triggerShake,
     onComplete: () => handleSubmit()
   });
 

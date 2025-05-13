@@ -4,7 +4,9 @@
     "faceID": "Use Face ID",
     "review": "Review",
     "enter.amount": "Enter amount",
-    "insufficient": "Insufficient balance"
+    "insufficient": "Insufficient balance",
+    "next": "Next",
+    "copy": "Copy"
   },
   "common": {
     "balance": "Balance"
@@ -24,9 +26,9 @@
     }
   },
   "tabs": {
-    "Home": "Home",
-    "Discover": "Discover",
-    "Settings": "Settings"
+    "home": "Home",
+    "discover": "Discover",
+    "history": "History"
   },
   "settings.tabs": {
     "app.settings": "App Settings",
@@ -40,7 +42,25 @@
     "create.new.passkey": "Create new passkey",
     "confirm.new.passkey": "Confirm new passkey",
     "enter.passkey": "Enter current passkey",
-    "incorect.passcode": "Incorrect passcode"
+    "incorect.passcode": "Incorrect passcode",
+    "security.change.passkey": "Change passkey",
+    "security.face.id": "Sign in with Face ID",
+    "security.twoFA.auth": "Google 2FA Authentication",
+    "security.auto.approval": "Auto-Approval",
+    "security.auto.approval.description": "Ask for approval ahead of transactions.",
+    "verify.header": "Verify your Identity",
+    "verify.description": "We’ve sent a 6-digit code to your email. Check your inbox or spam folder.",
+    "resend.code": "Resend Code",
+    "two.fa.setup.header": "Set up 2FA with Google\n Authenticator",
+    "two.fa.setup.title": "You’ll need the Google Authenticator app to continue.",
+    "two.fa.setup.description": "Download it from the App Store or Play Store.",
+    "two.fa.setup.button": "I Have the App",
+    "two.fa.connect.header": "Connect Google Authenticator",
+    "two.fa.connect.description": "Copy the key below and add it to your Google Authenticator app",
+    "copy.key": "Copy Key",
+    "two.fa.verify.header": "Verify Your Setup",
+    "two.fa.verify.description": "Enter the 6-digit code from Google\n Authenticator.",
+    "get.code": "Get code"
   },
   "account": {
     "actions": {

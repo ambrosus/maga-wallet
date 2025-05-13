@@ -1,18 +1,42 @@
-import Svg, { Path } from 'react-native-svg';
+import { StyleSheet, View } from 'react-native';
+import { Path, Svg } from 'react-native-svg';
 import { COLORS } from '@constants';
 import { SvgIconProps } from '@types';
+import { scale } from '@utils';
 
-export const CloseIcon = ({
-  scale = 1,
-  color = COLORS.black
-}: SvgIconProps) => {
-  const size = 14 * scale;
+interface CloseIconModel extends SvgIconProps {
+  border?: boolean;
+}
+
+export function CloseIcon(props: CloseIconModel) {
+  const { color = COLORS.neutral900, scale = 1, border } = props;
+  const width = 24;
+  const height = 24;
+
   return (
-    <Svg width={size} height={size} viewBox="0 0 14 14" fill="none">
-      <Path
-        d="M6.9997 5.5865L11.9495 0.636719L13.3637 2.05093L8.4139 7.0007L13.3637 11.9504L11.9495 13.3646L6.9997 8.4149L2.04996 13.3646L0.635738 11.9504L5.5855 7.0007L0.635738 2.05093L2.04996 0.636719L6.9997 5.5865Z"
-        fill={color}
-      />
-    </Svg>
+    <View style={border ? styles.closeButtonContainer : {}}>
+      <Svg
+        width={width * scale}
+        height={height * scale}
+        viewBox={`0 0 ${width} ${height}`}
+        fill="none"
+      >
+        <Path
+          d="M4.21 4.387l.083-.094a1 1 0 011.32-.083l.094.083L12 10.585l6.293-6.292a1 1 0 111.414 1.414L13.415 12l6.292 6.293a1 1 0 01.083 1.32l-.083.094a1 1 0 01-1.32.083l-.094-.083L12 13.415l-6.293 6.292a1 1 0 01-1.414-1.414L10.585 12 4.293 5.707a1 1 0 01-.083-1.32l.083-.094-.083.094z"
+          fill={color}
+        />
+      </Svg>
+    </View>
   );
-};
+}
+
+const styles = StyleSheet.create({
+  closeButtonContainer: {
+    borderWidth: 1,
+    borderColor: COLORS.neutral300,
+    borderRadius: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: scale(3)
+  }
+});

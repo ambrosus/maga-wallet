@@ -12,8 +12,8 @@ import {
   DiscoverTabParamsList,
   HOME_STACK_ROUTES,
   HomeTabParamsList,
-  SETTINGS_STACK_ROUTES,
-  SettingsTabParamsList
+  HISTORY_STACK_ROUTES,
+  HistoryTabParamsList
 } from '@navigation/tabs';
 
 /**
@@ -23,7 +23,7 @@ import {
 export type TabsStackParamsList = {
   Home: undefined;
   Discover: undefined;
-  Settings: undefined;
+  History: undefined;
 };
 
 /**
@@ -36,7 +36,7 @@ export type TabsNavigationScreenProps<Route extends keyof TabsStackParamsList> =
 export type TabsParamsList = {
   Home: NavigatorScreenParams<HomeTabParamsList>;
   Discover: NavigatorScreenParams<DiscoverTabParamsList>;
-  Settings: NavigatorScreenParams<SettingsTabParamsList>;
+  History: NavigatorScreenParams<HistoryTabParamsList>;
 };
 
 export type NavigationProp = CompositeNavigationProp<
@@ -49,4 +49,4 @@ export type TabsNavigationProp = BottomTabNavigationProp<TabsParamsList>;
 export type RoutesModel =
   | HOME_STACK_ROUTES
   | DISCOVER_STACK_ROUTES
-  | SETTINGS_STACK_ROUTES;
+  | HISTORY_STACK_ROUTES;

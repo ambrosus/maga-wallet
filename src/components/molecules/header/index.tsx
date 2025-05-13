@@ -127,16 +127,5 @@ export const Header = ({
         {renderContentRight()}
       </RowContainer>
     </RowContainer>
-
-    // <View style={styles.main}>
-    //   {goBack && (
-    //     <Button style={styles.arrowContainer} onPress={handleGoBack}>
-    //       <Arow orientation="left" />
-    //     </Button>
-    //   )}
-    //   <Typography fontSize={scale(20)} color={COLORS.textPrimary}>
-    //     {title}
-    //   </Typography>
-    // </View>
   );
 };
