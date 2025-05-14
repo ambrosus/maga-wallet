@@ -9,8 +9,7 @@ import { SettingsFilledIcon } from '@components/svgs';
 import { COLORS } from '@constants';
 import {
   SwapForm,
-  BottomSheetTokensList,
-  BottomSheetPreviewSwap
+  BottomSheetTokensList
 } from '@core/dex/components/templates';
 import { useSwapContextSelector } from '@core/dex/context';
 import { useSwapAllBalances, useAllLiquidityPools } from '@core/dex/lib/hooks';
@@ -29,12 +28,8 @@ export const DEXScreen = ({ navigation }: Props) => {
   useSwapAllBalances();
 
   const { getAllPoolsCount } = useAllLiquidityPools();
-  const {
-    bottomSheetTokenARef,
-    bottomSheetTokenBRef,
-    bottomSheetPreviewSwapRef,
-    reset
-  } = useSwapContextSelector();
+  const { bottomSheetTokenARef, bottomSheetTokenBRef, reset } =
+    useSwapContextSelector();
 
   useEffectOnce(() => {
     getAllPoolsCount();
@@ -84,7 +79,6 @@ export const DEXScreen = ({ navigation }: Props) => {
 
       <BottomSheetTokensList ref={bottomSheetTokenARef} type={FIELD.TOKEN_A} />
       <BottomSheetTokensList ref={bottomSheetTokenBRef} type={FIELD.TOKEN_B} />
-      <BottomSheetPreviewSwap ref={bottomSheetPreviewSwapRef} />
 
       <View style={[styles.footer, { bottom }]}>
         <Typography

@@ -46,4 +46,4 @@ const environments = {
   }
 } as const;
 
-export const Config = environments.production;
+export const Config = environments.testnet;

@@ -34,7 +34,7 @@
     "crypto-browserify": "^3.12.1",
     "crypto-js": "^4.2.0",
     "empty-module": "^0.0.2",
-    "ethers": "5.7.2",
+    "ethers": "^5.7.2",
     "i18next": "^25.0.1",
     "i18next-react": "^0.2.2",
     "lint-staged": "^15.5.1",

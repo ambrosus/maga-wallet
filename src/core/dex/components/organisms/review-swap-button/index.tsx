@@ -88,7 +88,8 @@ export const ReviewSwapButton = () => {
   ]);
 
   return (
-    <PrimaryButton disabled={disabled} onPress={onResolveBottomSheetDataPress}>
+    <PrimaryButton onPress={onResolveBottomSheetDataPress}>
+      {/* <PrimaryButton disabled={disabled} onPress={onResolveBottomSheetDataPress}> */}
       <TextOrSpinner
         label={swapButtonString}
         loadingLabel={undefined}

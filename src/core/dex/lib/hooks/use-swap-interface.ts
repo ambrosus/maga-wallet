@@ -2,7 +2,7 @@ import { useCallback, useMemo } from 'react';
 import { Keyboard } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { ethers } from 'ethers';
-import { bnZERO } from '@constants';
+import { bnZERO, COLORS } from '@constants';
 import { useSwapContextSelector } from '@core/dex/context';
 import { INITIAL_UI_BOTTOM_SHEET_INFORMATION } from '@core/dex/context/initials';
 import { AllowanceStatus } from '@core/dex/types';
@@ -25,6 +25,7 @@ export function useSwapInterface() {
   const navigation: HomeNavigationProp = useNavigation();
 
   const {
+    uiBottomSheetInformation,
     setUiBottomSheetInformation,
     _refExactGetter,
     setEstimatedGasValues
@@ -174,5 +175,23 @@ export function useSwapInterface() {
     tokenToSell.TOKEN
   ]);
 
-  return { resolveBottomSheetData, isEstimatedToken };
+  const priceImpactHighlight = useMemo(() => {
+    const { priceImpact } = uiBottomSheetInformation;
+
+    if (priceImpact !== undefined && priceImpact !== null) {
+      if (priceImpact < 0 || priceImpact < 5) return COLORS.neutral500;
+      if (priceImpact >= 5) return COLORS.destructive500;
+    }
+  }, [uiBottomSheetInformation]);
+
+  const isPriceImpactHigh = useMemo(() => {
+    return priceImpactHighlight === COLORS.destructive500;
+  }, [priceImpactHighlight]);
+
+  return {
+    resolveBottomSheetData,
+    isEstimatedToken,
+    priceImpactHighlight,
+    isPriceImpactHigh
+  };
 }

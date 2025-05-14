@@ -7,7 +7,7 @@ import { FIELD } from '@core/dex/types';
 import { useForwardedRef } from '@lib';
 import { scale } from '@utils';
 import { styles } from './styles';
-import { BottomSheetReviewTokenItem } from '../../atoms';
+import { SwapReviewTokenItem } from '../../atoms';
 import { PreviewInformation } from '../../molecules';
 import { SubmitSwapActions } from '../../organisms';
 
@@ -52,9 +52,9 @@ export const BottomSheetPreviewSwap = forwardRef<BottomSheetModal, unknown>(
       >
         <View style={styles.container}>
           <View style={styles.preview}>
-            <BottomSheetReviewTokenItem type={FIELD.TOKEN_A} />
+            <SwapReviewTokenItem type={FIELD.TOKEN_A} />
             <View style={styles.divider} />
-            <BottomSheetReviewTokenItem type={FIELD.TOKEN_B} />
+            <SwapReviewTokenItem type={FIELD.TOKEN_B} />
           </View>
 
           <PreviewInformation />
