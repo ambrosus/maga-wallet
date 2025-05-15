@@ -1,8 +1,8 @@
 import { ethers } from 'ethers';
 import { create } from 'zustand';
 import { TOKENS_DATA, WALLETS_DATA } from '@constants';
+import { IToken, IWallet } from '@types';
 import { Networks, WalletStoreModel } from './wallets.types';
-import { IToken, IWallet } from '../../../types';
 
 /**
  * Wallet store for managing wallet data

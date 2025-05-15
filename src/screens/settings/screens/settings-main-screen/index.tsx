@@ -11,7 +11,7 @@ export const SettingsScreen = () => {
   const { t } = useTranslation();
   return (
     <SafeAreaView>
-      <Header goBack title={t('settings.tabs.app.settings')} />
+      <Header title={t('settings.tabs.app.settings')} />
       <Spacer value={scale(15)} />
       <View style={styles.menuItemContainer}>
         {SETTINGS_ITEMS.map((item, index) => {
