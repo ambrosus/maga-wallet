@@ -2,6 +2,7 @@ import {
   createNativeStackNavigator,
   NativeStackNavigationOptions
 } from '@react-navigation/native-stack';
+import { SettingsStack } from '@navigation';
 import { TabsNavigator } from '@navigation/tabs-stacks';
 import {
   SplashScreen,
@@ -41,6 +42,10 @@ export const RootStackNavigation = () => {
         component={CreateWalletLoadingScreen}
       />
       <Stack.Screen name={ROOT_STACK_ROUTES.Tabs} component={TabsNavigator} />
+      <Stack.Screen
+        name={ROOT_STACK_ROUTES.SettingsStack}
+        component={SettingsStack}
+      />
     </Stack.Navigator>
   );
 };
