@@ -41,6 +41,7 @@ export function useSwapInterface() {
   const resolveBottomSheetData = useCallback(async () => {
     Keyboard.dismiss();
     setUiBottomSheetInformation(INITIAL_UI_BOTTOM_SHEET_INFORMATION);
+    setEstimatedGasValues({ swap: bnZERO, approval: bnZERO });
 
     const networkFee = await swapCallback({ estimateGas: true });
 

@@ -56,7 +56,7 @@ export const SwapButton = ({
             fontFamily="Onest600SemiBold"
             color={COLORS.primary500}
           >
-            {t('button.swapping')}
+            {t('swap.buttons.processSwap.loading')}
           </Typography>
         </RowContainer>
       ) : (

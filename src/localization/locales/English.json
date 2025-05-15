@@ -92,7 +92,8 @@
     "buttons": {
       "processSwap": "Swap",
       "processSwap.anyway": "Swap Anyway",
-      "processSwap.impact.high": "Price impact too high"
+      "processSwap.impact.high": "Price impact too high",
+      "processSwap.loading": "Swapping"
     },
     "review": {
       "maximum.sold": "Maximum Sold",

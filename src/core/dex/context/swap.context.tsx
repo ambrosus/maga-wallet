@@ -39,7 +39,6 @@ export const SwapContext = () => {
 
   const bottomSheetTokenARef = useRef<BottomSheetModal>(null);
   const bottomSheetTokenBRef = useRef<BottomSheetModal>(null);
-  const bottomSheetPreviewSwapRef = useRef<BottomSheetModal>(null);
 
   const isExactInRef = useRef<boolean>(true);
   const allPairsRef = useRef<SelectedPairsState>([]);
@@ -133,7 +132,6 @@ export const SwapContext = () => {
     setLastChangedInput,
     bottomSheetTokenARef,
     bottomSheetTokenBRef,
-    bottomSheetPreviewSwapRef,
     isExactInRef,
     setUiBottomSheetInformation,
     uiBottomSheetInformation,
