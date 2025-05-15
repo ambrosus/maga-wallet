@@ -68,6 +68,11 @@ export const SettingsSlippageForm = ({
     return COLORS.warning500;
   }, [error, t]);
 
+  const inputBorderStyle = useMemo(() => {
+    if (error) return { borderColor: slippageDescriptionHighlight };
+    return { borderColor: COLORS.primary500 };
+  }, [error, slippageDescriptionHighlight]);
+
   return (
     <View style={styles.container}>
       <SettingsInputWithLabel
@@ -77,6 +82,7 @@ export const SettingsSlippageForm = ({
         value={slippageTolerance}
         onChangeText={onChangeSlippageToleranceHandle}
         onBlur={onChangeSlippageBlur}
+        inputStyle={[styles.input, inputBorderStyle]}
       />
 
       {error && (
