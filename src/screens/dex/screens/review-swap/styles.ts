@@ -24,5 +24,8 @@ export const styles = StyleSheet.create({
     height: 1,
     backgroundColor: COLORS.neutral200,
     alignSelf: 'center'
+  },
+  actionsContainer: {
+    height: 48
   }
 });

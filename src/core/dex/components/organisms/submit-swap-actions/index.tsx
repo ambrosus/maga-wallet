@@ -10,7 +10,8 @@ import { useSwapContextSelector } from '@core/dex/context';
 import {
   useEstimatedGas,
   useSwapActions,
-  useSwapBottomSheetHandler
+  useSwapBottomSheetHandler,
+  useSwapSettings
 } from '@core/dex/lib/hooks';
 import { AllowanceStatus, BottomSheetStatus } from '@core/dex/types';
 
@@ -32,9 +33,10 @@ export const SubmitSwapActions = () => {
   const { setAllowance, swapCallback } = useSwapActions();
   const { onChangeBottomSheetSwapStatus } = useSwapBottomSheetHandler();
   const { estimatedSwapGas, isEnoughBalanceToCoverGas } = useEstimatedGas();
+  const { isAutoApprovalEnabled } = useSwapSettings();
 
   const onCompleteMultiStepSwap = useCallback(async () => {
-    if (allowance === AllowanceStatus.INCREASE) {
+    if (!isAutoApprovalEnabled && allowance === AllowanceStatus.INCREASE) {
       try {
         setIsIncreasingAllowance(true);
         await setAllowance();
@@ -80,6 +82,7 @@ export const SubmitSwapActions = () => {
   }, [
     allowance,
     estimatedSwapGas,
+    isAutoApprovalEnabled,
     isEnoughBalanceToCoverGas,
     onChangeBottomSheetSwapStatus,
     setAllowance,
@@ -94,7 +97,7 @@ export const SubmitSwapActions = () => {
   }, [allowance, isInsufficientBalance]);
 
   // UI Button Elements
-  if (!hasApprovalRequired && priceImpact && priceImpact > 5) {
+  if (isAutoApprovalEnabled && priceImpact && priceImpact > 5) {
     return (
       <SwapErrorImpactButton
         isProcessingSwap={isProcessingSwap}
@@ -103,7 +106,7 @@ export const SubmitSwapActions = () => {
     );
   }
 
-  if (hasApprovalRequired) {
+  if (hasApprovalRequired && !isAutoApprovalEnabled) {
     return (
       <ApprovalRequiredButton
         isProcessingSwap={isProcessingSwap}
@@ -113,12 +116,10 @@ export const SubmitSwapActions = () => {
     );
   }
 
-  if (isInsufficientBalance || allowance === AllowanceStatus.SUITABLE) {
-    return (
-      <SwapButton
-        isProcessingSwap={isProcessingSwap}
-        onCompleteMultiStepSwap={onCompleteMultiStepSwap}
-      />
-    );
-  }
+  return (
+    <SwapButton
+      isProcessingSwap={isProcessingSwap}
+      onCompleteMultiStepSwap={onCompleteMultiStepSwap}
+    />
+  );
 };

@@ -7,7 +7,8 @@
     "insufficient": "Insufficient balance",
     "next": "Next",
     "copy": "Copy",
-    "approve": "Approve {{symbol}}"
+    "approve": "Approve {{symbol}}",
+    "confirm": "Confirm"
   },
   "common": {
     "balance": "Balance",

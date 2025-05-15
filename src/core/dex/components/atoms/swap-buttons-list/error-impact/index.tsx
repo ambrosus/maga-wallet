@@ -27,7 +27,8 @@ export const SwapErrorImpactButton = ({
   const {
     settings: {
       current: { extendedMode }
-    }
+    },
+    isAutoApprovalEnabled
   } = useSwapSettings();
 
   const { isInsufficientBalance } = useSwapContextSelector();
@@ -39,9 +40,8 @@ export const SwapErrorImpactButton = ({
   const disabled = useMemo(() => {
     if (priceImpact) {
       return (
-        allowance === AllowanceStatus.INCREASE ||
+        (!isAutoApprovalEnabled && allowance === AllowanceStatus.INCREASE) ||
         (priceImpact > 10 && !extendedMode) ||
-        isInsufficientBalance ||
         isProcessingSwap
       );
     }
@@ -50,7 +50,7 @@ export const SwapErrorImpactButton = ({
   }, [
     allowance,
     extendedMode,
-    isInsufficientBalance,
+    isAutoApprovalEnabled,
     isProcessingSwap,
     priceImpact
   ]);
@@ -79,11 +79,12 @@ export const SwapErrorImpactButton = ({
     }
 
     return PriceImpactErrorColors[
-      !extendedMode || allowance === AllowanceStatus.INCREASE
+      !extendedMode ||
+      (!isAutoApprovalEnabled && allowance === AllowanceStatus.INCREASE)
         ? 'default'
         : ('expert' as keyof typeof PriceImpactErrorColors)
     ];
-  }, [allowance, extendedMode, priceImpact]);
+  }, [allowance, extendedMode, isAutoApprovalEnabled, priceImpact]);
 
   return (
     <TouchableOpacity

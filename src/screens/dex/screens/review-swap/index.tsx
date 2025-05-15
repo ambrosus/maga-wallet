@@ -25,8 +25,9 @@ export const DexReviewSwapScreen = () => {
 
           <PreviewInformation />
         </View>
-
-        <SubmitSwapActions />
+        <View style={styles.actionsContainer}>
+          <SubmitSwapActions />
+        </View>
       </View>
     </SafeViewContainer>
   );

@@ -39,7 +39,7 @@ export const SwapButton = ({
       return t('buttons.insufficient');
     }
 
-    return t('button.confirm');
+    return t('buttons.confirm');
   }, [isInsufficientBalance, selectedTokens, t]);
 
   return (
