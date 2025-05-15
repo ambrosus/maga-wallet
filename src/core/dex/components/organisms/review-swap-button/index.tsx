@@ -93,6 +93,7 @@ export const ReviewSwapButton = () => {
       <TextOrSpinner
         label={swapButtonString}
         loadingLabel={undefined}
+        spinnerColor={COLORS.white}
         loading={
           isExecutingPrice ||
           isProcessingBottomSheet ||

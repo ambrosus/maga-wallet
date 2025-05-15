@@ -83,9 +83,9 @@
       "title": "Swap Settings",
       "toast.success": "Preferences saved.",
       "slippage.errors": {
-        "high": "High slippage. Transaction may experience price impact.",
-        "low": "Low slippage. Transaction may fail.",
-        "invalid": "Invalid input. Enter a value between 0.1% and 50%."
+        "high": "Your transaction may frontrun.",
+        "low": "Your transaction may fail.",
+        "invalid": "Enter a valid slippage percentage."
       }
     },
     "buttons": {
