@@ -7,3 +7,4 @@ export * from './number';
 export * from './object';
 export * from './environment';
 export * from './tokens';
+export * from './dev-logger';
