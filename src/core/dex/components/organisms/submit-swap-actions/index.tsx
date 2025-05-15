@@ -1,5 +1,6 @@
 import { useCallback, useMemo } from 'react';
 import { Alert } from 'react-native';
+import { Spacer } from '@components/atoms';
 import { bnZERO } from '@constants';
 import {
   ApprovalRequiredButton,
@@ -14,6 +15,7 @@ import {
   useSwapSettings
 } from '@core/dex/lib/hooks';
 import { AllowanceStatus, BottomSheetStatus } from '@core/dex/types';
+import { ApprovalBadge } from '../../atoms';
 
 const SWAP_ERROR_TITLE = 'The transaction cannot succeed due to error:';
 const SWAP_ERROR_DESCRIPTION =
@@ -108,11 +110,15 @@ export const SubmitSwapActions = () => {
 
   if (hasApprovalRequired && !isAutoApprovalEnabled) {
     return (
-      <ApprovalRequiredButton
-        isProcessingSwap={isProcessingSwap}
-        isIncreasingAllowance={isIncreasingAllowance}
-        onCompleteMultiStepSwap={onCompleteMultiStepSwap}
-      />
+      <>
+        <ApprovalBadge />
+        <Spacer value={16} />
+        <ApprovalRequiredButton
+          isProcessingSwap={isProcessingSwap}
+          isIncreasingAllowance={isIncreasingAllowance}
+          onCompleteMultiStepSwap={onCompleteMultiStepSwap}
+        />
+      </>
     );
   }
 
