@@ -16,4 +16,3 @@ export { ToastType } from './toast/types';
 export { TokenImageIpfsWithShimmer } from './token-ipfs-image-with-shimmer';
 export { HomeHeaderButton } from './home-header-button';
 export { ChartPrice } from './chart-price';
-
