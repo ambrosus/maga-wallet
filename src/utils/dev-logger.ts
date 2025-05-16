@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-console
-export const devLogger = (message: string) => __DEV__ && console.log(message);
+export const devLogger = (...args: any[]) => __DEV__ && console.log(...args);
 
-export const devErrorLogger = (message: string, error?: unknown) =>
-  __DEV__ && console.error(message, error);
+export const devErrorLogger = (...args: any[]) =>
+  __DEV__ && console.error(...args);
