@@ -2,6 +2,7 @@ import { View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { SafeViewContainer } from '@components/atoms';
 import { Header } from '@components/molecules';
+import { ArrowWithTail } from '@components/svgs';
 import { SwapReviewTokenItem } from '@core/dex/components/atoms';
 import { PreviewInformation } from '@core/dex/components/molecules';
 import { SubmitSwapActions } from '@core/dex/components/organisms';
@@ -19,7 +20,7 @@ export const DexReviewSwapScreen = () => {
         <View>
           <View style={styles.preview}>
             <SwapReviewTokenItem type={FIELD.TOKEN_A} />
-            <View style={styles.divider} />
+            <ArrowWithTail orientation="down" />
             <SwapReviewTokenItem type={FIELD.TOKEN_B} />
           </View>
 

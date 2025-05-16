@@ -1,5 +1,6 @@
 import { useCallback, useMemo } from 'react';
 import { Alert } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { Spacer } from '@components/atoms';
 import { bnZERO } from '@constants';
 import {
@@ -11,10 +12,10 @@ import { useSwapContextSelector } from '@core/dex/context';
 import {
   useEstimatedGas,
   useSwapActions,
-  useSwapBottomSheetHandler,
   useSwapSettings
 } from '@core/dex/lib/hooks';
-import { AllowanceStatus, BottomSheetStatus } from '@core/dex/types';
+import { AllowanceStatus } from '@core/dex/types';
+import { HOME_STACK_ROUTES, HomeNavigationProp } from '@navigation';
 import { ApprovalBadge } from '../../atoms';
 
 const SWAP_ERROR_TITLE = 'The transaction cannot succeed due to error:';
@@ -22,6 +23,7 @@ const SWAP_ERROR_DESCRIPTION =
   'missing revert data in call exception; Transaction reverted without a reason string. This is probably an issue with one of the tokens you are swapping.';
 
 export const SubmitSwapActions = () => {
+  const navigation = useNavigation<HomeNavigationProp>();
   const {
     uiBottomSheetInformation: { priceImpact, allowance },
     setIsProcessingSwap,
@@ -33,7 +35,6 @@ export const SubmitSwapActions = () => {
   } = useSwapContextSelector();
 
   const { setAllowance, swapCallback } = useSwapActions();
-  const { onChangeBottomSheetSwapStatus } = useSwapBottomSheetHandler();
   const { estimatedSwapGas, isEnoughBalanceToCoverGas } = useEstimatedGas();
   const { isAutoApprovalEnabled } = useSwapSettings();
 
@@ -60,16 +61,17 @@ export const SubmitSwapActions = () => {
         const tx = await swapCallback({ estimateGas: false });
 
         if (!tx) {
-          onChangeBottomSheetSwapStatus(BottomSheetStatus.ERROR);
+          // onChangeBottomSheetSwapStatus(BottomSheetStatus.ERROR);
           // sendFirebaseEvent(CustomAppEvents.swap_error, {
           //   swapError: 'swapTokens-tx not found'
           // });
         } else {
+          navigation.replace(HOME_STACK_ROUTES.DexSuccessScreen);
           // sendFirebaseEvent(CustomAppEvents.swap_finish);
-          onChangeBottomSheetSwapStatus(BottomSheetStatus.SUCCESS);
+          // onChangeBottomSheetSwapStatus(BottomSheetStatus.SUCCESS);
         }
       } catch (error) {
-        onChangeBottomSheetSwapStatus(BottomSheetStatus.ERROR);
+        // onChangeBottomSheetSwapStatus(BottomSheetStatus.ERROR);
         // sendFirebaseEvent(CustomAppEvents.swap_error, {
         //   swapError: JSON.stringify(
         //     (error as { message: string })?.message ?? JSON.stringify(error)
@@ -86,7 +88,7 @@ export const SubmitSwapActions = () => {
     estimatedSwapGas,
     isAutoApprovalEnabled,
     isEnoughBalanceToCoverGas,
-    onChangeBottomSheetSwapStatus,
+    navigation,
     setAllowance,
     setEstimatedGasValues,
     setIsIncreasingAllowance,

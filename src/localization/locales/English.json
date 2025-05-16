@@ -100,7 +100,8 @@
       "minimum.received": "Minimum Received",
       "price.impact": "Price Impact",
       "route": "Route",
-      "price.impact.error": "Too High"
+      "price.impact.error": "Too High",
+      "rate": "Rate"
     }
   }
 }

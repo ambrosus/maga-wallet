@@ -20,5 +20,7 @@ export { CloseIcon } from './close';
 export { SettingsFilledIcon } from './settings-filled';
 export { InfoIcon } from './info';
 export { CheckboxCircle } from './chekbox-circle';
+export { SuccessIconWrapped } from './sucess-icon-wrapped';
+export { ArrowWithTail } from './arrow-with-tail';
 
 export * from './settings';

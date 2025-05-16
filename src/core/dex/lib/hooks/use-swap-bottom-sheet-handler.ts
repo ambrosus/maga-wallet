@@ -1,23 +1,14 @@
 import { useCallback } from 'react';
 import { Keyboard } from 'react-native';
 import { useSwapContextSelector } from '@core/dex/context';
-import { BottomSheetStatus, FIELD, SelectedTokensKeys } from '@core/dex/types';
+import { FIELD, SelectedTokensKeys } from '@core/dex/types';
 import { useSwapAllBalances } from './use-swap-all-balances';
 
 export function useSwapBottomSheetHandler() {
-  const {
-    bottomSheetTokenARef,
-    bottomSheetTokenBRef,
-    bottomSheetSwapStatus,
-    setBottomSheetSwapStatus
-  } = useSwapContextSelector();
+  const { bottomSheetTokenARef, bottomSheetTokenBRef } =
+    useSwapContextSelector();
 
   const { fetchAllBalances } = useSwapAllBalances();
-
-  const onChangeBottomSheetSwapStatus = useCallback(
-    (status: BottomSheetStatus) => setBottomSheetSwapStatus(status),
-    [setBottomSheetSwapStatus]
-  );
 
   const onShowBottomSheetByKey = useCallback(
     (key: SelectedTokensKeys) => {
@@ -48,8 +39,6 @@ export function useSwapBottomSheetHandler() {
   return {
     onDismissBottomSheetByKey,
     onShowBottomSheetByKey,
-    onDismissBottomSheets,
-    onChangeBottomSheetSwapStatus,
-    bottomSheetSwapStatus
+    onDismissBottomSheets
   };
 }

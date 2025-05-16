@@ -124,9 +124,9 @@ export function useSwapInterface() {
     }
   }, [
     setUiBottomSheetInformation,
+    setEstimatedGasValues,
     swapCallback,
     hasWrapNativeToken,
-    setEstimatedGasValues,
     isEnoughBalanceToCoverGas,
     navigation,
     settings,

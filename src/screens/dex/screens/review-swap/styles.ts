@@ -19,12 +19,6 @@ export const styles = StyleSheet.create({
     padding: 16,
     borderRadius: moderateScale(16)
   },
-  divider: {
-    width: '100%',
-    height: 1,
-    backgroundColor: COLORS.neutral200,
-    alignSelf: 'center'
-  },
   actionsContainer: {
     height: 48
   }

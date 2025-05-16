@@ -9,12 +9,7 @@ import {
 import { BottomSheetModal } from '@gorhom/bottom-sheet';
 import { ethers } from 'ethers';
 import { bnZERO } from '@constants';
-import {
-  BottomSheetStatus,
-  FIELD,
-  SelectedPairsState,
-  SelectedTokensKeys
-} from '@core/dex/types';
+import { FIELD, SelectedPairsState, SelectedTokensKeys } from '@core/dex/types';
 import { createContextSelector } from '@lib';
 import { SWAP_SUPPORTED_TOKENS } from '../entities';
 import { addresses, initialBalances } from '../utils';
@@ -48,8 +43,6 @@ export const SwapContext = () => {
 
   const [isInsufficientBalance, setIsInsufficientBalance] = useState(false);
   const [isExtractingMaxPrice, setIsExtractingMaxPrice] = useState(false);
-  const [bottomSheetSwapStatus, setBottomSheetSwapStatus] =
-    useState<BottomSheetStatus>(BottomSheetStatus.PREVIEW);
 
   // Tokens connected states
   const [_refExactGetter, setIsExactIn] = useState(true);
@@ -154,8 +147,6 @@ export const SwapContext = () => {
     setBalances,
     setBalancesLoading,
     balancesLoading,
-    setBottomSheetSwapStatus,
-    bottomSheetSwapStatus,
     isExecutingPrice,
     setIsExecutingPrice,
     isPoolsLoading,
