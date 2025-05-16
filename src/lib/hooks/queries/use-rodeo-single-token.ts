@@ -8,7 +8,9 @@ export function useRodeoSingleTokenQuery(id: string | undefined) {
   const { data, loading } = useQuery<{ token: RodeoToken }>(AMBRODEO_TOKEN, {
     context: { apiName: ApolloEndpointsKeys.AMBRODEO_TOKENS },
     variables: { id: id?.toLowerCase() },
-    skip: !id || AppValidators.ethereumAddress.test(id) === false
+    skip: !id || AppValidators.ethereumAddress.test(id) === false,
+    fetchPolicy: 'cache-first',
+    nextFetchPolicy: 'cache-and-network'
   });
 
   return { data, loading };

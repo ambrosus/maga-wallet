@@ -1,4 +1,4 @@
-import { memo, useEffect, useMemo, useState } from 'react';
+import { memo, useEffect, useMemo, useState, useRef } from 'react';
 import { View } from 'react-native';
 import { ethers } from 'ethers';
 import { useTranslation } from 'react-i18next';
@@ -47,6 +47,8 @@ export const SwapTradeDetails = memo(
       symbol: '',
       value: ''
     });
+
+    const prevMiddleHopTokensRef = useRef<string[]>([]);
 
     useEffect(() => {
       const timeout = setTimeout(() => {
@@ -122,19 +124,29 @@ export const SwapTradeDetails = memo(
       tokens.symbolOutput
     ]);
 
-    const isMultiHopRoute = useMemo(() => {
-      return isMultiHopSwapBetterCurrency.tokens.length > 0;
-    }, [isMultiHopSwapBetterCurrency]);
-
     const middleHopTokens = useMemo(() => {
-      return isMultiHopSwapBetterCurrency.tokens.map((token) =>
-        getObjectKeyByValue(addresses, token)
-      );
+      const tokens = isMultiHopSwapBetterCurrency.tokens
+        .map((token) => getObjectKeyByValue(addresses, token))
+        .filter((token): token is string => token !== undefined);
+
+      if (tokens.length === 0 && prevMiddleHopTokensRef.current.length > 0) {
+        return prevMiddleHopTokensRef.current;
+      }
+
+      if (tokens.length > 0) {
+        prevMiddleHopTokensRef.current = tokens;
+      }
+
+      return tokens.length > 0 ? tokens : prevMiddleHopTokensRef.current;
     }, [isMultiHopSwapBetterCurrency.tokens]);
 
     const renderHopTokensRoute = useMemo(() => {
       return middleHopTokens.length > 0 ? middleHopTokens.join(' > ') : '';
     }, [middleHopTokens]);
+
+    const shouldShowRoute = useMemo(() => {
+      return prevMiddleHopTokensRef.current.length > 0;
+    }, []);
 
     return (
       <View style={styles.container}>
@@ -180,7 +192,7 @@ export const SwapTradeDetails = memo(
               </Typography>
             </RowContainer>
 
-            {isMultiHopRoute && (
+            {shouldShowRoute && (
               <RowContainer alignItems="center" justifyContent="space-between">
                 <Typography
                   fontSize={FONT_SIZE.body.sm}
