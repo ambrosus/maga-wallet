@@ -16,6 +16,7 @@ export { ReceiveIcon } from './receive';
 export { SwapOppositeArrowsIcon } from './swap-oposite-arrows';
 export { ArrowBottomFilledIcon } from './arrow-bottom-filled';
 export { CloseIcon } from './close';
+export { SettingsFilledIcon } from './settings-filled';
 export { InfoIcon } from './info';
 export { CheckboxCircle } from './chekbox-circle';
 export { SuccessIconWrapped } from './sucess-icon-wrapped';
