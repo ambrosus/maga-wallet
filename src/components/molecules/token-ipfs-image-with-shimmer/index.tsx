@@ -72,7 +72,7 @@ const TokenImageIpfsWithShimmerComponent = ({
           onLoadStart={onLoadStart}
           onLoadEnd={onLoadEnd}
           onError={onError}
-          resizeMode={FastImage.resizeMode.contain}
+          resizeMode={FastImage.resizeMode.cover}
         />
       )}
     </View>
