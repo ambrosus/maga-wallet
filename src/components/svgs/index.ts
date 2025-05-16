@@ -1,3 +1,5 @@
+export * from './settings';
+
 export { AppIcon } from './app-icon';
 export { GoogleIcon } from './socials/google';
 export { FacebookIcon } from './socials/facebook';
@@ -8,7 +10,6 @@ export { FingerprintIcon } from './fingerprint';
 export { WarningIcon } from './warning';
 export { HomeIcon } from './tabs/home';
 export { DiscoverIcon } from './tabs/discover';
-export { SettingsIcon } from './tabs/settings';
 export { Arrow } from './arrow';
 export { HistoryIcon } from './tabs/history';
 export { SendIcon } from './send';
@@ -22,5 +23,7 @@ export { InfoIcon } from './info';
 export { CheckboxCircle } from './chekbox-circle';
 export { SuccessIconWrapped } from './sucess-icon-wrapped';
 export { ArrowWithTail } from './arrow-with-tail';
+export { GearIcon } from './gear-icon';
+export { ChartArrow } from './chart-arrow';
 
 export * from './settings';

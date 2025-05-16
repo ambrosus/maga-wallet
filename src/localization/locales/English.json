@@ -17,16 +17,16 @@
   },
   "setupPasskey": {
     "title": "Setup Passkey",
-    "description": "Skip passwords. Use your device’s biometrics for fast, safe access.",
+    "description": "Skip passwords. Use your device's biometrics for fast, safe access.",
     "benefits.secure.title": "More secure",
     "benefits.secure.description": "No passwords, No worries.",
-    "benefits.accessibility.title": "One tap, you’re in",
+    "benefits.accessibility.title": "One tap, you're in",
     "benefits.accessibility.description": "Log in with your device in seconds.",
     "button.later": "Maybe later",
     "bottomSheet": {
       "title": "Are you sure?",
-      "description": "Without a passkey, your wallet may be less protected and you’ll need to log in manually each time.",
-      "button.cancel": "I’m Sure"
+      "description": "Without a passkey, your wallet may be less protected and you'll need to log in manually each time.",
+      "button.cancel": "I'm Sure"
     }
   },
   "tabs": {
@@ -34,12 +34,15 @@
     "discover": "Discover",
     "history": "History"
   },
-  "settings.tabs": {
-    "app.settings": "App Settings",
-    "manage.accounts": "Manage Accounts",
-    "security": "Security",
-    "address.book": "Address Book",
-    "preferences": "Preferences",
+  "settings": {
+    "title": "Settings",
+    "tabs": {
+      "app.settings": "App Settings",
+      "manage.accounts": "Manage Accounts",
+      "security": "Security",
+      "address.book": "Address Book",
+      "preferences": "Preferences"
+    },
     "notifications": "Notifications",
     "about": "About",
 
@@ -47,23 +50,27 @@
     "confirm.new.passkey": "Confirm new passkey",
     "enter.passkey": "Enter current passkey",
     "incorect.passcode": "Incorrect passcode",
-    "security.change.passkey": "Change passkey",
-    "security.face.id": "Sign in with Face ID",
-    "security.twoFA.auth": "Google 2FA Authentication",
-    "security.auto.approval": "Auto-Approval",
-    "security.auto.approval.description": "Ask for approval ahead of transactions.",
+    "security": {
+      "change.passkey": "Change passkey",
+      "face.id": "Sign in with Face ID",
+      "twoFA.auth": "Google 2FA Authentication",
+      "auto.approval": "Auto-Approval",
+      "auto.approval.description": "Ask for approval ahead of transactions."  
+    },
     "verify.header": "Verify your Identity",
-    "verify.description": "We’ve sent a 6-digit code to your email. Check your inbox or spam folder.",
+    "verify.description": "We've sent a 6-digit code to your email. Check your inbox or spam folder.",
     "resend.code": "Resend Code",
-    "two.fa.setup.header": "Set up 2FA with Google\n Authenticator",
-    "two.fa.setup.title": "You’ll need the Google Authenticator app to continue.",
-    "two.fa.setup.description": "Download it from the App Store or Play Store.",
-    "two.fa.setup.button": "I Have the App",
-    "two.fa.connect.header": "Connect Google Authenticator",
-    "two.fa.connect.description": "Copy the key below and add it to your Google Authenticator app",
+    "two.fa": {
+      "setup.title": "You'll need the Google Authenticator app to continue.",
+      "setup.header": "Set up 2FA with Google\n Authenticator",
+      "setup.description": "Download it from the App Store or Play Store.",
+      "setup.button": "I Have the App",
+      "connect.header": "Connect Google Authenticator",
+      "connect.description": "Copy the key below and add it to your Google Authenticator app",
+      "verify.header": "Verify Your Setup",
+      "verify.description": "Enter the 6-digit code from Google\n Authenticator."
+    },
     "copy.key": "Copy Key",
-    "two.fa.verify.header": "Verify Your Setup",
-    "two.fa.verify.description": "Enter the 6-digit code from Google\n Authenticator.",
     "get.code": "Get code"
   },
   "account": {

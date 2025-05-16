@@ -14,5 +14,10 @@ export const FONT_SIZE = {
     lg: 16,
     md: 14,
     sm: 12
+  },
+  tertiary: {
+    lg: 12,
+    md: 10,
+    sm: 8
   }
 } as const;

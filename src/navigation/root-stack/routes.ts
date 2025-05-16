@@ -3,5 +3,6 @@ export enum ROOT_STACK_ROUTES {
   AuthScreen = 'AuthScreen',
   SetupPasskeyScreen = 'SetupPasskeyScreen',
   CreateWalletLoadingScreen = 'CreateWalletLoadingScreen',
-  Tabs = 'Tabs'
+  Tabs = 'Tabs',
+  SettingsStack = 'SettingsStack'
 }
