@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useQuery } from '@apollo/client';
-import { ApolloEndpointsKeys } from '@lib/apollo/endpoints';
+import { ApolloEndpointsKeys } from '@lib/apollo';
 import { AwaitCurrencyResponse, useCurrenciesStore } from '@store/currencies';
 import { GET_CURRENCIES_QUERY } from './currencies.graph';
 

@@ -1,6 +1,6 @@
 import { useEffect, useMemo } from 'react';
 import { useQuery } from '@apollo/client';
-import { ApolloEndpointsKeys } from '@lib/apollo/endpoints';
+import { ApolloEndpointsKeys } from '@lib/apollo';
 import { AMBRODEO_TOKENS } from '@queries/rodeo-tokens';
 import { RodeoToken } from '@queries/rodeo-tokens/types';
 import { useRodeoTokensStore } from '@store/rodeo-tokens';
