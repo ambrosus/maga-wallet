@@ -20,7 +20,10 @@ export const RootStackNavigation = () => {
   };
 
   return (
-    <Stack.Navigator screenOptions={screenOptions} initialRouteName="Tabs">
+    <Stack.Navigator
+      screenOptions={screenOptions}
+      initialRouteName="SplashScreen"
+    >
       <Stack.Screen
         name={ROOT_STACK_ROUTES.SplashScreen}
         component={SplashScreen}

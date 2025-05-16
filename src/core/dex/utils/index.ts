@@ -4,7 +4,7 @@ export * from './execute-swap-path';
 export * from './multi-route';
 export * from './provider-fee';
 export * from './price-impact';
-export * from './token-plate';
+export * from './trade-details-visibility';
 export * from './timestamp';
 export * from './swap-args.callback';
 export * from './is-trade-better';
