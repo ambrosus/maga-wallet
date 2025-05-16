@@ -1,8 +1,10 @@
 import { useEffect, useMemo } from 'react';
 import { useNavigation } from '@react-navigation/native';
+import {
+  useCurrenciesQuery,
+  useRodeoTokensListQuery
+} from '@lib/hooks/queries';
 import { ROOT_STACK_ROUTES, RootNavigationProp } from '@navigation/root-stack';
-import { useCurrenciesQuery } from '@queries/currencies';
-import { useRodeoTokensListQuery } from '@queries/rodeo-tokens/use-rodeo-tokens.query';
 
 export function useSplashNavigation() {
   const { loading: loadingCurrencies } = useCurrenciesQuery();

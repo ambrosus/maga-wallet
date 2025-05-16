@@ -13,3 +13,4 @@ export { TokenLogo } from './token-logo';
 export { TextOrSpinner } from './text-or-spinner';
 export { Toast } from './toast';
 export { ToastType } from './toast/types';
+export { TokenImageIpfsWithShimmer } from './token-ipfs-image-with-shimmer';
