@@ -40,6 +40,9 @@ export const HomeStack = () => {
           <Stack.Screen
             name={HOME_STACK_ROUTES.DexTxStatusScreen}
             component={DexTxStatusScreen}
+            options={{
+              gestureEnabled: false
+            }}
           />
         </Stack.Group>
       </Stack.Navigator>

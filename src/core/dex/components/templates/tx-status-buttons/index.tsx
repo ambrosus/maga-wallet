@@ -1,13 +1,15 @@
 import { useCallback } from 'react';
 import { View } from 'react-native';
+import { CommonActions } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
 import { Typography } from '@components/atoms';
 import { Button } from '@components/molecules';
 import { FONT_SIZE, COLORS } from '@constants';
 import { useSwapContextSelector } from '@core/dex/context';
-import { HOME_STACK_ROUTES } from '@navigation';
 import { RootStackParamsList } from '@navigation/root-stack';
+import { HOME_STACK_ROUTES } from '@navigation/tabs/home/types';
+import { devLogger } from '@utils';
 import { styles } from './styles';
 
 interface TxStatusButtonsProps {
@@ -25,13 +27,50 @@ export const TxStatusButtons = ({
   const { t } = useTranslation();
   const { reset } = useSwapContextSelector();
 
-  const onSuccessActionHandle = useCallback(() => {
-    reset();
-    navigation.replace(HOME_STACK_ROUTES.DEXScreen);
+  const onSuccessActionHandle = useCallback(async () => {
+    try {
+      // Start navigation first
+      await new Promise<void>((resolve) => {
+        navigation.dispatch(
+          CommonActions.reset({
+            index: 1,
+            routes: [
+              {
+                name: HOME_STACK_ROUTES.HomeScreen,
+                params: undefined
+              },
+              {
+                name: HOME_STACK_ROUTES.DEXScreen,
+                params: undefined
+              }
+            ]
+          })
+        );
+        requestAnimationFrame(() => resolve());
+      });
+
+      reset();
+    } catch (error) {
+      devLogger('Error in success action:', error);
+    }
   }, [navigation, reset]);
 
   const onRetryActionHandle = useCallback(() => {
-    navigation.replace(HOME_STACK_ROUTES.DEXScreen);
+    navigation.dispatch(
+      CommonActions.reset({
+        index: 1,
+        routes: [
+          {
+            name: HOME_STACK_ROUTES.HomeScreen,
+            params: undefined
+          },
+          {
+            name: HOME_STACK_ROUTES.DEXScreen,
+            params: undefined
+          }
+        ]
+      })
+    );
   }, [navigation]);
 
   if (isError) {
