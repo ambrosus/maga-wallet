@@ -141,6 +141,7 @@ export const SwapContext = () => {
     isIncreasingAllowance,
     setIsIncreasingAllowance,
     allPairsRef,
+    _refPairsGetter,
     setPairs,
     reset,
     balances,

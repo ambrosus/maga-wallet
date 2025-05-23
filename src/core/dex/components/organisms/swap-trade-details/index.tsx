@@ -13,7 +13,11 @@ import {
   SwapStringUtils,
   addresses
 } from '@core/dex/utils';
-import { getObjectKeyByValue, NumberUtils } from '@utils';
+import {
+  getObjectKeyByValue,
+  getTokenNameFromDatabase,
+  NumberUtils
+} from '@utils';
 import { styles } from './styles';
 
 interface SwapTradeDetailsProps {
@@ -28,6 +32,7 @@ export const SwapTradeDetails = memo(
     const { isExecutingPrice } = useSwapContextSelector();
     const {
       latestSelectedTokens,
+      selectedTokens,
       selectedTokensAmount,
       _refSettingsGetter,
       _refExactGetter,
@@ -45,7 +50,8 @@ export const SwapTradeDetails = memo(
     const [minOrMaxReceived, setMinOrMaxReceived] = useState({
       label: t(''),
       symbol: '',
-      value: ''
+      value: '',
+      address: ''
     });
 
     const prevMiddleHopTokensRef = useRef<string[]>([]);
@@ -105,7 +111,10 @@ export const SwapTradeDetails = memo(
                 : 'swap.review.minimum.received'
             ),
             symbol: _refExactGetter ? tokens.symbolInput : tokens.symbolOutput,
-            value: !_refExactGetter ? receivedMaxAmountOut : receivedAmountOut
+            value: !_refExactGetter ? receivedMaxAmountOut : receivedAmountOut,
+            address: !_refExactGetter
+              ? selectedTokensAmount.TOKEN_A
+              : selectedTokensAmount.TOKEN_B
           });
         }
       }, 1000);
@@ -148,6 +157,16 @@ export const SwapTradeDetails = memo(
       return prevMiddleHopTokensRef.current.length > 0;
     }, []);
 
+    const tokenLogoHref = useMemo(() => {
+      const token = !_refExactGetter
+        ? selectedTokens.TOKEN_A
+        : selectedTokens.TOKEN_B;
+
+      const dbToken = getTokenNameFromDatabase(token.address);
+
+      return dbToken !== 'unknown' ? dbToken : token.address;
+    }, [_refExactGetter, selectedTokens.TOKEN_A, selectedTokens.TOKEN_B]);
+
     return (
       <View style={styles.container}>
         {isExecutingRate || typeof rate === 'number' ? (
@@ -163,7 +182,7 @@ export const SwapTradeDetails = memo(
                 {minOrMaxReceived.label}
               </Typography>
               <RowContainer alignItems="center" gap={4}>
-                <TokenLogo scale={0.5} token={minOrMaxReceived.symbol} />
+                <TokenLogo scale={0.5} token={tokenLogoHref} />
                 <Typography
                   fontSize={FONT_SIZE.body.sm}
                   fontFamily="Onest500Medium"
