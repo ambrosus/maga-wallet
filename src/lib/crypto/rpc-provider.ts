@@ -12,7 +12,7 @@ export const CHAIN = Chain[Config.CHAIN_ID as keyof typeof Chain];
 export const createRpcProvider = () => {
   return createPublicClient({
     chain: CHAIN,
-    transport: http()
+    transport: http(Config.NETWORK_URL)
   });
 };
 

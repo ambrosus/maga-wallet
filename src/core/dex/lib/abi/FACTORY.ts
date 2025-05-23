@@ -1,5 +1,23 @@
 export const FACTORY_ABI = [
-  'function allPairsLength() external view returns (uint256)',
-  'function getPair(address, address) external view returns (address)',
-  'function allPairs(uint256) external view returns (address)'
+  {
+    name: 'allPairsLength',
+    type: 'function',
+    stateMutability: 'view',
+    inputs: [],
+    outputs: [{ type: 'uint256' }]
+  },
+  {
+    name: 'allPairs',
+    type: 'function',
+    stateMutability: 'view',
+    inputs: [{ type: 'uint256' }],
+    outputs: [{ type: 'address' }]
+  },
+  {
+    name: 'getPair',
+    type: 'function',
+    stateMutability: 'view',
+    inputs: [{ type: 'address' }, { type: 'address' }],
+    outputs: [{ type: 'address' }]
+  }
 ];

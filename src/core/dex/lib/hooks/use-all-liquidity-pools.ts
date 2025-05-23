@@ -1,14 +1,11 @@
 import { useCallback } from 'react';
 import { Alert } from 'react-native';
-import { ethers } from 'ethers';
+import { Config } from '@constants';
 import { useSwapContextSelector } from '@core/dex/context';
-import { PAIR } from '@core/dex/lib/abi';
+import { PAIR, FACTORY_ABI } from '@core/dex/lib/abi';
 import { SelectedTokensState } from '@core/dex/types';
 import { wrapNativeAddress } from '@core/dex/utils';
-import {
-  createAMBProvider,
-  createFactoryContract
-} from '@core/dex/utils/contracts/instances';
+import { createRpcProvider } from '@lib';
 import { devLogger } from '@utils';
 
 export function useAllLiquidityPools() {
@@ -17,9 +14,16 @@ export function useAllLiquidityPools() {
   const getAllPoolsCount = useCallback(async () => {
     setIsPoolsLoading(true);
     const results = [];
+
     try {
-      const contract = createFactoryContract();
-      const pairCount = await contract.allPairsLength();
+      const client = createRpcProvider();
+
+      const pairCount = await client.readContract({
+        abi: FACTORY_ABI,
+        functionName: 'allPairsLength',
+        address: Config.FACTORY_ADDRESS as `0x${string}`
+      });
+
       const totalPairs = Number(pairCount);
 
       const batchSize = 50;
@@ -41,23 +45,39 @@ export function useAllLiquidityPools() {
           async (_, index) => {
             const i = batchStart + index;
             try {
-              const pairAddress = await contract.allPairs(i);
-              const pairContract = new ethers.Contract(
-                pairAddress,
-                PAIR,
-                createAMBProvider()
-              );
+              const pairAddress = await client.readContract({
+                abi: FACTORY_ABI,
+                functionName: 'allPairs',
+                address: Config.FACTORY_ADDRESS as `0x${string}`,
+                args: [BigInt(i)]
+              });
 
-              const [token0, token1] = await Promise.all([
-                pairContract.token0(),
-                pairContract.token1()
-              ]);
+              try {
+                const [token0, token1] = await Promise.all([
+                  client.readContract({
+                    abi: PAIR,
+                    functionName: 'token0',
+                    address: pairAddress as `0x${string}`
+                  }),
+                  client.readContract({
+                    abi: PAIR,
+                    functionName: 'token1',
+                    address: pairAddress as `0x${string}`
+                  })
+                ]);
 
-              return {
-                pairAddress,
-                token0: token0.toLowerCase(),
-                token1: token1.toLowerCase()
-              };
+                return {
+                  pairAddress: pairAddress as string,
+                  token0: (token0 as string).toLowerCase(),
+                  token1: (token1 as string).toLowerCase()
+                };
+              } catch (tokenError) {
+                devLogger(
+                  `Error fetching tokens for pair ${pairAddress}:`,
+                  tokenError
+                );
+                throw tokenError;
+              }
             } catch (error) {
               if (__DEV__) {
                 Alert.alert(
@@ -65,7 +85,6 @@ export function useAllLiquidityPools() {
                   JSON.stringify(error)
                 );
               }
-
               return null;
             }
           }
@@ -154,8 +173,13 @@ export function useAllLiquidityPools() {
   const getReserves = useCallback(
     async (pairAddress: string, selectedTokens: SelectedTokensState) => {
       const mapper = getPairAddress(selectedTokens);
-      const pair = new ethers.Contract(pairAddress, PAIR, createAMBProvider());
-      const reserves = await pair.getReserves();
+      const client = createRpcProvider();
+
+      const reserves = (await client.readContract({
+        address: pairAddress as `0x${string}`,
+        abi: PAIR,
+        functionName: 'getReserves'
+      })) as [bigint, bigint, number];
 
       const { TOKEN_A, TOKEN_B } = selectedTokens;
 

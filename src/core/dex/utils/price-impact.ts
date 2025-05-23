@@ -1,20 +1,30 @@
-import { BigNumber } from 'ethers';
-import { NumberUtils } from '@utils/number';
-
 export function singleHopImpact(
   amountIn: string,
-  amountOut: BigNumber,
-  reserveIn: BigNumber,
-  reserveOut: BigNumber
+  amountOut: bigint,
+  reserveIn: bigint,
+  reserveOut: bigint
 ): string {
-  const newAmountIn = String(NumberUtils.limitDecimalCount(amountIn, 0));
-  // @ts-ignore
-  const initialPrice = reserveOut / reserveIn;
-  const newReserveIn = reserveIn.add(newAmountIn);
-  const newReserveOut = reserveOut.sub(amountOut);
-  // @ts-ignore
-  const newPrice = newReserveOut / newReserveIn;
-  const priceImpact = ((newPrice - initialPrice) / initialPrice) * 100;
+  // Convert string amount to bigint, removing decimals
+  const newAmountIn = BigInt(amountIn);
+
+  // Calculate price using bigint math with proper precision
+  // We multiply by 1e18 to maintain precision in integer math
+  const precision = 10n ** 18n;
+  const initialPrice = (reserveOut * precision) / reserveIn;
+
+  const newReserveIn = reserveIn + newAmountIn;
+  const newReserveOut = reserveOut - amountOut;
+
+  const newPrice = (newReserveOut * precision) / newReserveIn;
+
+  // Calculate price impact percentage with bigint
+  // Formula: ((newPrice - initialPrice) / initialPrice) * 100
+  const priceChange =
+    newPrice > initialPrice ? newPrice - initialPrice : initialPrice - newPrice;
+
+  const priceImpact = Number(
+    (priceChange * 100n * precision) / (initialPrice * precision)
+  );
 
   return priceImpact.toString();
 }

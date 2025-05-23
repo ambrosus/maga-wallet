@@ -120,6 +120,7 @@ export function useSwapInterface() {
         navigation.navigate(HOME_STACK_ROUTES.DexReviewSwapScreen);
       }, 700);
     } catch (error) {
+      console.error(error);
       throw error;
     }
   }, [
