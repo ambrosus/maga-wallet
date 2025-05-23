@@ -7,10 +7,6 @@ export const styles = StyleSheet.create({
     flex: 1,
     position: 'relative'
   },
-  background: {
-    flex: 1,
-    ...StyleSheet.absoluteFillObject
-  },
   header: {
     width: '100%',
     alignItems: 'center',

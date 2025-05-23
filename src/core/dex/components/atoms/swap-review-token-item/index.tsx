@@ -7,7 +7,7 @@ import { useSwapContextSelector } from '@core/dex/context';
 import { useSwapReviewTransformer } from '@core/dex/lib/hooks';
 import { FIELD } from '@core/dex/types';
 import { SwapStringUtils } from '@core/dex/utils';
-import { verticalScale } from '@utils';
+import { getTokenNameFromDatabase, verticalScale } from '@utils';
 import { styles } from './styles';
 
 interface SwapReviewTokenItemProps {
@@ -30,6 +30,12 @@ export const SwapReviewTokenItem = ({ type }: SwapReviewTokenItemProps) => {
     };
   }, [type]);
 
+  const tokenLogoHref = useMemo(() => {
+    const dbToken = getTokenNameFromDatabase(selectedTokens[type]?.address);
+
+    return dbToken !== 'unknown' ? token : selectedTokens[type]?.address;
+  }, [selectedTokens, token, type]);
+
   return (
     <View style={combinedTypeContainerStyle}>
       <Typography
@@ -40,7 +46,7 @@ export const SwapReviewTokenItem = ({ type }: SwapReviewTokenItemProps) => {
         {label}
       </Typography>
       <View style={styles.inner}>
-        <TokenLogo token={token} scale={0.65} />
+        <TokenLogo token={tokenLogoHref} scale={0.65} />
         <Spacer horizontal value={4} />
         <Typography
           fontSize={FONT_SIZE.body.xl}

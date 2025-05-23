@@ -9,9 +9,6 @@ export const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     alignItems: 'center'
   },
-  background: {
-    ...StyleSheet.absoluteFillObject
-  },
   innerContainer: {
     flex: 1,
     justifyContent: 'space-evenly',

@@ -9,9 +9,6 @@ export const styles = StyleSheet.create({
     paddingHorizontal: scale(16),
     justifyContent: 'space-between'
   },
-  background: {
-    ...StyleSheet.absoluteFillObject
-  },
   header: {
     paddingTop: isAndroid ? '35%' : '30%'
   },

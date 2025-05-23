@@ -6,9 +6,6 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-  background: {
-    ...StyleSheet.absoluteFillObject
-  },
   backgroundContainer: {
     position: 'absolute',
     width: '100%',

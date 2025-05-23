@@ -1,5 +1,5 @@
 import { useCallback, useEffect } from 'react';
-import { Image } from 'react-native';
+import { ImageBackground } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import Animated, {
   useSharedValue,
@@ -15,6 +15,7 @@ import {
   COLORS,
   DEVICE_HEIGHT,
   DEVICE_WIDTH,
+  FLEX_FULL_SIZE,
   FONT_SIZE
 } from '@constants';
 import { useAnimatedDots } from '@lib/hooks';
@@ -66,25 +67,26 @@ export const CreateWalletLoadingScreen = ({
   }));
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Image
-        style={styles.background}
-        width={DEVICE_WIDTH}
-        height={DEVICE_HEIGHT}
-        source={require('@assets/images/create-wallet-background.png')}
-      />
-      <Animated.View style={animatedStyle} />
+    <ImageBackground
+      style={FLEX_FULL_SIZE}
+      width={DEVICE_WIDTH}
+      height={DEVICE_HEIGHT}
+      source={require('@assets/images/create-wallet-background.png')}
+    >
+      <SafeAreaView style={styles.container}>
+        <Animated.View style={animatedStyle} />
 
-      <Spacer value={verticalScale(32)} />
+        <Spacer value={verticalScale(32)} />
 
-      <Typography
-        fontSize={FONT_SIZE.heading.lg}
-        fontFamily="Onest600SemiBold"
-        color={COLORS.textPrimary}
-      >
-        Creating your wallet
-        <DotsComponent />
-      </Typography>
-    </SafeAreaView>
+        <Typography
+          fontSize={FONT_SIZE.heading.lg}
+          fontFamily="Onest600SemiBold"
+          color={COLORS.textPrimary}
+        >
+          Creating your wallet
+          <DotsComponent />
+        </Typography>
+      </SafeAreaView>
+    </ImageBackground>
   );
 };
