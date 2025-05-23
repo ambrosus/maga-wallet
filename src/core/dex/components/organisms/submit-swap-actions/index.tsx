@@ -61,17 +61,22 @@ export const SubmitSwapActions = () => {
         const tx = await swapCallback({ estimateGas: false });
 
         if (!tx) {
-          // onChangeBottomSheetSwapStatus(BottomSheetStatus.ERROR);
+          navigation.replace(HOME_STACK_ROUTES.DexTxStatusScreen, {
+            status: 'error'
+          });
           // sendFirebaseEvent(CustomAppEvents.swap_error, {
           //   swapError: 'swapTokens-tx not found'
           // });
         } else {
-          navigation.replace(HOME_STACK_ROUTES.DexSuccessScreen);
+          navigation.replace(HOME_STACK_ROUTES.DexTxStatusScreen, {
+            status: 'success'
+          });
           // sendFirebaseEvent(CustomAppEvents.swap_finish);
-          // onChangeBottomSheetSwapStatus(BottomSheetStatus.SUCCESS);
         }
       } catch (error) {
-        // onChangeBottomSheetSwapStatus(BottomSheetStatus.ERROR);
+        navigation.replace(HOME_STACK_ROUTES.DexTxStatusScreen, {
+          status: 'error'
+        });
         // sendFirebaseEvent(CustomAppEvents.swap_error, {
         //   swapError: JSON.stringify(
         //     (error as { message: string })?.message ?? JSON.stringify(error)

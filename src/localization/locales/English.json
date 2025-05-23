@@ -8,7 +8,9 @@
     "next": "Next",
     "copy": "Copy",
     "approve": "Approve {{symbol}}",
-    "confirm": "Confirm"
+    "confirm": "Confirm",
+    "done": "Done",
+    "try.again": "Try Again"
   },
   "common": {
     "balance": "Balance",
@@ -55,7 +57,7 @@
       "face.id": "Sign in with Face ID",
       "twoFA.auth": "Google 2FA Authentication",
       "auto.approval": "Auto-Approval",
-      "auto.approval.description": "Ask for approval ahead of transactions."  
+      "auto.approval.description": "Ask for approval ahead of transactions."
     },
     "verify.header": "Verify your Identity",
     "verify.description": "We've sent a 6-digit code to your email. Check your inbox or spam folder.",
@@ -109,6 +111,16 @@
       "route": "Route",
       "price.impact.error": "Too High",
       "rate": "Rate"
+    },
+    "status": {
+      "success": {
+        "title": "Success!",
+        "description": "You received {{amount}} {{symbol}}."
+      },
+      "error": {
+        "title": "Transaction Failed!",
+        "description": "An error occured while processing your transaction."
+      }
     }
   }
 }
