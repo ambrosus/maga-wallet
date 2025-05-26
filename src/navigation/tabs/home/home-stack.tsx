@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { DEXScreen } from '@screens';
+import { DEXScreen, SendFundsScreen } from '@screens';
 import {
   DexReviewSwapScreen,
   DexSettingsScreen,
@@ -42,6 +42,16 @@ export const HomeStack = () => {
             component={DexTxStatusScreen}
             options={{
               gestureEnabled: false
+            }}
+          />
+        </Stack.Group>
+
+        <Stack.Group>
+          <Stack.Screen
+            name={HOME_STACK_ROUTES.SendFundsScreen}
+            component={SendFundsScreen}
+            options={{
+              animation: 'slide_from_bottom'
             }}
           />
         </Stack.Group>

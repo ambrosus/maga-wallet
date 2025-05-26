@@ -12,7 +12,7 @@ export function useSplashNavigation() {
   const navigation = useNavigation<RootNavigationProp>();
 
   // TODO: Temp mock of signed in state
-  const isSignedIn = !true;
+  const isSignedIn = true;
 
   const loading = useMemo(
     () => loadingCurrencies || loadingRodeoTokens,

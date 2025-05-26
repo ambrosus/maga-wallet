@@ -3,6 +3,7 @@ import { CompositeNavigationProp } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { SwapToken } from '@core/dex/types';
 import { TabsParamsList } from '@navigation/tabs-stacks';
+import { IToken } from '@types';
 
 export type HomeTabParamsList = {
   HomeScreen: undefined;
@@ -12,6 +13,7 @@ export type HomeTabParamsList = {
   DexTxStatusScreen:
     | { status: 'success' | 'error'; amount?: string; token?: string }
     | undefined;
+  SendFundsScreen: { token: IToken };
 };
 
 export enum HOME_STACK_ROUTES {
@@ -19,7 +21,8 @@ export enum HOME_STACK_ROUTES {
   DEXScreen = 'DEXScreen',
   DexReviewSwapScreen = 'DexReviewSwapScreen',
   DexSettingsScreen = 'DexSettingsScreen',
-  DexTxStatusScreen = 'DexTxStatusScreen'
+  DexTxStatusScreen = 'DexTxStatusScreen',
+  SendFundsScreen = 'SendFundsScreen'
 }
 export type HomeNavigationProp = CompositeNavigationProp<
   BottomTabNavigationProp<TabsParamsList>,
