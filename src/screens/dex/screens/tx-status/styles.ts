@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native';
-import { COLORS } from '@constants';
 import { scale } from '@utils';
 
 export const styles = StyleSheet.create({
@@ -10,23 +9,15 @@ export const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     alignItems: 'center'
   },
-  background: {
-    ...StyleSheet.absoluteFillObject
-  },
   innerContainer: {
     flex: 1,
     justifyContent: 'space-evenly',
     alignItems: 'center'
   },
-  successContainer: {
-    alignItems: 'center'
+  description: {
+    maxWidth: '70%'
   },
-  button: {
-    width: '100%',
-    height: 50,
-    borderRadius: 56,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: COLORS.textPrimary
+  statusContainer: {
+    alignItems: 'center'
   }
 });

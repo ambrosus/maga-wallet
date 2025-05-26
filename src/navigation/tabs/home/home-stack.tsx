@@ -3,7 +3,7 @@ import { DEXScreen } from '@screens';
 import {
   DexReviewSwapScreen,
   DexSettingsScreen,
-  DexSuccessScreen
+  DexTxStatusScreen
 } from '@screens/dex/screens';
 import { HomeScreen } from '@screens/home';
 import { HOME_STACK_ROUTES, HomeTabParamsList } from './types';
@@ -38,8 +38,11 @@ export const HomeStack = () => {
             component={DexSettingsScreen}
           />
           <Stack.Screen
-            name={HOME_STACK_ROUTES.DexSuccessScreen}
-            component={DexSuccessScreen}
+            name={HOME_STACK_ROUTES.DexTxStatusScreen}
+            component={DexTxStatusScreen}
+            options={{
+              gestureEnabled: false
+            }}
           />
         </Stack.Group>
       </Stack.Navigator>

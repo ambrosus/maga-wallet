@@ -9,7 +9,9 @@ export type HomeTabParamsList = {
   DEXScreen: { tokenA?: SwapToken; tokenB?: SwapToken } | undefined;
   DexReviewSwapScreen: undefined;
   DexSettingsScreen: undefined;
-  DexSuccessScreen: { amount?: string; token?: string } | undefined;
+  DexTxStatusScreen:
+    | { status: 'success' | 'error'; amount?: string; token?: string }
+    | undefined;
 };
 
 export enum HOME_STACK_ROUTES {
@@ -17,7 +19,7 @@ export enum HOME_STACK_ROUTES {
   DEXScreen = 'DEXScreen',
   DexReviewSwapScreen = 'DexReviewSwapScreen',
   DexSettingsScreen = 'DexSettingsScreen',
-  DexSuccessScreen = 'DexSuccessScreen'
+  DexTxStatusScreen = 'DexTxStatusScreen'
 }
 export type HomeNavigationProp = CompositeNavigationProp<
   BottomTabNavigationProp<TabsParamsList>,

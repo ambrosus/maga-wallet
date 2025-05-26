@@ -12,7 +12,11 @@ import {
   BottomSheetTokensList
 } from '@core/dex/components/templates';
 import { useSwapContextSelector } from '@core/dex/context';
-import { useSwapAllBalances, useAllLiquidityPools } from '@core/dex/lib/hooks';
+import {
+  useSwapAllBalances,
+  useAllLiquidityPools,
+  useTradePriceListener
+} from '@core/dex/lib/hooks';
 import { FIELD } from '@core/dex/types';
 import { useEffectOnce } from '@lib';
 import { HOME_STACK_ROUTES, HomeTabParamsList } from '@navigation';
@@ -26,6 +30,7 @@ export const DEXScreen = ({ navigation }: Props) => {
   const { bottom } = useSafeAreaInsets();
 
   useSwapAllBalances();
+  useTradePriceListener();
 
   const { getAllPoolsCount } = useAllLiquidityPools();
   const { bottomSheetTokenARef, bottomSheetTokenBRef, reset } =

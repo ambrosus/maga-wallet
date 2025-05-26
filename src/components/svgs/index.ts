@@ -20,6 +20,7 @@ export { SettingsFilledIcon } from './settings-filled';
 export { InfoIcon } from './info';
 export { CheckboxCircle } from './chekbox-circle';
 export { SuccessIconWrapped } from './sucess-icon-wrapped';
+export { FailedIconWrapped } from './failed-icon-wrapped';
 export { ArrowWithTail } from './arrow-with-tail';
 export { GearIcon } from './gear-icon';
 export { ChartArrow } from './chart-arrow';

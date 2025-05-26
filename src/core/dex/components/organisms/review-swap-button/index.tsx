@@ -68,24 +68,39 @@ export const ReviewSwapButton = () => {
     }
   }, [resolveBottomSheetData]);
 
-  const disabled = useMemo(() => {
-    return (
+  const disabled = useMemo(
+    () =>
       swapButtonString !== t('buttons.review') ||
       isProcessingBottomSheet ||
       isExecutingPrice ||
       isPoolsLoading ||
       isExtractingMaxPrice ||
+      isLockedAfterReverse,
+
+    [
+      swapButtonString,
+      t,
+      isProcessingBottomSheet,
+      isExecutingPrice,
+      isPoolsLoading,
+      isExtractingMaxPrice,
       isLockedAfterReverse
-    );
-  }, [
-    swapButtonString,
-    t,
-    isProcessingBottomSheet,
-    isExecutingPrice,
-    isPoolsLoading,
-    isExtractingMaxPrice,
-    isLockedAfterReverse
-  ]);
+    ]
+  );
+
+  const loading = useMemo(
+    () =>
+      isExecutingPrice ||
+      isProcessingBottomSheet ||
+      isPoolsLoading ||
+      isLockedAfterReverse,
+    [
+      isExecutingPrice,
+      isProcessingBottomSheet,
+      isPoolsLoading,
+      isLockedAfterReverse
+    ]
+  );
 
   return (
     <PrimaryButton disabled={disabled} onPress={onResolveBottomSheetDataPress}>
@@ -93,12 +108,7 @@ export const ReviewSwapButton = () => {
         label={swapButtonString}
         loadingLabel={undefined}
         spinnerColor={COLORS.white}
-        loading={
-          isExecutingPrice ||
-          isProcessingBottomSheet ||
-          isPoolsLoading ||
-          isLockedAfterReverse
-        }
+        loading={loading}
         styles={buttonStyles(disabled)}
       />
     </PrimaryButton>
