@@ -1,8 +1,9 @@
 import { forwardRef } from 'react';
 import { View, TouchableOpacity } from 'react-native';
-import { BottomSheetFlatList, BottomSheetModal } from '@gorhom/bottom-sheet';
+import { BottomSheetModal } from '@gorhom/bottom-sheet';
 import { useNavigation } from '@react-navigation/native';
 import { t } from 'i18next';
+import { FlatList } from 'react-native-gesture-handler';
 import { Spacer, Typography } from '@components/atoms';
 import { BottomSheet } from '@components/organisms';
 import { CheckboxCircle, GearIcon } from '@components/svgs';
@@ -67,7 +68,7 @@ export const BottomSheetWalletSelector = forwardRef<BottomSheetModal, any>(
       >
         <View style={styles.container}>
           <View>
-            <BottomSheetFlatList
+            <FlatList
               style={styles.listWrapper}
               data={wallets}
               renderItem={renderItem}
