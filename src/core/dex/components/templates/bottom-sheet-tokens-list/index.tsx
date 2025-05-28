@@ -1,8 +1,9 @@
 import { forwardRef, useCallback } from 'react';
 import { ListRenderItemInfo, Platform } from 'react-native';
-import { BottomSheetFlatList, BottomSheetModal } from '@gorhom/bottom-sheet';
+import { BottomSheetModal } from '@gorhom/bottom-sheet';
 import { toLower } from 'lodash';
 import { useTranslation } from 'react-i18next';
+import { FlatList } from 'react-native-gesture-handler';
 import { Spacer } from '@components/atoms';
 import { BottomSheet } from '@components/organisms';
 import { bnZERO, DEVICE_HEIGHT } from '@constants';
@@ -59,7 +60,7 @@ export const BottomSheetTokensList = forwardRef<
     >
       <Spacer value={scale(16)} />
 
-      <BottomSheetFlatList
+      <FlatList
         maxToRenderPerBatch={4}
         data={transformTokensObject(tokens)}
         showsVerticalScrollIndicator={false}

@@ -20,6 +20,7 @@ export const Arrow = ({
       height={height}
       fill="none"
       style={{ transform: [{ rotate: `${ArrowPosition[orientation]}deg` }] }}
+      viewBox="0 0 8 14"
     >
       <Path
         fill={color}

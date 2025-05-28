@@ -8,65 +8,82 @@ import {
 } from 'react-native';
 import { RowContainer, Typography } from '@components/atoms';
 import { Arrow } from '@components/svgs';
-import { COLORS } from '@constants';
+import { COLORS, KEYBOARD_PRESETS } from '@constants';
 import { styles } from './styles';
-
-const DEFAULT_BUTTONS = [
-  ['1', '2', '3'],
-  ['4', '5', '6'],
-  ['7', '8', '9'],
-  [' ', '0', 'remove']
-];
 
 interface KeyboardModel {
   buttons?: string[][];
   customBackSpaceIcon?: ReactElement;
   buttonContainerStyle?: ViewStyle;
   buttonTextStyle?: TextStyle;
-  onRemove: () => void;
   onButtonPress: (btnTitle: string) => void;
+  onRemoveTap?: () => void;
+  onRemovePressIn?: () => void;
+  onRemovePressOut?: () => void;
+  isShowDecimalsSymbol?: boolean;
 }
 
 export const Keyboard = ({
-  buttons = DEFAULT_BUTTONS,
+  buttons = KEYBOARD_PRESETS.DEFAULT_BUTTONS,
   buttonContainerStyle,
   buttonTextStyle,
-  onButtonPress,
-  onRemove
+  onButtonPress: onButtonPressProp,
+  onRemoveTap,
+  onRemovePressIn,
+  onRemovePressOut
 }: KeyboardModel) => {
-  const getButtonFunction = (btnTitle: string) => {
-    switch (btnTitle) {
-      case 'remove':
-        return { title: btnTitle, onPress: onRemove };
-      default:
-        return {
-          title: btnTitle,
-          onPress: () => onButtonPress(btnTitle)
-        };
-    }
-  };
-
   const RenderButton = ({ button }: { button: string }) => {
-    if (!button) return <></>;
-    const { title, onPress } = getButtonFunction(button);
+    const isRemoveButton = button === 'remove';
+    const isSpaceButton = button.trim() === '';
 
-    const isNeedIcon = title === 'remove';
+    const pressHandler = (() => {
+      if (isRemoveButton) return onRemoveTap;
+      if (!isSpaceButton) {
+        return () => {
+          onButtonPressProp(button);
+          Vibration.vibrate(30);
+        };
+      }
+      return undefined;
+    })();
 
-    const onButtonPress = () => {
-      onPress();
-      Vibration.vibrate(30);
-    };
+    const pressInHandler = isRemoveButton ? onRemovePressIn : undefined;
+    const pressOutHandler = isRemoveButton ? onRemovePressOut : undefined;
+
+    if (isSpaceButton && !pressHandler) {
+      return (
+        <View
+          style={{
+            ...styles.container,
+            ...buttonContainerStyle,
+            opacity: 0
+          }}
+        />
+      );
+    }
+
+    const isDisabled = !pressHandler && !pressInHandler;
 
     return (
       <TouchableOpacity
-        onPress={onButtonPress}
-        disabled={!title}
+        onPress={() => {
+          if (pressHandler) {
+            pressHandler();
+            if (isRemoveButton && onRemoveTap) {
+              Vibration.vibrate(30);
+            }
+          }
+        }}
+        onPressIn={pressInHandler}
+        onPressOut={pressOutHandler}
+        delayLongPress={250}
+        disabled={isDisabled}
         style={{
           ...styles.container,
           ...buttonContainerStyle
         }}
       >
-        {isNeedIcon ? (
+        {isRemoveButton ? (
           <Arrow color={COLORS.neutral900} scale={1.15} orientation="left" />
         ) : (
           <Typography
@@ -75,7 +92,7 @@ export const Keyboard = ({
               ...buttonTextStyle
             }}
           >
-            {title}
+            {button}
           </Typography>
         )}
       </TouchableOpacity>
@@ -84,11 +101,14 @@ export const Keyboard = ({
 
   return (
     <View style={styles.main}>
-      {buttons.map((item, index) => {
+      {buttons.map((rowItems, rowIndex) => {
         return (
-          <RowContainer key={`${index}`}>
-            {item.map((item, index) => (
-              <RenderButton key={`${index}`} button={item} />
+          <RowContainer key={`row-${rowIndex}`}>
+            {rowItems.map((buttonItem, buttonIndex) => (
+              <RenderButton
+                key={`button-${rowIndex}-${buttonIndex}`}
+                button={buttonItem}
+              />
             ))}
           </RowContainer>
         );

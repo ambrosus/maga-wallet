@@ -3,3 +3,4 @@ export * from './fonts';
 export * from './styles';
 export * from './device';
 export * from './navigation.theme';
+export * from './keyboard.presets';

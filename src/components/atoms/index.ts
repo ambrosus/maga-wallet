@@ -11,4 +11,5 @@ export { PercentPressableContainer } from './percent-pressable-container';
 export { KeyboardDismissingView } from './keyboard-dismissing-view';
 export { ShimmerLoader } from './shimmer-loader';
 export { Switch } from './switch';
+export { BottomSheetTokenItem } from './bottom-sheet-token-item';
 export * from './input';
