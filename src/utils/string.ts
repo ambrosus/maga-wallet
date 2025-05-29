@@ -70,4 +70,25 @@ export class StringUtils {
     }
     return str;
   }
+
+  public static formatAddress(
+    address: string,
+    paddingLeft: number,
+    paddingRight: number,
+    dotCount = 3
+  ): string {
+    if (!address || typeof address !== 'string') return '';
+    if (paddingLeft + paddingRight >= address.length) return address;
+    let str = '';
+    let dotCounter = 0;
+    for (let i = 0; i < address.length; i++) {
+      if (i < paddingLeft || address.length - i <= paddingRight)
+        str += address[i];
+      else if (dotCounter < dotCount) {
+        str += '.';
+        dotCounter++;
+      }
+    }
+    return str;
+  }
 }

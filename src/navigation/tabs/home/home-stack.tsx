@@ -6,6 +6,7 @@ import {
   DexTxStatusScreen
 } from '@screens/dex/screens';
 import { HomeScreen } from '@screens/home';
+import { ReceiveScreen } from '@screens/receive';
 import { HOME_STACK_ROUTES, HomeTabParamsList } from './types';
 
 export const HomeStack = () => {
@@ -42,6 +43,13 @@ export const HomeStack = () => {
             component={DexTxStatusScreen}
             options={{
               gestureEnabled: false
+            }}
+          />
+          <Stack.Screen
+            name={HOME_STACK_ROUTES.ReceiveScreen}
+            component={ReceiveScreen}
+            options={{
+              animation: 'slide_from_bottom'
             }}
           />
         </Stack.Group>

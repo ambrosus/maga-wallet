@@ -10,12 +10,14 @@
     "approve": "Approve {{symbol}}",
     "confirm": "Confirm",
     "done": "Done",
-    "try.again": "Try Again"
+    "try.again": "Try Again",
+    "got.it": "Got it"
   },
   "common": {
     "balance": "Balance",
     "network.fee": "Network Fee",
-    "network": "Network"
+    "network": "Network",
+    "copied": "Copied",
   },
   "setupPasskey": {
     "title": "Setup Passkey",
@@ -74,6 +76,16 @@
     },
     "copy.key": "Copy Key",
     "get.code": "Get code"
+  },
+  "receive": {
+    "title": "Receive",
+    "qr.description": "Only send supported tokens on Base network to this address. Wrong chain deposits will be lost forever.",
+    "user": {
+      "wallet.address": "Wallet address (Base Network)",
+      "email": "Email",
+      "phone": "Phone"
+    },
+    "supported.tokens": "Supported tokens"
   },
   "account": {
     "actions": {

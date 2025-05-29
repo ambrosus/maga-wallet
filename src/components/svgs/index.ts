@@ -24,5 +24,6 @@ export { FailedIconWrapped } from './failed-icon-wrapped';
 export { ArrowWithTail } from './arrow-with-tail';
 export { GearIcon } from './gear-icon';
 export { ChartArrow } from './chart-arrow';
-
+export { AppLogo } from './app-logo';
+export { CopyIcon } from './copy-icon';
 export * from './settings';
