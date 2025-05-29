@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { BottomSheetModal } from '@gorhom/bottom-sheet';
 import { RowContainer } from '@components/atoms';
 import { HomeHeaderButton } from '@components/molecules';
-import { BottomSheetSupportedTokens } from '@components/templates';
+import { BottomSheetWalletSelector } from '@components/templates';
 import { useWalletStore } from '@core/wallets';
 
 export const HomeHeader = () => {
@@ -21,7 +21,7 @@ export const HomeHeader = () => {
           title={selectedWallet.name}
         />
       </RowContainer>
-      <BottomSheetSupportedTokens ref={bottomSheetRef} />
+      <BottomSheetWalletSelector ref={bottomSheetRef} />
     </>
   );
 };
