@@ -41,13 +41,15 @@ export const SendFundsScreen = ({
     try {
       setIsLoading(true);
       await delay(2500);
-      navigation.navigate(HOME_STACK_ROUTES.SendFundsReviewScreen);
+      navigation.navigate(HOME_STACK_ROUTES.SendFundsReceiptScreen, {
+        token: selectedTokenInstance
+      });
     } catch (error) {
       throw error;
     } finally {
       setIsLoading(false);
     }
-  }, [navigation]);
+  }, [navigation, selectedTokenInstance]);
 
   const isInsufficientBalance = useMemo(() => {
     const bnAmount = parseEther(amount);
