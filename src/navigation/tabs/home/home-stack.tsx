@@ -6,11 +6,11 @@ import {
   DexTxStatusScreen
 } from '@screens/dex/screens';
 import { HomeScreen } from '@screens/home';
+import { ReceiveScreen } from '@screens/receive';
 import {
   SendFundsReceiptScreen,
   SendFundsReviewScreen
 } from '@screens/send-funds/screens';
-import { ReceiveScreen } from '@screens/receive';
 import { HOME_STACK_ROUTES, HomeTabParamsList } from './types';
 
 export const HomeStack = () => {
