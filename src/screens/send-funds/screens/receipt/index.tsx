@@ -1,17 +1,17 @@
-import { useMemo, useRef } from 'react';
+import { useMemo } from 'react';
 import { View } from 'react-native';
-import { BottomSheetModal } from '@gorhom/bottom-sheet';
 import { SafeViewContainer, Typography } from '@components/atoms';
-import { Header, HomeHeaderButton } from '@components/molecules';
+import { Header } from '@components/molecules';
+import { WalletSelector } from '@components/templates';
 import { COLORS, FONT_SIZE } from '@constants';
 import { useSendFundsStore } from '@core/send-funds/model';
 import { RootNavigationScreenProps } from '@navigation/root-stack';
 import { NumberUtils } from '@utils';
+import { styles } from './styles';
 
 export const SendFundsReceiptScreen = ({
   route
 }: RootNavigationScreenProps<'SendFundsReceiptScreen'>) => {
-  const bottomSheetWalletSelectorRef = useRef<BottomSheetModal>(null);
   const {
     params: { token }
   } = route;
@@ -19,7 +19,7 @@ export const SendFundsReceiptScreen = ({
   const { amount } = useSendFundsStore();
   const renderHeaderContentMiddle = useMemo(() => {
     return (
-      <View>
+      <View style={styles.headerContentMiddle}>
         <Typography
           fontSize={FONT_SIZE.body.lg}
           fontFamily="Onest600SemiBold"
@@ -28,9 +28,9 @@ export const SendFundsReceiptScreen = ({
           {NumberUtils.limitDecimalCount(amount, 5)} {token.currencyCode}
         </Typography>
 
-        <HomeHeaderButton
-          onPress={() => bottomSheetWalletSelectorRef.current?.present()}
-          title="Select Wallet"
+        <WalletSelector
+          bottomSheetTitle="Switch Accounts"
+          containerStyle={styles.walletSelector}
         />
       </View>
     );
