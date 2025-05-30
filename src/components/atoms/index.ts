@@ -12,5 +12,5 @@ export { KeyboardDismissingView } from './keyboard-dismissing-view';
 export { ShimmerLoader } from './shimmer-loader';
 export { Switch } from './switch';
 export { BottomSheetTokenItem } from './bottom-sheet-token-item';
+export { QrScannerDebugger } from './qr-scanner-debugger';
 export * from './input';
-export { QRCodeWithLogo } from '../molecules/qr-code';

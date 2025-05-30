@@ -18,6 +18,7 @@ import {
  * Defines all available screens and their respective prop types.
  */
 export type RootStackParamsList = {
+  QRScanner: undefined;
   SplashScreen: undefined;
   AuthScreen: undefined;
   SetupPasskeyScreen: undefined;

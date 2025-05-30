@@ -8,7 +8,8 @@ buildscript {
         kotlinVersion = "2.0.21"
         androidXAnnotation = "1.2.0"
         androidXBrowser = "1.3.0"
-        googlePlayServicesAuthVersion = "20.7.0" 
+        googlePlayServicesAuthVersion = "20.7.0"
+        kotlin_version = kotlinVersion
     }
     repositories {
         google()
@@ -18,6 +19,7 @@ buildscript {
         classpath("com.android.tools.build:gradle:8.9.1")
         classpath("com.facebook.react:react-native-gradle-plugin")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version")
         classpath 'com.google.gms:google-services:4.4.2'
     }
 }

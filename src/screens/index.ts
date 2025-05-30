@@ -4,6 +4,7 @@ export { SetupPasskeyScreen } from './setup-passkey';
 export { CreateWalletLoadingScreen } from './create-wallet-loading';
 export { DEXScreen } from './dex';
 export { SendFundsScreen } from './send-funds';
+export { QRScannerScreen } from './qr-scanner';
 export * from './discover';
 export * from './home';
 export * from './settings';
