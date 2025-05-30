@@ -1,7 +1,12 @@
+import { useCallback, useEffect } from 'react';
 import { TouchableOpacity, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { RowContainer, TextInput, Typography } from '@components/atoms';
 import { QRIcon } from '@components/svgs';
-import { COLORS, FONT_SIZE } from '@constants';
+import { ANIMATION_DELAY, AppValidators, COLORS, FONT_SIZE } from '@constants';
+import { useQRScanner } from '@lib';
+import { RootNavigationProp } from '@navigation/root-stack';
+import { devErrorLogger } from '@utils';
 import { styles } from './styles';
 
 interface AddressInputWithQRProps {
@@ -15,6 +20,44 @@ export const AddressInputWithQR = ({
   value,
   onChangeText
 }: AddressInputWithQRProps) => {
+  const navigation = useNavigation<RootNavigationProp>();
+  const { setQRCallback } = useQRScanner();
+
+  // Clean up callback on unmount
+  useEffect(() => {
+    return () => {
+      setQRCallback(null);
+    };
+  }, [setQRCallback]);
+
+  const onScannedValueHandle = useCallback(
+    (payload: string) => {
+      if (!payload) return;
+
+      const isAddress = AppValidators.ethereumAddress.test(payload);
+      const extractedAddress = payload.match(
+        AppValidators.ethereumAddress
+      )?.[0];
+
+      if (isAddress && extractedAddress) {
+        onChangeText(extractedAddress);
+      } else {
+        devErrorLogger(
+          'Invalid Address',
+          'The scanned QR code does not contain a valid Ethereum address'
+        );
+      }
+    },
+    [onChangeText]
+  );
+
+  const onScannerNavigate = useCallback(() => {
+    setQRCallback(onScannedValueHandle);
+    setTimeout(() => {
+      navigation.navigate('QRScanner');
+    }, ANIMATION_DELAY);
+  }, [navigation, onScannedValueHandle, setQRCallback]);
+
   return (
     <View style={styles.container}>
       <Typography
@@ -35,7 +78,7 @@ export const AddressInputWithQR = ({
           placeholder="Wallet address, Phone or Email"
         />
 
-        <TouchableOpacity hitSlop={10}>
+        <TouchableOpacity hitSlop={10} onPress={onScannerNavigate}>
           <QRIcon />
         </TouchableOpacity>
       </RowContainer>

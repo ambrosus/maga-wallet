@@ -2,6 +2,7 @@ import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Toast } from '@components/molecules';
 import { FLEX_FULL_SIZE } from '@constants';
+import { QRScannerProvider } from '@contexts/qr-scanner';
 import { SwapContextProvider } from '@core/dex/context';
 import { ApolloClientProvider } from './apollo-client';
 import { LocalizationProvider } from './localization';
@@ -15,10 +16,12 @@ export const WrappedAppWithProviders = () => {
         <LocalizationProvider>
           <ApolloClientProvider>
             <SwapContextProvider>
-              <BottomSheetModalProvider>
-                <NavigationProvider />
-                <Toast />
-              </BottomSheetModalProvider>
+              <QRScannerProvider>
+                <BottomSheetModalProvider>
+                  <NavigationProvider />
+                  <Toast />
+                </BottomSheetModalProvider>
+              </QRScannerProvider>
             </SwapContextProvider>
           </ApolloClientProvider>
         </LocalizationProvider>
