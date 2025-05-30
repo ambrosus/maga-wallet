@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { View } from 'react-native';
-import { SendFundsAnimatedAmount } from '@components/animated';
+import { AutoResizeAmount } from '@components/animated/auto-resize-amount';
 import { SafeViewContainer, Spacer, Typography } from '@components/atoms';
 import {
   Header,
@@ -10,6 +10,7 @@ import {
 import { Keyboard } from '@components/organisms';
 import { KEYBOARD_PRESETS } from '@constants';
 import { useKeyboardHandler } from '@core/send-funds/lib';
+import { useSendFundsStore } from '@core/send-funds/model';
 import { RootNavigationScreenProps } from '@navigation/root-stack';
 import { IToken } from '@types';
 import { styles } from './styles';
@@ -17,6 +18,7 @@ import { styles } from './styles';
 export const SendFundsScreen = ({
   route
 }: RootNavigationScreenProps<'SendFundsScreen'>) => {
+  const { amount } = useSendFundsStore();
   const [selectedTokenInstance, setSelectedTokenInstance] = useState<IToken>(
     route.params.token
   );
@@ -34,7 +36,7 @@ export const SendFundsScreen = ({
 
       <View style={styles.container}>
         <View style={styles.innerContainer}>
-          <SendFundsAnimatedAmount />
+          <AutoResizeAmount amount={amount} />
 
           <SendFundsTokenSelector
             token={selectedTokenInstance}
@@ -43,7 +45,7 @@ export const SendFundsScreen = ({
           <Spacer value={24} />
           <Keyboard
             buttons={KEYBOARD_PRESETS.BUTTONS_WITH_DECIMALS}
-            buttonContainerStyle={{ width: '30%' }}
+            buttonContainerStyle={styles.keyboardButtonContainer}
             onRemoveTap={onKeyboardRemoveTap}
             onButtonPress={onKeyboardButtonPressHandle}
             onRemovePressIn={handleRemoveButtonPressIn}

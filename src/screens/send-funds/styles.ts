@@ -15,5 +15,8 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 20
+  },
+  keyboardButtonContainer: {
+    width: '30%'
   }
 });
