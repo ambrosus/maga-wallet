@@ -95,5 +95,3 @@ export const SettingsStack = () => {
     </>
   );
 };
-
-export default SettingsStack;

@@ -1,6 +1,6 @@
 import * as Keychain from 'react-native-keychain';
 
-const keychainStore = {
+export const keychainStore = {
   async setItem(key: string, value: string): Promise<void> {
     try {
       await Keychain.setInternetCredentials(key, value, value); // key, username, password
@@ -32,11 +32,9 @@ const keychainStore = {
 
   async clearAll(): Promise<void> {
     try {
-      await Keychain.resetGenericPassword(); // очищує всі дані, збережені через Keychain
+      await Keychain.resetGenericPassword();
     } catch (error) {
       console.error('Error clearing all data from keychain: ', error);
     }
   }
 };
-
-export default keychainStore;

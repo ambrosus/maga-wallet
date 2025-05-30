@@ -7,6 +7,10 @@ import {
 } from '@screens/dex/screens';
 import { HomeScreen } from '@screens/home';
 import { ReceiveScreen } from '@screens/receive';
+import {
+  SendFundsReceiptScreen,
+  SendFundsReviewScreen
+} from '@screens/send-funds/screens';
 import { HOME_STACK_ROUTES, HomeTabParamsList } from './types';
 
 export const HomeStack = () => {
@@ -62,10 +66,16 @@ export const HomeStack = () => {
               animation: 'slide_from_bottom'
             }}
           />
+          <Stack.Screen
+            name={HOME_STACK_ROUTES.SendFundsReceiptScreen}
+            component={SendFundsReceiptScreen}
+          />
+          <Stack.Screen
+            name={HOME_STACK_ROUTES.SendFundsReviewScreen}
+            component={SendFundsReviewScreen}
+          />
         </Stack.Group>
       </Stack.Navigator>
     </>
   );
 };
-
-export default HomeStack;

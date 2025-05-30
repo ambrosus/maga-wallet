@@ -16,7 +16,7 @@ interface TabBarMethodModel {
   visibility: (tab: RoutesModel) => boolean;
 }
 
-const TabBar = ({ state, navigation }: BottomTabBarProps) => {
+export const TabBar = ({ state, navigation }: BottomTabBarProps) => {
   const { t } = useTranslation();
   const bottomSafeArea = useSafeAreaInsets().bottom;
 
@@ -96,5 +96,3 @@ const TabBar = ({ state, navigation }: BottomTabBarProps) => {
     </View>
   );
 };
-
-export default TabBar;

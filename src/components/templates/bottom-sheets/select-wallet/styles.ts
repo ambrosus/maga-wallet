@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
   container: {
     marginBottom: 10,
     paddingTop: verticalScale(16),
-    paddingHorizontal: scale(16),
+    paddingHorizontal: scale(6),
     position: 'relative',
     flex: 1
   },

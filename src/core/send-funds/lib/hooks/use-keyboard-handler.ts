@@ -16,6 +16,8 @@ export const useKeyboardHandler = () => {
       let finalValue = StringUtils.formatNumberInput(value);
       finalValue = NumberUtils.limitDecimalCount(finalValue, 3);
 
+      if (finalValue.length > 24) return;
+
       setAmount(finalValue);
     },
     [amount, setAmount]

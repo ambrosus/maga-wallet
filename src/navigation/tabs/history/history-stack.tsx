@@ -23,5 +23,3 @@ export const HistoryStack = () => {
     </View>
   );
 };
-
-export default HistoryStack;

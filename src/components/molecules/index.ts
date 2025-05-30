@@ -14,7 +14,7 @@ export { TextOrSpinner } from './text-or-spinner';
 export { Toast } from './toast';
 export { ToastType } from './toast/types';
 export { TokenImageIpfsWithShimmer } from './token-ipfs-image-with-shimmer';
-export { HomeHeaderButton } from './home-header-button';
 export { ChartPrice } from './chart-price';
 export { SendFundsTokenSelector } from './send-funds-token-selector';
 export { QRCodeBox } from './qr-code';
+export { AddressInputWithQR } from './address-input-with-qr';
