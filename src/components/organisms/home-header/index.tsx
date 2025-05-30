@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { BottomSheetModal } from '@gorhom/bottom-sheet';
 import { RowContainer } from '@components/atoms';
 import { HomeHeaderButton } from '@components/molecules';
-import { BottomSheetWalletSelector } from '@components/templates/bottom-sheets/select-wallet';
+import { BottomSheetWalletSelector } from '@components/templates';
 import { useWalletStore } from '@core/wallets';
 
 export const HomeHeader = () => {

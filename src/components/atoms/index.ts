@@ -13,3 +13,4 @@ export { ShimmerLoader } from './shimmer-loader';
 export { Switch } from './switch';
 export { BottomSheetTokenItem } from './bottom-sheet-token-item';
 export * from './input';
+export { QRCodeWithLogo } from '../molecules/qr-code';

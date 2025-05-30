@@ -1,9 +1,7 @@
-/**
- * Export all types from the application
- */
-
-export * from './svgs';
-export * from './localization';
-export * from './auth';
-export * from './networks';
+export * from './tokens';
 export * from './wallet.types';
+export * from './erc20.contract';
+export * from './svgs';
+export * from './networks';
+export * from './auth';
+export * from './localization';
