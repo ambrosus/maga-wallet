@@ -1,5 +1,5 @@
 import { ethers } from 'ethers';
-import { AppTokensEnvironment } from '@types';
+import type { AppTokensEnvironment } from '@types';
 
 export const APP_COMMON_TOKENS: AppTokensEnvironment = {
   PROD: [
@@ -464,14 +464,14 @@ export const APP_COMMON_TOKENS: AppTokensEnvironment = {
     {
       address: '0x7240d2444151d9A8c72F77306Fa10f19FE7C9182',
       decimals: 0,
-      name: '“Test1“',
-      symbol: '“Test1“'
+      name: '"Test1"',
+      symbol: '"Test1"'
     },
     {
       address: '0xB4eB7786858AEcE42E52656a891C01F4e5fFC12a',
       decimals: 0,
-      name: '“Test2“',
-      symbol: '“Test2“'
+      name: '"Test2"',
+      symbol: '"Test2"'
     },
     {
       address: '0x109948270c9Be75020bf74538D1c3Db17d6c5efd',

@@ -16,6 +16,7 @@ export type HomeTabParamsList = {
   SendFundsScreen: { token: IToken };
   SendFundsReceiptScreen: { token: IToken };
   SendFundsReviewScreen: undefined;
+  ReceiveScreen: undefined;
 };
 
 export enum HOME_STACK_ROUTES {
@@ -26,8 +27,10 @@ export enum HOME_STACK_ROUTES {
   DexTxStatusScreen = 'DexTxStatusScreen',
   SendFundsScreen = 'SendFundsScreen',
   SendFundsReceiptScreen = 'SendFundsReceiptScreen',
-  SendFundsReviewScreen = 'SendFundsReviewScreen'
+  SendFundsReviewScreen = 'SendFundsReviewScreen',
+  ReceiveScreen = 'ReceiveScreen'
 }
+
 export type HomeNavigationProp = CompositeNavigationProp<
   BottomTabNavigationProp<TabsParamsList>,
   NativeStackNavigationProp<HomeTabParamsList>

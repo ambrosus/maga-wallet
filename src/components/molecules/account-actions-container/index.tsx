@@ -47,7 +47,9 @@ export const AccountActionsContainer = () => {
         />
         <AccountActionPressableContainer
           type="receive"
-          onActionPress={() => {}}
+          onActionPress={() =>
+            navigation.navigate(HOME_STACK_ROUTES.ReceiveScreen)
+          }
         />
       </RowContainer>
 

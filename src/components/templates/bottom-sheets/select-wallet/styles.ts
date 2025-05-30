@@ -4,12 +4,12 @@ import { scale, verticalScale } from '@utils';
 
 export const styles = StyleSheet.create({
   container: {
+    marginBottom: 10,
     paddingTop: verticalScale(16),
     paddingHorizontal: scale(6),
     position: 'relative',
     flex: 1
   },
-
   listWrapper: {
     width: '100%'
   },
