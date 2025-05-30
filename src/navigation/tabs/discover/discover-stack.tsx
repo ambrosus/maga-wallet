@@ -22,5 +22,3 @@ export const DiscoverStack = () => {
     </>
   );
 };
-
-export default DiscoverStack;

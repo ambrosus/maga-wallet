@@ -79,5 +79,3 @@ export const HomeStack = () => {
     </>
   );
 };
-
-export default HomeStack;

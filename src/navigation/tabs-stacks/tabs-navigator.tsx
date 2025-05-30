@@ -5,7 +5,7 @@ import {
   createBottomTabNavigator
 } from '@react-navigation/bottom-tabs';
 import { useKeyboardHeight } from '@lib';
-import TabBar from '@navigation/components/tab-bar';
+import { TabBar } from '@navigation/components';
 import { DiscoverStack, HistoryStack, HomeStack } from '@navigation/tabs';
 import { TABS_STACK_ROUTES } from './routes';
 import { TabsParamsList } from './types';
