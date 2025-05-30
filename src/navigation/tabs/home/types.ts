@@ -14,6 +14,7 @@ export type HomeTabParamsList = {
     | { status: 'success' | 'error'; amount?: string; token?: string }
     | undefined;
   SendFundsScreen: { token: IToken };
+  SendFundsReviewScreen: undefined;
 };
 
 export enum HOME_STACK_ROUTES {
@@ -22,7 +23,8 @@ export enum HOME_STACK_ROUTES {
   DexReviewSwapScreen = 'DexReviewSwapScreen',
   DexSettingsScreen = 'DexSettingsScreen',
   DexTxStatusScreen = 'DexTxStatusScreen',
-  SendFundsScreen = 'SendFundsScreen'
+  SendFundsScreen = 'SendFundsScreen',
+  SendFundsReviewScreen = 'SendFundsReviewScreen'
 }
 export type HomeNavigationProp = CompositeNavigationProp<
   BottomTabNavigationProp<TabsParamsList>,

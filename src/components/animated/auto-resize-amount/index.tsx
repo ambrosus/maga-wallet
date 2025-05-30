@@ -7,11 +7,12 @@ import Animated, {
   useSharedValue,
   withSpring
 } from 'react-native-reanimated';
-import { COLORS } from '@constants';
+import { Typography } from '@components/atoms';
+import { COLORS, FONT_SIZE } from '@constants';
+import { styles } from './styles';
 
-const MIN_FONT_SIZE = 32;
+const MIN_FONT_SIZE = 24;
 const MAX_FONT_SIZE = 56;
-const PADDING = 0;
 
 const SPRING_CONFIG = {
   damping: 50,
@@ -24,6 +25,8 @@ const SPRING_CONFIG = {
 
 interface AutoResizeAmountProps {
   amount: string;
+  token: string;
+  isInsufficientBalance: boolean;
   fontSize?: {
     MIN?: number;
     MAX?: number;
@@ -32,6 +35,8 @@ interface AutoResizeAmountProps {
 
 export const AutoResizeAmount = ({
   amount,
+  token,
+  isInsufficientBalance,
   fontSize = { MIN: MIN_FONT_SIZE, MAX: MAX_FONT_SIZE }
 }: AutoResizeAmountProps) => {
   const [containerWidth, setContainerWidth] = useState(0);
@@ -66,7 +71,7 @@ export const AutoResizeAmount = ({
     if (containerWidth > 0) {
       const newCalculatedFontSize = calculateFontSize(
         amount || '0', // Use '0' as fallback for amount
-        containerWidth - PADDING
+        containerWidth
       );
 
       previousFontSizeSV.value = nextFontSizeSV.value;
@@ -98,30 +103,25 @@ export const AutoResizeAmount = ({
   }));
 
   return (
-    <View
-      style={{
-        width: '100%',
-        flexGrow: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingHorizontal: PADDING / 2
-      }}
-      onLayout={onTextContainerLayout}
-    >
+    <View style={styles.container} onLayout={onTextContainerLayout}>
       <Animated.Text
-        style={[
-          {
-            fontFamily: 'Onest600SemiBold',
-            color: COLORS.textPrimary,
-            textAlign: 'center',
-            width: '100%'
-          },
-          animatedStyle
-        ]}
+        style={[styles.typography, animatedStyle]}
         numberOfLines={1}
       >
         {amount || '0'}
       </Animated.Text>
+
+      {isInsufficientBalance && (
+        <View style={styles.errorContainer}>
+          <Typography
+            fontSize={FONT_SIZE.body.lg}
+            fontFamily="Onest500Medium"
+            color={COLORS.destructive500}
+          >
+            Insufficient {token}
+          </Typography>
+        </View>
+      )}
     </View>
   );
 };

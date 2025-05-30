@@ -6,6 +6,7 @@ import {
   DexTxStatusScreen
 } from '@screens/dex/screens';
 import { HomeScreen } from '@screens/home';
+import { SendFundsReviewScreen } from '@screens/send-funds/screens';
 import { HOME_STACK_ROUTES, HomeTabParamsList } from './types';
 
 export const HomeStack = () => {
@@ -50,6 +51,13 @@ export const HomeStack = () => {
           <Stack.Screen
             name={HOME_STACK_ROUTES.SendFundsScreen}
             component={SendFundsScreen}
+            options={{
+              animation: 'slide_from_bottom'
+            }}
+          />
+          <Stack.Screen
+            name={HOME_STACK_ROUTES.SendFundsReviewScreen}
+            component={SendFundsReviewScreen}
             options={{
               animation: 'slide_from_bottom'
             }}
