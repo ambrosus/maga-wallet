@@ -23,7 +23,6 @@ export const AddressInputWithQR = ({
   const navigation = useNavigation<RootNavigationProp>();
   const { setQRCallback } = useQRScanner();
 
-  // Clean up callback on unmount
   useEffect(() => {
     return () => {
       setQRCallback(null);

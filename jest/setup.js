@@ -1,6 +1,9 @@
 import 'react-native-gesture-handler/jestSetup';
 
 require('react-native-reanimated').setUpTests();
+jest.mock('react-native-permissions', () =>
+  require('react-native-permissions/mock')
+);
 // Include this section for mocking react-native-screens
 
 // Global mock for @navigation
