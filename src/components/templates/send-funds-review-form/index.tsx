@@ -129,7 +129,7 @@ export const SendFundsReviewForm = ({ token }: SendFundsReviewFormProps) => {
         </View>
       </View>
 
-      <SendFundsButton />
+      <SendFundsButton token={token} />
     </View>
   );
 };

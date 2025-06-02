@@ -151,5 +151,17 @@
         "description": "An error occured while processing your transaction."
       }
     }
+  },
+  "send": {
+    "status": {
+      "success": {
+        "title": "Sent.",
+        "description": "is on its way to"
+      },
+      "error": {
+        "title": "Transaction Failed!",
+        "description": "An error occured while processing your transaction."
+      }
+    }
   }
 }

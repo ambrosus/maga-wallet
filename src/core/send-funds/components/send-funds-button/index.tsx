@@ -1,13 +1,21 @@
 import { useCallback, useMemo, useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 import { Typography } from '@components/atoms';
 import { PrimaryButton } from '@components/molecules';
 import { FONT_SIZE, COLORS } from '@constants';
 import { useAnimatedDots } from '@lib';
+import { HOME_STACK_ROUTES, HomeNavigationProp } from '@navigation';
+import { IToken } from '@types';
 import { delay } from '@utils';
 
-export const SendFundsButton = () => {
+interface SendFundsButtonProps {
+  token: IToken;
+}
+
+export const SendFundsButton = ({ token }: SendFundsButtonProps) => {
   const { t } = useTranslation();
+  const navigation = useNavigation<HomeNavigationProp>();
 
   const { DotsComponent, setIsAnimating } = useAnimatedDots({
     fontSize: FONT_SIZE.body.md,
@@ -23,12 +31,16 @@ export const SendFundsButton = () => {
       setSending(true);
       await delay(5000);
       setSending(false);
+      navigation.navigate(HOME_STACK_ROUTES.SendFundsTxStatusScreen, {
+        token,
+        status: 'error'
+      });
     } catch (error) {
       throw error;
     } finally {
       setIsAnimating(false);
     }
-  }, [setIsAnimating]);
+  }, [navigation, setIsAnimating, token]);
 
   const buttonText = useMemo(
     () => t(sending ? 'buttons.sending' : 'account.actions.send'),
