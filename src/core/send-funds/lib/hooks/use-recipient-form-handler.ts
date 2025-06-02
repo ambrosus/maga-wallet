@@ -1,11 +1,12 @@
 import { useEffect, useMemo, useState } from 'react';
+import { useSendFundsStore } from '@core/send-funds/model';
 import { useDebounce } from '@lib';
 
 export const useRecipientFormHandler = () => {
-  const [recipient, setRecipient] = useState('');
+  const { receipient } = useSendFundsStore();
   const [isWrongValue, setIsWrongValue] = useState(false);
 
-  const debouncedRecipient = useDebounce(recipient, 1000);
+  const debouncedRecipient = useDebounce(receipient, 1000);
 
   const recipientType = useMemo(() => {
     if (debouncedRecipient) {
@@ -42,5 +43,5 @@ export const useRecipientFormHandler = () => {
     return `Oops! That ${recipientType} looks incorrect.`;
   }, [recipientType]);
 
-  return { error: errorMessage, isWrongValue, recipient, setRecipient };
+  return { error: errorMessage, isWrongValue };
 };

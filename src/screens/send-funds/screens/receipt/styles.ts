@@ -12,5 +12,8 @@ export const styles = StyleSheet.create({
   container: {
     paddingHorizontal: scale(16),
     marginTop: verticalScale(30)
+  },
+  buttonContainer: {
+    paddingHorizontal: scale(16)
   }
 });

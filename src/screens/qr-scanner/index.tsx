@@ -1,15 +1,32 @@
-import { useCallback, useRef, useEffect } from 'react';
-import { View, Alert } from 'react-native';
+import { useCallback, useRef, useEffect, useState } from 'react';
+import { View, Alert, TouchableOpacity } from 'react-native';
 import { Camera, CameraApi, CameraType } from 'react-native-camera-kit';
 import { OnReadCodeData } from 'react-native-camera-kit/dist/CameraProps';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { QrScannerDebugger } from '@components/atoms';
-import { useQRScanner } from '@lib';
+import { CloseIcon } from '@components/svgs';
+import { CameraPermissionView } from '@components/templates';
+import { COLORS } from '@constants';
+import { PermissionKeys, Permissions, useQRScanner } from '@lib';
 import { RootNavigationScreenProps } from '@navigation/root-stack';
 import { styles } from './styles';
 
 export const QRScannerScreen = ({
   navigation
 }: RootNavigationScreenProps<'QRScanner'>) => {
+  const { top } = useSafeAreaInsets();
+  const [isCameraPermissionGranted, setIsCameraPermissionGranted] =
+    useState(false);
+
+  const onHandleCameraPermission = useCallback(async () => {
+    const result = await Permissions.check(PermissionKeys.CAMERA);
+    setIsCameraPermissionGranted(result === 'granted');
+  }, []);
+
+  useEffect(() => {
+    onHandleCameraPermission();
+  }, [onHandleCameraPermission]);
+
   const cameraRef = useRef<CameraApi>(null);
   const hasScanned = useRef(false);
   const { qrCallback, setQRCallback } = useQRScanner();
@@ -43,8 +60,17 @@ export const QRScannerScreen = ({
     [navigation, qrCallback, setQRCallback]
   );
 
+  if (!isCameraPermissionGranted) {
+    return <CameraPermissionView />;
+  }
+
   return (
     <View style={styles.container}>
+      <View style={[styles.headerContainer, { top }]}>
+        <TouchableOpacity onPress={navigation.goBack}>
+          <CloseIcon color={COLORS.white} />
+        </TouchableOpacity>
+      </View>
       <QrScannerDebugger onScannedHandle={onScannedHandle} />
 
       <Camera

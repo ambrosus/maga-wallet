@@ -23,7 +23,7 @@ module.exports = {
           '@utils': './src/utils',
           '@lib': './src/lib',
           '@styles': './src/styles',
-          '@queries': './src/queries',
+          '@graph': './src/graph',
           '@store': './src/store'
         }
       }

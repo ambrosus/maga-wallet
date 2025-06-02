@@ -13,7 +13,8 @@ export const FONT_SIZE = {
     xl: 18,
     lg: 16,
     md: 14,
-    sm: 12
+    sm: 12,
+    xs: 10
   },
   tertiary: {
     lg: 12,

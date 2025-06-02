@@ -30,4 +30,5 @@ export { QRIcon } from './qr';
 export { ShareIcon } from './share-icon';
 export { EditIcon } from './edit-icon';
 export { ThreeDotsIcon } from './three-dots-icon';
+export { ContactPersonIcon } from './contact-person';
 export * from './settings';

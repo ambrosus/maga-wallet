@@ -1,8 +1,8 @@
 import { useQuery } from '@apollo/client';
 import { AppValidators } from '@constants';
+import { AMBRODEO_TOKEN } from '@graph/rodeo-tokens';
+import { RodeoToken } from '@graph/rodeo-tokens/types';
 import { ApolloEndpointsKeys } from '@lib/apollo';
-import { AMBRODEO_TOKEN } from '@queries/rodeo-tokens';
-import { RodeoToken } from '@queries/rodeo-tokens/types';
 
 export function useRodeoSingleTokenQuery(id: string | undefined) {
   const { data, loading } = useQuery<{ token: RodeoToken }>(AMBRODEO_TOKEN, {

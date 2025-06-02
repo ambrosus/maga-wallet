@@ -14,6 +14,7 @@ export const styles = StyleSheet.create({
     fontSize: FONT_SIZE.body.lg,
     fontFamily: FONTS.Onest500Medium,
     color: COLORS.textPrimary,
-    paddingLeft: 0
+    paddingLeft: 0,
+    textAlign: 'left'
   }
 });

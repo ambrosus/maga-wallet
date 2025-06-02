@@ -1,12 +1,18 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { RowContainer, TextInput, Typography } from '@components/atoms';
 import { QRIcon } from '@components/svgs';
-import { ANIMATION_DELAY, AppValidators, COLORS, FONT_SIZE } from '@constants';
+import {
+  ANIMATION_DELAY,
+  AppValidators,
+  COLORS,
+  DEVICE_WIDTH,
+  FONT_SIZE
+} from '@constants';
 import { useQRScanner } from '@lib';
 import { RootNavigationProp } from '@navigation/root-stack';
-import { devErrorLogger } from '@utils';
+import { devErrorLogger, StringUtils } from '@utils';
 import { styles } from './styles';
 
 interface AddressInputWithQRProps {
@@ -14,6 +20,14 @@ interface AddressInputWithQRProps {
   value: string;
   onChangeText: (value: string) => void;
 }
+
+const getSliceNumbers = (width: number, fontSize: number) => {
+  const totalCharacters = Math.floor(width / fontSize);
+  const halfCharacters = Math.floor(totalCharacters / 2);
+  const leftSlice = halfCharacters + 9;
+  const rightSlice = totalCharacters - leftSlice + 9;
+  return { leftSlice, rightSlice };
+};
 
 export const AddressInputWithQR = ({
   label,
@@ -23,11 +37,23 @@ export const AddressInputWithQR = ({
   const navigation = useNavigation<RootNavigationProp>();
   const { setQRCallback } = useQRScanner();
 
+  const [isInputFocused, setIsInputFocused] = useState(false);
+
+  const toggleFocused = () => setIsInputFocused((prevState) => !prevState);
+
   useEffect(() => {
     return () => {
       setQRCallback(null);
     };
   }, [setQRCallback]);
+
+  const maskedValue = useMemo(() => {
+    const isAddress = AppValidators.ethereumAddress.test(value);
+    if (isInputFocused || !isAddress) return value;
+
+    const { leftSlice, rightSlice } = getSliceNumbers(DEVICE_WIDTH, 16);
+    return StringUtils.formatAddress(value, leftSlice, rightSlice);
+  }, [value, isInputFocused]);
 
   const onScannedValueHandle = useCallback(
     (payload: string) => {
@@ -69,8 +95,11 @@ export const AddressInputWithQR = ({
 
       <RowContainer alignItems="center" gap={8}>
         <TextInput
-          value={value}
+          value={maskedValue}
+          numberOfLines={1}
           maxLength={64}
+          onFocus={toggleFocused}
+          onBlur={toggleFocused}
           style={styles.input}
           onChangeText={onChangeText}
           placeholderTextColor={COLORS.neutral400}

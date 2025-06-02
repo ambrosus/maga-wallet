@@ -1,5 +1,6 @@
 import { useEffect, useMemo } from 'react';
 import { useNavigation } from '@react-navigation/native';
+import { useAllContactsQuery } from '@core/contacts/lib';
 import {
   useCurrenciesQuery,
   useRodeoTokensListQuery
@@ -7,16 +8,17 @@ import {
 import { ROOT_STACK_ROUTES, RootNavigationProp } from '@navigation/root-stack';
 
 export function useSplashNavigation() {
+  const navigation = useNavigation<RootNavigationProp>();
   const { loading: loadingCurrencies } = useCurrenciesQuery();
   const { loading: loadingRodeoTokens } = useRodeoTokensListQuery();
-  const navigation = useNavigation<RootNavigationProp>();
+  const { loading: loadingContacts } = useAllContactsQuery();
 
   // TODO: Temp mock of signed in state
   const isSignedIn = true;
 
   const loading = useMemo(
-    () => loadingCurrencies || loadingRodeoTokens,
-    [loadingCurrencies, loadingRodeoTokens]
+    () => loadingCurrencies || loadingRodeoTokens || loadingContacts,
+    [loadingContacts, loadingCurrencies, loadingRodeoTokens]
   );
 
   useEffect(() => {
