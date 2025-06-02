@@ -1,5 +1,5 @@
 import { forwardRef, PropsWithChildren, useCallback, useMemo } from 'react';
-import { StatusBar } from 'react-native';
+import { StatusBar, ViewStyle } from 'react-native';
 import {
   BottomSheetBackdrop,
   BottomSheetBackdropProps,
@@ -16,12 +16,23 @@ import { styles } from './styles';
 type BottomSheetProps = PropsWithChildren &
   BottomSheetModalProps & {
     swiperIconVisible?: boolean;
+    contentContainerStyle?: ViewStyle;
+    modalStyles?: ViewStyle;
     title?: string;
+    onChange?: (index: number) => void;
   };
 
 export const BottomSheet = forwardRef<BottomSheetModal, BottomSheetProps>(
   (
-    { maxDynamicContentSize, swiperIconVisible = true, title, children },
+    {
+      maxDynamicContentSize,
+      contentContainerStyle = {},
+      swiperIconVisible = true,
+      modalStyles = {},
+      title,
+      children,
+      onChange
+    },
     ref
   ) => {
     const { bottom: paddingBottom } = useSafeAreaInsets();
@@ -55,17 +66,19 @@ export const BottomSheet = forwardRef<BottomSheetModal, BottomSheetProps>(
         enableOverDrag={false}
         backdropComponent={renderBackdrop}
         enableDynamicSizing={true}
-        backgroundStyle={styles.background}
+        backgroundStyle={[styles.background, modalStyles]}
         handleIndicatorStyle={
           swiperIconVisible ? styles.indicator : styles.indicatorHidden
         }
         maxDynamicContentSize={maxDynamicContentSizeCalc}
+        onChange={onChange}
       >
         <BottomSheetView
-          style={{
-            ...styles.container,
-            paddingBottom: paddingBottom === 0 ? 64 : paddingBottom
-          }}
+          style={[
+            styles.container,
+            contentContainerStyle,
+            { paddingBottom: paddingBottom === 0 ? 64 : paddingBottom }
+          ]}
         >
           {title && (
             <Typography

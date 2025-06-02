@@ -5,18 +5,11 @@ import { useTranslation } from 'react-i18next';
 import { SafeViewContainer, Typography, Spacer } from '@components/atoms';
 import { Header, QRCodeBox } from '@components/molecules';
 import { BottomSheetSupportedTokens } from '@components/templates';
-import { COLORS } from '@constants';
+import { COLORS, MOCK_USER_DATA } from '@constants';
 import { useWalletStore } from '@core/wallets/store';
 import { scale, StringUtils } from '@utils';
 import { UserInfoContainer, SupportedTokensList } from './components';
 import { styles } from './styles';
-
-// TODO remove after we have a real user data
-const HARD_CODE_USER_DATA = {
-  address: '0x0000000000000000000000000000000000000000',
-  email: 'testMAga-wallet123@test.com',
-  phone: '+1234567890'
-};
 
 export const ReceiveScreen = () => {
   const { selectedWallet } = useWalletStore();
@@ -54,19 +47,15 @@ export const ReceiveScreen = () => {
             <View style={styles.userInfoList}>
               <UserInfoContainer
                 title={t('receive.user.wallet.address')}
-                data={StringUtils.formatAddress(
-                  HARD_CODE_USER_DATA.address,
-                  13,
-                  4
-                )}
+                data={StringUtils.formatAddress(MOCK_USER_DATA.address, 13, 4)}
               />
               <UserInfoContainer
                 title={t('receive.user.email')}
-                data={HARD_CODE_USER_DATA.email}
+                data={MOCK_USER_DATA.email}
               />
               <UserInfoContainer
                 title={t('receive.user.phone')}
-                data={HARD_CODE_USER_DATA.phone}
+                data={MOCK_USER_DATA.phone}
               />
             </View>
           </View>

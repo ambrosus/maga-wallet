@@ -11,7 +11,12 @@
     "confirm": "Confirm",
     "done": "Done",
     "try.again": "Try Again",
-    "got.it": "Got it"
+    "got.it": "Got it",
+    "change": "Change",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "remove": "Remove"
   },
   "common": {
     "balance": "Balance",
@@ -49,7 +54,18 @@
       "notifications": "Notifications",
       "about": "About"
     },
-
+    "manage.accounts": {
+      "sing.method": "Sign in method",
+      "description": "Add or remove accounts to your wallet.",
+      "edit.account": "Edit Account",
+      "share.account": "Share my Public Address",
+      "remove.account": "Remove Account",
+      "rename.account": "Rename Account",
+      "account.name": "Account Name",
+      "remove.wallet.title": "Are you sure?",
+      "remove.wallet.description": "{{walletName}} will no longer be visible on this device unless imported.",
+      "toast.success.remove.wallet": "Wallet removed."
+    },
     "create.new.passkey": "Create new passkey",
     "confirm.new.passkey": "Confirm new passkey",
     "enter.passkey": "Enter current passkey",
