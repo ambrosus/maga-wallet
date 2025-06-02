@@ -19,11 +19,13 @@ import { COLORS, FLEX_FULL_SIZE, FONT_SIZE } from '@constants';
 import { Contact } from '@core/contacts/types';
 import { useRecipientFormHandler } from '@core/send-funds/lib';
 import { useSendFundsStore } from '@core/send-funds/model';
+import { HOME_STACK_ROUTES } from '@navigation';
 import { RootNavigationScreenProps } from '@navigation/root-stack';
 import { NumberUtils } from '@utils';
 import { styles } from './styles';
 
 export const SendFundsReceiptScreen = ({
+  navigation,
   route
 }: RootNavigationScreenProps<'SendFundsReceiptScreen'>) => {
   const { t } = useTranslation();
@@ -33,6 +35,12 @@ export const SendFundsReceiptScreen = ({
 
   const { amount, receipient, setReceipient } = useSendFundsStore();
   const { error, isWrongValue } = useRecipientFormHandler();
+
+  const onNavigateToReviewScreen = useCallback(() => {
+    navigation.navigate(HOME_STACK_ROUTES.SendFundsReviewScreen, {
+      token
+    });
+  }, [navigation, token]);
 
   const renderHeaderContentMiddle = useMemo(() => {
     return (
@@ -88,7 +96,7 @@ export const SendFundsReceiptScreen = ({
         <ReceipientContactsSelector onContactPress={onRecepientContactPress} />
 
         <View style={styles.buttonContainer}>
-          <PrimaryButton disabled={disabled} onPress={() => {}}>
+          <PrimaryButton disabled={disabled} onPress={onNavigateToReviewScreen}>
             <Typography
               fontSize={FONT_SIZE.body.md}
               fontFamily="Onest600SemiBold"

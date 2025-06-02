@@ -15,7 +15,7 @@ export type HomeTabParamsList = {
     | undefined;
   SendFundsScreen: { token: IToken };
   SendFundsReceiptScreen: { token: IToken };
-  SendFundsReviewScreen: undefined;
+  SendFundsReviewScreen: { token: IToken };
   ReceiveScreen: undefined;
 };
 

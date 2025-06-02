@@ -16,7 +16,8 @@
     "save": "Save",
     "cancel": "Cancel",
     "delete": "Delete",
-    "remove": "Remove"
+    "remove": "Remove",
+    "sending": "Sending"
   },
   "common": {
     "balance": "Balance",
