@@ -33,7 +33,7 @@ export const SendFundsButton = ({ token }: SendFundsButtonProps) => {
       setSending(false);
       navigation.navigate(HOME_STACK_ROUTES.SendFundsTxStatusScreen, {
         token,
-        status: 'error'
+        status: 'success'
       });
     } catch (error) {
       throw error;
