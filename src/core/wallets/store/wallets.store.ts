@@ -9,10 +9,13 @@ import { Networks, WalletStoreModel } from './wallets.types';
  */
 export const useWalletStore = create<WalletStoreModel>((set, get) => {
   // Initial values
-  const initialSelectedWallet = WALLETS_DATA[0];
-  const initialSelectedTokens = TOKENS_DATA.filter(
-    (token) => token.walletAddress === initialSelectedWallet.address
-  );
+  const initialSelectedWallet: IWallet | null =
+    WALLETS_DATA.length > 0 ? WALLETS_DATA[0] : null;
+  const initialSelectedTokens = initialSelectedWallet
+    ? TOKENS_DATA.filter(
+        (token) => token.walletAddress === initialSelectedWallet.address
+      )
+    : [];
 
   return {
     // State
@@ -58,10 +61,10 @@ export const useWalletStore = create<WalletStoreModel>((set, get) => {
       return ethers.utils.formatUnits(token.balance, token.decimals);
     },
 
-    changeSelectedWallet: (wallet: IWallet) => {
-      const selectedTokens = TOKENS_DATA.filter(
-        (token) => token.walletAddress === wallet.address
-      );
+    changeSelectedWallet: (wallet: IWallet | null) => {
+      const selectedTokens = wallet
+        ? TOKENS_DATA.filter((token) => token.walletAddress === wallet.address)
+        : [];
 
       set({
         selectedWallet: wallet,
@@ -72,7 +75,7 @@ export const useWalletStore = create<WalletStoreModel>((set, get) => {
     // Actions
     initializeWallets: async () => {
       const selectedTokens = TOKENS_DATA.filter(
-        (token) => token.walletAddress === initialSelectedWallet.address
+        (token) => token.walletAddress === initialSelectedWallet?.address
       );
 
       set({
@@ -87,20 +90,62 @@ export const useWalletStore = create<WalletStoreModel>((set, get) => {
      * @param walletAddress Wallet address
      */
     refreshWalletBalance: async (walletAddress: string) => {
-      // Simulation of backend API request to get wallet data
-      const _WALLETS_DATA = WALLETS_DATA;
-      const _wallet = _WALLETS_DATA.find((w) => w.address === walletAddress);
+      const walletsData = WALLETS_DATA;
+      const wallet = walletsData.find((w) => w.address === walletAddress);
 
-      if (_wallet) {
+      if (wallet) {
         const walletTokens = TOKENS_DATA.filter(
           (token) => token.walletAddress === walletAddress
         );
 
         set({
-          wallets: _WALLETS_DATA,
+          wallets: walletsData,
           selectedWalletTokens: walletTokens
         });
       }
+    },
+
+    updateWalletName: (walletId: string, newName: string) => {
+      set((state) => {
+        const updatedWallets = state.wallets.map((wallet) =>
+          wallet.id === walletId ? { ...wallet, name: newName } : wallet
+        );
+        const updatedSelectedWallet =
+          state.selectedWallet?.id === walletId
+            ? { ...state.selectedWallet, name: newName }
+            : state.selectedWallet;
+
+        return {
+          wallets: updatedWallets,
+          selectedWallet: updatedSelectedWallet
+        };
+      });
+    },
+
+    removeWallet: (walletId: string) => {
+      set((state) => {
+        const remainingWallets = state.wallets.filter(
+          (wallet) => wallet.id !== walletId
+        );
+        let newSelectedWallet = state.selectedWallet;
+
+        if (state.selectedWallet?.id === walletId) {
+          newSelectedWallet =
+            remainingWallets.length > 0 ? remainingWallets[0] : null;
+        }
+
+        const newSelectedWalletTokens = newSelectedWallet
+          ? TOKENS_DATA.filter(
+              (token) => token.walletAddress === newSelectedWallet!.address
+            )
+          : [];
+
+        return {
+          wallets: remainingWallets,
+          selectedWallet: newSelectedWallet,
+          selectedWalletTokens: newSelectedWalletTokens
+        };
+      });
     }
   };
 });

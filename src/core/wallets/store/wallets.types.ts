@@ -15,7 +15,7 @@ export interface WalletStoreModel {
   // State
   wallets: IWallet[];
   network: Networks;
-  selectedWallet: IWallet;
+  selectedWallet: IWallet | null;
   selectedWalletTokens: IToken[];
 
   // Getters
@@ -26,9 +26,11 @@ export interface WalletStoreModel {
 
   // Helpers
   formatTokenBalance: (token: IToken) => string;
-  changeSelectedWallet: (wallet: IWallet) => void;
+  changeSelectedWallet: (wallet: IWallet | null) => void;
 
   // Actions
   initializeWallets: () => Promise<void>;
   refreshWalletBalance: (walletAddress: string) => Promise<void>;
+  updateWalletName: (walletId: string, newName: string) => void;
+  removeWallet: (walletId: string) => void;
 }
