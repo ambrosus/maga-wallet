@@ -1,58 +1,31 @@
 import { useEffect, useMemo } from 'react';
-import { Typography, Spacer, SafeViewContainer } from '@components/atoms';
+import { Spacer, SafeViewContainer } from '@components/atoms';
+import { TotalBalance } from '@components/atoms/total-balance';
 import { AccountActionsContainer } from '@components/molecules';
 import { HomeHeader, TokensList } from '@components/organisms';
-import { COLORS } from '@constants';
 import { useWalletStore } from '@core/wallets';
-import { NumberUtils, verticalScale } from '@utils';
-import { styles } from './styles';
+import { verticalScale } from '@utils';
 
 export const HomeScreen = () => {
-  const { initializeWallets, selectedWalletTokens, calculateTotalUsdBalance } =
-    useWalletStore();
+  const { selectedWalletTokens, calculateTotalUsdBalance } = useWalletStore();
 
   const totalBalance = useMemo(
     () => calculateTotalUsdBalance(selectedWalletTokens),
     [calculateTotalUsdBalance, selectedWalletTokens]
   );
 
-  const TotalBalance = () => {
-    const _totalBalance = NumberUtils.limitDecimalCount(totalBalance, 2)
-      .toString()
-      .split('.');
-    return (
-      <>
-        <Typography
-          fontSize={36}
-          fontFamily="Onest600SemiBold"
-          color={COLORS.neutral700}
-        >
-          ${NumberUtils.formatNumber(_totalBalance[0] ? +_totalBalance[0] : 0)}
-          <Typography
-            fontSize={36}
-            fontFamily="Onest600SemiBold"
-            color={COLORS.textTertiary}
-          >
-            .
-            {NumberUtils.formatNumber(_totalBalance[1] ? +_totalBalance[1] : 0)}
-          </Typography>
-        </Typography>
-      </>
-    );
-  };
-
   useEffect(() => {
-    initializeWallets();
-  }, [initializeWallets]);
+    // TODO: Add refresh logic
+  }, []);
 
   return (
-    <SafeViewContainer style={styles.container}>
+    <SafeViewContainer>
       <HomeHeader />
       <Spacer value={verticalScale(24)} />
-      <TotalBalance />
+      <TotalBalance totalBalance={totalBalance} />
       <Spacer value={verticalScale(32)} />
       <AccountActionsContainer />
-      <Spacer value={verticalScale(24)} />
+      <Spacer value={verticalScale(32)} />
       <TokensList />
     </SafeViewContainer>
   );
