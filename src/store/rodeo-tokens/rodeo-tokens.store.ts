@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { RodeoToken } from '@queries/rodeo-tokens/types';
+import { RodeoToken } from '@graph/rodeo-tokens/types';
 
 interface RodeoTokensStore {
   tokens: RodeoToken[];

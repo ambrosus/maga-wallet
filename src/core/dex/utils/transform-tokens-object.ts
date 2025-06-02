@@ -1,5 +1,5 @@
 import { Config } from '@constants';
-import { RodeoToken } from '@queries/rodeo-tokens';
+import { RodeoToken } from '@graph/rodeo-tokens';
 import { SwapToken } from '../types';
 
 export const transformTokensObject = (newTokens: RodeoToken[]): SwapToken[] => {
