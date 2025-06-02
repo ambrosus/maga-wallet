@@ -1,33 +1,40 @@
 import { View } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { useTranslation } from 'react-i18next';
 
 import { Button } from '@components/molecules';
 import { Arrow } from '@components/svgs';
-import { RootNavigationProp } from '@navigation/root-stack';
-import { SettingItem } from '@screens/settings/models';
+import { COLORS } from '@constants';
 import { scale } from '@utils';
 import { styles } from './styles';
 import { Spacer } from '../spacer';
 import { Typography } from '../typography';
 
 interface SettingsMenuItemProps {
-  settingItem: SettingItem;
+  title: string;
+  icon?: React.ReactNode;
   showSeparator: boolean;
+  onPress: () => void;
+  subtitle?: string | null;
+  isArrow?: boolean;
+  disabled?: boolean;
 }
 
 export const SettingsMenuItem = ({
-  settingItem,
-  showSeparator
+  title,
+  onPress,
+  icon = null,
+  showSeparator,
+  subtitle = null,
+  isArrow = true,
+  disabled = false
 }: SettingsMenuItemProps) => {
-  const navigation = useNavigation<RootNavigationProp>();
-  const { t } = useTranslation();
-  const { name, route, icon } = settingItem;
-  const handlePress = () => navigation.navigate(route, { name });
+  const handlePress = () => {
+    onPress();
+  };
   const notification = 0;
 
   return (
     <Button
+      disabled={disabled}
       style={
         showSeparator
           ? { ...styles.menuItem, ...styles.itemSeperator }
@@ -37,15 +44,24 @@ export const SettingsMenuItem = ({
     >
       <View style={styles.menuItemWrapper}>
         <View style={styles.leftBlock}>
-          {icon}
-          <Spacer horizontal value={scale(10)} />
-          <Typography>{t(`settings.tabs.${name}`)}</Typography>
+          {icon && (
+            <>
+              {icon && icon}
+              <Spacer horizontal value={scale(10)} />
+            </>
+          )}
+          <View>
+            <Typography color={COLORS.neutral700}>{title}</Typography>
+            {subtitle && (
+              <Typography color={COLORS.neutral400}>{subtitle}</Typography>
+            )}
+          </View>
         </View>
 
         <View style={styles.rightBlock}>
           {!!notification && <Typography>{notification}</Typography>}
           <Spacer horizontal value={scale(15)} />
-          <Arrow orientation="right" />
+          {isArrow && <Arrow orientation="right" />}
         </View>
       </View>
     </Button>

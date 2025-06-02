@@ -7992,6 +7992,11 @@ react-native-camera-kit@^15.0.1:
   resolved "https://registry.yarnpkg.com/react-native-camera-kit/-/react-native-camera-kit-15.0.1.tgz#3d1e861fd6f87450b27744b02e9659b8e643a6a4"
   integrity sha512-JAa/2m73vKRp9oJ6ynYDr2KIIbglUbXYmDmsUrxLdk820eMGfxlb2HukqmVrkwt9KgX5vlBWoDHys3dhmrqa/w==
 
+react-native-device-info@^14.0.4:
+  version "14.0.4"
+  resolved "https://registry.yarnpkg.com/react-native-device-info/-/react-native-device-info-14.0.4.tgz#56b24ace9ff29a66bdfc667209086421ed6cfdce"
+  integrity sha512-NX0wMAknSDBeFnEnSFQ8kkAcQrFHrG4Cl0mVjoD+0++iaKrOupiGpBXqs8xR0SeJyPC5zpdPl4h/SaBGly6UxA==
+
 react-native-dotenv@^3.4.11:
   version "3.4.11"
   resolved "https://registry.yarnpkg.com/react-native-dotenv/-/react-native-dotenv-3.4.11.tgz#2e6c4eabd55d5f1bf109b3dd9141dadf9c55cdd4"
