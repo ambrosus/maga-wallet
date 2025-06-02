@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from 'react';
 import { Keyboard, TouchableOpacity, View } from 'react-native';
-import { ContactPersonIcon } from '@components/svgs';
+import { ContactPersonIcon, ThreeDotsIcon } from '@components/svgs';
 import { COLORS, FONT_SIZE } from '@constants';
 import { Contact } from '@core/contacts/types';
 import { StringUtils } from '@utils';
@@ -61,7 +61,7 @@ export const ContactListItem = ({
 
       {actions && (
         <TouchableOpacity>
-          <Typography>...</Typography>
+          <ThreeDotsIcon />
         </TouchableOpacity>
       )}
     </RowContainer>
