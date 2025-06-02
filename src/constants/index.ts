@@ -4,3 +4,4 @@ export * from './config';
 export * from './crypto';
 export * from './validators';
 export * from './wallets.data';
+export * from './mock-user-data';
