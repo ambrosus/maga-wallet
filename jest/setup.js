@@ -1,6 +1,9 @@
 import 'react-native-gesture-handler/jestSetup';
 
 require('react-native-reanimated').setUpTests();
+jest.mock('react-native-permissions', () =>
+  require('react-native-permissions/mock')
+);
 // Include this section for mocking react-native-screens
 
 // Global mock for @navigation
@@ -22,6 +25,49 @@ jest.mock(
   }),
   { virtual: true }
 );
+
+// Mock for QR Scanner context
+jest.mock('@lib', () => {
+  const originalModule = jest.requireActual('@lib');
+
+  return {
+    ...originalModule,
+    useQRScanner: jest.fn(() => ({
+      qrCallback: null,
+      setQRCallback: jest.fn()
+    })),
+    createContextSelector: jest.fn((useValue) => [
+      ({ children }) => children,
+      (selector) => selector(useValue())
+    ])
+  };
+});
+
+// Mock for react-native-camera-kit
+jest.mock('react-native-camera-kit', () => {
+  const View = require('react-native').View;
+
+  class MockCamera extends View {
+    static constants = {
+      Aspect: { stretch: 'stretch', fit: 'fit', fill: 'fill' },
+      CameraType: { front: 'front', back: 'back' },
+      TorchMode: { on: 'on', off: 'off', auto: 'auto' }
+    };
+  }
+
+  return {
+    Camera: MockCamera,
+    CameraType: { Back: 'back', Front: 'front' },
+    CameraApi: function () {
+      return {
+        capture: jest.fn(() => Promise.resolve()),
+        setFlashMode: jest.fn(),
+        setZoom: jest.fn(),
+        setFocus: jest.fn()
+      };
+    }
+  };
+});
 
 jest.mock('@constants/ui/navigation.theme', () => ({
   appTheme: {
@@ -142,7 +188,8 @@ jest.mock('@components/svgs', () => ({
   SettingsIconSecurity: () => 'SettingsIconSecurity',
   SettingsIconSettings: () => 'SettingsIconSettings',
   SettingsIconWallet: () => 'SettingsIconWallet',
-  AppIcon: 'AppIcon'
+  AppIcon: 'AppIcon',
+  QRIcon: () => 'QRIcon'
 }));
 
 jest.mock('@core/dex/utils/wrap-native-address', () => ({

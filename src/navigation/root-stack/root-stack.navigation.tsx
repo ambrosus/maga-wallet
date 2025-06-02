@@ -8,7 +8,8 @@ import {
   SplashScreen,
   AuthScreen,
   SetupPasskeyScreen,
-  CreateWalletLoadingScreen
+  CreateWalletLoadingScreen,
+  QRScannerScreen
 } from '@screens';
 import { ROOT_STACK_ROUTES } from './routes';
 import { RootStackParamsList } from './types';
@@ -45,6 +46,14 @@ export const RootStackNavigation = () => {
       <Stack.Screen
         name={ROOT_STACK_ROUTES.SettingsStack}
         component={SettingsStack}
+      />
+      <Stack.Screen
+        name={ROOT_STACK_ROUTES.QRScanner}
+        component={QRScannerScreen}
+        options={{
+          presentation: 'fullScreenModal',
+          animation: 'slide_from_bottom'
+        }}
       />
     </Stack.Navigator>
   );

@@ -4,5 +4,6 @@ export enum ROOT_STACK_ROUTES {
   SetupPasskeyScreen = 'SetupPasskeyScreen',
   CreateWalletLoadingScreen = 'CreateWalletLoadingScreen',
   Tabs = 'Tabs',
-  SettingsStack = 'SettingsStack'
+  SettingsStack = 'SettingsStack',
+  QRScanner = 'QRScanner'
 }
