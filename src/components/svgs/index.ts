@@ -27,4 +27,5 @@ export { ChartArrow } from './chart-arrow';
 export { AppLogo } from './app-logo';
 export { CopyIcon } from './copy-icon';
 export { QRIcon } from './qr';
+export { ContactPersonIcon } from './contact-person';
 export * from './settings';

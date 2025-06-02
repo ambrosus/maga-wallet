@@ -13,4 +13,5 @@ export { ShimmerLoader } from './shimmer-loader';
 export { Switch } from './switch';
 export { BottomSheetTokenItem } from './bottom-sheet-token-item';
 export { QrScannerDebugger } from './qr-scanner-debugger';
+export { ContactListItem } from './contact-list-item';
 export * from './input';

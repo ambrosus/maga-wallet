@@ -1,14 +1,22 @@
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import {
   KeyboardDismissingView,
   SafeViewContainer,
   Typography
 } from '@components/atoms';
-import { AddressInputWithQR, Header } from '@components/molecules';
-
-import { WalletSelector } from '@components/templates';
+import {
+  AddressInputWithQR,
+  Header,
+  PrimaryButton
+} from '@components/molecules';
+import {
+  ReceipientContactsSelector,
+  WalletSelector
+} from '@components/templates';
 import { COLORS, FLEX_FULL_SIZE, FONT_SIZE } from '@constants';
+import { Contact } from '@core/contacts/types';
 import { useRecipientFormHandler } from '@core/send-funds/lib';
 import { useSendFundsStore } from '@core/send-funds/model';
 import { RootNavigationScreenProps } from '@navigation/root-stack';
@@ -18,13 +26,13 @@ import { styles } from './styles';
 export const SendFundsReceiptScreen = ({
   route
 }: RootNavigationScreenProps<'SendFundsReceiptScreen'>) => {
+  const { t } = useTranslation();
   const {
     params: { token }
   } = route;
 
-  const { amount } = useSendFundsStore();
-  const { error, isWrongValue, recipient, setRecipient } =
-    useRecipientFormHandler();
+  const { amount, receipient, setReceipient } = useSendFundsStore();
+  const { error, isWrongValue } = useRecipientFormHandler();
 
   const renderHeaderContentMiddle = useMemo(() => {
     return (
@@ -45,6 +53,15 @@ export const SendFundsReceiptScreen = ({
     );
   }, [amount, token.currencyCode]);
 
+  const onRecepientContactPress = useCallback(
+    (contact: Contact) => {
+      setReceipient(contact.address);
+    },
+    [setReceipient]
+  );
+
+  const disabled = useMemo(() => !receipient, [receipient]);
+
   return (
     <SafeViewContainer>
       <Header title="Receipt" contentCenter={renderHeaderContentMiddle} />
@@ -53,8 +70,8 @@ export const SendFundsReceiptScreen = ({
         <View style={styles.container}>
           <AddressInputWithQR
             label="Send To"
-            value={recipient}
-            onChangeText={setRecipient}
+            value={receipient}
+            onChangeText={setReceipient}
           />
 
           {isWrongValue && error && (
@@ -66,6 +83,20 @@ export const SendFundsReceiptScreen = ({
               {error}
             </Typography>
           )}
+        </View>
+
+        <ReceipientContactsSelector onContactPress={onRecepientContactPress} />
+
+        <View style={styles.buttonContainer}>
+          <PrimaryButton disabled={disabled} onPress={() => {}}>
+            <Typography
+              fontSize={FONT_SIZE.body.md}
+              fontFamily="Onest600SemiBold"
+              color={COLORS.white}
+            >
+              {t('buttons.review')}
+            </Typography>
+          </PrimaryButton>
         </View>
       </KeyboardDismissingView>
     </SafeViewContainer>
