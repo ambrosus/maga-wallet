@@ -21,11 +21,11 @@ export const BottomSheetEditWalletName = forwardRef<
   BottomSheetModal,
   ModalEditWalletNameProps
 >(({ wallet }, ref) => {
+  const { t } = useTranslation();
+
   const bottomSheetRef = useForwardedRef<BottomSheetModal>(ref);
   const inputRef = useRef<InputRef>(null);
   const marginAnim = useRef(new Animated.Value(DEVICE_HEIGHT / 2)).current;
-
-  const { t } = useTranslation();
 
   const { updateWalletName } = useWalletStore();
 

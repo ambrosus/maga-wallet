@@ -27,9 +27,8 @@ export const BottomSheetEditwallet = forwardRef<
     { wallet, onEditNamePress, onRemoveWalletPress, onShareWalletPress },
     ref
   ) => {
-    const bottomSheetRef = useForwardedRef<BottomSheetModal>(ref);
-
     const { t } = useTranslation();
+    const bottomSheetRef = useForwardedRef<BottomSheetModal>(ref);
 
     const onItemPress = (event: (wallet: IWallet) => void) => {
       bottomSheetRef.current?.dismiss();

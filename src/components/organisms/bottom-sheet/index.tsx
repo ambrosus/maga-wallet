@@ -66,7 +66,7 @@ export const BottomSheet = forwardRef<BottomSheetModal, BottomSheetProps>(
         enableOverDrag={false}
         backdropComponent={renderBackdrop}
         enableDynamicSizing={true}
-        backgroundStyle={{ ...styles.background, ...modalStyles }}
+        backgroundStyle={[styles.background, modalStyles]}
         handleIndicatorStyle={
           swiperIconVisible ? styles.indicator : styles.indicatorHidden
         }
@@ -74,11 +74,11 @@ export const BottomSheet = forwardRef<BottomSheetModal, BottomSheetProps>(
         onChange={onChange}
       >
         <BottomSheetView
-          style={{
-            ...styles.container,
-            ...contentContainerStyle,
-            paddingBottom: paddingBottom === 0 ? 64 : paddingBottom
-          }}
+          style={[
+            styles.container,
+            contentContainerStyle,
+            { paddingBottom: paddingBottom === 0 ? 64 : paddingBottom }
+          ]}
         >
           {title && (
             <Typography

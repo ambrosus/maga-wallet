@@ -29,4 +29,5 @@ export { CopyIcon } from './copy-icon';
 export { QRIcon } from './qr';
 export { ShareIcon } from './share-icon';
 export { EditIcon } from './edit-icon';
+export { ThreeDotsIcon } from './three-dots-icon';
 export * from './settings';

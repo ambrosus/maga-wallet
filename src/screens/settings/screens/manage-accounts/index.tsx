@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Separator, Spacer } from '@components/atoms';
 import { Header, WalletContainer } from '@components/molecules';
-import { ThreeDotsIcon } from '@components/svgs/three-dots-icon';
+import { ThreeDotsIcon } from '@components/svgs';
 import {
   BottomSheetEditwallet,
   BottomSheetEditWalletName,

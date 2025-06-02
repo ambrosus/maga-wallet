@@ -25,8 +25,9 @@ export const BottomSheetRemoveWallet = forwardRef<
   BottomSheetModal,
   BottomSheetRemoveWalletProps
 >(({ wallet }, ref) => {
-  const bottomSheetRef = useForwardedRef<BottomSheetModal>(ref);
   const { t } = useTranslation();
+
+  const bottomSheetRef = useForwardedRef<BottomSheetModal>(ref);
   const { removeWallet } = useWalletStore();
 
   const handleRemoveWallet = () => {
