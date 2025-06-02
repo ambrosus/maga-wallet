@@ -1,5 +1,6 @@
 import { useCallback, useMemo, useState } from 'react';
 import { View } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
 import { parseEther } from 'viem';
 import { AutoResizeAmount } from '@components/animated/auto-resize-amount';
 import { SafeViewContainer, Spacer } from '@components/atoms';
@@ -11,6 +12,7 @@ import {
 } from '@components/molecules';
 import { Keyboard } from '@components/organisms';
 import { COLORS, FONT_SIZE, KEYBOARD_PRESETS } from '@constants';
+import { useAllContactsQuery } from '@core/contacts/lib';
 import { useKeyboardHandler } from '@core/send-funds/lib';
 import { useSendFundsStore } from '@core/send-funds/model';
 import { HOME_STACK_ROUTES } from '@navigation';
@@ -23,9 +25,21 @@ export const SendFundsScreen = ({
   navigation,
   route
 }: RootNavigationScreenProps<'SendFundsScreen'>) => {
-  const { amount } = useSendFundsStore();
+  useAllContactsQuery();
+  const { reset, amount } = useSendFundsStore();
   const [selectedTokenInstance, setSelectedTokenInstance] = useState<IToken>(
     route.params.token
+  );
+
+  useFocusEffect(
+    useCallback(() => {
+      const unsubscribe = navigation.addListener('beforeRemove', (event) => {
+        const resetActions = ['RESET', 'GO_BACK'];
+        if (resetActions.includes(event.data.action.type)) reset();
+      });
+
+      return unsubscribe;
+    }, [navigation, reset])
   );
 
   const [isLoading, setIsLoading] = useState(false);
@@ -40,6 +54,7 @@ export const SendFundsScreen = ({
   const onReviewTranasctionScreen = useCallback(async () => {
     try {
       setIsLoading(true);
+      // TODO: Remove this delay
       await delay(2500);
       navigation.navigate(HOME_STACK_ROUTES.SendFundsReceiptScreen, {
         token: selectedTokenInstance

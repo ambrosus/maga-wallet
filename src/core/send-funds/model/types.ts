@@ -3,4 +3,5 @@ export interface SendFundsStoreModel {
   setAmount: (amount: string) => void;
   receipient: string;
   setReceipient: (receipient: string) => void;
+  reset: () => void;
 }

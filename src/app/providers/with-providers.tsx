@@ -7,6 +7,7 @@ import { SwapContextProvider } from '@core/dex/context';
 import { ApolloClientProvider } from './apollo-client';
 import { LocalizationProvider } from './localization';
 import { NavigationProvider } from './navigation';
+import { TanstackQueryClientProvider } from './query-client';
 import { SafeContainerProvider } from './safe-area';
 
 export const WrappedAppWithProviders = () => {
@@ -14,16 +15,18 @@ export const WrappedAppWithProviders = () => {
     <GestureHandlerRootView style={FLEX_FULL_SIZE}>
       <SafeContainerProvider>
         <LocalizationProvider>
-          <ApolloClientProvider>
-            <SwapContextProvider>
-              <QRScannerProvider>
-                <BottomSheetModalProvider>
-                  <NavigationProvider />
-                  <Toast />
-                </BottomSheetModalProvider>
-              </QRScannerProvider>
-            </SwapContextProvider>
-          </ApolloClientProvider>
+          <TanstackQueryClientProvider>
+            <ApolloClientProvider>
+              <SwapContextProvider>
+                <QRScannerProvider>
+                  <BottomSheetModalProvider>
+                    <NavigationProvider />
+                    <Toast />
+                  </BottomSheetModalProvider>
+                </QRScannerProvider>
+              </SwapContextProvider>
+            </ApolloClientProvider>
+          </TanstackQueryClientProvider>
         </LocalizationProvider>
       </SafeContainerProvider>
     </GestureHandlerRootView>

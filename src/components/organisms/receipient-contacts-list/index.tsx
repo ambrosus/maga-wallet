@@ -16,13 +16,7 @@ export const ReceipientContactsList = ({
 }: ReceipientContactsListProps) => {
   const renderContactItem = useCallback(
     ({ item }: ListRenderItemInfo<Contact>) => {
-      return (
-        <ContactListItem
-          contact={item}
-          onContactPress={onContactPress}
-          actions
-        />
-      );
+      return <ContactListItem contact={item} onContactPress={onContactPress} />;
     },
     [onContactPress]
   );
@@ -34,7 +28,7 @@ export const ReceipientContactsList = ({
   return (
     <FlashList
       data={contacts}
-      keyboardShouldPersistTaps
+      keyboardShouldPersistTaps="always"
       renderItem={renderContactItem}
       keyExtractor={({ _id }) => _id.toString()}
       contentContainerStyle={styles.contentContainer}
