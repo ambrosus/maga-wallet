@@ -5,3 +5,4 @@ export * from './screens/notifications';
 export * from './screens/address-book';
 export * from './screens/about';
 export * from './screens/manage-accounts';
+export * from './screens/add-contact';

@@ -2,6 +2,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SETTINGS_STACK_ROUTES, SettingsTabParamsList } from '@navigation';
 import {
   AboutScreen,
+  AddContactScreen,
   AddressBookScreen,
   ManageAccountsScreen,
   NotificationsScreen,
@@ -90,6 +91,13 @@ export const SettingsStack = () => {
         <Stack.Screen
           name={SETTINGS_STACK_ROUTES.TwoFAVerify}
           component={TwoFAVerify}
+        />
+
+        {/* add contact */}
+
+        <Stack.Screen
+          name={SETTINGS_STACK_ROUTES.AddContact}
+          component={AddContactScreen}
         />
       </Stack.Navigator>
     </>

@@ -15,6 +15,7 @@ export type SettingsTabParamsList = {
   TwoFAPrepare: undefined;
   TwoFASetup: undefined;
   TwoFAVerify: { onVerify?: () => void };
+  AddContact: undefined;
 };
 
 export enum SETTINGS_STACK_ROUTES {
@@ -31,5 +32,6 @@ export enum SETTINGS_STACK_ROUTES {
   VerifyIdentify = 'VerifyIdentify',
   TwoFAPrepare = 'TwoFAPrepare',
   TwoFASetup = 'TwoFASetup',
-  TwoFAVerify = 'TwoFAVerify'
+  TwoFAVerify = 'TwoFAVerify',
+  AddContact = 'AddContact'
 }

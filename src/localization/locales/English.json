@@ -67,6 +67,18 @@
       "remove.wallet.description": "{{walletName}} will no longer be visible on this device unless imported.",
       "toast.success.remove.wallet": "Wallet removed."
     },
+    "address.book": {
+      "empty.list": "Save wallet address with a name and memo",
+      "add.contact.title": "Add New Contact",
+      "add.contact": "Add New Contact",
+      "save.contact": "Save Contact",
+      "contact.name": "Contact Name",
+      "contact.name.placeholder": "e.g DAO Payout Wallet",
+      "contact.address": "Contact Address",
+      "contact.address.placeholder": "e.g 0x000...000",
+      "contact.memo": "Memo (Optional)",
+      "contact.memo.placeholder": "e.g DAO Payout Wallet"
+    },
     "create.new.passkey": "Create new passkey",
     "confirm.new.passkey": "Confirm new passkey",
     "enter.passkey": "Enter current passkey",

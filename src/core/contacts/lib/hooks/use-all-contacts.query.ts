@@ -16,5 +16,5 @@ export const useAllContactsQuery = () => {
     if (data && data.length > 0) setContacts(data);
   }, [data, setContacts]);
 
-  return { loading: isLoading, error };
+  return { data, loading: isLoading, error };
 };
