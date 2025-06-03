@@ -17,6 +17,7 @@ import {
 import { FONT_SIZE, COLORS } from '@constants';
 import { Contact } from '@core/contacts/types';
 import { useSendFundsStore } from '@core/send-funds/model';
+import { StringUtils } from '@utils';
 import { styles } from './styles';
 
 interface SendFundsCreateContactPopupProps {
@@ -77,7 +78,11 @@ export const SendFundsCreateContactPopup = ({
                 inputStyle={styles.input}
                 label="Wallet address"
                 placeholder="0x8934d54e5ddu6...B32a"
-                value={receipient}
+                value={StringUtils.formatAddress(
+                  receipient,
+                  receipient.length - 27,
+                  4
+                )}
               />
             </View>
 

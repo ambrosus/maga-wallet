@@ -7,6 +7,7 @@ export const styles = StyleSheet.create({
     height: DEVICE_HEIGHT,
     position: 'relative'
   },
+
   headerContainer: {
     position: 'absolute',
     top: 0,

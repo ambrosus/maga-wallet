@@ -3,10 +3,15 @@ import { View, Alert, TouchableOpacity } from 'react-native';
 import { Camera, CameraApi, CameraType } from 'react-native-camera-kit';
 import { OnReadCodeData } from 'react-native-camera-kit/dist/CameraProps';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { QrScannerDebugger } from '@components/atoms';
+import {
+  CameraSquare,
+  QrScannerDebugger,
+  RowContainer,
+  Typography
+} from '@components/atoms';
 import { CloseIcon } from '@components/svgs';
 import { CameraPermissionView } from '@components/templates';
-import { COLORS } from '@constants';
+import { COLORS, FONT_SIZE } from '@constants';
 import { PermissionKeys, Permissions, useQRScanner } from '@lib';
 import { RootNavigationScreenProps } from '@navigation/root-stack';
 import { styles } from './styles';
@@ -61,17 +66,35 @@ export const QRScannerScreen = ({
   );
 
   if (!isCameraPermissionGranted) {
-    return <CameraPermissionView />;
+    return (
+      <CameraPermissionView
+        setIsCameraPermissionGranted={setIsCameraPermissionGranted}
+      />
+    );
   }
 
   return (
     <View style={styles.container}>
       <View style={[styles.headerContainer, { top }]}>
-        <TouchableOpacity onPress={navigation.goBack}>
-          <CloseIcon color={COLORS.white} />
-        </TouchableOpacity>
+        <RowContainer alignItems="center" justifyContent="space-between">
+          <TouchableOpacity onPress={navigation.goBack}>
+            <CloseIcon color={COLORS.white} />
+          </TouchableOpacity>
+
+          <Typography
+            fontSize={FONT_SIZE.heading.xl}
+            fontFamily="Onest600SemiBold"
+            color={COLORS.white}
+          >
+            Scan an Address
+          </Typography>
+
+          <View />
+        </RowContainer>
       </View>
       <QrScannerDebugger onScannedHandle={onScannedHandle} />
+
+      <CameraSquare />
 
       <Camera
         ref={cameraRef}
