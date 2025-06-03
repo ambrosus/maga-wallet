@@ -156,7 +156,11 @@
     "status": {
       "success": {
         "title": "Sent.",
-        "description": "is on its way to"
+        "description": "is on its way to",
+        "buttons": {
+          "save.contact": "Save Contact",
+          "saved.contact": "Contact saved!"
+        }
       },
       "error": {
         "title": "Transaction Failed!",

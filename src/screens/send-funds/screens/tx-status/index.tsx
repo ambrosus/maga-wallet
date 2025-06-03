@@ -1,6 +1,8 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
+import { View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { Typography } from '@components/atoms';
+import { Button } from '@components/molecules';
 import { StatusView } from '@components/organisms';
 import { COLORS, FONT_SIZE } from '@constants';
 import { useSendFundsStore } from '@core/send-funds/model';
@@ -18,6 +20,8 @@ export const SendFundsTxStatusScreen = ({
     params: { token, status }
   } = route;
 
+  const [isContactSaved, setIsContactSaved] = useState(false);
+
   const title = useMemo(() => {
     switch (status) {
       case 'success':
@@ -34,6 +38,9 @@ export const SendFundsTxStatusScreen = ({
       }
     }
   }, [status, t]);
+
+  const onToggleContactSaved = () =>
+    setIsContactSaved((prevState) => !prevState);
 
   return (
     <StatusView
@@ -81,6 +88,37 @@ export const SendFundsTxStatusScreen = ({
           align: 'center'
         }
       }}
-    />
+    >
+      {status === 'success' && (
+        <View style={styles.buttonsContainer}>
+          <Button
+            activeOpacity={0.75}
+            onPress={onToggleContactSaved}
+            style={styles.saveContactButton}
+          >
+            <Typography
+              fontSize={FONT_SIZE.body.lg}
+              fontFamily="Onest600SemiBold"
+              color={COLORS.neutral700}
+            >
+              {t(
+                `send.status.success.buttons.${
+                  isContactSaved ? 'saved' : 'save'
+                }.contact`
+              )}
+            </Typography>
+          </Button>
+          <Button activeOpacity={0.75} style={styles.doneButton}>
+            <Typography
+              fontSize={FONT_SIZE.body.lg}
+              fontFamily="Onest600SemiBold"
+              color={COLORS.white}
+            >
+              {t('buttons.done')}
+            </Typography>
+          </Button>
+        </View>
+      )}
+    </StatusView>
   );
 };
