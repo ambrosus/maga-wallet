@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useSendFundsStore } from '@core/send-funds/model';
 import { useDebounce } from '@lib';
 
@@ -37,11 +37,21 @@ export const useRecipientFormHandler = () => {
     setIsWrongValue(false);
   }, [debouncedRecipient]);
 
+  const validateTypedValue = useCallback((payload: string) => {
+    const isEthAddress = /^0x[a-fA-F0-9]{40}$/.test(payload);
+    const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload);
+    const isPhoneNumber = /^\+?[0-9]{10,15}$/.test(payload);
+
+    return !isEthAddress && !isEmail && !isPhoneNumber;
+  }, []);
+
   const errorMessage = useMemo(() => {
     if (recipientType === 'invalid') return 'Please enter a valid value.';
 
-    return `Oops! That ${recipientType} looks incorrect.`;
-  }, [recipientType]);
+    return isWrongValue
+      ? `Oops! That ${recipientType} looks incorrect.`
+      : undefined;
+  }, [isWrongValue, recipientType]);
 
-  return { error: errorMessage, isWrongValue };
+  return { error: errorMessage, isWrongValue, validateTypedValue };
 };

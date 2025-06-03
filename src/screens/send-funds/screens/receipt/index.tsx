@@ -34,7 +34,7 @@ export const SendFundsReceiptScreen = ({
   } = route;
 
   const { amount, receipient, setReceipient } = useSendFundsStore();
-  const { error, isWrongValue } = useRecipientFormHandler();
+  const { error, isWrongValue, validateTypedValue } = useRecipientFormHandler();
 
   const onNavigateToReviewScreen = useCallback(() => {
     navigation.navigate(HOME_STACK_ROUTES.SendFundsReviewScreen, {
@@ -68,7 +68,10 @@ export const SendFundsReceiptScreen = ({
     [setReceipient]
   );
 
-  const disabled = useMemo(() => !receipient, [receipient]);
+  const disabled = useMemo(
+    () => !receipient || validateTypedValue(receipient),
+    [receipient, validateTypedValue]
+  );
 
   return (
     <SafeViewContainer>

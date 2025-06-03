@@ -8,3 +8,4 @@ export { useSafeViewController } from './use-safe-view-controller';
 export { useDebounce } from './use-debounce';
 export { useQRScanner } from './use-qr-scanner';
 export { useFullscreenModalHeight } from './use-fullscreen-modal-height';
+export { usePopup } from './use-popup';
