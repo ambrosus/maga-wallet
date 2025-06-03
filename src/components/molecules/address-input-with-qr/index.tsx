@@ -25,7 +25,7 @@ const getSliceNumbers = (width: number, fontSize: number) => {
   const totalCharacters = Math.floor(width / fontSize);
   const halfCharacters = Math.floor(totalCharacters / 2);
   const leftSlice = halfCharacters + 9;
-  const rightSlice = totalCharacters - leftSlice + 9;
+  const rightSlice = 4;
   return { leftSlice, rightSlice };
 };
 

@@ -6,13 +6,23 @@ import { COLORS, FONT_SIZE } from '@constants';
 import { Permissions, PermissionKeys } from '@lib';
 import { styles } from './styles';
 
-export const CameraPermissionView = () => {
-  const getCameraPermissions = useCallback(() => {
-    Permissions.check(PermissionKeys.CAMERA, {
+interface CameraPermissionViewProps {
+  setIsCameraPermissionGranted: (value: boolean) => void;
+}
+
+export const CameraPermissionView = ({
+  setIsCameraPermissionGranted
+}: CameraPermissionViewProps) => {
+  const getCameraPermissions = useCallback(async () => {
+    const permission = await Permissions.check(PermissionKeys.CAMERA, {
       requestAgain: true,
       openSettings: true
     });
-  }, []);
+
+    if (permission) {
+      setIsCameraPermissionGranted(true);
+    }
+  }, [setIsCameraPermissionGranted]);
 
   return (
     <SafeViewContainer style={styles.container}>
