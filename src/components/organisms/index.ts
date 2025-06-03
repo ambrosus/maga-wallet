@@ -5,3 +5,4 @@ export { Keyboard } from './keyboard';
 export { HomeHeader } from './home-header';
 export { TokensList } from './tokens-list';
 export { ReceipientContactsList } from './receipient-contacts-list';
+export { StatusView } from './status-view';

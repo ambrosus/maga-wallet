@@ -19,3 +19,4 @@ export { SendFundsTokenSelector } from './send-funds-token-selector';
 export { QRCodeBox } from './qr-code';
 export { AddressInputWithQR } from './address-input-with-qr';
 export { WalletContainer } from './wallet-container';
+export { TextInputWithLabel } from './text-input-with-label';

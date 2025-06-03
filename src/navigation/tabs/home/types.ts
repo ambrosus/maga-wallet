@@ -15,7 +15,8 @@ export type HomeTabParamsList = {
     | undefined;
   SendFundsScreen: { token: IToken };
   SendFundsReceiptScreen: { token: IToken };
-  SendFundsReviewScreen: undefined;
+  SendFundsReviewScreen: { token: IToken };
+  SendFundsTxStatusScreen: { token: IToken; status: 'success' | 'error' };
   ReceiveScreen: undefined;
 };
 
@@ -28,6 +29,7 @@ export enum HOME_STACK_ROUTES {
   SendFundsScreen = 'SendFundsScreen',
   SendFundsReceiptScreen = 'SendFundsReceiptScreen',
   SendFundsReviewScreen = 'SendFundsReviewScreen',
+  SendFundsTxStatusScreen = 'SendFundsTxStatusScreen',
   ReceiveScreen = 'ReceiveScreen'
 }
 

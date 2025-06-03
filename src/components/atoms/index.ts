@@ -14,5 +14,6 @@ export { Switch } from './switch';
 export { BottomSheetTokenItem } from './bottom-sheet-token-item';
 export { QrScannerDebugger } from './qr-scanner-debugger';
 export { ContactListItem } from './contact-list-item';
+export { Popup } from './popup';
 export * from './input';
 export * from './total-balance';

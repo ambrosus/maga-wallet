@@ -9,7 +9,8 @@ import { HomeScreen } from '@screens/home';
 import { ReceiveScreen } from '@screens/receive';
 import {
   SendFundsReceiptScreen,
-  SendFundsReviewScreen
+  SendFundsReviewScreen,
+  SendFundsTxStatusScreen
 } from '@screens/send-funds/screens';
 import { HOME_STACK_ROUTES, HomeTabParamsList } from './types';
 
@@ -73,6 +74,13 @@ export const HomeStack = () => {
           <Stack.Screen
             name={HOME_STACK_ROUTES.SendFundsReviewScreen}
             component={SendFundsReviewScreen}
+          />
+          <Stack.Screen
+            name={HOME_STACK_ROUTES.SendFundsTxStatusScreen}
+            component={SendFundsTxStatusScreen}
+            options={{
+              gestureEnabled: false
+            }}
           />
         </Stack.Group>
       </Stack.Navigator>

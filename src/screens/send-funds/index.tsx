@@ -12,7 +12,6 @@ import {
 } from '@components/molecules';
 import { Keyboard } from '@components/organisms';
 import { COLORS, FONT_SIZE, KEYBOARD_PRESETS } from '@constants';
-import { useAllContactsQuery } from '@core/contacts/lib';
 import { useKeyboardHandler } from '@core/send-funds/lib';
 import { useSendFundsStore } from '@core/send-funds/model';
 import { HOME_STACK_ROUTES } from '@navigation';
@@ -25,8 +24,7 @@ export const SendFundsScreen = ({
   navigation,
   route
 }: RootNavigationScreenProps<'SendFundsScreen'>) => {
-  useAllContactsQuery();
-  const { reset, amount } = useSendFundsStore();
+  const { reset, amount, setAmount } = useSendFundsStore();
   const [selectedTokenInstance, setSelectedTokenInstance] = useState<IToken>(
     route.params.token
   );
@@ -54,6 +52,9 @@ export const SendFundsScreen = ({
   const onReviewTranasctionScreen = useCallback(async () => {
     try {
       setIsLoading(true);
+
+      if (amount.endsWith('.')) setAmount(amount.slice(0, -1));
+
       // TODO: Remove this delay
       await delay(2500);
       navigation.navigate(HOME_STACK_ROUTES.SendFundsReceiptScreen, {
@@ -64,7 +65,7 @@ export const SendFundsScreen = ({
     } finally {
       setIsLoading(false);
     }
-  }, [navigation, selectedTokenInstance]);
+  }, [amount, navigation, selectedTokenInstance, setAmount]);
 
   const isInsufficientBalance = useMemo(() => {
     const bnAmount = parseEther(amount);
