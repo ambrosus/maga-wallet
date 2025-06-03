@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { fetchAllContacts } from '@core/contacts/api';
+import { contactsApi } from '@core/contacts/api';
 import { useContactsStore } from '@core/contacts/model';
 
 export const useAllContactsQuery = () => {
@@ -8,7 +8,7 @@ export const useAllContactsQuery = () => {
 
   const { data, isLoading, error } = useQuery({
     queryKey: ['contacts'],
-    queryFn: fetchAllContacts,
+    queryFn: contactsApi.getContacts,
     refetchInterval: 5 * 60 * 1000
   });
 
