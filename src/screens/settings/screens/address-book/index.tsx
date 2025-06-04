@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { SafeAreaView } from 'react-native';
 import { BottomSheetModal } from '@gorhom/bottom-sheet';
 import { useNavigation } from '@react-navigation/native';
@@ -40,10 +40,13 @@ export const AddressBookScreen = () => {
 
   const isEmpty = !data?.length;
 
-  const openAction = (contact: Contact) => {
-    setContactToAction(contact);
-    contactActionRef.current?.present();
-  };
+  const openAction = useCallback(
+    (contact: Contact) => {
+      setContactToAction(contact);
+      contactActionRef.current?.present();
+    },
+    [contactActionRef]
+  );
 
   const onPressToken = (token: IToken) => {
     selectTokensBottomSheetRef.current?.close();
