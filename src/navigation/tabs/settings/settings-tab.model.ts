@@ -1,4 +1,7 @@
+import { Contact } from '@core/contacts/types';
 import { Settingsitems } from '@screens/settings/models';
+
+export type AddContactScreenType = 'add' | 'edit';
 
 export type SettingsTabParamsList = {
   SettingsScreen: undefined;
@@ -15,7 +18,7 @@ export type SettingsTabParamsList = {
   TwoFAPrepare: undefined;
   TwoFASetup: undefined;
   TwoFAVerify: { onVerify?: () => void };
-  AddContact: undefined;
+  AddContact: { screenType: AddContactScreenType; contact?: Contact };
 };
 
 export enum SETTINGS_STACK_ROUTES {

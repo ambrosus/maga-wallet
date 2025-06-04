@@ -1,4 +1,3 @@
-import { RefObject } from 'react';
 import { View, TextInput, ReturnKeyTypeOptions } from 'react-native';
 import { Typography } from '@components/atoms';
 import { COLORS } from '@constants';
@@ -9,7 +8,6 @@ interface AddContactTemplateProps {
   setValue: (value: string) => void;
   placeholder: string;
   label: string;
-  ref: RefObject<TextInput> | null;
   returnKeyType: ReturnKeyTypeOptions;
   onSubmitEditing: () => void;
 }
@@ -19,8 +17,8 @@ export const AddContactTemplate = ({
   setValue,
   placeholder,
   label,
-  ref,
-  returnKeyType
+  returnKeyType,
+  onSubmitEditing
 }: AddContactTemplateProps) => {
   return (
     <View style={styles.fieldWrapper}>
@@ -33,7 +31,7 @@ export const AddContactTemplate = ({
         value={value}
         onChangeText={setValue}
         returnKeyType={returnKeyType}
-        onSubmitEditing={() => ref && ref.current?.focus()}
+        onSubmitEditing={onSubmitEditing}
       />
     </View>
   );

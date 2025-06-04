@@ -7,6 +7,7 @@ import {
   NativeStackNavigationProp,
   NativeStackScreenProps
 } from '@react-navigation/native-stack';
+import { TabsParamsList } from '@navigation/tabs-stacks/types';
 import { ROOT_STACK_ROUTES } from './root-stack/routes';
 import { DiscoverTabParamsList } from './tabs/discover/discover-tab.model';
 import { HomeTabParamsList } from './tabs/home/types';
@@ -46,7 +47,7 @@ export type RootNavigationProp = NativeStackNavigationProp<RootStackParamsList>;
  * Navigation prop type for the tabs stack.
  * Provides typed access to navigation methods for the tabs stack.
  */
-export type TabsNavigationProp = BottomTabNavigationProp<TabsStackParamsList>;
+export type TabsNavigationProp = BottomTabNavigationProp<TabsParamsList>;
 
 /**
  * Navigation prop type for the home tab.
@@ -83,5 +84,5 @@ export type RootNavigationScreenProps<Route extends keyof RootStackParamsList> =
  * Screen props type for components within the tabs navigation stack.
  * @template Route - The screen route name from TabsStackParamsList
  */
-export type TabsNavigationScreenProps<Route extends keyof TabsStackParamsList> =
-  NavigationScreenProps<TabsStackParamsList, Route>;
+export type TabsNavigationScreenProps<Route extends keyof TabsParamsList> =
+  NavigationScreenProps<TabsParamsList, Route>;

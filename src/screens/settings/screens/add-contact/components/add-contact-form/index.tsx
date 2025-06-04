@@ -9,18 +9,27 @@ import Animated, {
 } from 'react-native-reanimated';
 import { PrimaryButton } from '@components/molecules';
 import { DEVICE_HEIGHT } from '@constants';
+import { Contact } from '@core/contacts/types';
 import { useKeyboardHeight } from '@lib';
 import { SETTINGS_STACK_ROUTES } from '@navigation';
 import { RootNavigationProp } from '@navigation/root-stack';
 import { Settingsitems } from '@screens/settings/models';
 import { AddContactTemplate } from './components';
 import { styles } from './styles';
-export const AddContactForm = () => {
+
+interface AddContactFormProps {
+  isEdit?: boolean;
+  contact?: Contact;
+}
+
+export const AddContactForm = ({ isEdit, contact }: AddContactFormProps) => {
   const { t } = useTranslation();
   const navigation = useNavigation<RootNavigationProp>();
-  const [name, setName] = useState('');
-  const [address, setAddress] = useState('');
-  const [memo, setMemo] = useState('');
+
+  const [name, setName] = useState(contact?.name || '');
+  const [address, setAddress] = useState(contact?.address || '');
+  const [memo, setMemo] = useState(contact?.memo || '');
+
   const keyboardHeight = useKeyboardHeight();
   const [inputsBottom, setInputsBottom] = useState(0);
   const [containerHeight, setContainerHeight] = useState(0);
@@ -47,6 +56,7 @@ export const AddContactForm = () => {
     const { y, height } = e.nativeEvent.layout;
     setInputsBottom(y + height);
   };
+
   const onContainerLayout = (e: LayoutChangeEvent) => {
     setContainerHeight(e.nativeEvent.layout.height);
   };
@@ -67,14 +77,17 @@ export const AddContactForm = () => {
     }
   };
 
-  const isButtonDisavled = useMemo(() => {
+  const buttonTitle = isEdit
+    ? t('settings.address.book.edit.contact')
+    : t('settings.address.book.save.contact');
+
+  const isButtonDisabled = useMemo(() => {
     return !name || !address;
   }, [name, address]);
 
   return (
     <View style={styles.main} onLayout={onContainerLayout}>
       <View style={styles.root} onLayout={onInputsLayout}>
-        {/* Name */}
         <AddContactTemplate
           value={name}
           setValue={setName}
@@ -84,7 +97,6 @@ export const AddContactForm = () => {
           returnKeyType="next"
           onSubmitEditing={() => addressRef.current?.focus()}
         />
-        {/* Wallet address */}
         <AddContactTemplate
           value={address}
           setValue={setAddress}
@@ -94,7 +106,6 @@ export const AddContactForm = () => {
           returnKeyType="next"
           onSubmitEditing={() => memoRef.current?.focus()}
         />
-        {/* Memo */}
         <AddContactTemplate
           value={memo}
           setValue={setMemo}
@@ -107,8 +118,8 @@ export const AddContactForm = () => {
       </View>
       <Animated.View style={animatedButtonStyle} pointerEvents="box-none">
         <PrimaryButton
-          disabled={isButtonDisavled}
-          title={t('settings.address.book.save.contact')}
+          disabled={isButtonDisabled}
+          title={buttonTitle}
           onPress={submitNewContact}
         />
       </Animated.View>

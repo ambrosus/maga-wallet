@@ -4,12 +4,29 @@ import { scale } from '@utils';
 
 export const styles = StyleSheet.create({
   container: {
-    padding: scale(16)
+    flex: 1,
+    marginHorizontal: scale(16)
   },
-  contactItem: {
-    padding: scale(16),
-    backgroundColor: COLORS.neutral200,
-    borderRadius: scale(12),
-    marginBottom: scale(12)
+  contentContainer: {
+    backgroundColor: COLORS.neutral100,
+    borderRadius: 16
+  },
+  row: {
+    paddingVertical: scale(16),
+    paddingHorizontal: scale(12),
+    borderColor: COLORS.neutral300,
+    borderBottomWidth: 0
+  },
+  name: {
+    fontSize: scale(16),
+    color: COLORS.textPrimary
+  },
+  address: {
+    fontSize: scale(10),
+    color: COLORS.textSecondary
+  },
+  actionButton: {
+    paddingRight: scale(5),
+    paddingLeft: scale(10)
   }
 });

@@ -5,11 +5,13 @@ interface SeparatorProps {
   color?: string;
   width?: number;
   itemWidth?: number;
+  height?: number;
 }
 
 export const Separator = ({
   color = COLORS.neutral500,
   width = 1,
+  height = 1,
   itemWidth
 }: SeparatorProps) => {
   if (itemWidth) {
@@ -17,7 +19,7 @@ export const Separator = ({
       <View
         style={{
           width: itemWidth,
-          height: 1,
+          height,
           backgroundColor: color,
           borderWidth: width,
           borderColor: color

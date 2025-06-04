@@ -3,9 +3,9 @@ import { CONTACTS } from '../constants';
 import { Contact } from '../types';
 
 class ContactsApi {
-  private contacts = CONTACTS;
+  private contacts: Contact[] = CONTACTS;
 
-  public getContacts = async () => {
+  public getContacts = async (): Promise<Contact[]> => {
     try {
       // TODO: Remove this delay & replace with actual API call
       await delay(1000);
