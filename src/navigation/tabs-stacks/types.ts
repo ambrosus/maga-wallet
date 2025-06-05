@@ -15,15 +15,17 @@ import {
   HISTORY_STACK_ROUTES,
   HistoryTabParamsList
 } from '@navigation/tabs';
+import { SettingsTabParamsList } from '@navigation/tabs/settings/settings-tab.model';
 
 /**
  * Parameter list for the tabs navigation stack.
  * Defines all available screens and their respective prop types.
  */
 export type TabsStackParamsList = {
-  Home: undefined;
-  Discover: undefined;
-  History: undefined;
+  Home: NavigatorScreenParams<HomeTabParamsList>;
+  Discover: NavigatorScreenParams<DiscoverTabParamsList>;
+  History: NavigatorScreenParams<HistoryTabParamsList>;
+  Settings: NavigatorScreenParams<SettingsTabParamsList>;
 };
 
 /**
@@ -37,6 +39,7 @@ export type TabsParamsList = {
   Home: NavigatorScreenParams<HomeTabParamsList>;
   Discover: NavigatorScreenParams<DiscoverTabParamsList>;
   History: NavigatorScreenParams<HistoryTabParamsList>;
+  Settings: NavigatorScreenParams<SettingsTabParamsList>;
 };
 
 export type NavigationProp = CompositeNavigationProp<

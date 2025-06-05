@@ -4,12 +4,17 @@ import { BottomSheetModal } from '@gorhom/bottom-sheet';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Separator, Spacer } from '@components/atoms';
-import { Header, WalletContainer } from '@components/molecules';
+import {
+  Header,
+  Toast,
+  ToastType,
+  WalletContainer
+} from '@components/molecules';
 import { ThreeDotsIcon } from '@components/svgs';
 import {
   BottomSheetEditwallet,
   BottomSheetEditWalletName,
-  BottomSheetRemoveWallet
+  BottomSheetConfirmModal
 } from '@components/templates';
 import { COLORS } from '@constants';
 import { useWalletStore } from '@core/wallets';
@@ -21,7 +26,7 @@ import { styles } from './styles';
 
 export const ManageAccountsScreen = () => {
   const { t } = useTranslation();
-  const { wallets } = useWalletStore();
+  const { wallets, removeWallet } = useWalletStore();
   const [walletToEdit, setWalletToEdit] = useState<IWallet | null>(null);
 
   const editWalletRef = useForwardedRef<BottomSheetModal>(null);
@@ -71,6 +76,18 @@ export const ManageAccountsScreen = () => {
       title: t('settings.manage.accounts.share.account')
     });
   };
+
+  const onApproveRemoveWallet = () => {
+    if (walletToEdit) {
+      removeWallet(walletToEdit?.id);
+    }
+    Toast.show({
+      text: t('settings.manage.accounts.toast.success.remove.wallet'),
+      type: ToastType.Success
+    });
+    removeWalletRef.current?.dismiss();
+  };
+
   return (
     <SafeAreaView>
       <Header goBack title={t('settings.tabs.manage.accounts')} />
@@ -99,7 +116,16 @@ export const ManageAccountsScreen = () => {
         ref={editWalletNameRef}
         wallet={walletToEdit}
       />
-      <BottomSheetRemoveWallet ref={removeWalletRef} wallet={walletToEdit} />
+      <BottomSheetConfirmModal
+        title={t('settings.manage.accounts.remove.wallet.title')}
+        description={t(
+          'settings.manage.accounts.remove.wallet.description'
+        ).replace('{{walletName}}', walletToEdit?.name || '')}
+        onApprove={onApproveRemoveWallet}
+        onCancel={() => removeWalletRef.current?.dismiss()}
+        ref={removeWalletRef}
+        wallet={walletToEdit}
+      />
     </SafeAreaView>
   );
 };

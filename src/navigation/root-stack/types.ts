@@ -1,17 +1,16 @@
+import { NavigatorScreenParams } from '@react-navigation/native';
 import {
   NativeStackNavigationProp,
   NativeStackScreenProps
 } from '@react-navigation/native-stack';
+import { Contact } from '@core/contacts/types';
 import {
-  DISCOVER_STACK_ROUTES,
   DiscoverTabParamsList,
-  HOME_STACK_ROUTES,
   HomeTabParamsList,
-  SETTINGS_STACK_ROUTES,
   SettingsTabParamsList,
-  HISTORY_STACK_ROUTES,
   HistoryTabParamsList
 } from '@navigation/tabs';
+import { TabsStackParamsList } from '@navigation/tabs-stacks/types';
 
 /**
  * Parameter list for the root navigation stack.
@@ -24,15 +23,8 @@ export type RootStackParamsList = {
   SetupPasskeyScreen: undefined;
   CreateWalletLoadingScreen: undefined;
   SettingsStack: undefined;
-  Tabs:
-    | {
-        screen?:
-          | HISTORY_STACK_ROUTES
-          | HOME_STACK_ROUTES
-          | DISCOVER_STACK_ROUTES
-          | SETTINGS_STACK_ROUTES;
-      }
-    | undefined;
+  Tabs: NavigatorScreenParams<TabsStackParamsList>;
+  AddContactScreen: { screenType?: 'add' | 'edit'; contact?: Contact };
 } & SettingsTabParamsList &
   HomeTabParamsList &
   DiscoverTabParamsList &

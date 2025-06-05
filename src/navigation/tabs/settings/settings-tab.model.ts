@@ -1,4 +1,7 @@
+import { Contact } from '@core/contacts/types';
 import { Settingsitems } from '@screens/settings/models';
+
+export type AddContactScreenType = 'add' | 'edit';
 
 export type SettingsTabParamsList = {
   SettingsScreen: undefined;
@@ -15,6 +18,7 @@ export type SettingsTabParamsList = {
   TwoFAPrepare: undefined;
   TwoFASetup: undefined;
   TwoFAVerify: { onVerify?: () => void };
+  AddContact: { screenType: AddContactScreenType; contact?: Contact };
 };
 
 export enum SETTINGS_STACK_ROUTES {
@@ -31,5 +35,6 @@ export enum SETTINGS_STACK_ROUTES {
   VerifyIdentify = 'VerifyIdentify',
   TwoFAPrepare = 'TwoFAPrepare',
   TwoFASetup = 'TwoFASetup',
-  TwoFAVerify = 'TwoFAVerify'
+  TwoFAVerify = 'TwoFAVerify',
+  AddContact = 'AddContact'
 }

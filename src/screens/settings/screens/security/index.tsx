@@ -81,7 +81,7 @@ export const SecurityScreen = () => {
           >
             <>
               <Typography color={COLORS.textPrimary}>
-                {t('settings.tabs.security.change.passkey')}
+                {t('settings.security.change.passkey')}
               </Typography>
               <Arrow color={COLORS.neutral400} orientation="right" />
             </>

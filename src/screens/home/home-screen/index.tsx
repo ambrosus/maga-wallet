@@ -5,6 +5,7 @@ import { AccountActionsContainer } from '@components/molecules';
 import { HomeHeader, TokensList } from '@components/organisms';
 import { useWalletStore } from '@core/wallets';
 import { verticalScale } from '@utils';
+import { styles } from './styles';
 
 export const HomeScreen = () => {
   const { selectedWalletTokens, calculateTotalUsdBalance } = useWalletStore();
@@ -19,7 +20,7 @@ export const HomeScreen = () => {
   }, []);
 
   return (
-    <SafeViewContainer>
+    <SafeViewContainer style={styles.container}>
       <HomeHeader />
       <Spacer value={verticalScale(24)} />
       <TotalBalance totalBalance={totalBalance} />
